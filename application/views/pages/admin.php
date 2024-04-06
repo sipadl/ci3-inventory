@@ -9,7 +9,7 @@
     </button>
 	<div class="col-md-12 mt-2 p-0 mx-0">
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table table-border" id="myTable">
             <thead>
                 <tr class="text-center">
                     <th>No</th>

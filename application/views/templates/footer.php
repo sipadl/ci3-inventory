@@ -36,7 +36,17 @@
 <script src="<?php echo base_url('plugins/chart.js/Chart.min.js') ?>"></script>
 <script src="<?php echo base_url('dist/js/demo.js') ?>"></script>
 <script src="<?php echo base_url('dist/js/pages/dashboard3.js') ?>"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+
 <script>
+  $(document).ready(function () {
+    $('#myTable').DataTable();
+  });
+</script>
+<script>
+	
 	function addDaging() {
 		const dagingCountP = $('.daging-putih').length;
 		const dagingCountM = $('.daging-putih').length;

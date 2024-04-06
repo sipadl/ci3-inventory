@@ -1,14 +1,28 @@
 <div class="">
     <div class="">
-        <form method="post" action="<?php echo base_url('main/tambahSuplier'); ?>">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalSuplier">
+    Tambah Baru
+  	</button>
+	<div class="modal fade" id="myModalSuplier">
+    <div class="modal-dialog modal-lg modal-fullscreen">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Form Tambah Suplier Baru</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal Body -->
+        <div class="modal-body container">
+		<form method="post" action="<?php echo base_url('main/tambahSuplier'); ?>">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="id_supplier">ID Supplier</label>
+                    <label for="id_supplier">Kode Supplier</label>
                     <input
                         type="text"
                         class="form-control"
                         id="id_supplier"
-                        placeholder="ID Supplier">
+                        placeholder="Kode Supplier">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="nama_supplier">Nama Supplier</label>
@@ -60,14 +74,24 @@
 					name="alamat"
                     rows="5"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
-        </form>
+        </div>
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </div>
+	</form>
+      </div>
+    </div>
+    </div>
+	
     </div>
     <hr>
     <div class="mb-2">
-        <table class="table table-striped">
+        <table class="table" id="myTable">
             <thead>
                 <tr>
+					<th>No.</th>
                     <th>ID Supplier</th>
                     <th>Nama Supplier</th>
                     <th>Bank</th>
@@ -81,9 +105,12 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($suppliers as $supplier): ?>
+                <?php 
+				$no = 1;
+				foreach ($suppliers as $supplier): ?>
                 <tr>
-                    <td><?php echo $supplier['id_supplier']; ?></td>
+					<td><?php echo $no++ ?></td>
+                    <td><?php echo $supplier['kode_supplier']; ?></td>
                     <td><?php echo $supplier['nama_supplier']; ?></td>
                     <td><?php echo $supplier['bank']; ?></td>
                     <td><?php echo $supplier['nomor']; ?></td>

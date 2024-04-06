@@ -144,6 +144,7 @@ class Main extends CI_Controller {
 	public function tambahSuplier() {
         // Mendapatkan data dari form
         $data = array(
+			'kode_supplier' => $this->input->post('kode_supplier'),
             'nama_supplier' => $this->input->post('nama_supplier'),
             'bank' => $this->input->post('bank'),
             'nomor' => $this->input->post('nomor'),

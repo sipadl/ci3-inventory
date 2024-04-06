@@ -1,35 +1,71 @@
 <!-- Form untuk tambah user -->
-<div class="row mb-4">
-	<div class="col-md-6">
-		<form method="post" action="<?php echo site_url('main/tambahUser'); ?>">
-			<!-- Field untuk nama, email, password, dll. -->
-			<input class="form-control mb-2" type="text" name="username" placeholder="Username" required>
-			<input class="form-control mb-2" type="email" name="email" placeholder="Email" required>
-			<input class="form-control mb-2" type="password" name="password" placeholder="Password" required>
-			<!-- Dropdown untuk memilih peran -->
-			<select name="role" class="form-control mb-2">
-				<?php foreach ($role as $dd) : ?>
-					<option value="<?php echo $dd['id_role'] ?>"><?php echo $dd['descriptiom'] ?></option>
-					<?php endforeach; ?>
-				</select>
-				<button type="submit" class="btn btn-primary">Tambah User</button>
-			</form>
-		</div>
-	</div>
-	<h4>List User</h4>
 	<div class="row">
-		<div class="col-md-6">
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#modelIdX">
+		  Tambah User
+		</button>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="modelIdX" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-fullscreen" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Form Tambah User</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					</div>
+					<form method="post" action="<?php echo site_url('main/tambahUser'); ?>">
+					<div class="modal-body">
+					<div class="col-md-12">
+						<!-- Field untuk nama, email, password, dll. -->
+						<div class="form-group">
+							<label for="username">Username</label>
+							<input class="form-control mb-2" type="text" id="username" name="username" placeholder="Username" required>
+						</div>
+
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input class="form-control mb-2" type="email" id="email" name="email" placeholder="Email" required>
+						</div>
+
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input class="form-control mb-2" type="password" id="password" name="password" placeholder="Password" required>
+						</div>
+						<!-- Dropdown untuk memilih peran -->
+						<div class="form-group">
+							<label for="password">Role</label>
+							<select name="role" class="form-control mb-2">
+								<?php foreach ($role as $dd) : ?>
+									<option value="<?php echo $dd['id_role'] ?>"><?php echo $dd['descriptiom'] ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Simpan User</button>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12">
 			<div
 				class="table-responsive"
 			>
 				<table
 					class="table table-border"
+					id="myTable"
 				>
 					<thead>
 						<tr>
 							<th>No.</th>
 							<th scope="col">username</th>
 							<th scope="col">role</th>
+							<th scope="col">tanggal dibuat</th>
 							<th scope="col">aksi</th>
 						</tr>
 					</thead>
@@ -47,6 +83,7 @@
 							$nameofrole = $result['descriptiom']
 							;?>
 							<td><?php echo $nameofrole ?></td>
+							<td><?php echo $xx['tanggal'] ?></td>
 							<td>
 							<div class="d-flex">
 								<a href="" class="btn btn-sm btn-primary mx-1">Ubah </a>
