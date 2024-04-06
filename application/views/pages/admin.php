@@ -3,7 +3,7 @@
         type="button"
         class="btn btn-primary"
         data-toggle="modal"
-		onclick="addDaging(0)"
+		onclick="addDaging()"
         data-target="#exampleModal">
         Tambah Data
     </button>
