@@ -32,4 +32,36 @@ class DataDaging_model extends CI_Model {
         // Simpan data user ke dalam database
         $this->db->insert('tbl_supplier', $data);
     }
+
+	public function login($username, $password) {
+        // Lakukan pengecekan login ke database atau sumber autentikasi lainnya
+        // Misalnya, jika menggunakan database:
+        $this->db->where('username', $username);
+        $this->db->where('password', md5($password)); // Jika password disimpan dengan hash md5, ubah sesuai dengan metode yang Anda gunakan
+        $query = $this->db->get('tbl_user'); // 'users' adalah nama tabel pengguna, ubah sesuai dengan kebutuhan Anda
+
+        // Jika ditemukan pengguna dengan username dan password yang cocok
+        if ($query->num_rows() == 1) {
+            // Ambil data pengguna
+            $user = $query->row_array();
+
+            // Set session untuk pengguna yang sudah login
+            $userdata = array(
+                'user_id' => $user['id'], // Ganti 'id' sesuai dengan nama kolom id pada tabel pengguna
+                'username' => $user['username'], // Ganti 'username' sesuai dengan nama kolom username pada tabel pengguna
+                // Tambahkan data lainnya sesuai kebutuhan
+                'logged_in' => TRUE
+            );
+            $this->session->set_userdata($userdata);
+            return true;
+        } else {
+            // Jika tidak ditemukan pengguna dengan username dan password yang cocok
+            return false;
+        }
+    }
+
+    public function logout() {
+        // Hapus semua data sesi pengguna saat logout
+        $this->session->sess_destroy();
+    }
 }

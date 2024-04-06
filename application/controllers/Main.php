@@ -8,8 +8,45 @@ class Main extends CI_Controller {
         $this->load->model('Datadaging_model');
 		$this->load->library('form_validation');
     }
+
+	public function index() {
+		$this->load->view('pages/login');
+	}
+
+	public function login() {
+        // Validasi form
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            // Jika validasi gagal, tampilkan halaman login
+            redirect('main');
+        } else {
+            // Ambil data dari form
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+
+            // Lakukan proses login
+            if ($this->Datadaging_model->login($username, $password)) {
+                // Redirect ke halaman dashboard atau halaman lainnya jika login berhasil
+                redirect('main/adminUser');
+            } else {
+                // Jika login gagal, tampilkan pesan error
+                $this->session->set_flashdata('error', 'Username atau password salah.');
+                redirect('main');
+            }
+        }
+    }
+
+    public function logout() {
+		return $this->Datadaging_model->logout();
+		redirect('main');
+
+        // Lakukan proses logout
+        // Misalnya, hapus session dan redirect ke halaman login
+    }
     
-    public function index() {
+    public function adminUser() {
         $data['title'] = 'Admin Suplier';
         
         // Memanggil method getData dari model dan menyimpan hasilnya dalam variabel
