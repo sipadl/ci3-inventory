@@ -60,10 +60,20 @@
                     <input type="text" class="form-control" name="id_area" id="id_area" placeholder="ID Area">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="no_ktp">Nomor KTP</label>
+					<label for="no_ktp">Nomor KTP</label>
                     <input type="text" class="form-control" name="no_ktp" id="no_ktp" placeholder="Nomor KTP">
                 </div>
             </div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="id_area">ID Area</label>
+					<select name="wilayah" class="form-control" id="">
+						<?php foreach($wilayah as $ww) : ?>
+						<option value="<?php echo $ww['id_area'] ?>"> <?php echo $ww['nama_area'] ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
+			</div>
             <div class="form-group">
                 <label for="alamat">Alamat</label>
                 <textarea

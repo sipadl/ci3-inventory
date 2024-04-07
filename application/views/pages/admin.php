@@ -15,9 +15,8 @@
                     <th>No</th>
                     <th>Speck Bahan</th>
                     <th>Tanggal</th>
-                    <th>Suplier</th>
-                    <th >Daging Putih</th>
-                    <th >Daging Merah</th>
+                    <th>Kode Suplier</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -29,7 +28,26 @@
                     <td><?php print $data['spesifikasi'] ?></td>
                     <td><?php print $data['tanggal'] ?></td>
                     <td><?php print $data['supplier'] ?></td>
-                    <td>
+                    <td class="text-center">
+						<?php
+						// Get the status code from $data['status']
+						$status = $data['status'];
+
+						// Check the status code and display corresponding text
+						if ($status == -1) {
+							echo "Rejected";
+						} elseif ($status == 0) {
+							echo "Pending";
+						} elseif ($status == 1) {
+							echo "Waiting";
+						} elseif ($status == 2) {
+							echo "Accepted";
+						} else {
+							echo "Unknown"; // Handle any other status code
+						}
+						?>
+					</td>
+                    <!-- <td>
                         <table class="table-border">
                             <thead>
                                 <tr>
@@ -78,11 +96,111 @@
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                    </td>
+                    </td> -->
 					<td>
-						<div class="d-flex">
-							<a href="" class="btn btn-sm btn-primary mx-1">Aprrove </a>
-							<a href="" class="btn btn-sm btn-danger mx-1">Reject </a>
+						<div class="d-flex justify-content-center">
+							<!-- <a href="" class="btn btn-sm btn-primary mx-1"> -->
+							<i class="fa fa-eye" aria-hidden="true"></i>	
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modelId<?php echo $data['id']; ?>">
+							  Lihat Detail
+							</button>
+							
+							<!-- Modal -->
+							<div class="modal fade" id="modelId<?php echo $data['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+								<div class="modal-dialog modal-fullscreen modal-xl" role="document">
+									<div class="modal-content">
+											<div class="modal-header">
+													<h5 class="modal-title">Form Timbang Bahan Baku</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+												</div>
+										<div class="modal-body">
+											<div class="container-fluid">
+												<div class="row d-flex justify-content-between">
+													<div class="col">
+														<strong>Spesifikasi</strong> : <?php print $data['spesifikasi'] ?> <br>
+														<strong>Tanggal </strong> : <?php print $data['tanggal'] ?>
+													</div>
+													<div class="col text-right">
+														<h4>	
+															Kode Supplier : <?php print $data['supplier'] ?>
+														</h4>
+													</div>
+												</div>
+												<table class="table-border">
+													<thead class="text-center">
+														<tr>
+															<th colspan="">Daging Putih</th>
+															<th colspan="">Daging Merah</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+														<td>
+															<table class="table-border">
+																<thead>
+																	<tr>
+																		<th>Spek</th>
+																		<th>Bungkus</th>
+																		<th>T.Kotor</th>
+																		<th>T.Bersih</th>
+																	</tr>
+																</thead>
+																<?php 
+																	$dagingPutih = json_decode($data['daging_putih'], true); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
+																	?>
+																<tbody>
+																<?php foreach ($dagingPutih as $dp) : ?>
+																	<tr>
+																		<td><?php echo $dp['spek']; ?></td>
+																		<td><?php echo $dp['bungkus']; ?></td>
+																		<td><?php echo $dp['tkotor']; ?></td>
+																		<td><?php echo $dp['tbersih']; ?></td>
+																	</tr>
+																	<?php endforeach; ?>
+																</tbody>
+															</table>
+														</td>
+														<td>
+															<table class="table-border">
+																<thead>
+																	<tr>
+																		<th>Spek</th>
+																		<th>Bungkus</th>
+																		<th>T.Kotor</th>
+																		<th>T.Bersih</th>
+																	</tr>
+																</thead>
+																<?php 
+																	$dagingPutihx = json_decode($data['daging_merah'], true); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
+																	?>
+																<tbody>
+																<?php foreach ($dagingPutihx as $dp) : ?>
+																	<tr>
+																		<td><?php echo $dp['spek']; ?></td>
+																		<td><?php echo $dp['bungkus']; ?></td>
+																		<td><?php echo $dp['tkotor']; ?></td>
+																		<td><?php echo $dp['tbersih']; ?></td>
+																	</tr>
+																	<?php endforeach; ?>
+																</tbody>
+															</table>
+													</td> 
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<a href="<?php echo base_url('main/mainApprove/').$data['id']; ?>" class="btn btn-primary">Aprove</a>
+											<a href="<?php echo base_url('main/mainReject/').$data['id']; ?>" class="btn btn-danger">Reject</a>
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Lihat Detail</a> -->
 						</div>
 					</td>
                 </tr>
@@ -126,7 +244,7 @@
                                     <select class="form-control" id="supplier" name="supplier">
 										<?php
 										foreach ($supplier as $sup) : ?>
-											<option value="<?php echo $sup['nama_supplier'] ?>"><?php echo $sup['nama_supplier'] ?></option>
+											<option value="<?php echo $sup['kode_supplier'] ?>"><?php echo $sup['kode_supplier'] ?></option>
 										<?php endforeach; ?>
 									</select>
 								</div>

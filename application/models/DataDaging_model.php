@@ -64,4 +64,13 @@ class DataDaging_model extends CI_Model {
         // Hapus semua data sesi pengguna saat logout
         $this->session->sess_destroy();
     }
+
+	public function aprrovalData($id) {
+		$this->db->where('id', $id); // Assuming 'id' is the primary key column
+    	$this->db->update('tbl_daging', array('status' => 2));
+	}
+	public function rejctData($id) {
+		$this->db->where('id', $id); // Assuming 'id' is the primary key column
+    	$this->db->update('tbl_daging', array('status' => -1));
+	}
 }

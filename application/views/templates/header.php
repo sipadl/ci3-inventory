@@ -7,6 +7,8 @@
 
   <title>AdminLTE 3 | Dashboard 3</title>
 
+	<!-- select2 -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<?php echo base_url('fontawesome-free/css/all.min.css') ?>">
   <!-- IonIcons -->

@@ -33,6 +33,14 @@
 							<label for="password">Password</label>
 							<input class="form-control mb-2" type="password" id="password" name="password" placeholder="Password" required>
 						</div>
+						<div class="form-group">
+							<label for="password">Kode Wilayah</label><br>
+							<select name="wilayah[]" class="form-control" id="basic-multiple" multiple="multiple">
+								<?php foreach($wilayah as $wil) : ?>
+									<option value="<?php echo $wil['id_area'] ?>"><?php echo $wil['nama_area'] ?></option>
+								<?php endforeach ?>
+							</select>
+						</div>
 						<!-- Dropdown untuk memilih peran -->
 						<div class="form-group">
 							<label for="password">Role</label>
@@ -66,6 +74,7 @@
 							<th scope="col">username</th>
 							<th scope="col">role</th>
 							<th scope="col">tanggal dibuat</th>
+							<th scope="col">area</th>
 							<th scope="col">aksi</th>
 						</tr>
 					</thead>
@@ -81,9 +90,28 @@
 							$query = $this->db->get('tbl_role');
 							$result = $query->row_array();
 							$nameofrole = $result['descriptiom']
+
+
+							
 							;?>
 							<td><?php echo $nameofrole ?></td>
 							<td><?php echo $xx['tanggal'] ?></td>
+							<td>
+							<?php
+							$datas = json_decode($xx['wilayah']);
+							// Check if JSON decoding was successful
+							if ($datas !== null) {
+								foreach ($datas as $key => $wot) {
+									$wilayah = $this->db->select('nama_area')->where('id_area', $wot)->get('tbl_area')->row_array();
+									if ($wilayah !== null) {
+										echo $wilayah['nama_area'].' ';
+									}
+								}
+							} else {
+								echo "Error decoding JSON data.";
+							}
+							?>
+								</td>
 							<td>
 							<div class="d-flex">
 								<a href="" class="btn btn-sm btn-primary mx-1">Ubah </a>

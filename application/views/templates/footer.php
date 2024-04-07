@@ -38,12 +38,17 @@
 <script src="<?php echo base_url('dist/js/pages/dashboard3.js') ?>"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 
 <script>
   $(document).ready(function () {
     $('#myTable').DataTable();
   });
+
+  $(document).ready(function() {
+  $('#basic-multiple').select2();
+});
 </script>
 <script>
 	
