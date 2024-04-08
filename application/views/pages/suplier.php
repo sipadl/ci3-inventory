@@ -56,24 +56,20 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="id_area">ID Area</label>
-                    <input type="text" class="form-control" name="id_area" id="id_area" placeholder="ID Area">
-                </div>
-                <div class="form-group col-md-6">
 					<label for="no_ktp">Nomor KTP</label>
                     <input type="text" class="form-control" name="no_ktp" id="no_ktp" placeholder="Nomor KTP">
                 </div>
-            </div>
-			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="id_area">ID Area</label>
-					<select name="wilayah" class="form-control" id="">
-						<?php foreach($wilayah as $ww) : ?>
-						<option value="<?php echo $ww['id_area'] ?>"> <?php echo $ww['nama_area'] ?></option>
+					<label for="area">Nama Area</label><br>
+					<select name="kode" class="form-control col-md-12 kodeWilayah" id="basic-multiple" >
+						<option value="0">Pilih Area</option>
+						<?php foreach($wilayah as $wil) : ?>
+							<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['nama_area'] ?></option>
 						<?php endforeach ?>
 					</select>
 				</div>
-			</div>
+            </div>
+			<div class="innerDropdown"></div>
             <div class="form-group">
                 <label for="alamat">Alamat</label>
                 <textarea
@@ -106,9 +102,7 @@
                     <th>Nama Supplier</th>
                     <th>Bank</th>
                     <th>Nomor</th>
-                    <th>An</th>
                     <th>NPWP</th>
-                    <th>ID Area</th>
                     <th>Nomor KTP</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
@@ -124,9 +118,7 @@
                     <td><?php echo $supplier['nama_supplier']; ?></td>
                     <td><?php echo $supplier['bank']; ?></td>
                     <td><?php echo $supplier['nomor']; ?></td>
-                    <td><?php echo $supplier['an']; ?></td>
                     <td><?php echo $supplier['npwp']; ?></td>
-                    <td><?php echo $supplier['id_area']; ?></td>
                     <td><?php echo $supplier['no_ktp']; ?></td>
                     <td><?php echo $supplier['alamat']; ?></td>
                     <td>

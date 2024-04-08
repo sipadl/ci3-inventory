@@ -10,7 +10,7 @@
 	<!-- select2 -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="<?php echo base_url('fontawesome-free/css/all.min.css') ?>">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- IonIcons -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
@@ -204,6 +204,23 @@
                   <p>Dashboard v3</p>
                 </a>
               </li> -->
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-close">
+            <a href="<?php echo base_url('main/adminUser'); ?>" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Sortir
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url('main/adminUser'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sortir Data</p>
+                </a>
+              </li>
             </ul>
           </li>
           <!-- <li class="nav-item">

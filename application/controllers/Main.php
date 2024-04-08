@@ -6,6 +6,7 @@ class Main extends CI_Controller {
         parent::__construct();
         // Memuat model dan menyimpannya dalam properti objek controller
         $this->load->model('Datadaging_model');
+        $this->load->model('Main_model');
 		$this->load->library('form_validation');
     }
 
@@ -82,7 +83,8 @@ class Main extends CI_Controller {
 			'spesifikasi' => $spesifikasi,
 			'daging_merah' => $spesifikasiDagingMerah,
 			'daging_putih' => $spesifikasiDagingPutih,
-			'wilayah' => 0
+			'wilayah' => 0,
+			'qty' => $qty,
 		);
 
 		// Menyimpan data menggunakan model
@@ -178,5 +180,10 @@ class Main extends CI_Controller {
 	public function mainReject($id){
 		$this->Datadaging_model->rejctData($id);
 		redirect("main/adminUser");
+	}
+
+	public function getWilayahById($id){
+		$data = $this->Main_model->getWilayahById($id);
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
 }

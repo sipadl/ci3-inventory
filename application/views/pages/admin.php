@@ -47,63 +47,12 @@
 						}
 						?>
 					</td>
-                    <!-- <td>
-                        <table class="table-border">
-                            <thead>
-                                <tr>
-                                    <th>Spek</th>
-                                    <th>Bungkus</th>
-                                    <th>T.Kotor</th>
-                                    <th>T.Bersih</th>
-                                </tr>
-                            </thead>
-                            <?php 
-                                $dagingPutih = json_decode($data['daging_putih'], true); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
-                                ?>
-                            <tbody>
-                            <?php foreach ($dagingPutih as $dp) : ?>
-                                <tr>
-                                    <td><?php echo $dp['spek']; ?></td>
-                                    <td><?php echo $dp['bungkus']; ?></td>
-                                    <td><?php echo $dp['tkotor']; ?></td>
-                                    <td><?php echo $dp['tbersih']; ?></td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table class="table-border">
-                            <thead>
-                                <tr>
-                                    <th>Spek</th>
-                                    <th>Bungkus</th>
-                                    <th>T.Kotor</th>
-                                    <th>T.Bersih</th>
-                                </tr>
-                            </thead>
-                            <?php 
-                                $dagingPutihx = json_decode($data['daging_merah'], true); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
-                                ?>
-                            <tbody>
-                            <?php foreach ($dagingPutihx as $dp) : ?>
-                                <tr>
-                                    <td><?php echo $dp['spek']; ?></td>
-                                    <td><?php echo $dp['bungkus']; ?></td>
-                                    <td><?php echo $dp['tkotor']; ?></td>
-                                    <td><?php echo $dp['tbersih']; ?></td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </td> -->
 					<td>
 						<div class="d-flex justify-content-center">
 							<!-- <a href="" class="btn btn-sm btn-primary mx-1"> -->
-							<i class="fa fa-eye" aria-hidden="true"></i>	
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modelId<?php echo $data['id']; ?>">
-							  Lihat Detail
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelId<?php echo $data['id']; ?>">
+									<i class="fas fa-eye"></i>
 							</button>
 							
 							<!-- Modal -->
@@ -118,26 +67,20 @@
 												</div>
 										<div class="modal-body">
 											<div class="container-fluid">
-												<div class="row d-flex justify-content-between">
-													<div class="col">
-														<strong>Spesifikasi</strong> : <?php print $data['spesifikasi'] ?> <br>
-														<strong>Tanggal </strong> : <?php print $data['tanggal'] ?>
-													</div>
-													<div class="col text-right">
-														<h4>	
-															Kode Supplier : <?php print $data['supplier'] ?>
-														</h4>
-													</div>
-												</div>
+											
 												<table class="table-border">
 													<thead class="text-center">
-														<tr>
+														<tr class="text-center">
+															<th class="w-50">Speck Bahan</th>
+															<th>Quantity</th>
 															<th colspan="">Daging Putih</th>
 															<th colspan="">Daging Merah</th>
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
+														<tr class="text-center">
+															<td><?php echo $data['spesifikasi'] ?></td>
+															<td><?php echo $data['qty'] ?></td>
 														<td>
 															<table class="table-border">
 																<thead>

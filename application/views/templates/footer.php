@@ -26,7 +26,8 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="<?php echo base_url('plugins/jquery/jquery.min.js') ?>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- Bootstrap -->
 <script src="<?php echo base_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 <!-- AdminLTE -->
@@ -47,11 +48,50 @@
   });
 
   $(document).ready(function() {
-  $('#basic-multiple').select2();
+  $('#basic-multiple').select2({
+	width:'100%'
+  });
+  $('#basic-multiple1').select2({
+	width:'100%'
+  });
+  $('#basic-multiple2').select2({
+	width:'100%'
+  });
 });
 </script>
 <script>
-	
+	$('.isiWilayah').change(function() {
+		console.log($(this).val());
+	})
+	$('.kodeWilayah').change(function() {
+		const url = "<?php echo base_url() ?>";
+		const id = $(this).val();
+		$.get(`${url}main/getWilayahById/${id}` , {},
+			function (data, textStatus, jqXHR) {
+				if(data.length > 0){
+					$('.innerDropdown').html();
+					$('.innerDropdown').append(`
+						<div class="form-group">
+							<div class="col-md-12">
+								<label for="area">Pilih Area</label><br>
+							</div>
+							<select name="wilayah[]" class="form-control col-md-12 isiWilayah" multiple="multiple" id="basic-multiple1">
+								<option value="0">Pilih Area</option>
+								${data.map(val => `
+									<option value="${val.id_kota}">${val.nama_kota}</option>
+								`).join('')}
+							</select>
+						</div>
+					`);
+				}
+				$('#basic-multiple1').select2({
+					width:'100%'
+				});
+			},
+			"json"
+		);
+	})
+
 	function addDaging() {
 		const dagingCountP = $('.daging-putih').length;
 		const dagingCountM = $('.daging-putih').length;

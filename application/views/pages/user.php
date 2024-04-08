@@ -34,17 +34,23 @@
 							<input class="form-control mb-2" type="password" id="password" name="password" placeholder="Password" required>
 						</div>
 						<div class="form-group">
-							<label for="password">Kode Wilayah</label><br>
-							<select name="wilayah[]" class="form-control" id="basic-multiple" multiple="multiple">
+							<div class="col-md-12">
+								<label for="area">Area</label><br>
+							</div>
+							<select name="kode" class="form-control col-md-12 kodeWilayah" id="basic-multiple" >
+								<option value="0">Pilih Area</option>
 								<?php foreach($wilayah as $wil) : ?>
-									<option value="<?php echo $wil['id_area'] ?>"><?php echo $wil['nama_area'] ?></option>
+									<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['nama_area'] ?></option>
 								<?php endforeach ?>
 							</select>
 						</div>
+						<div class="innerDropdown"></div>
 						<!-- Dropdown untuk memilih peran -->
 						<div class="form-group">
-							<label for="password">Role</label>
-							<select name="role" class="form-control mb-2">
+							<div class="col-md-12">
+								<label for="role">Role</label>
+							</div>
+							<select name="role" class="form-control w-100 mb-2 col-md-12" id="basic-multiple2">
 								<?php foreach ($role as $dd) : ?>
 									<option value="<?php echo $dd['id_role'] ?>"><?php echo $dd['descriptiom'] ?></option>
 									<?php endforeach; ?>
@@ -90,9 +96,6 @@
 							$query = $this->db->get('tbl_role');
 							$result = $query->row_array();
 							$nameofrole = $result['descriptiom']
-
-
-							
 							;?>
 							<td><?php echo $nameofrole ?></td>
 							<td><?php echo $xx['tanggal'] ?></td>
@@ -102,13 +105,17 @@
 							// Check if JSON decoding was successful
 							if ($datas !== null) {
 								foreach ($datas as $key => $wot) {
-									$wilayah = $this->db->select('nama_area')->where('id_area', $wot)->get('tbl_area')->row_array();
+									$wilayah = $this->db->select('nama_kota')->where('id_kota', $wot)->get('tbl_kota')->row_array();
 									if ($wilayah !== null) {
-										echo $wilayah['nama_area'].' ';
+										if(count($wilayah) != $key ) {
+											echo $wilayah['nama_kota'].', ';
+										} else {
+											echo $wilayah['nama_kota'].' ';
+										}
 									}
 								}
 							} else {
-								echo "Error decoding JSON data.";
+								echo "Error Data.";
 							}
 							?>
 								</td>
