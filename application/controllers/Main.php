@@ -113,9 +113,10 @@ class Main extends CI_Controller {
         // Memanggil method getData dari model dan menyimpan hasilnya dalam variabel
 		$suppliers = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
         $kodeWilayah = $this->Datadaging_model->getDataNoOrder('tbl_area');
+		$kota = $this->Datadaging_model->getDataNoOrder('tbl_kota');
         // Mengirimkan data ke view
         $this->load->view('templates/header', $data);
-        $this->load->view('pages/suplier', array('suppliers' => $suppliers, 'wilayah' => $kodeWilayah));
+        $this->load->view('pages/suplier', array('suppliers' => $suppliers, 'wilayah' => $kodeWilayah, 'kota' => $kota));
         $this->load->view('templates/footer');
     }
 
@@ -186,4 +187,38 @@ class Main extends CI_Controller {
 		$data = $this->Main_model->getWilayahById($id);
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
+
+	public function sortir(){
+		$data['title'] = 'Admin Sortir';
+		$sortir = $this->Main_model->getDataSortir(null);
+		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/sortir', array('sortir' => $sortir,'supplier' => $supplier));
+        $this->load->view('templates/footer');
+	}
+
+	public function sortirPost() {
+        // Form validation rules
+        $this->form_validation->set_rules('kode_supplier', 'Kode Supplier', 'required');
+        $this->form_validation->set_rules('tanggal_rec', 'Tanggal Rec', 'required');
+        $this->form_validation->set_rules('number', 'Number', 'required');
+
+        // Get all post data
+        $post_data = $this->input->post();
+        if ($this->form_validation->run() === FALSE) {
+			// Load view add.php with post data
+            $this->load->view('supplier/add', $post_data);
+        } else {
+			$this->Main_model->insertAll('tbl_sortir', $post_data);
+            // Process form request
+            // Misalnya, simpan data ke database atau lakukan tindakan lain yang diperlukan
+
+            // Set flashdata untuk pesan sukses atau error
+            $this->session->set_flashdata('message', 'Data supplier berhasil ditambahkan.');
+
+            // Redirect to index
+            redirect('main/sortir');
+        }
+    }
 }

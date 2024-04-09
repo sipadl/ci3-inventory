@@ -67,8 +67,7 @@
 												</div>
 										<div class="modal-body">
 											<div class="container-fluid">
-											
-												<table class="table-border">
+												<table class="table-border" id="myTable2">
 													<thead class="text-center">
 														<tr class="text-center">
 															<th class="w-50">Speck Bahan</th>
@@ -81,8 +80,8 @@
 														<tr class="text-center">
 															<td><?php echo $data['spesifikasi'] ?></td>
 															<td><?php echo $data['qty'] ?></td>
-														<td>
-															<table class="table-border">
+														<td class="border">
+															<table class="table-borderless">
 																<thead>
 																	<tr>
 																		<th>Spek</th>
@@ -106,8 +105,8 @@
 																</tbody>
 															</table>
 														</td>
-														<td>
-															<table class="table-border">
+														<td class="border">
+															<table class="table-borderless">
 																<thead>
 																	<tr>
 																		<th>Spek</th>

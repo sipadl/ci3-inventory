@@ -60,15 +60,19 @@
                     <input type="text" class="form-control" name="no_ktp" id="no_ktp" placeholder="Nomor KTP">
                 </div>
 				<div class="form-group col-md-6">
-					<label for="area">Nama Area</label><br>
-					<select name="kode" class="form-control col-md-12 kodeWilayah" id="basic-multiple" >
+					<label for="area">Kode Area</label><br>
+					<select name="wilayah" class="form-control col-md-12" id="basic-multiple" >
 						<option value="0">Pilih Area</option>
 						<?php foreach($wilayah as $wil) : ?>
-							<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['nama_area'] ?></option>
+							<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['kode_area'].' - '. $wil['nama_area'] ?></option>
 						<?php endforeach ?>
 					</select>
 				</div>
             </div>
+			<div class="form-group col-md-12">
+					<label for="no_ktp">Nomor Rekening</label>
+                    <input type="text" class="form-control" name="no_rekening" id="no_ktp" placeholder="Nomor Rekening">
+			</div>
 			<div class="innerDropdown"></div>
             <div class="form-group">
                 <label for="alamat">Alamat</label>

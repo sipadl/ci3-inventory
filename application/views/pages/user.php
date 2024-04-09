@@ -37,7 +37,7 @@
 							<div class="col-md-12">
 								<label for="area">Area</label><br>
 							</div>
-							<select name="kode" class="form-control col-md-12 kodeWilayah" id="basic-multiple" >
+							<select name="wilayah" class="form-control col-md-12" id="basic-multiple" >
 								<option value="0">Pilih Area</option>
 								<?php foreach($wilayah as $wil) : ?>
 									<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['nama_area'] ?></option>

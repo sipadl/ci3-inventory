@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2024 at 07:39 PM
+-- Generation Time: Apr 09, 2024 at 09:45 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.27
 
@@ -38,10 +38,10 @@ CREATE TABLE `tbl_area` (
 --
 
 INSERT INTO `tbl_area` (`id_area`, `nama_area`, `kode_area`) VALUES
-(2, 'jakarta', '440'),
-(4, 'purwakarta', '443'),
-(6, 'banjarmasin', '454'),
-(10, 'pontianak', '559');
+(2, 'Jakarta', '440'),
+(4, 'Purwakarta', '443'),
+(6, 'Banjarmasin', '454'),
+(10, 'Pontianak', '559');
 
 -- --------------------------------------------------------
 
@@ -150,6 +150,74 @@ INSERT INTO `tbl_role` (`id_role`, `nama_role`, `descriptiom`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_sortir`
+--
+
+CREATE TABLE `tbl_sortir` (
+  `id` int(11) NOT NULL,
+  `kode_supplier` varchar(255) DEFAULT NULL,
+  `tanggal_sj` date DEFAULT NULL,
+  `tanggal_rec` date DEFAULT NULL,
+  `tanggal_rec2` date DEFAULT NULL,
+  `tanggal_rec3` date DEFAULT NULL,
+  `number` int(11) DEFAULT NULL,
+  `col` varchar(255) DEFAULT NULL,
+  `bf` varchar(255) DEFAULT NULL,
+  `jb` varchar(255) DEFAULT NULL,
+  `jb_bf` varchar(255) DEFAULT NULL,
+  `jbb_jk` varchar(255) DEFAULT NULL,
+  `jbb_bf` varchar(255) DEFAULT NULL,
+  `xlp` varchar(255) DEFAULT NULL,
+  `bf_k3_col` varchar(255) DEFAULT NULL,
+  `bf_k3_jb` varchar(255) DEFAULT NULL,
+  `bf_k3_jk` varchar(255) DEFAULT NULL,
+  `bf_k3_jl` varchar(255) DEFAULT NULL,
+  `bf_jl` varchar(255) DEFAULT NULL,
+  `bf_kj` varchar(255) DEFAULT NULL,
+  `bf_bf` varchar(255) DEFAULT NULL,
+  `bf_lp_slb` varchar(255) DEFAULT NULL,
+  `bf_sp` varchar(255) DEFAULT NULL,
+  `bf_spk_xlp` varchar(255) DEFAULT NULL,
+  `bf_spk_sp` varchar(255) DEFAULT NULL,
+  `spk_sp_jb` varchar(255) DEFAULT NULL,
+  `spk_sp_xlp` varchar(255) DEFAULT NULL,
+  `spk_sp_bfp` varchar(255) DEFAULT NULL,
+  `spk_sp_sph` varchar(255) DEFAULT NULL,
+  `sp_cl` varchar(255) DEFAULT NULL,
+  `sp_clf` varchar(255) DEFAULT NULL,
+  `mh` varchar(255) DEFAULT NULL,
+  `mh_slb` varchar(255) DEFAULT NULL,
+  `phr` varchar(255) DEFAULT NULL,
+  `basi_col` varchar(255) DEFAULT NULL,
+  `basi_jb` varchar(255) DEFAULT NULL,
+  `basi_jk` varchar(255) DEFAULT NULL,
+  `basi_xlp` varchar(255) DEFAULT NULL,
+  `basi_bf` varchar(255) DEFAULT NULL,
+  `basi_sp` varchar(255) DEFAULT NULL,
+  `mhr` varchar(255) DEFAULT NULL,
+  `basi_cl` varchar(255) DEFAULT NULL,
+  `basi_mh` varchar(255) DEFAULT NULL,
+  `air` varchar(255) DEFAULT NULL,
+  `shell` varchar(255) DEFAULT NULL,
+  `loss` varchar(255) DEFAULT NULL,
+  `timbangan_kotor` varchar(255) DEFAULT NULL,
+  `timbangan_bb` varchar(255) DEFAULT NULL,
+  `status` int(2) DEFAULT 0,
+  `jbb_jf` varchar(255) NOT NULL,
+  `spk_sp` varchar(255) NOT NULL,
+  `sp_sph` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_sortir`
+--
+
+INSERT INTO `tbl_sortir` (`id`, `kode_supplier`, `tanggal_sj`, `tanggal_rec`, `tanggal_rec2`, `tanggal_rec3`, `number`, `col`, `bf`, `jb`, `jb_bf`, `jbb_jk`, `jbb_bf`, `xlp`, `bf_k3_col`, `bf_k3_jb`, `bf_k3_jk`, `bf_k3_jl`, `bf_jl`, `bf_kj`, `bf_bf`, `bf_lp_slb`, `bf_sp`, `bf_spk_xlp`, `bf_spk_sp`, `spk_sp_jb`, `spk_sp_xlp`, `spk_sp_bfp`, `spk_sp_sph`, `sp_cl`, `sp_clf`, `mh`, `mh_slb`, `phr`, `basi_col`, `basi_jb`, `basi_jk`, `basi_xlp`, `basi_bf`, `basi_sp`, `mhr`, `basi_cl`, `basi_mh`, `air`, `shell`, `loss`, `timbangan_kotor`, `timbangan_bb`, `status`, `jbb_jf`, `spk_sp`, `sp_sph`) VALUES
+(1, 'K2', '2001-07-07', '2024-04-21', NULL, NULL, 19, 'Amet voluptates ull', 'Ullam sit dolore do', 'Eu ullam quidem est ', 'Eos laborum Except', 'Consequuntur quo aut', NULL, 'Eos non laborum Om', 'Dolore mollit accusa', 'Possimus minus et d', 'Reiciendis quia nost', 'Amet duis consequat', 'Autem non officia be', 'Debitis pariatur Vo', 'Dolore sunt dolorem', 'Molestias numquam an', 'Voluptatem Eveniet', 'Quia eaque incidunt', 'Quia incidunt aut r', 'Fugit voluptatem re', 'Sit voluptatem Opt', 'Aut quo quo iusto of', NULL, 'Hic et doloribus des', 'In distinctio Verit', 'Quo sint voluptas h', 'Nostrud consequat D', 'Qui possimus ad ass', 'Dolores beatae deser', 'Eius consequat Ea c', 'Illo ex ipsa ipsum ', 'Commodo et ut aspern', 'Esse nulla sint mo', 'Nihil est eius modi ', 'Ut modi aut velit co', 'Perferendis quia vol', 'Pariatur Sit ut su', 'Voluptatibus delenit', 'Cumque tempor recusa', 'Ut aut quis adipisci', 'Vitae consequatur as', 'Rerum delectus solu', 0, 'Voluptates aute labo', 'Consectetur deserunt', 'Dolores esse ut sed ');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_supplier`
 --
 
@@ -241,6 +309,12 @@ ALTER TABLE `tbl_role`
   ADD PRIMARY KEY (`id_role`);
 
 --
+-- Indexes for table `tbl_sortir`
+--
+ALTER TABLE `tbl_sortir`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_supplier`
 --
 ALTER TABLE `tbl_supplier`
@@ -285,6 +359,12 @@ ALTER TABLE `tbl_pembayaran_dp`
 --
 ALTER TABLE `tbl_role`
   MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `tbl_sortir`
+--
+ALTER TABLE `tbl_sortir`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_supplier`
