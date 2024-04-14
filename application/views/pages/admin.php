@@ -1,4 +1,10 @@
 <div class="col-md-12">
+<style>
+	.hehes{
+	border-right: 1px solid #dee2e6 !important;
+	border-left: 1px solid #dee2e6 !important;
+	}
+</style>
     <button
         type="button"
         class="btn btn-primary"
@@ -80,14 +86,14 @@
 														<tr class="text-center">
 															<td><?php echo $data['spesifikasi'] ?></td>
 															<td><?php echo $data['qty'] ?></td>
-														<td class="border">
+														<td class="">
 															<table class="table-borderless">
 																<thead>
 																	<tr>
-																		<th>Spek</th>
-																		<th>Bungkus</th>
-																		<th>T.Kotor</th>
-																		<th>T.Bersih</th>
+																		<th class="hehes">Spek</th>
+																		<th class="hehes">Bungkus</th>
+																		<th class="hehes">T.Kotor</th>
+																		<th class="hehes">T.Bersih</th>
 																	</tr>
 																</thead>
 																<?php 
@@ -96,23 +102,23 @@
 																<tbody>
 																<?php foreach ($dagingPutih as $dp) : ?>
 																	<tr>
-																		<td><?php echo $dp['spek']; ?></td>
-																		<td><?php echo $dp['bungkus']; ?></td>
-																		<td><?php echo $dp['tkotor']; ?></td>
-																		<td><?php echo $dp['tbersih']; ?></td>
+																		<td class="hehes"><?php echo $dp['spek']; ?></td>
+																		<td class="hehes"><?php echo $dp['bungkus']; ?></td>
+																		<td class="hehes"><?php echo $dp['tkotor']; ?></td>
+																		<td class="hehes"><?php echo $dp['tbersih']; ?></td>
 																	</tr>
 																	<?php endforeach; ?>
 																</tbody>
 															</table>
 														</td>
-														<td class="border">
+														<td class="">
 															<table class="table-borderless">
 																<thead>
 																	<tr>
-																		<th>Spek</th>
-																		<th>Bungkus</th>
-																		<th>T.Kotor</th>
-																		<th>T.Bersih</th>
+																		<th class="hehes">Spek</th>
+																		<th class="hehes">Bungkus</th>
+																		<th class="hehes">T.Kotor</th>
+																		<th class="hehes">T.Bersih</th>
 																	</tr>
 																</thead>
 																<?php 
@@ -121,10 +127,10 @@
 																<tbody>
 																<?php foreach ($dagingPutihx as $dp) : ?>
 																	<tr>
-																		<td><?php echo $dp['spek']; ?></td>
-																		<td><?php echo $dp['bungkus']; ?></td>
-																		<td><?php echo $dp['tkotor']; ?></td>
-																		<td><?php echo $dp['tbersih']; ?></td>
+																		<td class="hehes"><?php echo $dp['spek']; ?></td>
+																		<td class="hehes"><?php echo $dp['bungkus']; ?></td>
+																		<td class="hehes"><?php echo $dp['tkotor']; ?></td>
+																		<td class="hehes"><?php echo $dp['tbersih']; ?></td>
 																	</tr>
 																	<?php endforeach; ?>
 																</tbody>

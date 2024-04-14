@@ -50,6 +50,9 @@
   });
 
   $(document).ready(function() {
+	const detailSortir = $('#hehep');
+	const x = detailSortir.children();
+	console.log(x)
   $('#basic-multiple').select2({
 	width:'100%'
   });
@@ -216,6 +219,7 @@
 		"json"
 	);
 }
+
 </script>
 </body>
 </html>
