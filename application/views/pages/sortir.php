@@ -97,14 +97,14 @@
 															<th>Total</th>
 														</tr>
 														<tr>
-															<th colspan="">1</th>
-															<th colspan="">2</th>
-															<th colspan="">3</th>
-															<th colspan="">4</th>
-															<th colspan="">1</th>
-															<th colspan="">2</th>
-															<th colspan="">3</th>
-															<th colspan="">1</th>
+															<th colspan=""><?php echo $ss['tanggal_rec'] ?></th>
+															<th colspan=""></th>
+															<th colspan=""></th>
+															<th colspan=""></th>
+															<th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
+															<th colspan="" width="10%"></th>
+															<th colspan="" width="10%"></th>
+															<th colspan=""></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -130,9 +130,9 @@
 															<td width="10%" colspan="2"></td>
 															<td colspan="2">PHR</td>
 															<td><?php echo $ss['phr'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														<tr>
@@ -144,9 +144,9 @@
 															<td rowspan="5">BASI</td>
 															<td>COL</td>
 															<td><?php echo $ss['basi_col'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														
@@ -160,9 +160,9 @@
 															<td colspan="2"></td>
 															<td>JK</td>
 															<td><?php echo $ss['basi_jk'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														<tr>
@@ -173,9 +173,9 @@
 															<td colspan="2"></td>
 															<td>XLP</td>
 															<td><?php echo $ss['basi_xlp'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														<tr>
@@ -186,9 +186,9 @@
 															<td colspan="2"></td>
 															<td>BF</td>
 															<td><?php echo $ss['basi_bf'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														<!-- JK -->
@@ -201,9 +201,9 @@
 															<td colspan="2"></td>
 															<td>SP</td>
 															<td><?php echo $ss['basi_sp'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														<tr>
@@ -214,9 +214,9 @@
 															<td colspan="2"></td>
 															<td colspan="2">Total PHR</td>
 															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														<tr>
@@ -228,9 +228,9 @@
 															<td colspan="1">MHR</td>
 															<td><?php echo $ss['mhr'] ?></td>
 															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														<!-- XLP -->
@@ -243,9 +243,9 @@
 															<td colspan="1" rowspan="2">BASI</td>
 															<td>CL</td>
 															<td><?php echo $ss['basi_cl'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														<!-- BF K3 -->
@@ -258,9 +258,9 @@
 															<td colspan="2"></td>
 															<td>MH</td>
 															<td><?php echo $ss['basi_mh'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														<tr>
@@ -271,9 +271,9 @@
 															<td colspan="2"></td>
 															<td colspan="2">TOTAL MHR</td>
 															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
+															<td class="bg-light"></td>
 															<td></td>
 														</tr>
 														<tr>
@@ -295,9 +295,9 @@
 															<td></td>
 															<td></td>
 															<td colspan="2"></td>
-															<td colspan="1">PHR</td>
+															<td>PHR</td>
 															<td><?php echo $ss['phr'] ?></td>
-															<td></td>
+															<td class="bg-light"></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -311,8 +311,8 @@
 															<td colspan="2"></td>
 															<td colspan="1" rowspan="6">BASI</td>
 															<td>COL</td>
+															<td class="bg-light"></td>
 															<td><?php echo $ss['basi_col'] ?></td>
-															<td></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -324,21 +324,23 @@
 															<td></td>
 															<td colspan="2"></td>
 															<td>JB</td>
+															<td class="bg-light"></td>
 															<td><?php echo $ss['basi_jb'] ?></td>
-															<td></td>
 															<td></td>
 															<td></td>
 															<td></td>
 														</tr>
 														<tr>
 															<td>LP SLB</td>
+															<td class="bg-light"></td>
+
 															<td><?php echo $ss['bf_lp_slb'] ?></td>
-															<td></td>
 															<td></td>
 															<td colspan="2"></td>
 															<td>JK</td>
+															<td class="bg-light"></td>
+
 															<td><?php echo $ss['basi_jk'] ?></td>
-															<td></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -350,8 +352,9 @@
 															<td></td>
 															<td colspan="2"></td>
 															<td>XLP</td>
+															<td class="bg-light"></td>
+
 															<td><?php echo $ss['basi_xlp'] ?></td>
-															<td></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -363,8 +366,9 @@
 															<td></td>
 															<td colspan="2"></td>
 															<td>BF</td>
+															<td class="bg-light"></td>
+
 															<td><?php echo $ss['basi_bf'] ?></td>
-															<td></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -378,8 +382,9 @@
 															<td></td>
 															<td colspan="2"></td>
 															<td>SP</td>
+															<td class="bg-light"></td>
+
 															<td><?php echo $ss['basi_sp'] ?></td>
-															<td></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -391,7 +396,7 @@
 															<td></td>
 															<td colspan="2"></td>
 															<td colspan="2">Total PHR</td>
-															<td></td>
+															<td class="bg-light"></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -403,9 +408,9 @@
 															<td></td>
 															<td></td>
 															<td colspan="2"></td>
-															<td colspan="1">MHR</td>
+															<td>MHR</td>
 															<td><?php echo $ss['mhr'] ?></td>
-															<td></td>
+															<td class="bg-light"></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -420,8 +425,9 @@
 															<td colspan="2"></td>
 															<td colspan="1" rowspan="2">BASI</td>
 															<td>CL</td>
+															<td class="bg-light"></td>
+
 															<td><?php echo $ss['basi_cl'] ?></td>
-															<td></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -433,8 +439,9 @@
 															<td></td>
 															<td colspan="2"></td>
 															<td>MH</td>
+															<td class="bg-light"></td>
+
 															<td><?php echo $ss['basi_mh'] ?></td>
-															<td></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -446,8 +453,9 @@
 															<td></td>
 															<td colspan="2"></td>
 															<td colspan="2">Total MHR</td>
+															<td class="bg-light"></td>
 															<td></td>
-															<td></td>
+
 															<td></td>
 															<td></td>
 															<td></td>
