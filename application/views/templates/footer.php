@@ -43,6 +43,23 @@
 
 
 <script>
+function printDisini(val) {
+    var prtContent = document.getElementById(`modal-print-${val}`);
+    console.log(prtContent);
+    var WinPrint = window.open('', '', 'left=0,top=10,width=800,height=800,toolbar=0,scrollbars=0,status=0');
+    WinPrint.document.write('<html><head><title>Print</title>');
+    // Tambahkan referensi ke file CSS Bootstrap di sini
+    WinPrint.document.write('<link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css') ?>">');
+    WinPrint.document.write('</head><body><div class="container mt-4">')
+    WinPrint.document.write(prtContent.innerHTML);
+    WinPrint.document.write('</div></body></html>');
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+}
+
+
   $(document).ready(function () {
     $('#myTable').DataTable();
     $('#myTable2').DataTable();

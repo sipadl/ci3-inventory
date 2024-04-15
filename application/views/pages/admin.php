@@ -1,9 +1,9 @@
 <div class="col-md-12">
 <style>
-	.hehes{
+	/* .hehex{
 	border-right: 1px solid #dee2e6 !important;
 	border-left: 1px solid #dee2e6 !important;
-	}
+	} */
 </style>
     <button
         type="button"
@@ -15,7 +15,7 @@
     </button>
 	<div class="col-md-12 mt-2 p-0 mx-0">
     <div class="table-responsive">
-        <table class="table table-border" id="myTable">
+        <table class="table table-bordered">
             <thead>
                 <tr class="text-center">
                     <th>No</th>
@@ -71,9 +71,9 @@
 															<span aria-hidden="true">&times;</span>
 														</button>
 												</div>
-										<div class="modal-body">
+										<div class="modal-body" id="<?php echo 'modal-print-'.$data['id'] ?>">
 											<div class="container-fluid">
-												<table class="table-border" id="myTable2">
+												<table class="table-bordered" id="myTable2">
 													<thead class="text-center">
 														<tr class="text-center">
 															<th class="w-50">Speck Bahan</th>
@@ -87,7 +87,7 @@
 															<td><?php echo $data['spesifikasi'] ?></td>
 															<td><?php echo $data['qty'] ?></td>
 														<td class="">
-															<table class="table-borderless">
+															<table class="table-bordered">
 																<thead>
 																	<tr>
 																		<th class="hehes">Spek</th>
@@ -112,7 +112,7 @@
 															</table>
 														</td>
 														<td class="">
-															<table class="table-borderless">
+															<table class="table table-bordered">
 																<thead>
 																	<tr>
 																		<th class="hehes">Spek</th>
@@ -143,6 +143,7 @@
 										<div class="modal-footer">
 											<a href="<?php echo base_url('main/mainApprove/').$data['id']; ?>" class="btn btn-primary">Aprove</a>
 											<a href="<?php echo base_url('main/mainReject/').$data['id']; ?>" class="btn btn-danger">Reject</a>
+											<button type="button" onclick="printDisini(<?php echo $data['id'] ?>)" class="btn btn-primary">Print</a>
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 										</div>
 									</div>
