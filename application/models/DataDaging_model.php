@@ -15,7 +15,7 @@ class DataDaging_model extends CI_Model {
     }
 
 	public function getData($table) {
-	$query = $this->db->query('SELECT * FROM '.$table.' ORDER BY TANGGAL DESC');
+	$query = $this->db->query('SELECT * FROM '.$table.' ORDER BY id desc');
     return $query->result_array();
 	}
 

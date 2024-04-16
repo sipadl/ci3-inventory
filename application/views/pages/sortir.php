@@ -1,18 +1,6 @@
 <div class="">
     <div class="row">
         <div class="col-md-12">
-            <button
-                type="button"
-                class="btn btn-primary mb-2"
-                data-toggle="modal"
-                data-target="#myModal"
-                onclick="hehe()">
-                Tambah Sortir
-            </button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
             <table class="table" id="myTable">
                 <thead>
                     <tr>
@@ -26,570 +14,48 @@
                 <tbody>
                     <?php
 					$no = 1;
-					 foreach ($sortir as $ss) : ?>
+					 foreach ($bahanbaku as $ss) : ?>
                     <tr>
                         <th scope="row"><?php echo $no++ ?></th>
-                        <td><?php echo $ss['kode_supplier'] ?></td>
-                        <td><?php echo $ss['tanggal_sj'] ?></td>
-                        <td><?php echo $ss['tanggal_rec'] ?></td>
+                        <td><?php echo $ss['supplier'] ?></td>
+                        <td><?php echo $ss['tanggal'] ?></td>
+                        <td><?php echo $ss['spesifikasi'] ?></td>
                         <td>
+							<div class="d-flex justify-content-">
                             <button type="button" class="btn btn-light" data-toggle="modal" data-target="<?php echo '#modelId'.$ss['id'] ?>">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </button>
-							<div class="modal fade" id="<?php echo 'modelId'.$ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+							<?php if($ss['id_bb'] == null ) { ?>
+							<button
+								type="button"
+								class="btn btn-primary mx-2"
+								data-toggle="modal"
+								data-target="#myModal"
+								onclick="isiId(<?php echo $ss['id'] ?>)">
+								Tambah Sortir
+							</button>
+							<?php } ?>
+							<?php if($ss['id_bb'] != null ) { ?>
+								<button
+								type="button"
+								class="btn btn-warning mx-2"
+								data-toggle="modal"
+								data-target="#myModalUbah">
+								Ubah Data
+							</button>
+							
+							<!-- Modal -->
+							<div class="modal fade" id="myModalUbah" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
 								<div class="modal-dialog modal-xl modal-fullscreen" role="document">
 									<div class="modal-content">
-										<div class="modal-header">
-										<h4 class="modal-title">Form Hasil Sortir</h4>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-										</div>
-										<div class="modal-body" id="modal-print-<?php echo $ss['id'] ?>">
-											<div class="row justify-content-between">
-												<div class="col-md-3">
-													<div class="d-flex justify-content-between border px-2">
-														<div class="">Supplier</div>
-														<div class="">
-															<?php echo $ss['kode_supplier']; ?>
-														</div>
-													</div>
-													<div class="d-flex justify-content-between  border px-2">
-														<div class="">TGL SJ</div>
-														<div class="">
-															<?php echo $ss['tanggal_sj']; ?>
-														</div>
-													</div>
-													<div class="d-flex justify-content-between  border px-2">
-														<div class="">TGL Rec</div>
-														<div class="">
-															<?php echo $ss['tanggal_rec']; ?>
-														</div>
-													</div>
-											</div>
-											<div class="col-md-3">
-												<p>No Sortir</p>
-											</div>
-											<div class="col-md-3">
-												<div class="d-flex justify-content-between  border px-2">
-													<div class="">Cap</div>
-													<div class="">
-														Ya / Tidak
-													</div>
+											<div class="modal-header">
+													<h5 class="modal-title">Modal Ubah Form Sortir</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
 												</div>
-												<div class="d-flex justify-content-between  border px-2">
-													<div class="">Potong</div>
-													<div class="">
-														-
-													</div>
-												</div>
-											</div>
-											<div class="col-md-12">
-												<table class="table table-bordered mt-4">
-													<thead class="text-center">
-														<tr>
-															<th colspan="2" rowspan="2">Spec</th>
-															<th colspan="3">Tanggal Sortir</th>
-															<th colspan="2" rowspan="2">Total</th>
-															<th colspan="2" rowspan="2">Spec</th>
-															<th>Tanggal Reff</th>
-															<th colspan="3">Tanggal Sortir</th>
-															<th>Total</th>
-														</tr>
-														<tr>
-															<th colspan=""><?php echo $ss['tanggal_rec'] ?></th>
-															<th colspan=""></th>
-															<th colspan=""></th>
-															<th colspan=""></th>
-															<th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
-															<th colspan="" width="10%"></th>
-															<th colspan="" width="10%"></th>
-															<th colspan=""></th>
-														</tr>
-													</thead>
-													<tbody>
-														<!-- COL -->
-														<tr>
-															<td rowspan="2">COL</td>
-															<td>COL</td>
-															<td width="10%"><?php echo $ss['col'] ?></td>
-															<td width="10%"></td>
-															<td width="10%"></td>
-															<td width="10%" colspan="2"></td>
-															<td colspan="8" class="text-center">
-																<strong>
-																	Receiving
-																</strong>
-															</td>
-														</tr>
-														<tr>
-															<td>BF</td>
-															<td width="10%"><?php echo $ss['bf'] ?></td>
-															<td width="10%"></td>
-															<td width="10%"></td>
-															<td width="10%" colspan="2"></td>
-															<td colspan="2">PHR</td>
-															<td><?php echo $ss['phr'] ?></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">Total COL</td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td rowspan="5">BASI</td>
-															<td>COL</td>
-															<td><?php echo $ss['basi_col'] ?></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														
-														<!-- JB -->
-														<tr>
-															<td rowspan="2">JB</td>
-															<td>JB</td>
-															<td><?php echo $ss['jb'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>JK</td>
-															<td><?php echo $ss['basi_jk'] ?></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>BF</td>
-															<td><?php echo $ss['jb_bf'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>XLP</td>
-															<td><?php echo $ss['basi_xlp'] ?></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">Total JB</td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>BF</td>
-															<td><?php echo $ss['basi_bf'] ?></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														<!-- JK -->
-														<tr>
-															<td rowspan="2">JK</td>
-															<td>JK</td>
-															<td><?php echo $ss['jbb_jk'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>SP</td>
-															<td><?php echo $ss['basi_sp'] ?></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>BF</td>
-															<td><?php echo $ss['jbb_bf'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="2">Total PHR</td>
-															<td></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">Total JK</td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="1">MHR</td>
-															<td><?php echo $ss['mhr'] ?></td>
-															<td></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														<!-- XLP -->
-														<tr>
-															<td colspan="2">XLP</td>
-															<td><?php echo $ss['xlp'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="1" rowspan="2">BASI</td>
-															<td>CL</td>
-															<td><?php echo $ss['basi_cl'] ?></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														<!-- BF K3 -->
-														<tr>
-															<td rowspan="8">BF</td>
-															<td>K3 COL</td>
-															<td><?php echo $ss['bf_k3_col'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>MH</td>
-															<td><?php echo $ss['basi_mh'] ?></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>K3 JB</td>
-															<td><?php echo $ss['bf_k3_jb'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="2">TOTAL MHR</td>
-															<td></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td class="bg-light"></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>K3 JK</td>
-															<td><?php echo $ss['bf_k3_jk'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="7" class="text-center">
-															<strong>
-																Sortir
-															</strong>
-															</td>
-															
-														</tr>
-														<tr>
-															<td>JL</td>
-															<td><?php echo $ss['bf_jl'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>PHR</td>
-															<td><?php echo $ss['phr'] ?></td>
-															<td class="bg-light"></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>KJ</td>
-															<td><?php echo $ss['bf_kj'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="1" rowspan="6">BASI</td>
-															<td>COL</td>
-															<td class="bg-light"></td>
-															<td><?php echo $ss['basi_col'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>BF</td>
-															<td><?php echo $ss['bf_bf'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>JB</td>
-															<td class="bg-light"></td>
-															<td><?php echo $ss['basi_jb'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>LP SLB</td>
-															<td class="bg-light"></td>
-
-															<td><?php echo $ss['bf_lp_slb'] ?></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>JK</td>
-															<td class="bg-light"></td>
-
-															<td><?php echo $ss['basi_jk'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>SP</td>
-															<td><?php echo $ss['bf_sp'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>XLP</td>
-															<td class="bg-light"></td>
-
-															<td><?php echo $ss['basi_xlp'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">Total BF</td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>BF</td>
-															<td class="bg-light"></td>
-
-															<td><?php echo $ss['basi_bf'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<!-- SPK -->
-														<tr>
-															<td rowspan="2">SPK</td>
-															<td>XLP</td>
-															<td><?php echo $ss['bf_spk_xlp'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>SP</td>
-															<td class="bg-light"></td>
-
-															<td><?php echo $ss['basi_sp'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>SP</td>
-															<td><?php echo $ss['bf_spk_sp'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="2">Total PHR</td>
-															<td class="bg-light"></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">Total SPK</td>
-															<td><?php echo $ss['bf_spk_sp'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>MHR</td>
-															<td><?php echo $ss['mhr'] ?></td>
-															<td class="bg-light"></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<!-- SP -->
-														<tr>
-															<td rowspan="4">SP</td>
-															<td>JB</td>
-															<td><?php echo $ss['spk_sp_jb'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="1" rowspan="2">BASI</td>
-															<td>CL</td>
-															<td class="bg-light"></td>
-
-															<td><?php echo $ss['basi_cl'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>XLP</td>
-															<td><?php echo $ss['spk_sp_xlp'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>MH</td>
-															<td class="bg-light"></td>
-
-															<td><?php echo $ss['basi_mh'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>BF</td>
-															<td><?php echo $ss['spk_sp_bfp'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="2">Total MHR</td>
-															<td class="bg-light"></td>
-															<td></td>
-
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>SP</td>
-															<td><?php echo $ss['spk_sp_sph'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">Total SP</td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">SPH</td>
-															<td><?php echo $ss['spk_sp_sph'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">CL</td>
-															<td><?php echo $ss['sp_cl'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>AIR</td>
-															<td><?php echo $ss['air'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">CLF</td>
-															<td><?php echo $ss['sp_clf'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>SHELL</td>
-															<td><?php echo $ss['shell'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															
-														</tr>
-														<tr>
-															<td rowspan="2">MH</td>
-															<td>MH</td>
-															<td><?php echo $ss['mh'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td>LOSS</td>
-															<td><?php echo $ss['loss'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>MH</td>
-															<td><?php echo $ss['mh_slb'] ?></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="2">Timb. Kotor</td>
-															<td><?php echo $ss['timbangan_kotor'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">Total MH</td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="2">Timb. BB</td>
-															<td><?php echo $ss['timbangan_bb'] ?></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td colspan="2">Total</td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td colspan="2"></td>
-															<td colspan="2">Grand Total</td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															<td></td>
-															
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										<!-- <form action="<?php echo base_url('main/sortirUpdate/'.$ss['id'] ); ?>" method="post">
+										<div class="modal-body">
+										<form action="<?php echo base_url('main/sortirUpdate/'.$ss['id'] ); ?>" method="post">
 											<div class="modal-body">
 												<div class="container">
 													<div class="row" id="hehep">
@@ -945,17 +411,614 @@
 											</div>
 											<div class="modal-footer">
 												<button type="submit" class="btn btn-primary">Simpan</button>
-												<button type="submit" class="btn btn-primary">Simpan Sementara</button>
 												<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 											</div>
-										</form> -->
+										</form>
+										</div>
 									</div>
-									
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-primary" onclick="printDisini(<?php echo $ss['id'] ?>)">Print</button>
 								</div>
 							</div>
+							<?php } ?>
+							</div>
+							<div class="modal fade" id="<?php echo 'modelId'.$ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+								<div class="modal-dialog modal-xl modal-fullscreen" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+										<h4 class="modal-title">Form Hasil Sortir</h4>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+										</div>
+										<form action="<?php echo base_url('main/updateMiniSortir/'.$ss['id_sortir']) ?>" method="post">
+										<div class="modal-body" id="modal-print-<?php echo $ss['id'] ?>">
+											<div class="row justify-content-between">
+												<div class="col-md-3">
+													<div class="d-flex justify-content-between border px-2">
+														<div class="">Supplier</div>
+														<div class="">
+															<?php echo $ss['kode_supplier']; ?>
+														</div>
+													</div>
+													<div class="d-flex justify-content-between  border px-2">
+														<div class="">TGL SJ</div>
+														<div class="">
+															<?php echo $ss['tanggal_sj']; ?>
+														</div>
+													</div>
+													<div class="d-flex justify-content-between  border px-2">
+														<div class="">TGL Rec</div>
+														<div class="">
+															<?php echo $ss['tanggal_rec']; ?>
+														</div>
+													</div>
+											</div>
+											<div class="col-md-3">
+												<p>No Sortir</p>
+											</div>
+											<div class="col-md-3">
+												<div class="d-flex justify-content-between  border px-2">
+													<div class="">Cap</div>
+													<div class="">
+														<?php if($ss['cap'] == null ) { ?> 
+														<input type="radio" name="cap" value="Ya" class="mx-1" id="">Ya /
+														<input type="radio" name="cap" value="Tidak" class="mx-1" id="">Tidak
+														<?php } else { ?>
+															<?php echo $ss['cap'] ?>
+															<?php } ?>
+													</div>
+												</div>
+												<div class="d-flex justify-content-between  border px-2">
+													<div class="mt-2">Potong</div>
+													<div class="ml-2 py-2">
+													<?php if($ss['potong'] == null ) { ?> 
+														<input type="text" name="potong" class="form-control" id="">
+														<?php } else { ?>
+															<?php echo $ss['potong'] ?>
+														<?php } ?>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<table class="table table-bordered mt-4">
+													<thead class="text-center">
+														<tr>
+															<th colspan="2" rowspan="2">Spec</th>
+															<th colspan="3">Tanggal Sortir</th>
+															<th colspan="2" rowspan="2">Total</th>
+															<th colspan="2" rowspan="2">Spec</th>
+															<th>Tanggal Reff</th>
+															<th colspan="3">Tanggal Sortir</th>
+															<th>Total</th>
+														</tr>
+														<tr>
+															<th colspan=""><?php echo $ss['tanggal_rec'] ?></th>
+															<th colspan=""></th>
+															<th colspan=""></th>
+															<th colspan=""></th>
+															<th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
+															<th colspan="" width="10%"></th>
+															<th colspan="" width="10%"></th>
+															<th colspan=""></th>
+														</tr>
+													</thead>
+													<tbody>
+														<!-- COL -->
+														<tr>
+															<td rowspan="2">COL</td>
+															<td>COL</td>
+															<td width="10%"><?php echo $ss['col'] ?></td>
+															<td width="10%"></td>
+															<td width="10%"></td>
+															<td width="10%" colspan="2"></td>
+															<td colspan="8" class="text-center">
+																<strong>
+																	Receiving
+																</strong>
+															</td>
+														</tr>
+														<tr>
+															<td>BF</td>
+															<td width="10%"><?php echo $ss['bf'] ?></td>
+															<td width="10%"></td>
+															<td width="10%"></td>
+															<td width="10%" colspan="2"></td>
+															<td colspan="2">PHR</td>
+															<td><?php echo $ss['phr'] ?></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">Total COL</td>
+															<td><?php echo $ss['col'] + $ss['bf'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td rowspan="5">BASI</td>
+															<td>COL</td>
+															<td><?php echo $ss['basi_col'] ?></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														
+														<!-- JB -->
+														<tr>
+															<td rowspan="2">JB</td>
+															<td>JB</td>
+															<td><?php echo $ss['jb'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>JK</td>
+															<td><?php echo $ss['basi_jk'] ?></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>BF</td>
+															<td><?php echo $ss['jb_bf'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>XLP</td>
+															<td><?php echo $ss['basi_xlp'] ?></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">Total JB</td>
+															<td><?php echo $ss['jb_bf'] + $ss['jb'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>BF</td>
+															<td><?php echo $ss['basi_bf'] ?></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														<!-- JK -->
+														<tr>
+															<td rowspan="2">JK</td>
+															<td>JK</td>
+															<td><?php echo $ss['jbb_jk'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>SP</td>
+															<td><?php echo $ss['basi_sp'] ?></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>BF</td>
+															<td><?php echo $ss['jbb_bf'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="2">Total PHR</td>
+															<td></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">Total JK</td>
+															<td><?php echo $ss['jbb_bf'] + $ss['jbb_jk'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="1">MHR</td>
+															<td><?php echo $ss['mhr'] ?></td>
+															<td></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														<!-- XLP -->
+														<tr>
+															<td colspan="2">XLP</td>
+															<td><?php echo $ss['xlp'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="1" rowspan="2">BASI</td>
+															<td>CL</td>
+															<td><?php echo $ss['basi_cl'] ?></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														<!-- BF K3 -->
+														<tr>
+															<td rowspan="8">BF</td>
+															<td>K3 COL</td>
+															<td><?php echo $ss['bf_k3_col'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>MH</td>
+															<td><?php echo $ss['basi_mh'] ?></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>K3 JB</td>
+															<td><?php echo $ss['bf_k3_jb'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="2">TOTAL MHR</td>
+															<td></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>K3 JK</td>
+															<td><?php echo $ss['bf_k3_jk'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="7" class="text-center">
+															<strong>
+																Sortir
+															</strong>
+															</td>
+															
+														</tr>
+														<tr>
+															<td>JL</td>
+															<td><?php echo $ss['bf_jl'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>PHR</td>
+															<td><?php echo $ss['phr'] ?></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>KJ</td>
+															<td><?php echo $ss['bf_kj'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="1" rowspan="6">BASI</td>
+															<td>COL</td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td><?php echo $ss['basi_col'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>BF</td>
+															<td><?php echo $ss['bf_bf'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>JB</td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td><?php echo $ss['basi_jb'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>LP SLB</td>
+															<td><?php echo $ss['bf_lp_slb'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>JK</td>
+															<td class="bg-light" style="background-color: gray"></td>
+
+															<td><?php echo $ss['basi_jk'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>SP</td>
+															<td><?php echo $ss['bf_sp'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>XLP</td>
+															<td class="bg-light" style="background-color: gray"></td>
+
+															<td><?php echo $ss['basi_xlp'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">Total BF</td>
+															<td><?php echo $ss['bf_k3_col'] + $ss['bf_k3_jb'] + $ss['bf_k3_jl'] + $ss['bf_k3_jk'] + $ss['bf_bf'] + $ss['bf_lp_slb'] + $ss['bf_sp'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>BF</td>
+															<td class="bg-light" style="background-color: gray"></td>
+
+															<td><?php echo $ss['basi_bf'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<!-- SPK -->
+														<tr>
+															<td rowspan="2">SPK</td>
+															<td>XLP</td>
+															<td><?php echo $ss['bf_spk_xlp'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>SP</td>
+															<td class="bg-light" style="background-color: gray"></td>
+
+															<td><?php echo $ss['basi_sp'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>SP</td>
+															<td><?php echo $ss['bf_spk_sp'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="2">Total PHR</td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">Total SPK</td>
+															<td><?php echo $ss['bf_spk_xlp'] + $ss['bf_spk_sp'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>MHR</td>
+															<td><?php echo $ss['mhr'] ?></td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<!-- SP -->
+														<tr>
+															<td rowspan="4">SP</td>
+															<td>JB</td>
+															<td><?php echo $ss['spk_sp_jb'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="1" rowspan="2">BASI</td>
+															<td>CL</td>
+															<td class="bg-light" style="background-color: gray"></td>
+
+															<td><?php echo $ss['basi_cl'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>XLP</td>
+															<td><?php echo $ss['spk_sp_xlp'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>MH</td>
+															<td class="bg-light" style="background-color: gray"></td>
+
+															<td><?php echo $ss['basi_mh'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>BF</td>
+															<td><?php echo $ss['spk_sp_bfp'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="2">Total MHR</td>
+															<td class="bg-light" style="background-color: gray"></td>
+															<td></td>
+
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>SP</td>
+															<td><?php echo $ss['spk_sp_sph'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">Total SP</td>
+															<td><?php echo $ss['spk_sp_jb'] + $ss['spk_sp_xlp'] + $ss['spk_sp_bfp'] + $ss['spk_sp_sph'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">SPH</td>
+															<td><?php echo $ss['spk_sp_sph'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">CL</td>
+															<td><?php echo $ss['sp_cl'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>AIR</td>
+															<td><?php echo $ss['air'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">CLF</td>
+															<td><?php echo $ss['sp_clf'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>SHELL</td>
+															<td><?php echo $ss['shell'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															
+														</tr>
+														<tr>
+															<td rowspan="2">MH</td>
+															<td>MH</td>
+															<td><?php echo $ss['mh'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td>LOSS</td>
+															<td><?php echo $ss['loss'] ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>MH</td>
+															<td><?php echo $ss['mh_slb'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="2">Timb. Kotor</td>
+															<td><?php
+																$sum = $ss['col'] + $ss['bf'] + $ss['jb'] + $ss['jb_bf'] + $ss['jbb_jk'] + $ss['jbb_bf'] +
+																	$ss['xlp'] + $ss['bf_k3_col'] + $ss['bf_k3_jb'] + $ss['bf_k3_jk'] + $ss['bf_k3_jl'] +
+																	$ss['bf_jl'] + $ss['bf_kj'] + $ss['bf_bf'] + $ss['bf_lp_slb'] + $ss['bf_sp'] +
+																	$ss['bf_spk_xlp'] + $ss['bf_spk_sp'] + $ss['spk_sp_jb'] + $ss['spk_sp_xlp'] +
+																	$ss['spk_sp_bfp'] + $ss['spk_sp_sph'] + $ss['sp_cl'] + $ss['sp_clf'] + $ss['mh'] +
+																	$ss['mh_slb'] + $ss['phr'] + $ss['basi_col'] + $ss['basi_jb'] + $ss['basi_jk'] +
+																	$ss['basi_xlp'] + $ss['basi_bf'] + $ss['basi_sp'] + $ss['mhr'] + $ss['basi_cl'] +
+																	$ss['basi_mh'] +
+																	$ss['timbangan_bb'] + $ss['jbb_jf'] + $ss['spk_sp'] + $ss['sp_sph'];
+
+																echo $sum;
+																?>
+															</td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">Total MH</td>
+															<td><?php echo $ss['mh'] + $ss['mh_slb'] ?></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="2">Timb. BB</td>
+															<?php 
+															$qty = 0;
+															$dataMerah = json_decode($ss['daging_merah']);
+															$dataPutih = json_decode($ss['daging_putih']);
+
+															foreach($dataMerah as $dag) {
+																$qty += $dag->tkotor + $dag->tbersih;
+															}
+															foreach($dataPutih as $dag) {
+																$qty += $dag->tkotor + $dag->tbersih;
+															}
+															 ?>
+															<td><?php echo $qty ?></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+														<tr>
+															<td colspan="2">Total</td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td colspan="2"></td>
+															<td colspan="2">Grand Total</td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															<td></td>
+															
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										
+										</div>
+										
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-primary" onclick="printDisini(<?php echo $ss['id'] ?>)">Print</button>
+										<?php if($ss['cap'] == null) { ?>
+										<button type="submit" class="btn btn-warning">Simpan</button>
+										<?php } ?>
+									</div>
+								</div>
+							</form>
                         </td>
                     </tr>
                     <?php endforeach ?>
@@ -972,8 +1035,9 @@
                 </div>
                 <form action="<?php echo base_url('main/sortirPost'); ?>" method="post">
                     <div class="modal-body">
-                        <div class="container">
-                            <div class="row">
+						<div class="container">
+							<input type="hidden" name="id_bb" id="getId" value="">
+							<div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="kode_supplier">Kode Supplier</label>
@@ -989,11 +1053,11 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="tanggal_kirim">Tanggal Kirim</label>
+                                        <label for="tanggal_kirim">Tanggal SJ</label>
                                         <input
                                             type="date"
                                             class="form-control"
-                                            id="tanggal_kirim"
+                                            id="tanggal_sj"
                                             name="tanggal_sj"
                                             placeholder="01-01-2024">
                                     </div>
@@ -1018,6 +1082,7 @@
                                             id="number"
                                             name="number"
                                             min="0"
+											value="1"
                                             placeholder="0">
                                     </div>
                                 </div>

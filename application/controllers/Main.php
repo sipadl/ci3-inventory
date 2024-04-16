@@ -48,7 +48,7 @@ class Main extends CI_Controller {
     }
     
     public function adminUser() {
-        $data['title'] = 'Admin Bahan Baku';
+        $data['title'] = 'Admin Receiving';
         
         // Memanggil method getData dari model dan menyimpan hasilnya dalam variabel
         $daging = $this->Datadaging_model->getData('tbl_daging');
@@ -66,14 +66,17 @@ class Main extends CI_Controller {
         $tanggal = $this->input->post('tanggal');
         $supplier = $this->input->post('supplier');
         $spesifikasiDagingMerah = $this->input->post('dagingMerah');
+		$qty = 0;
+		$dataDagingMerah = json_decode($spesifikasiDagingMerah);
+		$spesifikasiDagingPutih = $this->input->post('dagingPutih');
+		foreach($dataDagingMerah as $dag) {
+			$qty += $dag->tkotor + $dag->tbersih;
+		}
+		$dataDagingPutih = json_decode($spesifikasiDagingPutih);
+		foreach($dataDagingPutih as $dag) {
+			$qty += $dag->tkotor + $dag->tbersih;
+		}
 		$spesifikasi = $this->input->post('spesifikasi');
-        $spesifikasiDagingPutih = $this->input->post('dagingPutih');
-        $qty = $this->input->post('qty');
-
-        // Lakukan sesuatu dengan data yang diterima
-        // Contoh: Simpan ke database, tampilkan, dll.
-
-        // Memanggil model di dalam controller
 		$this->load->model('DataDaging_model');
 
 		// Menyiapkan data yang akan disimpan
@@ -89,8 +92,7 @@ class Main extends CI_Controller {
 
 		// Menyimpan data menggunakan model
 		$insert_id = $this->DataDaging_model->addDaging($data);
-
-        redirect('/');
+       
     }
 
 	public function formUser() {
@@ -130,7 +132,8 @@ class Main extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             // Jika validasi gagal, tampilkan kembali form tambah user
-            $this->load->view('main/formUser');
+            redirect('main/formUser');
+
         } else {
             // Jika validasi sukses, simpan data pengguna ke dalam database
             $data = array(
@@ -152,27 +155,68 @@ class Main extends CI_Controller {
         }
     }
 
+	public function updateMiniSortir($id) {
+		$data = $this->input->post();
+		$this->Main_model->updateAll('tbl_sortir', $data, $id);
+		redirect('main/sortir');
+	}
+
 	public function tambahSuplier() {
-        // Mendapatkan data dari form
-        $data = array(
+		// File upload configuration for NPWP
+		$config_npwp['upload_path'] = FCPATH . 'upload/images';
+		$config_npwp['allowed_types'] = 'gif|jpg|png';
+		$this->load->library('upload', $config_npwp);
+		
+		// Perform the upload for NPWP
+		if (!$this->upload->do_upload('npwp')) {
+			// If upload fails, handle the error
+			$error = $this->upload->display_errors();
+			// Handle the error (e.g., display error message, redirect back to form)
+			echo "Upload error (NPWP): $error";
+			return; // Stop further execution
+		}
+		
+		// Retrieve upload data for NPWP
+		$npwp_data = $this->upload->data();
+	
+		// File upload configuration for KTP
+		$config_ktp['upload_path'] = FCPATH . 'upload/images';
+		$config_ktp['allowed_types'] = 'gif|jpg|png';
+		// Reset the upload library with new configuration for KTP
+		$this->upload->initialize($config_ktp);
+		
+		// Perform the upload for KTP
+		if (!$this->upload->do_upload('no_ktp')) {
+			// If upload fails, handle the error
+			$error = $this->upload->display_errors();
+			// Handle the error (e.g., display error message, redirect back to form)
+			echo "Upload error (KTP): $error";
+			return; // Stop further execution
+		}
+	
+		// Retrieve upload data for KTP
+		$ktp_data = $this->upload->data();
+	
+		// Retrieve other form data
+		$data = array(
 			'kode_supplier' => $this->input->post('kode_supplier'),
-            'nama_supplier' => $this->input->post('nama_supplier'),
-            'bank' => $this->input->post('bank'),
-            'nomor' => $this->input->post('nomor'),
-            'an' => $this->input->post('an'),
-            'npwp' => $this->input->post('npwp'),
-            'id_area' => $this->input->post('id_area'),
-            'no_ktp' => $this->input->post('no_ktp'),
-            'alamat' => $this->input->post('alamat')
-        );
-
-        // Memasukkan data ke dalam tabel suppliers melalui model
-        $this->Datadaging_model->insert_supplier($data);
-
-        // Redirect kembali ke halaman index
-        redirect('main/formSuplier');
-    }
-
+			'nama_supplier' => $this->input->post('nama_supplier'),
+			'bank' => $this->input->post('bank'),
+			'nomor' => $this->input->post('nomor'),
+			'an' => $this->input->post('an'),
+			'npwp' => $npwp_data['file_name'], // Store NPWP filename in the database
+			'no_ktp' => $ktp_data['file_name'], // Store KTP filename in the database
+			'id_area' => $this->input->post('id_area'),
+			'alamat' => $this->input->post('alamat')
+		);
+	
+		// Insert data into the suppliers table through the model
+		$this->Datadaging_model->insert_supplier($data);
+	
+		// Redirect back to the supplier form
+		redirect('main/formSuplier');
+	}
+	
 	public function mainApprove($id) {
 		$this->Datadaging_model->aprrovalData($id);
 		redirect("main/adminUser");
@@ -191,10 +235,11 @@ class Main extends CI_Controller {
 	public function sortir(){
 		$data['title'] = 'Admin Sortir';
 		$sortir = $this->Main_model->getDataSortir(null);
+		$bahanbaku = $this->Main_model->getBahanBaku();
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
-        $this->load->view('pages/sortir', array('sortir' => $sortir,'supplier' => $supplier));
+        $this->load->view('pages/sortir', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
         $this->load->view('templates/footer');
 	}
 
@@ -202,7 +247,6 @@ class Main extends CI_Controller {
         // Form validation rules
         $this->form_validation->set_rules('kode_supplier', 'Kode Supplier', 'required');
         $this->form_validation->set_rules('tanggal_rec', 'Tanggal Rec', 'required');
-        $this->form_validation->set_rules('number', 'Number', 'required');
 
         // Get all post data
         $post_data = $this->input->post();

@@ -15,7 +15,7 @@
     </button>
 	<div class="col-md-12 mt-2 p-0 mx-0">
     <div class="table-responsive">
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="myTable">
             <thead>
                 <tr class="text-center">
                     <th>No</th>
@@ -141,8 +141,8 @@
 											</div>
 										</div>
 										<div class="modal-footer">
-											<a href="<?php echo base_url('main/mainApprove/').$data['id']; ?>" class="btn btn-primary">Aprove</a>
-											<a href="<?php echo base_url('main/mainReject/').$data['id']; ?>" class="btn btn-danger">Reject</a>
+											<!-- <a href="<?php echo base_url('main/mainApprove/').$data['id']; ?>" class="btn btn-primary">Aprove</a>
+											<a href="<?php echo base_url('main/mainReject/').$data['id']; ?>" class="btn btn-danger">Reject</a> -->
 											<button type="button" onclick="printDisini(<?php echo $data['id'] ?>)" class="btn btn-primary">Print</a>
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 										</div>
@@ -198,18 +198,18 @@
 									</select>
 								</div>
                                 </div>
-                                <div class="col-md-3 col-sm-12">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="dagingMerah">Spesifikasi Bahan:</label>
                                         <input type="text" class="form-control" id="spesifikasi"></div>
                                     </div>
-                                    <div class="col-md-3 col-sm-12">
+                                    <!-- <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label for="qty">Qty:</label>
                                             <input type="number" min="0" class="form-control" id="qty"></div>
                                         </div>
-                                    </div>
-                                    <div class="isi">
+                                    </div> -->
+                                    <div class="isi p-2">
 										</div>
 									</div>
 									<div class="modal-footer">

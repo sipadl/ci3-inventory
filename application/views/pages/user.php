@@ -37,7 +37,7 @@
 							<div class="col-md-12">
 								<label for="area">Area</label><br>
 							</div>
-							<select name="wilayah" class="form-control col-md-12" id="basic-multiple" >
+							<select name="wilayah[]" class="form-control col-md-12" multiple="multiple" id="basic-multiple" >
 								<option value="0">Pilih Area</option>
 								<?php foreach($wilayah as $wil) : ?>
 									<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['nama_area'] ?></option>
@@ -105,12 +105,12 @@
 							// Check if JSON decoding was successful
 							if ($datas !== null) {
 								foreach ($datas as $key => $wot) {
-									$wilayah = $this->db->select('nama_kota')->where('id_kota', $wot)->get('tbl_kota')->row_array();
+									$wilayah = $this->db->select('nama_area')->where('kode_area', $wot)->get('tbl_area')->row_array();
 									if ($wilayah !== null) {
 										if(count($wilayah) != $key ) {
-											echo $wilayah['nama_kota'].', ';
+											echo $wilayah['nama_area'].' ';
 										} else {
-											echo $wilayah['nama_kota'].' ';
+											echo $wilayah['nama_area'].', ';
 										}
 									}
 								}

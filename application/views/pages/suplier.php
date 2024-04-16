@@ -14,11 +14,12 @@
         
         <!-- Modal Body -->
         <div class="modal-body container">
-		<form method="post" action="<?php echo base_url('main/tambahSuplier'); ?>">
+		<form method="post" action="<?php echo base_url('main/tambahSuplier'); ?>" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="id_supplier">Kode Supplier</label>
                     <input
+						name="kode_supplier"
                         type="text"
                         class="form-control"
                         id="id_supplier"
@@ -40,7 +41,7 @@
                     <input type="text" class="form-control" name="bank" id="bank" placeholder="Bank">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="nomor">Nomor</label>
+                    <label for="nomor">Nomor Handphone</label>
                     <input type="text" class="form-control" name="nomor" id="nomor" placeholder="Nomor">
                 </div>
             </div>
@@ -51,17 +52,17 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="npwp">NPWP</label>
-                    <input type="text" class="form-control" name="npwp" id="npwp" placeholder="NPWP">
+                    <input type="file" class="form-control" name="npwp" id="npwp" placeholder="NPWP">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-					<label for="no_ktp">Nomor KTP</label>
-                    <input type="text" class="form-control" name="no_ktp" id="no_ktp" placeholder="Nomor KTP">
+					<label for="no_ktp">Upload KTP</label>
+                    <input type="file" class="form-control" name="no_ktp" id="no_ktp" placeholder="Upload KTP">
                 </div>
 				<div class="form-group col-md-6">
 					<label for="area">Kode Area</label><br>
-					<select name="wilayah" class="form-control col-md-12" id="basic-multiple" >
+					<select name="id_area" class="form-control col-md-12" id="basic-multiple" >
 						<option value="0">Pilih Area</option>
 						<?php foreach($wilayah as $wil) : ?>
 							<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['kode_area'].' - '. $wil['nama_area'] ?></option>
@@ -122,8 +123,22 @@
                     <td><?php echo $supplier['nama_supplier']; ?></td>
                     <td><?php echo $supplier['bank']; ?></td>
                     <td><?php echo $supplier['nomor']; ?></td>
-                    <td><?php echo $supplier['npwp']; ?></td>
-                    <td><?php echo $supplier['no_ktp']; ?></td>
+                    <td>
+            		<!-- Display NPWP image -->
+						<?php if ($supplier['npwp']): ?>
+							<img width="50" height="50" src="<?php echo base_url('upload/images/' . $supplier['npwp']); ?>" alt="NPWP Image">
+						<?php else: ?>
+							No NPWP Image
+						<?php endif; ?>
+					</td>
+					<td>
+						<!-- Display KTP image -->
+						<?php if ($supplier['no_ktp']): ?>
+							<img width="50" height="50" src="<?php echo base_url('upload/images/' . $supplier['no_ktp']); ?>" alt="KTP Image">
+						<?php else: ?>
+							No KTP Image
+						<?php endif; ?>
+					</td>
                     <td><?php echo $supplier['alamat']; ?></td>
                     <td>
                         <div class="d-flex">

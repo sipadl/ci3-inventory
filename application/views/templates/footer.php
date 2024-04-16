@@ -43,6 +43,11 @@
 
 
 <script>
+
+function isiId(val){
+	$('#getId').html('');
+	$('#getId').val(val);
+}
 function printDisini(val) {
     var prtContent = document.getElementById(`modal-print-${val}`);
     console.log(prtContent);
@@ -117,7 +122,19 @@ function printDisini(val) {
 	function addDaging() {
 		const dagingCountP = $('.daging-putih').length;
 		const dagingCountM = $('.daging-putih').length;
+		const idP = `dagingPutih${dagingCountP}`;
+    	const idM = `dagingMerah${dagingCountM}`;
+
+		const dagingCount = $('.dagings').length;
+
+		if (dagingCount > 0) {
+        $('.remove-daging-btn').show();
+    	}
+
+	
 		$('.isi').append(`
+		<div class="dagings" id="${dagingCount}">
+		
 		<div class="daging-putih">
 			<h5>Daging Putih</h5>
 			<hr>
@@ -177,7 +194,16 @@ function printDisini(val) {
 					</div>
 				</div>
 			</div>
-		</div>`)
+		</div>
+		<div class="d-flex justify-content-end">
+		<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-2 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
+		</div>
+        </div>
+		`)
+	}
+
+	function removeDaging(id) {
+    $('#' + id).remove();
 	}
 
 	function kirimData() {
@@ -228,13 +254,15 @@ function printDisini(val) {
     // Kirim data menggunakan AJAX atau lakukan operasi lainnya di sini
 	$.post("<?php echo base_url('/main/tambahDaging'); ?>", data,
 		function (res, textStatus, jqXHR) {
-			console.log(textStatus);
-			if(jqXHR == 200){
-				location.reload()
-			}
+			// if(jqXHR == 200){
+				console.log(res);
+				window.location.reload(true);
+
+			// }
 		},
 		"json"
 	);
+	window.location.reload()
 }
 
 </script>
