@@ -19,6 +19,7 @@
                 <div class="form-group col-md-6">
                     <label for="id_supplier">Kode Supplier</label>
                     <input
+						name="kode_supplier"
                         type="text"
                         class="form-control"
                         id="id_supplier"
