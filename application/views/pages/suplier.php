@@ -62,7 +62,7 @@
                 </div>
 				<div class="form-group col-md-6">
 					<label for="area">Kode Area</label><br>
-					<select name="wilayah" class="form-control col-md-12" id="basic-multiple" >
+					<select name="id_wilayah" class="form-control col-md-12" id="basic-multiple" >
 						<option value="0">Pilih Area</option>
 						<?php foreach($wilayah as $wil) : ?>
 							<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['kode_area'].' - '. $wil['nama_area'] ?></option>
