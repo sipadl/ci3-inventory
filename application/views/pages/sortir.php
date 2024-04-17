@@ -22,9 +22,11 @@
                         <td><?php echo $ss['spesifikasi'] ?></td>
                         <td>
 							<div class="d-flex justify-content-">
+							<?php if($ss['id_bb'] != null ) { ?>
                             <button type="button" class="btn btn-light" data-toggle="modal" data-target="<?php echo '#modelId'.$ss['id'] ?>">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </button>
+							<?php } ?>
 							<?php if($ss['id_bb'] == null ) { ?>
 							<button
 								type="button"
@@ -99,32 +101,6 @@
 															</div>
 														</div>
 														<div class="col-md-3">
-															<div class="form-group">
-																<label for="tanggal_rec">Tanggal Rec2</label>
-																<input
-																	readonly
-																	type="date"
-																	class="form-control"
-																	id="tanggal_rec"
-																	name="tanggal_rec"
-																	value=<?php echo $ss['tanggal_rec2']  ?>
-																	placeholder="01-01-2024">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="tanggal_rec">Tanggal Rec3</label>
-																<input
-																	readonly
-																	type="date"
-																	class="form-control"
-																	id="tanggal_rec"
-																	name="tanggal_rec"
-																	value=<?php echo $ss['tanggal_rec3']  ?>
-																	placeholder="01-01-2024">
-															</div>
-														</div>
-														<div class="col-md-9">
 															<div class="form-group">
 																<label for="number">Number</label>
 																<input
@@ -429,7 +405,6 @@
 													<span aria-hidden="true">&times;</span>
 												</button>
 										</div>
-										<form action="<?php echo base_url('main/updateMiniSortir/'.$ss['id_sortir']) ?>" method="post">
 										<div class="modal-body" id="modal-print-<?php echo $ss['id'] ?>">
 											<div class="row justify-content-between">
 												<div class="col-md-3">
@@ -453,9 +428,11 @@
 													</div>
 											</div>
 											<div class="col-md-3">
-												<p>No Sortir</p>
+												<p>No. Sortir : <?php echo $ss['id'] ?></p>
 											</div>
 											<div class="col-md-3">
+												<form action="<?php echo base_url('main/updateMiniSortir/'.$ss['id_sortir']) ?>" method="post">
+
 												<div class="d-flex justify-content-between  border px-2">
 													<div class="">Cap</div>
 													<div class="">
@@ -477,16 +454,37 @@
 														<?php } ?>
 													</div>
 												</div>
+												<?php if($ss['cap'] == null) { ?>
+													<div class="d-flex justify-content-end">
+														<button type="submit" class="btn btn-sm  mt-2 btn-primary">Simpan</button>
+													</div>
+														<?php } ?>
 											</div>
+											</form>
+											<style>
+											.tbl-spesial {
+											border-collapse: collapse;
+											}
+
+											.tbl-spesial th , .tbl-spesial td {
+											border: 2px solid #dee2e6;
+											font-size: 14px;
+											padding: 5px;
+											}
+
+											.tbl-spesial th {
+											background-color: #f2f2f2;
+											}
+											</style>
 											<div class="col-md-12">
-												<table class="table table-bordered mt-4">
-													<thead class="text-center">
+												<table class="table table-bordered mt-4 tbl-spesial">
+													<thead class="text-center tbl-spesial">
 														<tr>
 															<th colspan="2" rowspan="2">Spec</th>
 															<th colspan="3">Tanggal Sortir</th>
 															<th colspan="2" rowspan="2">Total</th>
 															<th colspan="2" rowspan="2">Spec</th>
-															<th>Tanggal Reff</th>
+															<th>Tanggal Rec</th>
 															<th colspan="3">Tanggal Sortir</th>
 															<th>Total</th>
 														</tr>
@@ -494,8 +492,8 @@
 															<th colspan=""><?php echo $ss['tanggal_rec'] ?></th>
 															<th colspan=""></th>
 															<th colspan=""></th>
-															<th colspan=""></th>
 															<th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
+															<th colspan=""></th>
 															<th colspan="" width="10%"></th>
 															<th colspan="" width="10%"></th>
 															<th colspan=""></th>
@@ -1013,12 +1011,9 @@
 									</div>
 									<div class="modal-footer">
 										<button class="btn btn-primary" onclick="printDisini(<?php echo $ss['id'] ?>)">Print</button>
-										<?php if($ss['cap'] == null) { ?>
-										<button type="submit" class="btn btn-warning">Simpan</button>
-										<?php } ?>
+										
 									</div>
 								</div>
-							</form>
                         </td>
                     </tr>
                     <?php endforeach ?>
