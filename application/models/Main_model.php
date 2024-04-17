@@ -18,7 +18,7 @@ class Main_model extends CI_Model {
 
 	public function getDataSortir($id = null) {
 		if($id) {
-			return $this->db->query("select * from tbl_sortir where status = 0 and id =". $id)->result_array();
+			return $this->db->query("select * from tbl_sortir where status = 0 and id =". $id)->result_array()[0];
 		} else {
 			return $this->db->query("select * from tbl_sortir where status = 0")->result_array();
 		}
@@ -33,6 +33,33 @@ class Main_model extends CI_Model {
 	{
 		$this->db->where('id', $id); // Assuming 'id' is the primary key column
     	$this->db->update($table, $data);
+	}
+
+	public function login($username, $password) {
+        // Lakukan pengecekan login ke database atau sumber autentikasi lainnya
+        // Misalnya, jika menggunakan database:
+        $this->db->where('username', $username);
+		$query = $this->db->get('tbl_user');
+		$user = $query->row_array();
+
+		if (!$user) {
+			return false;
+		}
+
+		// Verify the password
+		if (password_verify($password, $user['password'])) {
+			// Password matches, return user data
+			$userdata = array(
+                'user_id' => $user['id'], // Ganti 'id' sesuai dengan nama kolom id pada tabel pengguna
+                'username' => $user['username'], // Ganti 'username' sesuai dengan nama kolom username pada tabel pengguna
+                // Tambahkan data lainnya sesuai kebutuhan
+                'logged_in' => TRUE
+            );
+            $this->session->set_userdata($userdata);
+		} else {
+			// Password does not match
+			return false;
+		}
 	}
 	
 }

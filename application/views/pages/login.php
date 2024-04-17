@@ -26,8 +26,7 @@
                                 <label for="password">Password</label>
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
-                            <!-- <button type="submit" class="btn btn-primary">Login</button> -->
-                            <a href="<?php echo base_url('main/adminUser') ?>" class="btn btn-primary">Login</a>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </form>
                     </div>
                 </div>

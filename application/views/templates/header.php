@@ -228,6 +228,35 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item has-treeview menu-close">
+            <a href="<?php echo base_url('main/adminUser'); ?>" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Approval
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url('main/sortir'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approval Sortir</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('main/sortir'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approval Produksi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('main/sortir'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approval Coasting </p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <!-- <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
