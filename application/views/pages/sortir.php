@@ -37,7 +37,7 @@
 								Tambah Sortir
 							</button>
 							<?php } ?>
-							<?php if($ss['id_bb'] != null ) { ?>
+							<?php if($ss['id_bb'] != null && $ss['tanggal_rec3'] == null ) { ?>
 								<button
 								type="button"
 								class="btn btn-warning mx-2"
@@ -490,12 +490,12 @@
 														</tr>
 														<tr>
 															<th colspan=""><?php echo $ss['tanggal_rec'] ?></th>
-															<th colspan=""></th>
-															<th colspan=""></th>
+															<th colspan=""><?php echo $ss['tanggal_rec2'] ?></th>
+															<th colspan=""><?php echo $ss['tanggal_rec3'] ?></th>
 															<th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
-															<th colspan=""></th>
-															<th colspan="" width="10%"></th>
-															<th colspan="" width="10%"></th>
+															<th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
+															<th colspan=""><?php echo $ss['tanggal_rec2'] ?></th>
+															<th colspan="" width="10%"><?php echo $ss['tanggal_rec3'] ?></th>
 															<th colspan=""></th>
 														</tr>
 													</thead>
@@ -1010,6 +1010,7 @@
 										
 									</div>
 									<div class="modal-footer">
+										<a href="<?php echo base_url('main/approveSortir/'.$ss['id_sortir']); ?>" class="btn btn-primary">Approve</a>
 										<button class="btn btn-primary" onclick="printDisini(<?php echo $ss['id'] ?>)">Print</button>
 										
 									</div>

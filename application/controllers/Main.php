@@ -21,20 +21,23 @@ class Main extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             // Jika validasi gagal, tampilkan halaman login
-            redirect('main');
+			echo 'gagal disini';
+            // redirect('main');
         } else {
+			
             // Ambil data dari form
             $username = $this->input->post('username');
             $password = $this->input->post('password');
 
             // Lakukan proses login
-            if ($this->Datadaging_model->login($username, $password)) {
+            if ($this->Main_model->login($username, $password)) {
+				echo 'disini';
                 // Redirect ke halaman dashboard atau halaman lainnya jika login berhasil
                 redirect('main/adminUser');
             } else {
                 // Jika login gagal, tampilkan pesan error
                 $this->session->set_flashdata('error', 'Username atau password salah.');
-                redirect('main');
+                redirect('main/adminUser');
             }
         }
     }
@@ -139,7 +142,7 @@ class Main extends CI_Controller {
             $data = array(
                 'username' => $this->input->post('username'),
                 'email' => $this->input->post('email'),
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT), // Encrypt password
+                'password' => md5($this->input->post('password')), // Encrypt password
                 'role' => $this->input->post('role'),
                 'wilayah' => json_encode($this->input->post('wilayah')),
 				'tanggal' => date('Y-m-d H:i:s')
@@ -265,4 +268,24 @@ class Main extends CI_Controller {
             redirect('main/sortir');
         }
     }
+	public function sortirUpdate($id) {
+		$post_data = $this->input->post();
+		$sortir = $this->Main_model->getDataSortir($id);
+		
+		if($sortir['tanggal_rec2'] == null ){
+			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
+		} else {
+			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
+		}
+		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
+		redirect('main/sortir');
+	}
+
+	public function approveSortir($id) {
+		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => 2);
+		$this->Main_model->updateAll('tbl_sortir', $data, $id);
+		redirect('main/sortir');
+		
+	}
 }
