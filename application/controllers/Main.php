@@ -73,11 +73,11 @@ class Main extends CI_Controller {
 		$dataDagingMerah = json_decode($spesifikasiDagingMerah);
 		$spesifikasiDagingPutih = $this->input->post('dagingPutih');
 		foreach($dataDagingMerah as $dag) {
-			$qty += $dag->tkotor + $dag->tbersih;
+			$qty += $dag->tbersih;
 		}
 		$dataDagingPutih = json_decode($spesifikasiDagingPutih);
 		foreach($dataDagingPutih as $dag) {
-			$qty += $dag->tkotor + $dag->tbersih;
+			$qty += $dag->tbersih;
 		}
 		$spesifikasi = $this->input->post('spesifikasi');
 		$this->load->model('DataDaging_model');
