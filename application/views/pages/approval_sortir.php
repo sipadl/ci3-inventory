@@ -33,7 +33,13 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                         <td><?php echo $ss['tanggal'] ?></td>
                         <td><?php echo $ss['id_bahan_baku'] ?></td>
                         <td><?php echo $ss['spesifikasi'] ?></td>
-						<td><?php echo $ss['approved_by'] ?></td>
+						<td><?php if($ss['approved_by'] != null ) {
+							 $approved = $this->db->query("select username from tbl_user where id = ".$ss['approved_by']."")->row_array();
+							 echo $approved['username'];
+							} else {
+							echo '';
+							}
+						?></td>
 						<td><?php 
 						$status = $ss['status'];
 
@@ -43,11 +49,17 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 						} elseif ($status == 0) {
 							echo "Pending";
 						} elseif ($status == 1) {
-							echo "Waiting";
-						} elseif ($status == 2) {
 							echo "Accepted";
+						} elseif ($status == 2) {
+							echo "Accepted By TL Sortir";
+						} elseif ($status == 3) {
+							echo "Accepted By Bag. Produksi";
+						} elseif ($status == 4) {
+							echo "Accepted By Bag. Coasting";
+						} elseif ($status == 5) {
+							echo "Accepted By General Manager";
 						} else {
-							echo "Unknown"; // Handle any other status code
+							echo "Unknown"; 
 						} ?> </td>
                         <td>
 							<div class="d-flex justify-content-">
@@ -760,8 +772,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 										
 									</div>
 									<div class="modal-footer">
-										<?php if($ss['approved_by'] == null) { ?> 
-										<a href="<?php echo base_url('main/approveSortir/'.$ss['id_sortir']); ?>" class="btn btn-primary">Approve</a>
+										<?php if($ss['status'] == 1) { ?> 
+										<a href="<?php echo base_url('main/approveSortirTL/'.$ss['id_sortir']); ?>" class="btn btn-primary">Approve</a>
 										<?php } ?>
 										<button class="btn btn-primary" onclick="printDisini(<?php echo $ss['id'] ?>)">Print</button>
 										

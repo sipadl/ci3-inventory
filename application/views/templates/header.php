@@ -234,35 +234,30 @@
               </li>
             </ul>
           </li> -->
-          <li class="nav-item has-treeview menu-close">
-            <a href="<?php echo base_url('main/adminUser'); ?>" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Approval
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
+					<li class="nav-item">
                 <a href="<?php echo base_url('main/aproval_sortir') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Sortir</p>
                 </a>
               </li>
-              <li class="nav-item">
+					<li class="nav-item">
                 <a href="<?php echo base_url('main/approval_produksi') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Produksi</p>
                 </a>
               </li>
-              <li class="nav-item">
+					<li class="nav-item">
                 <a href="<?php echo base_url('main/approval_coasting') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Coasting </p>
                 </a>
               </li>
-            </ul>
-          </li>
+					<li class="nav-item">
+                <a href="<?php echo base_url('main/approval_gm') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approval GM </p>
+                </a>
+              </li>
 					<li class="nav-item">
 							<a href="<?php echo base_url('main/logout'); ?>" class="nav-link">
 								<i class="nav-icon fas fa-sign-out-alt"></i>

@@ -16,6 +16,10 @@ class Main_model extends CI_Model {
 		return $this->db->query("select td.*, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb order by ts.id desc")->result_array();
 	}
 
+	public function getBahanBakuWithStatus($val) {
+		return $this->db->query("select td.*, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.status in(".$val.") order by ts.id desc")->result_array();
+	}
+
 	public function getDataSortir($id = null) {
 		if($id) {
 			return $this->db->query("select * from tbl_sortir where status = 0 and id =". $id." order by id desc")->result_array()[0];

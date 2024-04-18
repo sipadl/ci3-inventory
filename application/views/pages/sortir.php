@@ -32,18 +32,22 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                         <td><?php echo $ss['tanggal'] ?></td>
 						<td><?php 
 						$status = $ss['status'];
-
-						// Check the status code and display corresponding text
 						if ($status == -1) {
 							echo "Rejected";
 						} elseif ($status == 0) {
 							echo "Pending";
 						} elseif ($status == 1) {
-							echo "Waiting";
-						} elseif ($status == 2) {
 							echo "Accepted";
+						} elseif ($status == 2) {
+							echo "Accepted By TL Sortir";
+						} elseif ($status == 3) {
+							echo "Accepted By Bag. Produksi";
+						} elseif ($status == 4) {
+							echo "Accepted By Bag. Coasting";
+						} elseif ($status == 5) {
+							echo "Accepted By General Manager";
 						} else {
-							echo "Unknown"; // Handle any other status code
+							echo "Unknown"; 
 						} ?> </td>
                         <td><?php echo $ss['id_bahan_baku'] ?></td>
                         <td><?php echo $ss['spesifikasi'] ?></td>

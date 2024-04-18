@@ -23,6 +23,12 @@ class DataDaging_model extends CI_Model {
 		$query = $this->db->query('SELECT * FROM '.$table);
 		return $query->result_array();
 	}
+	
+	public function getDataNoOrderWithWhere($table, $condition, $value) {
+		$this->db->where($condition, $value);
+		$query = $this->db->get($table);
+		return $query->result_array();
+	}	
 
 	public function tambahUser($data) {
         // Simpan data user ke dalam database

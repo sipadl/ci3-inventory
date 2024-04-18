@@ -306,19 +306,46 @@ class Main extends CI_Controller {
 
 	public function approveSortir($id) {
 		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => 1);
+		$this->Main_model->updateAll('tbl_sortir', $data, $id);
+		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		
+	}
+
+	public function approveSortirTL($id) {
+		$user_id = $this->session->userdata('id');
 		$data = array('approved_by' => $user_id ,'status' => 2);
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
 		// redirect(base_url(), 'refresh');
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
-
 		
+	}
+
+	public function approveSortirProduksi($id) {
+		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => 3);
+		$this->Main_model->updateAll('tbl_sortir', $data, $id);
+		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
+	public function approveSortirCoast($id) {
+		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => 4);
+		$this->Main_model->updateAll('tbl_sortir', $data, $id);
+		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
 
 	public function aproval_sortir(){
 		$data['title'] = 'Approval Sortir';
-		$sortir = $this->Main_model->getDataSortir(null);
-		$bahanbaku = $this->Main_model->getBahanBaku();
+		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','1');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -327,22 +354,32 @@ class Main extends CI_Controller {
 	}
 	public function approval_produksi(){
 		$data['title'] = 'Approval Produksi';
-		$sortir = $this->Main_model->getDataSortir(null);
-		$bahanbaku = $this->Main_model->getBahanBaku();
+		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','2');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('2');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
-        $this->load->view('pages/aproval_bahan_baku', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
+        $this->load->view('pages/aproval_produksi', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
         $this->load->view('templates/footer');
 	}
 	public function approval_coasting(){
 		$data['title'] = 'Approval Coasting';
-		$sortir = $this->Main_model->getDataSortir(null);
-		$bahanbaku = $this->Main_model->getBahanBaku();
+		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','3');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('3');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
         $this->load->view('pages/approval_coasting', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
+        $this->load->view('templates/footer');
+	}
+	public function approval_gm(){
+		$data['title'] = 'Approval General Manager';
+		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','3');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('4');
+		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/approval_gm', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
         $this->load->view('templates/footer');
 	}
 }
