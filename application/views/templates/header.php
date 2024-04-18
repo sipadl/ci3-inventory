@@ -238,19 +238,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url('main/sortir'); ?>" class="nav-link">
+                <a href="javascript:void(0)" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Sortir</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('main/sortir'); ?>" class="nav-link">
+                <a href="javascript:void(0)" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Produksi</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('main/sortir'); ?>" class="nav-link">
+                <a href="javascript:void(0)" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Coasting </p>
                 </a>
