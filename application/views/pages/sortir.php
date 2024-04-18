@@ -725,7 +725,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td></td>
 															<td colspan="2"></td>
 															<td colspan="2">Total PHR</td>
-															<td></td>
+															<td><?php echo $ss['basi_sp'] + $ss['basi_bf'] + $ss['basi_xlp'] + $ss['basi_jk'] + $ss['basi_col'] ?></td>
 															<td class="bg-light" style="background-color: gray"></td>
 															<td class="bg-light" style="background-color: gray"></td>
 															<td class="bg-light" style="background-color: gray"></td>
@@ -782,7 +782,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td></td>
 															<td colspan="2"></td>
 															<td colspan="2">TOTAL MHR</td>
-															<td></td>
+															<td><?php echo $ss['basi_mh'] + $ss['basi_cl'] ?></td>
 															<td class="bg-light" style="background-color: gray"></td>
 															<td class="bg-light" style="background-color: gray"></td>
 															<td class="bg-light" style="background-color: gray"></td>
@@ -908,7 +908,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td colspan="2"></td>
 															<td colspan="2">Total PHR</td>
 															<td class="bg-light" style="background-color: gray"></td>
-															<td></td>
+															<td><?php echo $ss['basi_sp'] + $ss['basi_bf'] + $ss['basi_xlp'] + $ss['basi_jk'] + $ss['basi_col'] ?></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -965,7 +965,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td colspan="2"></td>
 															<td colspan="2">Total MHR</td>
 															<td class="bg-light" style="background-color: gray"></td>
-															<td></td>
+															<td><?php echo $ss['basi_mh'] + $ss['basi_cl'] ?></td>
 
 															<td></td>
 															<td></td>
