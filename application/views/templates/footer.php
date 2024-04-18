@@ -210,7 +210,7 @@ function printDisini(val) {
     var tanggal = document.getElementById("tanggal").value;
     var supplier = document.getElementById("supplier").value;
     var spesifikasi = document.getElementById("spesifikasi").value;
-    var qty = document.getElementById("qty").value;
+    var qty = 0;
 
     var dataDagingP = [];
     var dataDagingM = [];
