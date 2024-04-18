@@ -1,10 +1,4 @@
 <div class="col-md-12">
-<style>
-	/* .hehex{
-	border-right: 1px solid #dee2e6 !important;
-	border-left: 1px solid #dee2e6 !important;
-	} */
-</style>
     <button
         type="button"
         class="btn btn-primary"
@@ -14,6 +8,13 @@
         Tambah Data
     </button>
 	<div class="col-md-12 mt-2 p-0 mx-0">
+<?php
+// Check if flash data exists
+if ($this->session->flashdata('success')) {
+// If it does, display a success message
+echo '<div class="alert alert-success my-2">' . $this->session->flashdata('success') . '</div>';
+}
+?>
     <div class="table-responsive">
         <table class="table table-bordered" id="myTable">
             <thead>
@@ -219,4 +220,5 @@
 									</div>
 								</div>
 							</div>
+						</div>
 						</div>

@@ -97,6 +97,13 @@
     </div>
 	
     </div>
+	<?php
+	// Check if flash data exists
+	if ($this->session->flashdata('success')) {
+	// If it does, display a success message
+	echo '<div class="alert alert-success my-2">' . $this->session->flashdata('success') . '</div>';
+	}
+	?>
     <hr>
     <div class="mb-2">
         <table class="table" id="myTable">

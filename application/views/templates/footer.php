@@ -43,7 +43,14 @@
 
 
 <script>
-
+function SimpanSortir(event, val)
+{
+	if(val === true ){
+		$('#sortires').action = '<?php echo base_url('main/fullsortirPost') ?>';
+	} else {
+		$('#sortires').action = '<?php echo base_url('main/sortirPost') ?>';
+	}
+}
 function isiId(val){
 	$('#getId').html('');
 	$('#getId').val(val);

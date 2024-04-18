@@ -9,18 +9,18 @@ class Main_model extends CI_Model {
     }
 
 	public function getWilayahById($id) {
-		return $this->db->query("select * from tbl_kota where kode_area =".$id )->result_array();
+		return $this->db->query("select * from tbl_kota where kode_area =".$id. "order by id desc")->result_array();
 	}
 
 	public function getBahanBaku() {
-		return $this->db->query("select td.*, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id")->result_array();
+		return $this->db->query("select td.*, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb order by ts.id desc")->result_array();
 	}
 
 	public function getDataSortir($id = null) {
 		if($id) {
-			return $this->db->query("select * from tbl_sortir where status = 0 and id =". $id)->result_array()[0];
+			return $this->db->query("select * from tbl_sortir where status = 0 and id =". $id." order by id desc")->result_array()[0];
 		} else {
-			return $this->db->query("select * from tbl_sortir where status = 0")->result_array();
+			return $this->db->query("select * from tbl_sortir where status = 0 order by id desc")->result_array();
 		}
 	}
 

@@ -67,6 +67,13 @@
 			</div>
 		</div>
 		<div class="col-md-12">
+			<?php 
+			// Check if flash data exists
+			if ($this->session->flashdata('success')) {
+			// If it does, display a success message
+			echo '<div class="alert alert-success my-2">' . $this->session->flashdata('success') . '</div>';
+			}
+			?>
 			<div
 				class="table-responsive"
 			>

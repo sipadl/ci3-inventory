@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+#[\AllowDynamicProperties]
+
 class Main extends CI_Controller {
 
     public function __construct() {
@@ -95,6 +97,7 @@ class Main extends CI_Controller {
 
 		// Menyimpan data menggunakan model
 		$insert_id = $this->DataDaging_model->addDaging($data);
+		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
        
     }
 
@@ -154,6 +157,7 @@ class Main extends CI_Controller {
             $this->Datadaging_model->tambahUser($data);
 
             // Redirect ke halaman sukses atau halaman lain
+			$this->session->set_flashdata('success', 'Your data has been saved successfully!');
             redirect('main/formUser');
         }
     }
@@ -161,6 +165,7 @@ class Main extends CI_Controller {
 	public function updateMiniSortir($id) {
 		$data = $this->input->post();
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
+		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
 		redirect('main/sortir');
 	}
 
@@ -215,6 +220,7 @@ class Main extends CI_Controller {
 	
 		// Insert data into the suppliers table through the model
 		$this->Datadaging_model->insert_supplier($data);
+		$this->session->set_flashdata('success', 'Supplier berhasil ditambahkan.');
 	
 		// Redirect back to the supplier form
 		redirect('main/formSuplier');
@@ -236,7 +242,7 @@ class Main extends CI_Controller {
 	}
 
 	public function sortir(){
-		$data['title'] = 'Admin Sortir';
+		$data['title'] = 'Sortir';
 		$sortir = $this->Main_model->getDataSortir(null);
 		$bahanbaku = $this->Main_model->getBahanBaku();
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
@@ -257,17 +263,43 @@ class Main extends CI_Controller {
 			// Load view add.php with post data
             $this->load->view('supplier/add', $post_data);
         } else {
-			$this->Main_model->insertAll('tbl_sortir', $post_data);
+			$insert = $this->Main_model->insertAll('tbl_sortir', $post_data);
             // Process form request
             // Misalnya, simpan data ke database atau lakukan tindakan lain yang diperlukan
 
             // Set flashdata untuk pesan sukses atau error
-            $this->session->set_flashdata('message', 'Data supplier berhasil ditambahkan.');
+            $this->session->set_flashdata('success', 'Data Sortir berhasil ditambahkan.');
 
             // Redirect to index
             redirect('main/sortir');
         }
     }
+
+	public function fullsortirPost() {
+        // Form validation rules
+        $this->form_validation->set_rules('kode_supplier', 'Kode Supplier', 'required');
+        $this->form_validation->set_rules('tanggal_rec', 'Tanggal Rec', 'required');
+
+        // Get all post data
+        $post_data = $this->input->post();
+        if ($this->form_validation->run() === FALSE) {
+			// Load view add.php with post data
+            $this->load->view('supplier/add', $post_data);
+        } else {
+			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
+			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
+			$insert = $this->Main_model->insertAll('tbl_sortir', $post_data);
+            // Process form request
+            // Misalnya, simpan data ke database atau lakukan tindakan lain yang diperlukan
+
+            // Set flashdata untuk pesan sukses atau error
+            $this->session->set_flashdata('success', 'Data Sortir berhasil ditambahkan.');
+
+            // Redirect to index
+            redirect('main/sortir');
+        }
+    }
+
 	public function sortirUpdate($id) {
 		$post_data = $this->input->post();
 		$sortir = $this->Main_model->getDataSortir($id);
@@ -278,6 +310,8 @@ class Main extends CI_Controller {
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
 		}
 		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
+		$this->session->set_flashdata('success', 'Data Sortir berhasil diubah.');
+
 		redirect('main/sortir');
 	}
 
@@ -285,7 +319,29 @@ class Main extends CI_Controller {
 		$user_id = $this->session->userdata('id');
 		$data = array('approved_by' => $user_id ,'status' => 2);
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
+		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
 		redirect('main/sortir');
 		
+	}
+
+	public function aproval_sortir(){
+		$data['title'] = 'Approval Sortir';
+		$sortir = $this->Main_model->getDataSortir(null);
+		$bahanbaku = $this->Main_model->getBahanBaku();
+		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/approval_sortir', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
+        $this->load->view('templates/footer');
+	}
+	public function approval_produksi(){
+		$data['title'] = 'Approval Produksi';
+		$sortir = $this->Main_model->getDataSortir(null);
+		$bahanbaku = $this->Main_model->getBahanBaku();
+		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/aproval_bahan_baku', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
+        $this->load->view('templates/footer');
 	}
 }

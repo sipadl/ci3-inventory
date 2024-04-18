@@ -211,7 +211,13 @@
               </li> -->
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-close">
+					<li class="nav-item">
+							<a href="<?php echo base_url('main/sortir'); ?>" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Sortir</p>
+							</a>
+						</li>
+          <!-- <li class="nav-item has-treeview">
             <a href="<?php echo base_url('main/adminUser'); ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -227,7 +233,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item has-treeview menu-close">
             <a href="<?php echo base_url('main/adminUser'); ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -238,13 +244,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="javascript:void(0)" class="nav-link">
+                <a href="<?php echo base_url('main/aproval_sortir') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Sortir</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="javascript:void(0)" class="nav-link">
+                <a href="<?php echo base_url('main/approval_produksi') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Produksi</p>
                 </a>
