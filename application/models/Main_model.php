@@ -41,21 +41,27 @@ class Main_model extends CI_Model {
         $this->db->where('username', $username);
 		$query = $this->db->get('tbl_user');
 		$user = $query->row_array();
-
+		
+		// var_dump(md5($password) == $user['password']);
+		// die();
 		if (!$user) {
 			return false;
 		}
 
+		$hash = md5($password) == $user['password'];
 		// Verify the password
-		if (password_verify($password, $user['password'])) {
+		if ($hash) {
 			// Password matches, return user data
 			$userdata = array(
-                'user_id' => $user['id'], // Ganti 'id' sesuai dengan nama kolom id pada tabel pengguna
+                'id' => $user['id'], // Ganti 'id' sesuai dengan nama kolom id pada tabel pengguna
                 'username' => $user['username'], // Ganti 'username' sesuai dengan nama kolom username pada tabel pengguna
+				'role' => $user['role'],
                 // Tambahkan data lainnya sesuai kebutuhan
                 'logged_in' => TRUE
             );
             $this->session->set_userdata($userdata);
+
+			return true;
 		} else {
 			// Password does not match
 			return false;

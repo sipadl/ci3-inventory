@@ -256,13 +256,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="javascript:void(0)" class="nav-link">
+                <a href="<?php echo base_url('main/approval_coasting') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Coasting </p>
                 </a>
               </li>
             </ul>
           </li>
+					<li class="nav-item">
+							<a href="<?php echo base_url('main/logout'); ?>" class="nav-link">
+								<i class="nav-icon fas fa-sign-out-alt"></i>
+								<p> Logout</p>
+							</a>
+						</li>
           <!-- <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>

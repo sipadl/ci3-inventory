@@ -17,35 +17,24 @@ class Main extends CI_Controller {
 	}
 
 	public function login() {
-        // Validasi form
-        $this->form_validation->set_rules('username', 'Username', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
+		// Ambil data dari form
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
 
-        if ($this->form_validation->run() == FALSE) {
-            // Jika validasi gagal, tampilkan halaman login
-			echo 'gagal disini';
-            // redirect('main');
-        } else {
-			
-            // Ambil data dari form
-            $username = $this->input->post('username');
-            $password = $this->input->post('password');
-
-            // Lakukan proses login
-            if ($this->Main_model->login($username, $password)) {
-				echo 'disini';
-                // Redirect ke halaman dashboard atau halaman lainnya jika login berhasil
-                redirect('main/adminUser');
-            } else {
-                // Jika login gagal, tampilkan pesan error
-                $this->session->set_flashdata('error', 'Username atau password salah.');
-                redirect('main/adminUser');
-            }
-        }
+		// Lakukan proses login
+		if ($this->Main_model->login($username, $password)) {
+			echo 'disini';
+			// Redirect ke halaman dashboard atau halaman lainnya jika login berhasil
+			redirect('main/adminUser');
+		} else {
+			// Jika login gagal, tampilkan pesan error
+			$this->session->set_flashdata('error', 'Username atau password salah.');
+			redirect('main');
+		}
     }
 
     public function logout() {
-		return $this->Datadaging_model->logout();
+		$this->Datadaging_model->logout();
 		redirect('main');
 
         // Lakukan proses logout
@@ -320,7 +309,9 @@ class Main extends CI_Controller {
 		$data = array('approved_by' => $user_id ,'status' => 2);
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
-		redirect('main/sortir');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+
 		
 	}
 
@@ -342,6 +333,16 @@ class Main extends CI_Controller {
 
 		$this->load->view('templates/header', $data);
         $this->load->view('pages/aproval_bahan_baku', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
+        $this->load->view('templates/footer');
+	}
+	public function approval_coasting(){
+		$data['title'] = 'Approval Coasting';
+		$sortir = $this->Main_model->getDataSortir(null);
+		$bahanbaku = $this->Main_model->getBahanBaku();
+		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/approval_coasting', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
         $this->load->view('templates/footer');
 	}
 }

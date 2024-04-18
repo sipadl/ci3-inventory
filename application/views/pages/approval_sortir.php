@@ -14,9 +14,10 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                         <th scope="col">No</th>
                         <th scope="col">Kode Supplier</th>
                         <th scope="col">Tanggal Input</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Id Bahan Baku</th>
                         <th scope="col">Spesifikasi</th>
+                        <th scope="col">Approved By</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -30,6 +31,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                         <th scope="row"><?php echo $no++ ?></th>
                         <td><?php echo $ss['supplier'] ?></td>
                         <td><?php echo $ss['tanggal'] ?></td>
+                        <td><?php echo $ss['id_bahan_baku'] ?></td>
+                        <td><?php echo $ss['spesifikasi'] ?></td>
+						<td><?php echo $ss['approved_by'] ?></td>
 						<td><?php 
 						$status = $ss['status'];
 
@@ -45,13 +49,11 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 						} else {
 							echo "Unknown"; // Handle any other status code
 						} ?> </td>
-                        <td><?php echo $ss['id_bahan_baku'] ?></td>
-                        <td><?php echo $ss['spesifikasi'] ?></td>
                         <td>
 							<div class="d-flex justify-content-">
-                            <!-- <button type="button" class="btn btn-light mx-1" data-toggle="modal" data-target="<?php echo '#modelIdBB'.$ss['id'] ?>">
+                            <button type="button" class="btn btn-light mx-1" data-toggle="modal" data-target="<?php echo '#modelIdBB'.$ss['id'] ?>">
                                 <i class="fa fa-eye" aria-hidden="true"></i> Detail Bahan Baku
-                            </button> -->
+                            </button>
 							<div class="modal fade" id="<?php echo 'modelIdBB'.$ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo '#modelIdBB'.$ss['id'] ?>" aria-hidden="true">
 								<div class="modal-dialog modal-fullscreen modal-xl" role="document">
 									<div class="modal-content">
@@ -131,8 +133,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 											</div>
 										</div>
 										<div class="modal-footer">
-											<!-- <a href="<?php echo base_url('main/mainApprove/').$ss['id']; ?>" class="btn btn-primary">Aprove</a>
-											<a href="<?php echo base_url('main/mainReject/').$ss['id']; ?>" class="btn btn-danger">Reject</a> -->
+											<a href="<?php echo base_url('main/mainApprove/').$ss['id']; ?>" class="btn btn-primary">Aprove</a>
+											<!-- <a href="<?php echo base_url('main/mainReject/').$ss['id']; ?>" class="btn btn-danger">Reject</a> -->
 											<!-- <button type="button" onclick="printDisini(<?php echo $ss['id'] ?>)" class="btn btn-primary">Print</a> -->
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 										</div>
