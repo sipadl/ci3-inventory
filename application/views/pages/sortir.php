@@ -1115,9 +1115,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 										
 									</div>
 									<div class="modal-footer">
-										<?php if($ss['approved_by'] == null) { ?> 
+										<!-- <?php if($ss['approved_by'] == null) { ?> 
 										<a href="<?php echo base_url('main/approveSortir/'.$ss['id_sortir']); ?>" class="btn btn-primary">Approve</a>
-										<?php } ?>
+										<?php } ?> -->
 										<button class="btn btn-primary" onclick="printDisini(<?php echo $ss['id'] ?>)">Print</button>
 										
 									</div>

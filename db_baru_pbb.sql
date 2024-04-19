@@ -27,7 +27,7 @@ CREATE TABLE `tbl_area` (
   `nama_area` text NOT NULL,
   `kode_area` text NOT NULL,
   PRIMARY KEY (`id_area`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +59,7 @@ CREATE TABLE `tbl_daging` (
   `status` int NOT NULL DEFAULT '0',
   `qty` varchar(10) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `tbl_daging` (
 
 LOCK TABLES `tbl_daging` WRITE;
 /*!40000 ALTER TABLE `tbl_daging` DISABLE KEYS */;
-INSERT INTO `tbl_daging` VALUES (53,'2024-04-16','j6','1','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]',0,'0',0,'1'),(54,'2024-04-16','K2','1','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]',0,'0',0,'1'),(55,'2024-04-17','K2','111','[{\"spek\":\"3\",\"bungkus\":\"3\",\"tkotor\":\"3\",\"tbersih\":\"2\"}]','[{\"spek\":\"3\",\"bungkus\":\"2\",\"tkotor\":\"3\",\"tbersih\":\"2\"}]',0,'0',0,'22'),(56,'2024-04-16','j6','re','[{\"spek\":\"22\",\"bungkus\":\"33\",\"tkotor\":\"44\",\"tbersih\":\"55\"},{\"spek\":\"88\",\"bungkus\":\"77\",\"tkotor\":\"66\",\"tbersih\":\"66\"}]','[{\"spek\":\"99\",\"bungkus\":\"88\",\"tkotor\":\"77\",\"tbersih\":\"66\"},{\"spek\":\"334\",\"bungkus\":\"33\",\"tkotor\":\"54\",\"tbersih\":\"56\"}]',0,'0',0,'2'),(57,'0000-00-00','K1','Ayam','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"11\"}]','[{\"spek\":\"1\",\"bungkus\":\"2\",\"tkotor\":\"3\",\"tbersih\":\"12.1\"}]',0,'0',0,'23.1');
+INSERT INTO `tbl_daging` VALUES (53,'2024-04-16','j6','Bebek','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]',0,'0',0,'1'),(54,'2024-04-16','K2','Tahu','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]',0,'0',0,'1'),(55,'2024-04-17','K2','Ikan','[{\"spek\":\"3\",\"bungkus\":\"3\",\"tkotor\":\"3\",\"tbersih\":\"2\"}]','[{\"spek\":\"3\",\"bungkus\":\"2\",\"tkotor\":\"3\",\"tbersih\":\"2\"}]',0,'0',0,'22'),(56,'2024-04-16','j6','Salmon','[{\"spek\":\"22\",\"bungkus\":\"33\",\"tkotor\":\"44\",\"tbersih\":\"55\"},{\"spek\":\"88\",\"bungkus\":\"77\",\"tkotor\":\"66\",\"tbersih\":\"66\"}]','[{\"spek\":\"99\",\"bungkus\":\"88\",\"tkotor\":\"77\",\"tbersih\":\"66\"},{\"spek\":\"334\",\"bungkus\":\"33\",\"tkotor\":\"54\",\"tbersih\":\"56\"}]',0,'0',0,'2'),(57,'0000-00-00','K1','Ayam','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"11\"}]','[{\"spek\":\"1\",\"bungkus\":\"2\",\"tkotor\":\"3\",\"tbersih\":\"12.1\"}]',0,'0',0,'23.1'),(58,'2024-04-19','K1','Salmon','[{\"spek\":\"Ekor\",\"bungkus\":\"13\",\"tkotor\":\"11.2\",\"tbersih\":\"15.2\"}]','[{\"spek\":\"Kepala\",\"bungkus\":\"13\",\"tkotor\":\"22.1\",\"tbersih\":\"25.6\"}]',0,'0',0,'40.8');
 /*!40000 ALTER TABLE `tbl_daging` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +85,7 @@ CREATE TABLE `tbl_kota` (
   `nama_kota` varchar(255) NOT NULL,
   `status` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_kota`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `tbl_pembayaran_dp` (
   `tgl` date NOT NULL,
   `ket` text NOT NULL,
   PRIMARY KEY (`id_pembayaran_dp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +143,7 @@ CREATE TABLE `tbl_role` (
   `nama_role` text NOT NULL,
   `descriptiom` text NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +221,7 @@ CREATE TABLE `tbl_sortir` (
   `cap` varchar(100) DEFAULT NULL,
   `potong` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +230,7 @@ CREATE TABLE `tbl_sortir` (
 
 LOCK TABLES `tbl_sortir` WRITE;
 /*!40000 ALTER TABLE `tbl_sortir` DISABLE KEYS */;
-INSERT INTO `tbl_sortir` VALUES (3,'K1','2024-04-18','2024-04-18',NULL,NULL,1,'1','2','23','3','4',NULL,'3','2','3','3','3','3','3','3','3','33','3','3','3','3','3',NULL,'3','3','3','222','9','09','8','77','11','123','123','123','11','1','112','1221','122','122','11',0,'3','3','3',55,NULL,NULL,NULL),(4,'j6','1989-08-27','2013-08-06',NULL,NULL,1,'50','23','64','60','53',NULL,'90','41','9','38','51','44','89','82','89','17','25','18','91','68','1',NULL,'12','20','73','89','55','92','14','43','47','35','7','92','80','3','59','1','48','54','33.2',2,'13','82','12',56,4,NULL,NULL),(5,'K2','1985-12-06','1979-03-12',NULL,NULL,1,'60','63','39','34','77',NULL,'55','75','14','51','58','15','57','23','72','96','21','39','92','84','35',NULL,'64','66','84','89','4','76','52','63','77','11','53','37','36','3','88','53','74','13','11.2',2,'2','86','27',57,4,NULL,NULL),(8,'j6','1996-09-09','2004-07-23','2024-04-18','2024-04-18',1,'26','0','70','99','50',NULL,'1','92','61','79','56','48','56','67','57','54','96','59','27','63','70',NULL,'26','98','0','29','78','11','70','90','97','27','99','16','60','82','38','2','37','1','78',4,'19','35','2',54,4,NULL,NULL);
+INSERT INTO `tbl_sortir` VALUES (3,'Pilih Salah satu','2024-04-18','2024-04-18','2024-04-19','2024-04-19',1,'1','2','23','3','4',NULL,'3','2','3','3','3','3','3','3','3','33','3','3','3','3','3',NULL,'3','3','3','222','9','09','8','77','11','123','123','123','11.9992','1','112','1221','122','122','11',0,'3','3','3',55,NULL,NULL,NULL),(4,'j6','1989-08-27','2013-08-06',NULL,NULL,1,'50','23','64','60','53',NULL,'90','41','9','38','51','44','89','82','89','17','25','18','91','68','1',NULL,'12','20','73','89','55','92','14','43','47','35','7','92','80','3','59','1','48','54','33.2',2,'13','82','12',56,4,NULL,NULL),(5,'K2','1985-12-06','1979-03-12',NULL,NULL,1,'60','63','39','34','77',NULL,'55','75','14','51','58','15','57','23','72','96','21','39','92','84','35',NULL,'64','66','84','89','4','76','52','63','77','11','53','37','36','3','88','53','74','13','11.2',2,'2','86','27',57,4,NULL,NULL),(8,'j6','1996-09-09','2004-07-23','2024-04-18','2024-04-18',1,'26','0','70','99','50',NULL,'1','92','61','79','56','48','56','67','57','54','96','59','27','63','70',NULL,'26','98','0','29','78','11','70','90','97','27','99','16','60','82','38','2','37','1','78',4,'19','35','2',54,4,NULL,NULL),(9,'j6','2015-10-01','1985-10-07','2024-04-19','2024-04-19',1,'35','1','55','77','97',NULL,'98','94','74','27','63','62','37','37','20','100','73','65','47','78','55',NULL,'78','95','80','70','99.11','45.22','3','89','70','76','60','26','56.11','90','23','62','97','39','65',0,'77','81','93',53,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `tbl_sortir` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,7 +254,7 @@ CREATE TABLE `tbl_supplier` (
   `alamat` text NOT NULL,
   `wilayah` varchar(255) NOT NULL,
   PRIMARY KEY (`id_supplier`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,7 +283,7 @@ CREATE TABLE `tbl_user` (
   `wilayah` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,4 +309,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-18 16:31:44
+-- Dump completed on 2024-04-19 13:59:28

@@ -345,7 +345,7 @@ class Main extends CI_Controller {
 	public function aproval_sortir(){
 		$data['title'] = 'Approval Sortir';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','1');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('1');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
