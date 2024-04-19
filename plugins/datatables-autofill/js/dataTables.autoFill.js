@@ -1003,7 +1003,7 @@ AutoFill.actions = {
 		option: function ( dt, cells ) {
 			return dt.i18n(
 				'autoFill.increment',
-				'Increment / decrement each cell by: <input type="number" value="1">'
+				'Increment / decrement each cell by: <input type="text" value="1">'
 			);
 		},
 

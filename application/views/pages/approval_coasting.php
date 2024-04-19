@@ -236,249 +236,249 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="col">COL</label>
-																<input type="number" class="form-control" id="col" name="col"
+																<input type="text" class="form-control" id="col" name="col"
 																value="<?php echo $ss['col']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="bf">BF</label>
-																<input type="number" class="form-control" id="bf" name="bf" value="<?php echo $ss['bf']  ?>">
+																<input type="text" class="form-control" id="bf" name="bf" value="<?php echo $ss['bf']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb">JB</label>
-																<input type="number" class="form-control" id="jb" name="jb" value="<?php echo $ss['jb']  ?>">
+																<input type="text" class="form-control" id="jb" name="jb" value="<?php echo $ss['jb']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">JB BF</label>
-																<input type="number" class="form-control" id="jb_bf" name="jb_bf" value="<?php echo $ss['jb_bf']  ?>">
+																<input type="text" class="form-control" id="jb_bf" name="jb_bf" value="<?php echo $ss['jb_bf']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">JBB JK</label>
-																<input type="number" class="form-control" id="jbb_jk" name="jbb_jk" value="<?php echo $ss['jbb_jk']  ?>">
+																<input type="text" class="form-control" id="jbb_jk" name="jbb_jk" value="<?php echo $ss['jbb_jk']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">JBB JF</label>
-																<input type="number" class="form-control" id="jbb_jf" name="jbb_jf" value="<?php echo $ss['jbb_jf']  ?>">
+																<input type="text" class="form-control" id="jbb_jf" name="jbb_jf" value="<?php echo $ss['jbb_jf']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">XLP</label>
-																<input type="number" class="form-control" id="xlp" name="xlp" value=<?php echo $ss['xlp']  ?>>
+																<input type="text" class="form-control" id="xlp" name="xlp" value=<?php echo $ss['xlp']  ?>>
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">BF K3 COL</label>
-																<input type="number" class="form-control" id="bf_k3_col" name="bf_k3_col" value=<?php echo $ss['bf_k3_col']  ?>>
+																<input type="text" class="form-control" id="bf_k3_col" name="bf_k3_col" value=<?php echo $ss['bf_k3_col']  ?>>
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">BF K3 JB</label>
-																<input type="number" class="form-control" id="bf_k3_jb" name="bf_k3_jb" value=<?php echo $ss['bf_k3_jb']  ?> >
+																<input type="text" class="form-control" id="bf_k3_jb" name="bf_k3_jb" value=<?php echo $ss['bf_k3_jb']  ?> >
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">BF K3 JK</label>
-																<input type="number" class="form-control" id="bf_k3_jk" name="bf_k3_jk" value="<?php echo $ss['bf_k3_jk']  ?>">
+																<input type="text" class="form-control" id="bf_k3_jk" name="bf_k3_jk" value="<?php echo $ss['bf_k3_jk']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">BF K3 JL</label>
-																<input type="number" class="form-control" id="bf_k3_jl" name="bf_k3_jl" value="<?php echo $ss['bf_k3_jl']  ?>">
+																<input type="text" class="form-control" id="bf_k3_jl" name="bf_k3_jl" value="<?php echo $ss['bf_k3_jl']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">BF JL</label>
-																<input type="number" class="form-control" id="bf_jl" name="bf_jl" value="<?php echo $ss['bf_jl']  ?>">
+																<input type="text" class="form-control" id="bf_jl" name="bf_jl" value="<?php echo $ss['bf_jl']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">BF KJ</label>
-																<input type="number" class="form-control" id="bf_kj" name="bf_kj" value="<?php echo $ss['bf_kj']  ?>">
+																<input type="text" class="form-control" id="bf_kj" name="bf_kj" value="<?php echo $ss['bf_kj']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">BF BF</label>
-																<input type="number" class="form-control" id="bf_bf" name="bf_bf" value="<?php echo $ss['bf_bf']  ?>">
+																<input type="text" class="form-control" id="bf_bf" name="bf_bf" value="<?php echo $ss['bf_bf']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">BF LP SLB</label>
-																<input type="number" class="form-control" id="bf_lp_slb" name="bf_lp_slb" value=<?php echo $ss['bf_lp_slb']  ?>>
+																<input type="text" class="form-control" id="bf_lp_slb" name="bf_lp_slb" value=<?php echo $ss['bf_lp_slb']  ?>>
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="jb_bf">BF SP</label>
-																<input type="number" class="form-control" id="bf_sp" name="bf_sp" value="<?php echo $ss['bf_sp']  ?>">
+																<input type="text" class="form-control" id="bf_sp" name="bf_sp" value="<?php echo $ss['bf_sp']  ?>">
 															</div>
 														</div>
 
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BF SPK XLP</label>
-																<input type="number" class="form-control" id="BF SPK XLP" name="bf_spk_xlp" value="<?php echo $ss['bf_spk_xlp']  ?>">
+																<input type="text" class="form-control" id="BF SPK XLP" name="bf_spk_xlp" value="<?php echo $ss['bf_spk_xlp']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BF SPK SP</label>
-																<input type="number" class="form-control" id="BF SPK SP" name="bf_spk_sp" value="<?php echo $ss['bf_spk_sp']  ?>">
+																<input type="text" class="form-control" id="BF SPK SP" name="bf_spk_sp" value="<?php echo $ss['bf_spk_sp']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">SPK SP JB</label>
-																<input type="number" class="form-control" id="SPK SP JB" name="spk_sp_jb" value="<?php echo $ss['spk_sp_jb']  ?>">
+																<input type="text" class="form-control" id="SPK SP JB" name="spk_sp_jb" value="<?php echo $ss['spk_sp_jb']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">SPK SP XLP</label>
-																<input type="number" class="form-control" id="SPK SP XLP" name="spk_sp_xlp" value="<?php echo $ss['spk_sp_xlp']  ?>">
+																<input type="text" class="form-control" id="SPK SP XLP" name="spk_sp_xlp" value="<?php echo $ss['spk_sp_xlp']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">SPK SP BFP</label>
-																<input type="number" class="form-control" id="SPK SP BFP" name="spk_sp_bfp" value="<?php echo $ss['spk_sp_bfp']  ?>">
+																<input type="text" class="form-control" id="SPK SP BFP" name="spk_sp_bfp" value="<?php echo $ss['spk_sp_bfp']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">SPK SP</label>
-																<input type="number" class="form-control" id="SPK SP" name="spk_sp" value="<?php echo $ss['spk_sp']  ?>">
+																<input type="text" class="form-control" id="SPK SP" name="spk_sp" value="<?php echo $ss['spk_sp']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">SP SPH</label>
-																<input type="number" class="form-control" id="SP SPH" name="sp_sph" value="<?php echo $ss['sp_sph']  ?>">
+																<input type="text" class="form-control" id="SP SPH" name="sp_sph" value="<?php echo $ss['sp_sph']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">SP CL</label>
-																<input type="number" class="form-control" id="SP CL" name="sp_cl" value="<?php echo $ss['sp_cl'] ?>">
+																<input type="text" class="form-control" id="SP CL" name="sp_cl" value="<?php echo $ss['sp_cl'] ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">SP CLF</label>
-																<input type="number" class="form-control" id="SP CLF" name="sp_clf" value="<?php echo $ss['sp_clf']  ?>">
+																<input type="text" class="form-control" id="SP CLF" name="sp_clf" value="<?php echo $ss['sp_clf']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">MH</label>
-																<input type="number" class="form-control" id="MH" name="mh" value="<?php echo $ss['mh']  ?>">
+																<input type="text" class="form-control" id="MH" name="mh" value="<?php echo $ss['mh']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">MH SLB</label>
-																<input type="number" class="form-control" id="MH SLB" name="mh_slb" value="<?php echo $ss['mh_slb'] ?>">
+																<input type="text" class="form-control" id="MH SLB" name="mh_slb" value="<?php echo $ss['mh_slb'] ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">PHR</label>
-																<input type="number" class="form-control" id="PHR" name="phr" value="<?php echo $ss['phr']  ?>">
+																<input type="text" class="form-control" id="PHR" name="phr" value="<?php echo $ss['phr']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BASI COL</label>
-																<input type="number" class="form-control" id="BASI COL" name="basi_col" value="<?php echo $ss['basi_col']  ?>">
+																<input type="text" class="form-control" id="BASI COL" name="basi_col" value="<?php echo $ss['basi_col']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BASI JB</label>
-																<input type="number" class="form-control" id="BASI JB" name="basi_jb" value="<?php echo $ss['basi_jb'] ?>" >
+																<input type="text" class="form-control" id="BASI JB" name="basi_jb" value="<?php echo $ss['basi_jb'] ?>" >
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BASI JK</label>
-																<input type="number" class="form-control" id="BASI JK" name="basi_jk" value="<?php echo $ss['basi_jk']  ?>">
+																<input type="text" class="form-control" id="BASI JK" name="basi_jk" value="<?php echo $ss['basi_jk']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BASI XLP</label>
-																<input type="number" class="form-control" id="BASI XLP" name="basi_xlp" value="<?php echo $ss['basi_xlp']  ?>">
+																<input type="text" class="form-control" id="BASI XLP" name="basi_xlp" value="<?php echo $ss['basi_xlp']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BASI BF</label>
-																<input type="number" class="form-control" id="BASI BF" name="basi_bf" value="<?php echo $ss['basi_bf']  ?>">
+																<input type="text" class="form-control" id="BASI BF" name="basi_bf" value="<?php echo $ss['basi_bf']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BASI SP</label>
-																<input type="number" class="form-control" id="BASI SP" name="basi_sp" value="<?php echo $ss['basi_sp']  ?>">
+																<input type="text" class="form-control" id="BASI SP" name="basi_sp" value="<?php echo $ss['basi_sp']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">MHR</label>
-																<input type="number" class="form-control" id="MHR" name="mhr" value="<?php echo $ss['mhr']  ?>">
+																<input type="text" class="form-control" id="MHR" name="mhr" value="<?php echo $ss['mhr']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BASI CL</label>
-																<input type="number" class="form-control" id="BASI CL" name="basi_cl" value="<?php echo $ss['basi_cl'] ?>">
+																<input type="text" class="form-control" id="BASI CL" name="basi_cl" value="<?php echo $ss['basi_cl'] ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BASI MH</label>
-																<input type="number" class="form-control" id="BASI MH" name="basi_mh" value="<?php echo $ss['basi_mh']  ?>">
+																<input type="text" class="form-control" id="BASI MH" name="basi_mh" value="<?php echo $ss['basi_mh']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">PHR</label>
-																<input type="number" class="form-control" id="PHR" name="phr" value="<?php echo $ss['phr']  ?>">
+																<input type="text" class="form-control" id="PHR" name="phr" value="<?php echo $ss['phr']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">AIR</label>
-																<input type="number" class="form-control" id="AIR" name="air" value="<?php echo $ss['air']  ?>">
+																<input type="text" class="form-control" id="AIR" name="air" value="<?php echo $ss['air']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">SHELL</label>
-																<input type="number" class="form-control" id="SHELL" name="shell" value="<?php echo $ss['shell']  ?>">
+																<input type="text" class="form-control" id="SHELL" name="shell" value="<?php echo $ss['shell']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">LOSS</label>
-																<input type="number" class="form-control" id="LOSS" name="loss" value="<?php echo $ss['loss']  ?>">
+																<input type="text" class="form-control" id="LOSS" name="loss" value="<?php echo $ss['loss']  ?>">
 															</div>
 														</div>
 														<div class="col-md-3">
@@ -495,7 +495,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">TIMBANGAN BB</label>
-																<input type="number" class="form-control" id="TIMBANGAN BB"
+																<input type="text" class="form-control" id="TIMBANGAN BB"
 																value="<?php echo $ss['timbangan_bb']  ?>"
 																name="timbangan_bb">
 															</div>
@@ -1207,302 +1207,302 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="col">COL</label>
-                                        <input type="number" min=0 class="form-control" id="col" name="col">
+                                        <input type="text" min=0 class="form-control" id="col" name="col">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="bf">BF</label>
-                                        <input type="number" min=0 class="form-control" id="bf" name="bf">
+                                        <input type="text" min=0 class="form-control" id="bf" name="bf">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb">JB</label>
-                                        <input type="number" min=0 class="form-control" id="jb" name="jb">
+                                        <input type="text" min=0 class="form-control" id="jb" name="jb">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">JB BF</label>
-                                        <input type="number" min=0 class="form-control" id="jb_bf" name="jb_bf">
+                                        <input type="text" min=0 class="form-control" id="jb_bf" name="jb_bf">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">JBB JK</label>
-                                        <input type="number" min=0 class="form-control" id="jbb_jk" name="jbb_jk">
+                                        <input type="text" min=0 class="form-control" id="jbb_jk" name="jbb_jk">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">JBB JF</label>
-                                        <input type="number" min=0 class="form-control" id="jbb_jf" name="jbb_jf">
+                                        <input type="text" min=0 class="form-control" id="jbb_jf" name="jbb_jf">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">XLP</label>
-                                        <input type="number" min=0 class="form-control" id="xlp" name="xlp">
+                                        <input type="text" min=0 class="form-control" id="xlp" name="xlp">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">BF K3 COL</label>
-                                        <input type="number" min=0 class="form-control" id="bf_k3_col" name="bf_k3_col">
+                                        <input type="text" min=0 class="form-control" id="bf_k3_col" name="bf_k3_col">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">BF K3 JB</label>
-                                        <input type="number" min=0 class="form-control" id="bf_k3_jb" name="bf_k3_jb">
+                                        <input type="text" min=0 class="form-control" id="bf_k3_jb" name="bf_k3_jb">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">BF K3 JK</label>
-                                        <input type="number" min=0 class="form-control" id="bf_k3_jk" name="bf_k3_jk">
+                                        <input type="text" min=0 class="form-control" id="bf_k3_jk" name="bf_k3_jk">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">BF K3 JL</label>
-                                        <input type="number" min=0 class="form-control" id="bf_k3_jl" name="bf_k3_jl">
+                                        <input type="text" min=0 class="form-control" id="bf_k3_jl" name="bf_k3_jl">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">BF JL</label>
-                                        <input type="number" min=0 class="form-control" id="bf_jl" name="bf_jl">
+                                        <input type="text" min=0 class="form-control" id="bf_jl" name="bf_jl">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">BF KJ</label>
-                                        <input type="number" min=0 class="form-control" id="bf_kj" name="bf_kj">
+                                        <input type="text" min=0 class="form-control" id="bf_kj" name="bf_kj">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">BF BF</label>
-                                        <input type="number" min=0 class="form-control" id="bf_bf" name="bf_bf">
+                                        <input type="text" min=0 class="form-control" id="bf_bf" name="bf_bf">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">BF LP SLB</label>
-                                        <input type="number" min=0 class="form-control" id="bf_lp_slb" name="bf_lp_slb">
+                                        <input type="text" min=0 class="form-control" id="bf_lp_slb" name="bf_lp_slb">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="jb_bf">BF SP</label>
-                                        <input type="number" min=0 class="form-control" id="bf_sp" name="bf_sp">
+                                        <input type="text" min=0 class="form-control" id="bf_sp" name="bf_sp">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BF SPK XLP</label>
-                                        <input type="number" min=0 class="form-control" id="BF SPK XLP" name="bf_spk xlp">
+                                        <input type="text" min=0 class="form-control" id="BF SPK XLP" name="bf_spk xlp">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BF SPK SP</label>
-                                        <input type="number" min=0 class="form-control" id="BF SPK SP" name="bf_spk sp">
+                                        <input type="text" min=0 class="form-control" id="BF SPK SP" name="bf_spk sp">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">SPK SP JB</label>
-                                        <input type="number" min=0 class="form-control" id="SPK SP JB" name="spk_sp jb">
+                                        <input type="text" min=0 class="form-control" id="SPK SP JB" name="spk_sp jb">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">SPK SP XLP</label>
-                                        <input type="number" min=0 class="form-control" id="SPK SP XLP" name="spk_sp xlp">
+                                        <input type="text" min=0 class="form-control" id="SPK SP XLP" name="spk_sp xlp">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">SPK SP BFP</label>
-                                        <input type="number" min=0 class="form-control" id="SPK SP BFP" name="spk_sp bfp">
+                                        <input type="text" min=0 class="form-control" id="SPK SP BFP" name="spk_sp bfp">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">SPK SP</label>
-                                        <input type="number" min=0 class="form-control" id="SPK SP" name="spk_sp">
+                                        <input type="text" min=0 class="form-control" id="SPK SP" name="spk_sp">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">SP SPH</label>
-                                        <input type="number" min=0 class="form-control" id="SP SPH" name="sp_sph">
+                                        <input type="text" min=0 class="form-control" id="SP SPH" name="sp_sph">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">SP CL</label>
-                                        <input type="number" min=0 class="form-control" id="SP CL" name="sp_cl">
+                                        <input type="text" min=0 class="form-control" id="SP CL" name="sp_cl">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">SP CLF</label>
-                                        <input type="number" min=0 class="form-control" id="SP CLF" name="sp_clf">
+                                        <input type="text" min=0 class="form-control" id="SP CLF" name="sp_clf">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">MH</label>
-                                        <input type="number" min=0 class="form-control" id="MH" name="mh">
+                                        <input type="text" min=0 class="form-control" id="MH" name="mh">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">MH SLB</label>
-                                        <input type="number" min=0 class="form-control" id="MH SLB" name="mh_slb">
+                                        <input type="text" min=0 class="form-control" id="MH SLB" name="mh_slb">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">PHR</label>
-                                        <input type="number" min=0 class="form-control" id="PHR" name="phr">
+                                        <input type="text" min=0 class="form-control" id="PHR" name="phr">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI COL</label>
-                                        <input type="number" min=0 class="form-control" id="BASI COL" name="basi_col">
+                                        <input type="text" min=0 class="form-control" id="BASI COL" name="basi_col">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI JB</label>
-                                        <input type="number" min=0 class="form-control" id="BASI JB" name="basi_jb">
+                                        <input type="text" min=0 class="form-control" id="BASI JB" name="basi_jb">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI JK</label>
-                                        <input type="number" min=0 class="form-control" id="BASI JK" name="basi_jk">
+                                        <input type="text" min=0 class="form-control" id="BASI JK" name="basi_jk">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI XLP</label>
-                                        <input type="number" min=0 class="form-control" id="BASI XLP" name="basi_xlp">
+                                        <input type="text" min=0 class="form-control" id="BASI XLP" name="basi_xlp">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI BF</label>
-                                        <input type="number" min=0 class="form-control" id="BASI BF" name="basi_bf">
+                                        <input type="text" min=0 class="form-control" id="BASI BF" name="basi_bf">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI SP</label>
-                                        <input type="number" min=0 class="form-control" id="BASI SP" name="basi_sp">
+                                        <input type="text" min=0 class="form-control" id="BASI SP" name="basi_sp">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">MHR</label>
-                                        <input type="number" min=0 class="form-control" id="MHR" name="mhr">
+                                        <input type="text" min=0 class="form-control" id="MHR" name="mhr">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI CL</label>
-                                        <input type="number" min=0 class="form-control" id="BASI CL" name="basi_cl">
+                                        <input type="text" min=0 class="form-control" id="BASI CL" name="basi_cl">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI MH</label>
-                                        <input type="number" min=0 class="form-control" id="BASI MH" name="basi_mh">
+                                        <input type="text" min=0 class="form-control" id="BASI MH" name="basi_mh">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">PHR</label>
-                                        <input type="number" min=0 class="form-control" id="PHR" name="phr">
+                                        <input type="text" min=0 class="form-control" id="PHR" name="phr">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI COL</label>
-                                        <input type="number" min=0 class="form-control" id="BASI COL" name="basi_col">
+                                        <input type="text" min=0 class="form-control" id="BASI COL" name="basi_col">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI JB</label>
-                                        <input type="number" min=0 class="form-control" id="BASI JB" name="basi_jb">
+                                        <input type="text" min=0 class="form-control" id="BASI JB" name="basi_jb">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI JK</label>
-                                        <input type="number" min=0 class="form-control" id="BASI JK" name="basi_jk">
+                                        <input type="text" min=0 class="form-control" id="BASI JK" name="basi_jk">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI XLP</label>
-                                        <input type="number" min=0 class="form-control" id="BASI XLP" name="basi_xlp">
+                                        <input type="text" min=0 class="form-control" id="BASI XLP" name="basi_xlp">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI BF</label>
-                                        <input type="number" min=0 class="form-control" id="BASI BF" name="basi_bf">
+                                        <input type="text" min=0 class="form-control" id="BASI BF" name="basi_bf">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI SP</label>
-                                        <input type="number" min=0 class="form-control" id="BASI SP" name="basi_sp">
+                                        <input type="text" min=0 class="form-control" id="BASI SP" name="basi_sp">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">MHR</label>
-                                        <input type="number" min=0 class="form-control" id="MHR" name="mhr">
+                                        <input type="text" min=0 class="form-control" id="MHR" name="mhr">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI CL</label>
-                                        <input type="number" min=0 class="form-control" id="BASI CL" name="basi_cl">
+                                        <input type="text" min=0 class="form-control" id="BASI CL" name="basi_cl">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI MH</label>
-                                        <input type="number" min=0 class="form-control" id="BASI MH" name="basi_mh">
+                                        <input type="text" min=0 class="form-control" id="BASI MH" name="basi_mh">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">AIR</label>
-                                        <input type="number" min=0 class="form-control" id="AIR" name="air">
+                                        <input type="text" min=0 class="form-control" id="AIR" name="air">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">SHELL</label>
-                                        <input type="number" min=0 class="form-control" id="SHELL" name="shell">
+                                        <input type="text" min=0 class="form-control" id="SHELL" name="shell">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">LOSS</label>
-                                        <input type="number" min=0 class="form-control" id="LOSS" name="loss">
+                                        <input type="text" min=0 class="form-control" id="LOSS" name="loss">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -1518,7 +1518,7 @@ min=0                                             class="form-control"
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">TIMBANGAN BB</label>
-                                        <input type="number" class="form-control" id="TIMBANGAN BB" name="timbangan_bb">
+                                        <input type="text" class="form-control" id="TIMBANGAN BB" name="timbangan_bb">
                                     </div>
                                 </div>
                             </div>

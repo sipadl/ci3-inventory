@@ -188,7 +188,7 @@
               <li class="nav-item">
                 <a href="<?php echo base_url('main/adminUser'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard</p>
+                  <p>Tambah Bahan Baku</p>
                 </a>
               </li>
               <li class="nav-item">

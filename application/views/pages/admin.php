@@ -207,7 +207,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                     <!-- <div class="col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label for="qty">Qty:</label>
-                                            <input type="number" min="0" class="form-control" id="qty"></div>
+                                            <input type="text" min="0" class="form-control" id="qty"></div>
                                         </div>
                                     </div> -->
                                     <div class="isi p-2">

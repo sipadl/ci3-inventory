@@ -250,7 +250,7 @@ class Main extends CI_Controller {
         $post_data = $this->input->post();
         if ($this->form_validation->run() === FALSE) {
 			// Load view add.php with post data
-            $this->load->view('supplier/add', $post_data);
+            $this->load->view('main/sortir', $post_data);
         } else {
 			$insert = $this->Main_model->insertAll('tbl_sortir', $post_data);
             // Process form request
@@ -273,7 +273,7 @@ class Main extends CI_Controller {
         $post_data = $this->input->post();
         if ($this->form_validation->run() === FALSE) {
 			// Load view add.php with post data
-            $this->load->view('supplier/add', $post_data);
+            redirect('main/sortir', $post_data);
         } else {
 			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
@@ -345,7 +345,7 @@ class Main extends CI_Controller {
 	public function aproval_sortir(){
 		$data['title'] = 'Approval Sortir';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','1');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('1');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
