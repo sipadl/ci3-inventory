@@ -15,7 +15,7 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 					</div>
-					<form method="post" action="<?php echo site_url('main/tambahUser'); ?>">
+					<form method="post" action="<?php echo site_url('main/tambahUser'); ?>" enctype="multipart/form-data">
 					<div class="modal-body">
 					<div class="col-md-12">
 						<!-- Field untuk nama, email, password, dll. -->
@@ -27,6 +27,10 @@
 						<div class="form-group">
 							<label for="email">Email</label>
 							<input class="form-control mb-2" type="email" id="email" name="email" placeholder="Email" required>
+						</div>
+						<div class="form-group">
+							<label for="email">Sign / TTD</label>
+							<input class="form-control mb-2" type="file" id="email" name="sign" placeholder="Sign" required>
 						</div>
 
 						<div class="form-group">
@@ -128,11 +132,83 @@
 								</td>
 							<td>
 							<div class="d-flex">
-								<a href="" class="btn btn-sm btn-primary mx-1">Ubah </a>
-								<a href="" class="btn btn-sm btn-danger mx-1">Hapus </a>
+								<div class="">	
+									<button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modelIdXUbah-<?php echo $no ?>">
+										Ubah
+									</button>
+									<div class="modal fade" id="modelIdXUbah-<?php echo $no ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+										<div class="modal-dialog modal-lg modal-fullscreen" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">Form Tambah User</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+												</div>
+												<form method="post" action="<?php echo site_url('main/updateUser/'.$xx['id']); ?>" enctype="multipart/form-data" >
+												<div class="modal-body">
+												<div class="col-md-12">
+													<!-- Field untuk nama, email, password, dll. -->
+													<div class="form-group">
+														<label for="username">Username</label>
+														<input class="form-control mb-2" type="text" id="username" value="<?php echo $xx['username'] ?>" name="username" placeholder="Username" required>
+													</div>
+
+													<div class="form-group">
+														<label for="email">Email</label>
+														<input class="form-control mb-2" type="email" id="email" value="<?php echo $xx['email'] ?>" name="email" placeholder="Email" required>
+													</div>
+													<div class="form-group">
+														<label for="email">Sign / TTD</label>
+														<input class="form-control mb-2" type="file" id="email" name="sign" placeholder="Sign">
+													</div>
+
+													<div class="form-group">
+														<label for="password">Password</label>
+														<input class="form-control mb-2" type="password"  id="password" name="password" placeholder="Password" required>
+													</div>
+													<!-- <div class="form-group">
+														<div class="col-md-12">
+															<label for="area">Area</label><br>
+														</div>
+														<select name="wilayah[]" class="form-control col-md-12" multiple="multiple" id="basic-multipleEdit2" >
+															<option value="0">Pilih Area</option>
+															<?php foreach($wilayah as $wil) : ?>
+																<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['nama_area'] ?></option>
+															<?php endforeach ?>
+														</select>
+													</div> -->
+													<div class="innerDropdown"></div>
+													<!-- Dropdown untuk memilih peran -->
+													<!-- <div class="form-group">
+														<div class="col-md-12">
+															<label for="role">Role</label>
+														</div>
+														<select name="role" class="form-control w-100 mb-2 col-md-12" id="basic-multipleEdit">
+														<option value="<?php echo $xx['role'] ?>"><?php echo $xx['description'] ?></option>
+															<?php foreach ($role as $dd) : ?>
+																<option value="<?php echo $dd['id_role'] ?>"><?php echo $dd['descriptiom'] ?></option>
+																<?php endforeach; ?>
+															</select>
+														</div> -->
+													</div>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+													<button type="submit" class="btn btn-primary">Simpan User</button>
+												</div>
+											</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="">
+									<a href="" class="btn btn-sm btn-danger mx-1">Hapus </a>
+								</div>
 							</div>
-							</td>
-						</tr>
+					</td>
+				</tr>
+				
 						<?php endforeach; ?>
 					</tbody>
 				</table>

@@ -93,6 +93,12 @@ function printDisini(val) {
   $('#basic-multiple2').select2({
 	width:'100%'
   });
+  $('#basic-multipleEdit').select2({
+	width:'100%'
+  });
+  $('#basic-multipleEdit2').select2({
+	width:'100%'
+  });
 });
 </script>
 <script>

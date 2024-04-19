@@ -117,6 +117,36 @@ class Main extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
+	public function updateUser($id) {
+		$data = $this->input->post();
+		if($this->input->post('sign')) {
+			$config_ttd['upload_path'] = FCPATH . 'upload/images';
+			$config_ttd['allowed_types'] = 'gif|jpg|png';
+			$this->load->library('upload', $config_ttd);
+			
+			// Perform the upload for NPWP
+			if (!$this->upload->do_upload('sign')) {
+				// If upload fails, handle the error
+				$error = $this->upload->display_errors();
+				// Handle the error (e.g., display error message, redirect back to form)
+				echo "Upload error TTD / Sign: $error";
+				return; // Stop further execution
+			}
+			
+			// Retrieve upload data for NPWP
+			$ttd_data = $this->upload->data();
+			$data['ttd'] = $ttd_data['file_name'];
+		}
+		$this->Main_model->updateAll('tbl_user', $data, $id);
+		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
+		redirect('main/tambahUser');
+	}
+
+	public function deleteUser($id) {
+		$this->Main_model->delete('tbl_user', $id);
+		redirect('main/tambahUser');
+	}
+
 	public function tambahUser() {
         // Validasi input
 
@@ -130,12 +160,28 @@ class Main extends CI_Controller {
             redirect('main/formUser');
 
         } else {
+			$config_ttd['upload_path'] = FCPATH . 'upload/images';
+			$config_ttd['allowed_types'] = 'gif|jpg|png';
+			$this->load->library('upload', $config_ttd);
+			
+			// Perform the upload for NPWP
+			if (!$this->upload->do_upload('sign')) {
+				// If upload fails, handle the error
+				$error = $this->upload->display_errors();
+				// Handle the error (e.g., display error message, redirect back to form)
+				echo "Upload error TTD / Sign: $error";
+				return; // Stop further execution
+			}
+			
+			// Retrieve upload data for NPWP
+			$ttd_data = $this->upload->data();
             // Jika validasi sukses, simpan data pengguna ke dalam database
             $data = array(
                 'username' => $this->input->post('username'),
                 'email' => $this->input->post('email'),
                 'password' => md5($this->input->post('password')), // Encrypt password
                 'role' => $this->input->post('role'),
+				'sign' => $ttd_data['file_name'],
                 'wilayah' => json_encode($this->input->post('wilayah')),
 				'tanggal' => date('Y-m-d H:i:s')
             );
@@ -210,6 +256,64 @@ class Main extends CI_Controller {
 		// Insert data into the suppliers table through the model
 		$this->Datadaging_model->insert_supplier($data);
 		$this->session->set_flashdata('success', 'Supplier berhasil ditambahkan.');
+	
+		// Redirect back to the supplier form
+		redirect('main/formSuplier');
+	}
+
+	public function updateSuplier($id) {
+		// File upload configuration for NPWP
+		$config_npwp['upload_path'] = FCPATH . 'upload/images';
+		$config_npwp['allowed_types'] = 'gif|jpg|png';
+		$this->load->library('upload', $config_npwp);
+		
+		// Perform the upload for NPWP
+		if (!$this->upload->do_upload('npwp')) {
+			// If upload fails, handle the error
+			$error = $this->upload->display_errors();
+			// Handle the error (e.g., display error message, redirect back to form)
+			echo "Upload error (NPWP): $error";
+			return; // Stop further execution
+		}
+		
+		// Retrieve upload data for NPWP
+		$npwp_data = $this->upload->data();
+	
+		// File upload configuration for KTP
+		$config_ktp['upload_path'] = FCPATH . 'upload/images';
+		$config_ktp['allowed_types'] = 'gif|jpg|png';
+		// Reset the upload library with new configuration for KTP
+		$this->upload->initialize($config_ktp);
+		
+		// Perform the upload for KTP
+		if (!$this->upload->do_upload('no_ktp')) {
+			// If upload fails, handle the error
+			$error = $this->upload->display_errors();
+			// Handle the error (e.g., display error message, redirect back to form)
+			echo "Upload error (KTP): $error";
+			return; // Stop further execution
+		}
+	
+		// Retrieve upload data for KTP
+		$ktp_data = $this->upload->data();
+	
+		// Retrieve other form data
+		$data = array(
+			'kode_supplier' => $this->input->post('kode_supplier'),
+			'nama_supplier' => $this->input->post('nama_supplier'),
+			'bank' => $this->input->post('bank'),
+			'nomor' => $this->input->post('nomor'),
+			'an' => $this->input->post('an'),
+			'npwp' => $npwp_data['file_name'], // Store NPWP filename in the database
+			'no_ktp' => $ktp_data['file_name'], // Store KTP filename in the database
+			'id_area' => $this->input->post('id_area'),
+			'alamat' => $this->input->post('alamat')
+		);
+	
+		// Insert data into the suppliers table through the model
+		$this->Main_model->updateAll('tbl_supplier', $data, $id);
+
+		$this->session->set_flashdata('success', 'Supplier berhasil diubah.');
 	
 		// Redirect back to the supplier form
 		redirect('main/formSuplier');
@@ -345,7 +449,7 @@ class Main extends CI_Controller {
 	public function aproval_sortir(){
 		$data['title'] = 'Approval Sortir';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','1');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);

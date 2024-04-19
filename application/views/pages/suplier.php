@@ -149,8 +149,122 @@
                     <td><?php echo $supplier['alamat']; ?></td>
                     <td>
                         <div class="d-flex">
-                            <a href="" class="btn btn-sm btn-primary mx-1">Ubah
-                            </a>
+						<div class="">
+							<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModalSuplier-<?php echo $supplier['kode_supplier'] ?>">
+							Ubah
+							</button>
+							<div class="modal fade" id="myModalSuplier-<?php echo $supplier['kode_supplier'] ?>">
+							<div class="modal-dialog modal-lg modal-fullscreen">
+							<div class="modal-content">
+								<!-- Modal Header -->
+								<div class="modal-header">
+								<h4 class="modal-title">Form Ubah Suplier Baru</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+								
+								<!-- Modal Body -->
+								<div class="modal-body container">
+								<form method="post" action="<?php echo base_url('main/updateSupplier/'.$supplier['kode_supplier']); ?>" enctype="multipart/form-data">
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="id_supplier">Kode Supplier</label>
+											<input
+												name="kode_supplier"
+												type="text"
+												class="form-control"
+												id="id_supplier"
+												value="<?php echo $supplier['kode_supplier'] ?>"
+												placeholder="Kode Supplier">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="nama_supplier">Nama Supplier</label>
+											<input
+												type="text"
+												class="form-control"
+												name="nama_supplier"
+												id="nama_supplier"
+												value="<?php echo $supplier['nama_supplier'] ?>
+												placeholder="Nama Supplier">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="bank">Bank</label>
+											<input type="text" class="form-control"
+											value="<?php echo $supplier['bank'] ?>
+											
+											name="bank" id="bank" placeholder="Bank">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="nomor">Nomor Handphone</label>
+											<input type="text" class="form-control" name="nomor"
+											value="<?php echo $supplier['nomor'] ?>
+											
+											id="nomor" placeholder="Nomor">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="an">An</label>
+											<input type="text" class="form-control" name="an"
+											value="<?php echo $supplier['an'] ?>
+											
+											id="an" placeholder="An">
+										</div>
+										<div class="form-group col-md-6">
+											<label for="npwp">NPWP</label>
+											<input type="file" class="form-control" name="npwp"
+											value="<?php echo $supplier['npwp'] ?>
+											
+											id="npwp" placeholder="NPWP">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="no_ktp">Upload KTP</label>
+											<input type="file" class="form-control" name="no_ktp"
+											value="<?php echo $supplier['no_ktp'] ?>
+											
+											id="no_ktp" placeholder="Upload KTP">
+										</div>
+										<!-- <div class="form-group col-md-6">
+											<label for="area">Kode Area</label><br>
+											<select name="id_area" class="form-control col-md-12" id="basic-multiple" >
+												<option value="">Pilih Area</option>
+												<?php foreach($wilayah as $wil) : ?>
+													<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['kode_area'].' - '. $wil['nama_area'] ?></option>
+												<?php endforeach ?>
+											</select>
+										</div> -->
+									</div>
+									<div class="form-group col-md-12">
+											<label for="no_ktp">Nomor Rekening</label>
+											<input type="text" class="form-control"
+											value="<?php echo $supplier['no_rekening'] ?>
+											
+											name="no_rekening" id="no_ktp" placeholder="Nomor Rekening">
+									</div>
+									<div class="innerDropdown"></div>
+									<div class="form-group">
+										<label for="alamat">Alamat</label>
+										<textarea
+											type="text"
+											class="form-control"
+											id="alamat"
+											placeholder="Alamat"
+											name="alamat"
+											rows="5"><?php echo $supplier['alamat'] ?></textarea>
+									</div>
+								</div>
+								<!-- Modal Footer -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-primary mb-2">Submit</button>
+								</div>
+							</form>
+							</div>
+							</div>
+							</div>
                             <a href="" class="btn btn-sm btn-danger mx-1">Hapus
                             </a>
                         </div>

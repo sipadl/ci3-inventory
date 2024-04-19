@@ -331,60 +331,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															</div>
 														</div>
 
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">BF SPK XLP</label>
-																<input type="text" class="form-control" id="BF SPK XLP" name="bf_spk_xlp" value="<?php echo $ss['bf_spk_xlp']  ?>">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">BF SPK SP</label>
-																<input type="text" class="form-control" id="BF SPK SP" name="bf_spk_sp" value="<?php echo $ss['bf_spk_sp']  ?>">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">SPK SP JB</label>
-																<input type="text" class="form-control" id="SPK SP JB" name="spk_sp_jb" value="<?php echo $ss['spk_sp_jb']  ?>">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">SPK SP XLP</label>
-																<input type="text" class="form-control" id="SPK SP XLP" name="spk_sp_xlp" value="<?php echo $ss['spk_sp_xlp']  ?>">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">SPK SP BFP</label>
-																<input type="text" class="form-control" id="SPK SP BFP" name="spk_sp_bfp" value="<?php echo $ss['spk_sp_bfp']  ?>">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">SPK SP</label>
-																<input type="text" class="form-control" id="SPK SP" name="spk_sp" value="<?php echo $ss['spk_sp']  ?>">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">SP SPH</label>
-																<input type="text" class="form-control" id="SP SPH" name="sp_sph" value="<?php echo $ss['sp_sph']  ?>">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">SP CL</label>
-																<input type="text" class="form-control" id="SP CL" name="sp_cl" value="<?php echo $ss['sp_cl'] ?>">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">SP CLF</label>
-																<input type="text" class="form-control" id="SP CLF" name="sp_clf" value="<?php echo $ss['sp_clf']  ?>">
-															</div>
-														</div>
+														 
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">MH</label>
@@ -397,12 +344,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 																<input type="text" class="form-control" id="MH SLB" name="mh_slb" value="<?php echo $ss['mh_slb'] ?>">
 															</div>
 														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">PHR</label>
-																<input type="text" class="form-control" id="PHR" name="phr" value="<?php echo $ss['phr']  ?>">
-															</div>
-														</div>
+														 
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">BASI COL</label>
@@ -457,12 +399,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 																<input type="text" class="form-control" id="BASI MH" name="basi_mh" value="<?php echo $ss['basi_mh']  ?>">
 															</div>
 														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label for="">PHR</label>
-																<input type="text" class="form-control" id="PHR" name="phr" value="<?php echo $ss['phr']  ?>">
-															</div>
-														</div>
+														 
 														<div class="col-md-3">
 															<div class="form-group">
 																<label for="">AIR</label>
@@ -1367,12 +1304,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         <input type="text" min=0 class="form-control" id="MH SLB" name="mh_slb">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="">PHR</label>
-                                        <input type="text" min=0 class="form-control" id="PHR" name="phr">
-                                    </div>
-                                </div>
+                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI COL</label>
@@ -1409,12 +1341,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         <input type="text" min=0 class="form-control" id="BASI SP" name="basi_sp">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="">MHR</label>
-                                        <input type="text" min=0 class="form-control" id="MHR" name="mhr">
-                                    </div>
-                                </div>
+                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI CL</label>
@@ -1427,12 +1354,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         <input type="text" min=0 class="form-control" id="BASI MH" name="basi_mh">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="">PHR</label>
-                                        <input type="text" min=0 class="form-control" id="PHR" name="phr">
-                                    </div>
-                                </div>
+                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI COL</label>
@@ -1469,12 +1391,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         <input type="text" min=0 class="form-control" id="BASI SP" name="basi_sp">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="">MHR</label>
-                                        <input type="text" min=0 class="form-control" id="MHR" name="mhr">
-                                    </div>
-                                </div>
+                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI CL</label>

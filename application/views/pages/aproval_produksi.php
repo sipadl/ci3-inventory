@@ -145,7 +145,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 											</div>
 										</div>
 										<div class="modal-footer">
-											<a href="<?php echo base_url('main/mainApprove/').$ss['id']; ?>" class="btn btn-primary">Aprove</a>
+											<!-- <a href="<?php echo base_url('main/mainApprove/').$ss['id']; ?>" class="btn btn-primary">Aprove</a> -->
 											<!-- <a href="<?php echo base_url('main/mainReject/').$ss['id']; ?>" class="btn btn-danger">Reject</a> -->
 											<!-- <button type="button" onclick="printDisini(<?php echo $ss['id'] ?>)" class="btn btn-primary">Print</a> -->
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1012,12 +1012,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         <input type="text" min=0 class="form-control" id="MH SLB" name="mh_slb">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="">PHR</label>
-                                        <input type="text" min=0 class="form-control" id="PHR" name="phr">
-                                    </div>
-                                </div>
+                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI COL</label>
@@ -1054,12 +1049,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         <input type="text" min=0 class="form-control" id="BASI SP" name="basi_sp">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="">MHR</label>
-                                        <input type="text" min=0 class="form-control" id="MHR" name="mhr">
-                                    </div>
-                                </div>
+                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI CL</label>
@@ -1072,12 +1062,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         <input type="text" min=0 class="form-control" id="BASI MH" name="basi_mh">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="">PHR</label>
-                                        <input type="text" min=0 class="form-control" id="PHR" name="phr">
-                                    </div>
-                                </div>
+                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI COL</label>
@@ -1114,12 +1099,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         <input type="text" min=0 class="form-control" id="BASI SP" name="basi_sp">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="">MHR</label>
-                                        <input type="text" min=0 class="form-control" id="MHR" name="mhr">
-                                    </div>
-                                </div>
+                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">BASI CL</label>
