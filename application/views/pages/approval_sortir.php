@@ -772,7 +772,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 										
 									</div>
 									<div class="modal-footer">
-										<?php if($ss['status'] == 1) { ?> 
+										<?php if($ss['status'] == 0 || $ss['status'] == 1) { ?> 
 										<a href="<?php echo base_url('main/approveSortirTL/'.$ss['id_sortir']); ?>" class="btn btn-primary">Approve</a>
 										<?php } ?>
 										<button class="btn btn-primary" onclick="printDisini(<?php echo $ss['id'] ?>)">Print</button>
