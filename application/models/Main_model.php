@@ -71,5 +71,22 @@ class Main_model extends CI_Model {
 			return false;
 		}
 	}
+
+	public function get_datas_detail_from_table($table, $id, $condition){
+		$this->db->where($condition, $id);
+		$query = $this->db->get($table)->row_array();
+		return $query;
+	}
+
+	public function get_datas_all_from_table($table, $id){
+		$query = $this->db->get($table)->row_array();
+		return $query;
+	}
+
+	public function delete($table, $id) {
+		$this->db->where('id', $id);
+		$this->db->get($table);
+		$this->db->delete();
+	}
 	
 }

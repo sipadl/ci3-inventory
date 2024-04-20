@@ -75,7 +75,7 @@ class Main extends CI_Controller {
 
 		// Menyiapkan data yang akan disimpan
 		$data = array(
-			'tanggal' => $tanggal,
+			'tanggal' => $tanggal ?? date('Y-m-d H:i:s'),
 			'supplier' => $supplier,
 			'spesifikasi' => $spesifikasi,
 			'daging_merah' => $spesifikasiDagingMerah,
@@ -144,7 +144,13 @@ class Main extends CI_Controller {
 
 	public function deleteUser($id) {
 		$this->Main_model->delete('tbl_user', $id);
+		$this->session->set_flashdata('success', 'Your data has been removed successfully!');
 		redirect('main/tambahUser');
+	}
+	public function deleteSupplier($id) {
+		$this->Main_model->delete('tb_supplier', $id);
+		$this->session->set_flashdata('success', 'Your data has been removed successfully!');
+		redirect('main/tambahSupplier');
 	}
 
 	public function tambahUser() {
@@ -408,6 +414,18 @@ class Main extends CI_Controller {
 		redirect('main/sortir');
 	}
 
+	public function sortirUpdateSimpan($id) {
+		$post_data = $this->input->post();
+		$sortir = $this->Main_model->getDataSortir($id);
+		
+		$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
+		$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
+		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
+		$this->session->set_flashdata('success', 'Data Sortir berhasil diubah.');
+
+		redirect('main/sortir');
+	}
+
 	public function approveSortir($id) {
 		$user_id = $this->session->userdata('id');
 		$data = array('approved_by' => $user_id ,'status' => 1);
@@ -459,7 +477,7 @@ class Main extends CI_Controller {
 	public function approval_produksi(){
 		$data['title'] = 'Approval Produksi';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','2');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('2');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -469,7 +487,7 @@ class Main extends CI_Controller {
 	public function approval_coasting(){
 		$data['title'] = 'Approval Coasting';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','3');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('3');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -479,11 +497,71 @@ class Main extends CI_Controller {
 	public function approval_gm(){
 		$data['title'] = 'Approval General Manager';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','3');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('4');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
         $this->load->view('pages/approval_gm', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
         $this->load->view('templates/footer');
+	}
+
+	public function pengajuan_dp(){
+		$data['title'] = 'Pengajuan DP';
+		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+		$datax = $this->Datadaging_model->getDataNoOrder('tbl_pengajuan');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/pengajuan_dp',['supplier' => $supplier, 'data' => $datax ]);
+        $this->load->view('templates/footer');
+	}
+	public function approval_pengajuan_gm(){
+		$data['title'] = 'Pengajuan DP';
+		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+		$datax = $this->Datadaging_model->getDataNoOrder('tbl_pengajuan');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/approval_pengajuan_gm',['supplier' => $supplier, 'data' => $datax ]);
+        $this->load->view('templates/footer');
+	}
+
+	public function approve_pengajuan_by_gm($id) {
+		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => 1);
+		$this->Main_model->updateAll('tbl_pengajuan', $data, $id);
+		$this->session->set_flashdata('success', 'Data Pengajuan berhasil diapprove.');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
+	public function post_pengajuan_dp () {
+		$data_post = $this->input->post();
+		$data_post['created_at'] = date('Y-m-d H:i:s');
+
+		$upload_img['upload_path'] = FCPATH . 'upload/images';
+		$upload_img['allowed_types'] = 'gif|jpg|png';
+		$this->load->library('upload', $upload_img);
+		
+		// Perform the upload for NPWP
+		if (!$this->upload->do_upload('upload_images')) {
+			// If upload fails, handle the error
+			$error = $this->upload->display_errors();
+			// Handle the error (e.g., display error message, redirect back to form)
+			echo $error;
+			return; // Stop further execution
+		}
+		$data_post['upload_images'] = $upload_img['file_name'];
+		
+
+		$this->Main_model->insertAll('tbl_pengajuan', $data_post);
+		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
+	public function get_supplier($id) {
+		$supplier = $this->db->query("SELECT * FROM tbl_supplier a 
+        LEFT JOIN tbl_area b ON a.id_area = b.kode_area 
+        WHERE a.kode_supplier = '" . $id . "'")->row_array();
+		header('Content-Type: application/json');
+    	echo json_encode($supplier);
 	}
 }

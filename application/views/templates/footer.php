@@ -43,12 +43,35 @@
 
 
 <script>
+
+$('.generateId').on('change', (event) => {
+	console.log(event.target.value); // ini adalah nilai id yang dipilih
+    $.get(`<?php echo base_url('/main/get_supplier/') ?>${event.target.value}`, {},
+		function (data, textStatus, jqXHR) {
+			$('#supp_area').val(data.nama_area);
+			$('#supp_bank').val(data.bank);
+			$('#supp_no_rek').val(data.no_rekening);
+		},
+		"json"
+	);
+});
+
 function SimpanSortir(event, val) {
     var form = $('#sortires'); // Assuming #sortires is the ID of your form
     if (val === true) {
         form.attr('action', '<?php echo base_url('main/fullsortirPost') ?>');
     } else {
         form.attr('action', '<?php echo base_url('main/sortirPost') ?>');
+    }
+    form.submit(); // Submit the form
+}
+
+function SimpanSortirUpdate(event, val, id) {
+    var form = $('#sortiresUpdate'); // Assuming #sortires is the ID of your form
+    if (val === true) {
+        form.attr('action', '<?php echo base_url('main/sortirUpdateSimpan') ?>' + id);
+    } else {
+        form.attr('action', '<?php echo base_url('main/sortirUpdate/') ?>' + id);
     }
     form.submit(); // Submit the form
 }
@@ -78,6 +101,7 @@ function printDisini(val) {
     $('#myTable').DataTable();
     $('#myTable2').DataTable();
     $('#myTable3').DataTable();
+    $('#myTable5').DataTable();
   });
 
   $(document).ready(function() {
@@ -269,11 +293,9 @@ function printDisini(val) {
     // Kirim data menggunakan AJAX atau lakukan operasi lainnya di sini
 	$.post("<?php echo base_url('/main/tambahDaging'); ?>", data,
 		function (res, textStatus, jqXHR) {
-			// if(jqXHR == 200){
 				console.log(res);
 				window.location.reload(true);
 
-			// }
 		},
 		"json"
 	);
