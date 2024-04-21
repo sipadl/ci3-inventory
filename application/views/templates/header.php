@@ -241,6 +241,12 @@
                 </a>
               </li>
 					<li class="nav-item">
+                <a href="<?php echo base_url('main/laporan_root') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Root</p>
+                </a>
+              </li>
+					<li class="nav-item">
 							<a href="<?php echo base_url('main/logout'); ?>" class="nav-link">
 								<i class="nav-icon fas fa-sign-out-alt"></i>
 								<p> Logout</p>

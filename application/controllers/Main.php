@@ -514,6 +514,7 @@ class Main extends CI_Controller {
         $this->load->view('pages/pengajuan_dp',['supplier' => $supplier, 'data' => $datax ]);
         $this->load->view('templates/footer');
 	}
+
 	public function approval_pengajuan_gm(){
 		$data['title'] = 'Pengajuan DP';
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
@@ -521,6 +522,16 @@ class Main extends CI_Controller {
 
 		$this->load->view('templates/header', $data);
         $this->load->view('pages/approval_pengajuan_gm',['supplier' => $supplier, 'data' => $datax ]);
+        $this->load->view('templates/footer');
+	}
+
+	public function laporan_root(){
+		$data['title'] = 'Laporan Root';
+		$supplier = $this->Main_model->get_laporan_root();
+		$price = $this->Main_model->get_price();
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/laporan_root',['supplier' => $supplier, 'price' => $price ]);
         $this->load->view('templates/footer');
 	}
 

@@ -88,5 +88,17 @@ class Main_model extends CI_Model {
 		$this->db->get($table);
 		$this->db->delete();
 	}
+	public function get_laporan_root () {
+		return $this->db->query("select * from tbl_supplier a 
+		left join tbl_sortir b
+		on a.kode_supplier = b.kode_supplier 
+		join tbl_daging c on c.id = b.id_bb 
+		where b.status in (3,4)")->result_array();
+	} 
+
+	public function get_price() {
+		return $this->db->query('select * from tbl_price')->result_array();
+	}
 	
+
 }
