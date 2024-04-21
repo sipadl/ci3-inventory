@@ -185,12 +185,12 @@
                   <p>Tambah Bahan Baku</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="<?php echo base_url('main/penerimaan_bahan_baku'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Penerimaan Bahan Baku</p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a href="<?php echo base_url('main/pengajuan_dp'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

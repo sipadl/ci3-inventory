@@ -696,6 +696,28 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 																		>
                                                                     </div>
                                                                 </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <hr>
+                                                                        <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                        <label for="">LOSS</label>
+                                                                        <input type="text" min="0" class="form-control" id="LOSS" 
+																		value="<?php echo $ss['cap'] ?>"
+																		name="cap"
+																		>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                        <label for="">Potong</label>
+                                                                        <input type="text" min="0" class="form-control" id="LOSS" 
+																		value="<?php echo $ss['potong'] ?>"
+																		name="potong"
+																		>
+                                                                        </div>
+                                                                </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
 															</div>
                                                         </div>
@@ -1784,6 +1806,26 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                                         <input type="text" min="0" class="form-control" id="LOSS" name="loss">
                                                                     </div>
                                                                 </div>
+                                                                </div>
+                                                                <div class="row col-md-12">
+                                                                <hr>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="">Cap</label>
+                                                                        <select type="text" min="0" class="form-control" id="SHELL" name="cap">
+                                                                        <option value="ya">Ya</option>
+                                                                        <option value="Tidak">Tidak</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="">Potong</label>
+                                                                        <input type="text" min="0" class="form-control" id="SHELL" name="potong">
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                
                                                             </div>
 															</div>
                                                         </div>

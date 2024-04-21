@@ -218,7 +218,9 @@
 														<td> <?php echo (floatval($ss['shell'])) * floatval($price[24]['harga']); ?></td>
 													</tr>
 													<tr>
-														<td colspan="5">Jumlah</td>
+														<td colspan="3">Jumlah</td>
+														<td><?php echo $phr + (floatval($ss['mh']) + floatval($ss['mh_slb'])) + (floatval($ss['shell'])) ?></td>
+														<td></td>
 														<td><?php echo $phr * floatval($price[14]['harga']) + (floatval($ss['mh']) + floatval($ss['mh_slb'])) * floatval($price[12]['harga']) + (floatval($ss['shell'])) * floatval($price[24]['harga']); ?></td>
 													</tr>
 												</tbody>
@@ -425,7 +427,21 @@
 														<td> <?php echo $mh * floatval($price[12]['harga']); ?></td>
 													</tr>
 													<tr>
-														<td colspan="5">Jumlah</td>
+														<td colspan="3">Jumlah</td>
+														<td>
+														<?php echo 
+														$col 
+														+ $mh
+														+ $cl
+														+ $sp
+														+ $spk
+														+ $bf
+														+  (floatval($ss['xlp']))
+														+ $jk
+														+ $jb
+														; ?>
+														</td>
+														<td></td>
 														<td><?php echo 
 														$col * floatval($price[14]['harga']) 
 														+ $mh * floatval($price[12]['harga'])
