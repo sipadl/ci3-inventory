@@ -14,6 +14,7 @@
   <!-- IonIcons -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css') ?>" type="text/css"/>
@@ -185,6 +186,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="<?php echo base_url('main/penerimaan_bahan_baku'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Penerimaan Bahan Baku</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="<?php echo base_url('main/pengajuan_dp'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pengajuan DP</p>
@@ -226,6 +233,12 @@
                 <a href="<?php echo base_url('main/approval_coasting') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Coasting </p>
+                </a>
+              </li>
+					<li class="nav-item">
+                <a href="<?php echo base_url('main/memo_subsidi') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Memo Subsidi </p>
                 </a>
               </li>
 					<li class="nav-item">

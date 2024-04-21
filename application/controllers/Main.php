@@ -535,6 +535,59 @@ class Main extends CI_Controller {
         $this->load->view('templates/footer');
 	}
 
+	public function memo_subsidi(){
+		$data['title'] = 'Memo Subsidi';
+		$sortir = $this->Main_model->GetSortirWithMemo('3,4');
+		$price = $this->Main_model->get_price();
+		$memo = $this->Main_model->getTblMemo();
+
+
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/memo_subsidi',['sortir' => $sortir, 'price' => $price, 'memo' => $memo ]);
+        $this->load->view('templates/footer');
+	}
+
+	public function input_memo_subdisi($id) {
+		$data_post = $this->input->post();
+		$data_post['id_sortir'] = $id;
+
+		$this->Main_model->insertAll('tbl_memo', $data_post );
+		
+		$this->session->set_flashdata('success', 'Memo berhasil dibuat.');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
+	public function approve_penerimaan_bahan_baku() {
+		$data_post = $this->input->post();
+		$user_id = $this->session->userdata('id');
+		$data_post['approved_by'] = $user_id;
+		$data_post['status'] = 1;
+		$data_post['tanggal'] = date('Y-m-d H:i:s');
+
+		$this->Main_model->insertAll('tbl_penerimaan', $data_post );
+		$this->session->set_flashdata('success', 'Penerimaan Bahan Baku berhasil dibuat.');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
+	public function approve_memo_subsidi($id) {
+		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => 4);
+		$this->Main_model->updateAll('tbl_memo', $data, $id);
+		$this->session->set_flashdata('success', 'Memo berhasil diapprove.');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
+	public function penerimaan_bahan_baku(){
+		$data['title'] = 'Penerimaan Bahan Baku';
+		$sortir = $this->Datadaging_model->getDataNoOrder('tbl_sortir');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/memo_subsidi',['sortir' => $sortir ]);
+        $this->load->view('templates/footer');
+	}
+
 	public function approve_pengajuan_by_gm($id) {
 		$user_id = $this->session->userdata('id');
 		$data = array('approved_by' => $user_id ,'status' => 1);
@@ -574,5 +627,25 @@ class Main extends CI_Controller {
         WHERE a.kode_supplier = '" . $id . "'")->row_array();
 		header('Content-Type: application/json');
     	echo json_encode($supplier);
+	}
+
+	public function post_laporan_root($id){
+		$data_post = $this->input->post();
+		$data_post['created_at'] = date('Y-m-d H:i:s');
+		$data_post['id_sortir'] = $id;
+
+		$this->Main_model->insertAll('tbl_laporan', $data_post);
+		$this->session->set_flashdata('success', 'Laporan berhasil ditambahkan.');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+
+	}
+
+	public function approve_laporan($id) {
+		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => 1);
+		$this->Main_model->updateAll('tbl_laporan', $data, $id);
+		$this->session->set_flashdata('success', 'Data berhasil diapprove.');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
 }

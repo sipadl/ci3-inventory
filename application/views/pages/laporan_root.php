@@ -10,13 +10,13 @@
 			<div class="modal-dialog modal-xl modal-fullscreen" role="document">
 				<div class="modal-content ">
 					<div class="modal-header">
-						<h5 class="modal-title">Modal title</h5>
+						<h5 class="modal-title">Modal Laporan Root</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 					</div>
 					<div class="modal-body">
-					<table class="table table-bordered table-responsive">
+					<table class="table table-bordered table-responsive" id="myTablePrintAble">
 					<thead class="text-center">
 					<tr>
 					<th style="width: 40px;" rowspan="2">NO.</th>
@@ -121,16 +121,16 @@
 							<td><?php echo number_format($total_nota + $subsidi_normal,2) ?></td>
 							<td><?php echo number_format(($total_nota + $subsidi_normal) / $sumXX, 2) ?></td>
 							<!-- Manual -->
-							<td><?php echo $subsidi_dibayar_awal = 100000 ?></td>
+							<td><?php echo $subsidi_dibayar_awal = $da['subsidi_dibayar_1'] ?></td>
 							<!-- Manual -->
-							<td><?php echo $subsidi_dibayar_kedua = 100000 ?></td>
+							<td><?php echo $subsidi_dibayar_kedua = $da['subsidi_dibayar_2'] ?></td>
 							<td><?php echo number_format($subsidi_dibayar_kedua + $subsidi_dibayar_awal, 2)?></td>
-							<td><?php echo $cap_shell = 10 ?></td>
+							<td><?php echo $cap_shell = $da['cap_shell'] ?></td>
 							<td><?php echo $total_subsidi_dibayar = ($subsidi_dibayar_kedua + $subsidi_dibayar_awal) * $fresh ?></td>
 							<td><?php echo $total_nota_subsidi_bayar = ($total_subsidi_dibayar + $total_nota ) ?></td>
 							<td><?php echo $root_setelah_subsidi = number_format($total_nota_subsidi_bayar / $sumXX,2) ?></td>
 							<!-- Manual -->
-							<td><?php echo $subsidi_transport = 100000 ?></td>
+							<td><?php echo $subsidi_transport = $da['subsidi_transport'] ?></td>
 							<td><?php echo number_format($subsidi_transport * $total,2) ?></td>
 							<td><?php echo number_format($total_nota + $subsidi_normal - $cap_shell - $total_nota + $total_subsidi_dibayar - $subsidi_transport, 2) ?></td>
 							<td><?php echo $receiving = number_format(($total_nota + $total_subsidi_dibayar) / $da['timbangan_bb'],2) ?></td>
@@ -138,38 +138,107 @@
 						<?php endforeach; ?>
 					</tbody>
 					<tfoot>
+						<?php 
+						$id_bb = $supplier[0]['id_bb'];
+						$fresh = 0;
+						$phr = 0;
+						$total = 0;
+						$loss = 0;
+						$qty_bb = 0;
+						$subsidi_bayar_1 = 0;
+						$subsidi_bayar_2 = 0;
+						$subsidi_bayar_3 = 0;
+						foreach ($supplier as $da) : ?>
+						
+						<?php 
+						$fresh += floatval($da['col']) + floatval($da['bf']) + floatval($da['jb']) + floatval($da['jbb_jf']) + floatval($da['jbb_jk'])
+								+ floatval($da['jbb_bf']) + floatval($da['xlp']) + floatval($da['bf_k3_col']) + floatval($da['bf_k3_jb']) + floatval($da['bf_k3_jk'])
+								+ floatval($da['bf_k3_jl']) + floatval($da['bf_jl']) + floatval($da['bf_bf']) + floatval($da['bf_bf']) + floatval($da['bf_kj']) + 
+								floatval($da['bf_spk_xlp']) + floatval($da['bf_spk_sp']) + floatval($da['spk_sp_jb']) +  floatval($da['spk_sp_bfp']) + floatval($da['spk_sp_sph']) + 
+								floatval($da['sp_cl']) + floatval($da['sp_clf']) + floatval($da['mh']) + floatval($da['mh_slb']);
+								
+						$phr += floatval($da['phr']) + floatval($da['basi_col']) + floatval($da['basi_jb']) + floatval($da['basi_sp']) + floatval($da['mhr']) + 
+								floatval($da['basi_cl']) + floatval($da['basi_mh']);
+
+						$total += floatval($da['col']) + floatval($da['bf']) + floatval($da['jb']) + floatval($da['jbb_jf']) + floatval($da['jbb_jk'])
+								+ floatval($da['jbb_bf']) + floatval($da['xlp']) + floatval($da['bf_k3_col']) + floatval($da['bf_k3_jb']) + floatval($da['bf_k3_jk'])
+								+ floatval($da['bf_k3_jl']) + floatval($da['bf_jl']) + floatval($da['bf_bf']) + floatval($da['bf_bf']) + floatval($da['bf_kj']) + 
+								floatval($da['bf_spk_xlp']) + floatval($da['bf_spk_sp']) + floatval($da['spk_sp_jb']) +  floatval($da['spk_sp_bfp']) + floatval($da['spk_sp_sph']) + 
+								floatval($da['sp_cl']) + floatval($da['sp_clf']) + floatval($da['mh']) + floatval($da['mh_slb']) + floatval($da['phr']) + floatval($da['basi_col']) + floatval($da['basi_jb']) + floatval($da['basi_sp']) + floatval($da['mhr']) + 
+								floatval($da['basi_cl']) + floatval($da['basi_mh']);
+						$loss += floatval($da['air']) + floatval($da['shell']) + floatval($da['loss']);
+						$qty_bb += $da['timbangan_bb'];
+						$total_notas = 0;
+						$col += (floatval($da['col']) + floatval($da['bf'])) * floatval($price[0]['harga']);
+						$jb += (floatval($da['jb']) + floatval($da['jbb_jf'])) * floatval($price[1]['harga']);
+						$jk += (floatval($da['jbb_jk']) + floatval($da['jbb_bf'])) * floatval($price[2]['harga']);
+						$bf += (floatval($da['bf_k3_col']) + floatval($da['bf_k3_jb']) + floatval($da['bf_k3_jk'])
+						+ floatval($da['bf_k3_jl']) + floatval($da['bf_jl']) + floatval($da['bf_bf']) + floatval($da['bf_bf']) + floatval($da['bf_kj'])) * floatval($price[6]['harga']);
+						$spk += (floatval($da['spk_sp_jb']) +  floatval($da['spk_sp_bfp']) + floatval($da['spk_sp_sph'])) * floatval($price[7]['harga']);
+						$sp += (floatval($da['bf_spk_xlp']) + floatval($da['bf_spk_sp'])) * floatval($price[8]['harga']);
+						$mh += (floatval($da['mh']) + floatval($da['mh_slb'])) * floatval($price[12]['harga']);
+						$cl += floatval($da['sp_cl']) * floatval($price[10]['harga']);
+						$clf += floatval($da['sp_clf']) * floatval($price[11]['harga']);
+						$total_notas += $col+ $jb+ $jk+ $bf+ $spk+ $sp+ $mh+ $cl+ $clf;
+						$subsidi_bayar_1 += $da['subsidi_dibayar_1'];
+						$subsidi_bayar_2 += $da['subsidi_dibayar_2'];
+						$subsidi_bayar_3 += $da['subsidi_transport'];
+						
+						?>
+						<?php endforeach; ?>
 						<td colspan="3"><h5>Total</h5></td>
-						<td id="hasil_total_fresh"></td>
-						<td id="hasil_total_phr_mhr"></td>
-						<td id="hasil_total_total"></td>
-						<td id="hasil_total_qty"></td>
-						<td id="hasil_total_nota"></td>
-						<td colspan="3"></td>
-						<td colspan="7"></td>
-						<td id="hasil_total_subsidi_bayar"></td>
+						<td id="hasil_total_fresh">
+						<?php echo $fresh ?>
+						</td>
+						<td id="hasil_total_phr_mhr">
+							<?php echo $phr ?>
+						</td>
+						<td id="hasil_total_total">
+							<?php echo $total ?>
+						</td>
+						<td id="hasil_total_qty"><?php echo $loss ?></td>
+						<td id="hasil_total_nota"><?php echo $qty_bb ?></td>
+						<td id="hasil_total_nota"><?php echo number_format($total_notas,2) ?></td>
+						<td colspan=""></td>
+						<td colspan=""></td>
+						<td colspan=""></td>
+						<td colspan=""></td>
+						<td colspan=""></td>
+						<td colspan="2"></td>
+						<td colspan=""><?php echo $subsidi_bayar_1 ?></td>
+						<td colspan=""><?php echo $subsidi_bayar_2 ?></td>
 						<td id="hasil_total_subsidi_bayar_plus_nota"></td>
 						<td id="hasil_total_subsidi_bayar_plus_nota"></td>
 						<td></td>
+						<td colspan=""><?php echo $subsidi_bayar_3 ?></td>
 						<td id="hasil_total_subsidi_trans"></td>
 					</tfoot>
 					</table>
 
 					</div>
 					<div class="modal-footer">
+						<a href="<?php echo base_url('main/approve_laporan/'.$id_bb) ?>" class="btn btn-primary">Approve</a>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save</button>
+						<button type="button" onclick="exportToExcel()" class="btn btn-primary">Print</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<table class="table" id="myTable4">
+		<?php
+		// Check if	 flash data exists
+		if ($this->session->flashdata('success')) {
+		// If it does, display a success message
+		echo '<div class="alert alert-success my-2">' . $this->session->flashdata('success') . '</div>';
+		}
+		?>
+		<table class="table" id="myTable3">
 			<thead>
 				<tr>
 					<th>No.</th>
 					<th>Kode Supplier</th>
 					<th>Tanggal Input</th>
-					<th>Approved By</th>
-					<th>Status</th>
+					<!-- <th>Approved By</th> -->
+					<!-- <th>Status</th> -->
 					<th>Aksi</th>
 				</tr>
 			</thead>
@@ -181,65 +250,41 @@
 					<td><?php echo $no ++ ?></td>
 					<td><?php echo $da['kode_supplier'] ++ ?></td>
 					<td><?php echo $da['tanggal'] ?></td>
-					<td><?php echo $da['approved_by'] ?></td>
-					<td><?php echo $da['status'] ?></td>
-					<!-- <td>
+					<!-- <td><?php echo $da['approved_by'] ?></td> -->
+					<!-- <td><?php echo $da['status'] ?></td> -->
+					<td>
+					<!-- Button trigger modal -->
 					<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelId">
-					  <i class="fa fa-eye" aria-hidden="true"></i>
+					  Tambah Manual Data
 					</button>
 					
-					<div class="modal fade" id="modelId1" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-						<div class="modal-dialog modal-xl modal-fullscreen" role="document">
+					<!-- Modal -->
+					<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title">Modal title</h5>
+									<h5 class="modal-title">Tambah Manual Data</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 								</div>
+								<form action="<?php echo base_url('main/post_laporan_root/'.$da['id_bb']); ?>" method="post">
 								<div class="modal-body">
-								<table class="table-borderd">
-									<thead>
-										<tr>
-										<th>NO.</th>
-										<th>KD</th>
-										<th>SUPPLIER</th>
-										<th>FRESH</th>
-										<th>PHR / MHR</th>
-										<th>TOTAL</th>
-										<th>LOSS</th>
-										<th>QTTY BB</th>
-										<th>TOTAL NOTA</th>
-										<th>ROOT SBLM SUBSIDI</th>
-										<th>SUBSIDI NORMAL</th>
-										<th>TOTAL SUBSIDI NORMAL</th>
-										<th>TOTAL NOTA + SUBSIDI NORMAL</th>
-										<th>ROOT STLH SUBSIDI NORMAL</th>
-										<th>SUBSIDI DIBAYAR</th>
-										<th>CAP/SHELL</th>
-										<th>TOTAL SUBSIDI DIBAYAR</th>
-										<th>TOTAL NOTA + SUBSIDI DIBAYAR</th>
-										<th>ROOT STLH SUBSIDI DIBAYAR</th>
-										<th>SUBSIDI TRANS</th>
-										<th>TOTAL SUBSIDI TRANS</th>
-										<th>UNTUNG / RUGI</th>
-										<th>ROOT RECEIVING</th>
-										<th>% JB</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-									</table>
-
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save</button>
-								</div>
+										<input type="text" class="form-control my-2" name="subsidi_normal" id="" placeholder="subsidi normal">
+										<input type="text" class="form-control my-2" name="subsidi_dibayar_1" id="" placeholder="subsidi dibayar (awal)">
+										<input type="text" class="form-control my-2" name="subsidi_dibayar_2" id="" placeholder="subsidi dibayar (-/+)">
+										<input type="text" class="form-control my-2" name="cap_shell" id="" placeholder="cap/shell">
+										<input type="text" class="form-control my-2" name="subsidi_transport" id="" placeholder="subsidi transport">
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary">Simpan</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
-					</td> -->
+					</td>
 				</tr>
 				<?php endforeach ?>
 			</tbody>

@@ -40,6 +40,7 @@
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 
 
 <script>
@@ -76,6 +77,15 @@ function SimpanSortirUpdate(event, val, id) {
     form.submit(); // Submit the form
 }
 
+function exportToExcel() {
+    $("#myTablePrintAble").table2excel({
+    // exclude: ".excludeThisClass",
+    name: "laporan_root",
+    filename: "laporan_root.xls", // do include extension
+    preserveColors: false // set to true if you want background colors and font colors preserved
+});
+  }
+
 function isiId(val){
 	$('#getId').html('');
 	$('#getId').val(val);
@@ -101,7 +111,7 @@ function printDisini(val) {
     $('#myTable').DataTable();
     $('#myTable2').DataTable();
     $('#myTable3').DataTable();
-    $('#myTable5').DataTable();
+    $('#myTable4').DataTable();
   });
 
   $(document).ready(function() {
