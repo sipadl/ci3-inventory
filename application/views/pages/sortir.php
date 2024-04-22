@@ -1581,12 +1581,6 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td colspan="4" height="90px" class="text-center">Diketahui</td>
 															<td colspan="3" height="90px" class="text-center">Disetujui</td>
 														</tr>
-														<tr>
-															<td colspan="3" height="90px" class="text-center">Dibuat</td>
-															<td colspan="4" height="90px" class="text-center">Diperiksa</td>
-															<td colspan="4" height="90px" class="text-center">Diketahui</td>
-															<td colspan="3" height="90px" class="text-center">Disetujui</td>
-														</tr>
                                                     </tbody>
                                                 </table>
                                             </div>
