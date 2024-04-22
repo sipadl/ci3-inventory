@@ -253,6 +253,7 @@ class Main extends CI_Controller {
 			'nama_supplier' => $this->input->post('nama_supplier'),
 			'bank' => $this->input->post('bank'),
 			'nomor' => $this->input->post('nomor'),
+			'no_rekening' => $this->input->post('no_rekening'),
 			'an' => $this->input->post('an'),
 			'npwp' => $npwp_data['file_name'], // Store NPWP filename in the database
 			'no_ktp' => $ktp_data['file_name'], // Store KTP filename in the database
@@ -266,6 +267,11 @@ class Main extends CI_Controller {
 	
 		// Redirect back to the supplier form
 		redirect('main/formSuplier');
+	}
+
+	public function hapusSuplier($id) {
+		$this->Main_model->delete('tbl_supplier', $id);
+		redirect('main/supplier')
 	}
 
 	public function updateSuplier($id) {
@@ -310,6 +316,7 @@ class Main extends CI_Controller {
 			'nama_supplier' => $this->input->post('nama_supplier'),
 			'bank' => $this->input->post('bank'),
 			'nomor' => $this->input->post('nomor'),
+			'no_rekening' => $this->input->post('no_rekening'),
 			'an' => $this->input->post('an'),
 			'npwp' => $npwp_data['file_name'], // Store NPWP filename in the database
 			'no_ktp' => $ktp_data['file_name'], // Store KTP filename in the database
