@@ -23,7 +23,7 @@ class Main_model extends CI_Model {
 
 
 	public function getTblMemo() {
-		return $this->db->query('select * from tbl_memo a left join tbl_sortir b on a.id_sortir = b.id where b.status in (3,4)')->result_array();
+		return $this->db->query('select * from tbl_memo a left join tbl_sortir b on a.id_sortir = b.id where b.status in (1,2,3,4,5)')->result_array();
 	}
 
 	public function getBahanBakuWithStatus($val) {

@@ -951,7 +951,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                 }
                                             </style>
                                             <div class="col-md-12">
-                                                <table class="table table-bordered mt-4 tbl-spesial">
+											<table class="table table-bordered mt-4 tbl-spesial">
                                                     <thead class="text-center tbl-spesial">
                                                         <tr>
                                                             <th colspan="2" rowspan="2">Spec</th>
@@ -1589,9 +1589,10 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 
                                     </div>
                                     <div class="modal-footer">
-                                        <!-- <?php if($ss['approved_by'] == null) { ?> <a href="<?php echo
-                                        base_url('main/approveSortir/'.$ss['id_sortir']); ?>" class="btn
-                                        btn-primary">Approve</a> <?php } ?> -->
+										<?php if($ss['status'] == 4) { ?>
+										<a href="<?php echo
+                                        base_url('main/approveSortirTL/'.$ss['id_sortir'].'/5'); ?>" class="btn
+                                        btn-primary">Approve</a> <?php } ?>
                                         <button class="btn btn-primary" onclick="printDisini(<?php echo $ss['id'] ?>)">Print</button>
 
                                     </div>

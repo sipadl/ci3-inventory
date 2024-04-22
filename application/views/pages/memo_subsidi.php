@@ -136,10 +136,10 @@
 						<td><?php echo $no++ ?></td>
 						<td><?php echo $ss['kode'] ?></td>
 						<td><?php echo $ss['tanggal_rec'] ?></td>
-						<td><?php echo $ss['timbangan_bb'] ?></td>
+						<td><?php echo $ss['qty'] ?></td>
 						<td>
 						<?php 
-						$status = $dd['status'];
+						$status = $ss['status'];
 						if ($status == -1) {
 							echo "Rejected";
 						} elseif ($status == 0) {
@@ -275,7 +275,7 @@
 						<td><?php echo $no++ ?></td>
 						<td><?php echo $ss['kode'] ?></td>
 						<td><?php echo $ss['tanggal_rec'] ?></td>
-						<td><?php echo $ss['timbangan_bb'] ?></td>
+						<td><?php echo $ss['qty'] ?></td>
 						<td>
 						<?php 
 						$status = $ss['status_memo'];
@@ -491,6 +491,7 @@
 			</thead>
 			<tbody>
 				<?php 
+				var_dump($memo);
 				$no = 1;
 				$total = 0;
 				foreach ($memo as $ss) : 
@@ -505,7 +506,7 @@
 						<td><?php echo $no++ ?></td>
 						<td><?php echo $ss['kode_supplier'] ?></td>
 						<td><?php echo $ss['tanggal_rec'] ?></td>
-						<td><?php echo $ss['timbangan_bb'] ?></td>
+						<td><?php echo $ss['qty'] ?></td>
 						<td>
 						<?php 
 						$status = $ss['status'];

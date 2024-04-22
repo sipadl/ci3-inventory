@@ -266,12 +266,6 @@
                 </a>
               </li>
 					<li class="nav-item">
-                <a href="<?php echo base_url('main/approval_pengajuan_gm') ?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Approval Pengajuan GM </p>
-                </a>
-              </li>
-					<li class="nav-item">
                 <a href="<?php echo base_url('main/laporan_root') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Root</p>
