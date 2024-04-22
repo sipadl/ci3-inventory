@@ -31,7 +31,7 @@
 				?>
 					<tr>
 						<td><?php echo $no++ ?></td>
-						<td><?php echo $ss['kode'] ?></td>
+						<td><?php echo $ss['kode_supplier'] ?></td>
 						<td><?php echo $ss['tanggal_rec'] ?></td>
 						<td>
 						<?php 
@@ -63,7 +63,7 @@
 							<!-- Modal -->
 							<div class="modal fade" id="modelId-<?php echo $ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
 								<div class="modal-dialog" role="document">
-									<form action="<?php echo base_url('main/input_memo_subdisi/'.$ss['id_sortirs']); ?>" method="post">
+									<form action="<?php echo base_url('main/input_memo_subdisi/'.$ss['id']); ?>" method="post">
 									<div class="modal-content">
 										<div class="modal-header">
 											<h5 class="modal-title">Detail Subsidi</h5>
@@ -74,8 +74,8 @@
 										<div class="modal-body">
 											<div class="">
 												<label for="">Kode Supplier</label>
-												<input type="hidden" name="id_sortir" value="<?php echo $ss['id_sortirs'] ?>">
-												<input type="text" name="kode_supplier" readonly value="<?php echo $ss['kode'] ?>" class="form-control mb-1">
+												<input type="hidden" name="id_sortir" value="<?php echo $ss['id'] ?>">
+												<input type="text" name="kode_supplier" readonly value="<?php echo $ss['kode_supplier'] ?>" class="form-control mb-1">
 												<label for="">Tanggal Sortir</label>
 												<input type="text" name="tanggal" readonly value="<?php echo $ss['tanggal_rec'] ?>" class="form-control mb-1">
 												<label for="">Qty</label>
@@ -93,8 +93,8 @@
 													<?php if($ss['subsidi'] == null) { ?> 
 														<button type="submit" class="btn btn-primary">Simpan</button>
 													<?php }  ?>
-													<?php if($ss['memos'] != null) { ?> 
-														<a href="<?php echo base_url('main/approve_memo_subsidi/'.$ss['memos']); ?>"class="btn btn-primary">Approve</a>
+													<?php if($ss['id_memo'] != null) { ?> 
+														<a href="<?php echo base_url('main/approve_memo_subsidi/'.$ss['id_memo']); ?>"class="btn btn-primary">Approve</a>
 													<?php }  ?>
 										</div>
 									</div>
@@ -115,7 +115,6 @@
 					<th>No.</th>
 					<th>Kode Supplier</th>
 					<th>Tanggal Input</th>
-					<td>Berat Timbangan</td>
 					<th>Status</th>
 					<th>Aksi</th>
 				</tr>
@@ -134,9 +133,8 @@
 				?>
 					<tr>
 						<td><?php echo $no++ ?></td>
-						<td><?php echo $ss['kode'] ?></td>
+						<td><?php echo $ss['id'] ?></td>
 						<td><?php echo $ss['tanggal_rec'] ?></td>
-						<td><?php echo $ss['qty'] ?></td>
 						<td>
 						<?php 
 						$status = $ss['status'];
@@ -254,7 +252,6 @@
 					<th>No.</th>
 					<th>Kode Supplier</th>
 					<th>Tanggal Input</th>
-					<td>Berat Timbangan</td>
 					<th>Status</th>
 					<th>Aksi</th>
 				</tr>
@@ -273,9 +270,8 @@
 				?>
 					<tr>
 						<td><?php echo $no++ ?></td>
-						<td><?php echo $ss['kode'] ?></td>
+						<td><?php echo $ss['id'] ?></td>
 						<td><?php echo $ss['tanggal_rec'] ?></td>
-						<td><?php echo $ss['qty'] ?></td>
 						<td>
 						<?php 
 						$status = $ss['status_memo'];
@@ -491,7 +487,6 @@
 			</thead>
 			<tbody>
 				<?php 
-				var_dump($memo);
 				$no = 1;
 				$total = 0;
 				foreach ($memo as $ss) : 
@@ -530,12 +525,12 @@
                         </td>
 						<td>
 							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelId-BB-<?php echo $ss['id'] ?>">
-							Detail Penerimaan Bahan Baku Basi
+							<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelId-BSB-<?php echo $ss['id'] ?>">
+							Detail Bukti Pengeluaran
 							</button>
 							
 							<!-- Modal -->
-							<div class="modal fade" id="modelId-BB-<?php echo $ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+							<div class="modal fade" id="modelId-BSB-<?php echo $ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
 								<div class="modal-dialog modal-xl modal-fullscreen" role="document">
 									<div class="modal-content">
 										<div class="modal-header">

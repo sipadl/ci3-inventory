@@ -408,7 +408,7 @@ class Main extends CI_Controller {
         }
     }
 
-	public function sortirUpdate($id) {
+	public function sortirUpdate($id, $status = null) {
 		$post_data = $this->input->post();
 		$sortir = $this->Main_model->getDataSortir($id);
 		
@@ -418,7 +418,7 @@ class Main extends CI_Controller {
 			$post_data['status'] = 0;
 		} else if ($sortir['tanggal_rec2'] == date('Y-m-d H:i:s')){
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
-			$post_data['status'] = 1;
+			$post_data['status'] = $status ?? 1;
 		}
 
 		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
@@ -427,16 +427,17 @@ class Main extends CI_Controller {
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
 
-	public function sortirUpdateSimpan($id) {
+	public function sortirUpdateSimpan($id, $status = null) {
 		$post_data = $this->input->post();
 		$sortir = $this->Main_model->getDataSortir($id);
+
 		
 		if($sortir['tanggal_rec'] == date('Y-m-d H:i:s') ){
 			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
 		} else if ($sortir['tanggal_rec2'] == date('Y-m-d H:i:s')){
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
 		}
-		$post_data['status'] = 1;
+		$post_data['status'] = $status ?? 1;
 		
 		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diubah.');
@@ -584,7 +585,7 @@ class Main extends CI_Controller {
 
 	public function memo_subsidi(){
 		$data['title'] = 'Memo Subsidi';
-		$sortir = $this->Main_model->GetSortirWithMemo('3,4');
+		$sortir = $this->Main_model->getTblMemo();
 		$price = $this->Main_model->get_price();
 		$memo = $this->Main_model->getTblMemo();
 
@@ -692,7 +693,6 @@ class Main extends CI_Controller {
 
 	public function approve_memo_dp($id, $status)
 	{
-		var_dump($this->input->post());
 		// Pastikan Anda menginisialisasi $user_id dari sesi atau sumber lainnya
 		$user_id = $this->session->userdata('user_id'); // contoh pengambilan ID pengguna dari sesi, sesuaikan dengan logika aplikasi Anda
 		$data = array('approved_by' => $user_id, 'status' => $status, 'keterangan_approval' => $this->input->post('keterangan_approval'));

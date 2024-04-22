@@ -17,13 +17,23 @@ class Main_model extends CI_Model {
 	}
 
 	public function GetSortirWithMemo($val) {
-		return $this->db->query('select *,a.id as id_sortirs, a.kode_supplier as kode, b.id as memos , b.status as status_memo from tbl_sortir a left join tbl_memo b on a.kode_supplier = b.kode_supplier
-		where a.status in ('.$val.')')->result_array();
+		return $this->db->query('select *, b.status as status_memo from tbl_sortir a left join tbl_memo b on a.id = b.id_sortir')->result_array();
 	}
 
 
 	public function getTblMemo() {
-		return $this->db->query('select * from tbl_memo a left join tbl_sortir b on a.id_sortir = b.id where b.status in (1,2,3,4,5)')->result_array();
+		return $this->db->query('select
+		a.*,
+		c.*,
+		a.kode_supplier as supplier,
+		b.status as status_memo,
+		b.id as id_memo,
+		subsidi
+	from
+		tbl_sortir a
+	left join tbl_memo b on
+		a.id = b.id_sortir
+	inner join tbl_daging c on c.id = a.id_bb ')->result_array();
 	}
 
 	public function getBahanBakuWithStatus($val) {
@@ -32,7 +42,7 @@ class Main_model extends CI_Model {
 
 	public function getDataSortir($id = null) {
 		if($id) {
-			return $this->db->query("select * from tbl_sortir where status = 0 and id =". $id." order by id desc")->result_array()[0];
+			return $this->db->query("select * from tbl_sortir where id =". $id." order by id desc")->result_array();
 		} else {
 			return $this->db->query("select * from tbl_sortir where status = 0 order by id desc")->result_array();
 		}

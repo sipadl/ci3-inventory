@@ -235,6 +235,12 @@
                   <p>Approval Coasting </p>
                 </a>
               </li>
+							<li class="nav-item">
+                <a href="<?php echo base_url('main/approval_gm') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approval GM </p>
+                </a>
+              </li>
 					<li class="nav-item">
                 <a href="<?php echo base_url('main/pengajuan_mt') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -259,12 +265,7 @@
                   <p>Memo Subsidi </p>
                 </a>
               </li>
-					<li class="nav-item">
-                <a href="<?php echo base_url('main/approval_gm') ?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Approval GM </p>
-                </a>
-              </li>
+					
 					<li class="nav-item">
                 <a href="<?php echo base_url('main/laporan_root') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

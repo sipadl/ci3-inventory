@@ -856,11 +856,11 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                     <div class="modal-footer">
                                                         <button
                                                             type="button"
-                                                            onclick="SimpanSortirUpdate(event ,true, <?php echo $ss['id_sortir'] ?>)"
+                                                            onclick="SimpanSortirUpdateCoasting(event ,true, <?php echo $ss['id_sortir'] ?>, 5)"
                                                             class="btn btn-primary">Simpan</button>
                                                         <button
                                                             type="button"
-                                                            onclick="SimpanSortirUpdate(event, false, <?php echo $ss['id_sortir'] ?>)"
+                                                            onclick="SimpanSortirUpdateCoasting(event, false, <?php echo $ss['id_sortir'] ?>, 5)"
                                                             class="btn btn-primary">Simpan Sementara</button>
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                     </div>

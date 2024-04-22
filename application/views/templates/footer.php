@@ -73,15 +73,16 @@ function SimpanSortir(event, val) {
     form.submit(); // Submit the form
 }
 
-function SimpanSortirUpdate(event, val, id) {
+function SimpanSortirUpdateCoasting(event, val, id, status) {
     var form = $('#sortiresUpdate'); // Assuming #sortires is the ID of your form
     if (val === true) {
-        form.attr('action', '<?php echo base_url('main/sortirUpdateSimpan/') ?>' + id);
+        form.attr('action', '<?php echo base_url('main/sortirUpdateSimpan/') ?>' + id + '/' + status);
     } else {
-        form.attr('action', '<?php echo base_url('main/sortirUpdate/') ?>' + id);
+        form.attr('action', '<?php echo base_url('main/sortirUpdate/') ?>' + id + '/' + status);
     }
     form.submit(); // Submit the form
 }
+
 
 function exportToExcel() {
     $("#myTablePrintAble").table2excel({
