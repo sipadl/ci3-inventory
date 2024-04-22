@@ -44,6 +44,12 @@
 
 
 <script>
+function ApprovalPengajuan(val,status) {
+	$('#form-approval').attr('action',  '<?php echo base_url('main/approve_memo_dp/'); ?>' + val + '/' + status);
+    $('#form-approval').submit(); // Submit the form
+
+}
+
 
 $('.generateId').on('change', (event) => {
 	console.log(event.target.value); // ini adalah nilai id yang dipilih

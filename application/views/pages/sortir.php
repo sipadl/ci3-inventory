@@ -860,11 +860,11 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                     <div class="modal-footer">
                                                         <button
                                                             type="button"
-                                                            onclick="SimpanSortirUpdate(event ,true, <?php echo $ss['id_bb'] ?>)"
+                                                            onclick="SimpanSortirUpdate(event ,true, <?php echo $ss['id_sortir'] ?>)"
                                                             class="btn btn-primary">Simpan</button>
                                                         <button
                                                             type="button"
-                                                            onclick="SimpanSortirUpdate(event, false, <?php echo $ss['id_bb'] ?>)"
+                                                            onclick="SimpanSortirUpdate(event, false, <?php echo $ss['id_sortir'] ?>)"
                                                             class="btn btn-primary">Simpan Sementara</button>
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                     </div>
@@ -914,8 +914,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <p>No. Sortir :
-                                                        <?php echo $ss['id'] ?></p>
+                                                    <p>SD.100.3001</p>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <!-- <form action="<?php echo
@@ -1562,7 +1561,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                         </tr>
-                                                        <tr>
+                                                           <tr>
                                                             <td colspan="2">Grand Total</td>
                                                             <td><?php echo $sumXX ?></td>
                                                             <td></td>
@@ -1576,6 +1575,18 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
 
                                                         </tr>
+														<tr>
+															<td colspan="3" height="90px" class="text-center">Dibuat</td>
+															<td colspan="4" height="90px" class="text-center">Diperiksa</td>
+															<td colspan="4" height="90px" class="text-center">Diketahui</td>
+															<td colspan="3" height="90px" class="text-center">Disetujui</td>
+														</tr>
+														<tr>
+															<td colspan="3" height="90px" class="text-center">Dibuat</td>
+															<td colspan="4" height="90px" class="text-center">Diperiksa</td>
+															<td colspan="4" height="90px" class="text-center">Diketahui</td>
+															<td colspan="3" height="90px" class="text-center">Disetujui</td>
+														</tr>
                                                     </tbody>
                                                 </table>
                                             </div>

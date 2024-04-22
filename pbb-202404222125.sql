@@ -59,7 +59,7 @@ CREATE TABLE `tbl_daging` (
   `status` int(11) NOT NULL DEFAULT 0,
   `qty` varchar(10) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `tbl_daging` (
 
 LOCK TABLES `tbl_daging` WRITE;
 /*!40000 ALTER TABLE `tbl_daging` DISABLE KEYS */;
-INSERT INTO `tbl_daging` VALUES (53,'2024-04-16','j6','1','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]',0,'0',0,'1'),(54,'2024-04-16','K2','1','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]',0,'0',0,'1'),(55,'2024-04-17','K2','111','[{\"spek\":\"3\",\"bungkus\":\"3\",\"tkotor\":\"3\",\"tbersih\":\"2\"}]','[{\"spek\":\"3\",\"bungkus\":\"2\",\"tkotor\":\"3\",\"tbersih\":\"2\"}]',0,'0',0,'22'),(56,'2024-04-16','j6','re','[{\"spek\":\"22\",\"bungkus\":\"33\",\"tkotor\":\"44\",\"tbersih\":\"55\"},{\"spek\":\"88\",\"bungkus\":\"77\",\"tkotor\":\"66\",\"tbersih\":\"66\"}]','[{\"spek\":\"99\",\"bungkus\":\"88\",\"tkotor\":\"77\",\"tbersih\":\"66\"},{\"spek\":\"334\",\"bungkus\":\"33\",\"tkotor\":\"54\",\"tbersih\":\"56\"}]',0,'0',0,'2'),(57,'2024-04-16','K1','Ayam','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"11\"}]','[{\"spek\":\"1\",\"bungkus\":\"2\",\"tkotor\":\"3\",\"tbersih\":\"12.1\"}]',0,'0',0,'23.1'),(58,'2024-04-16','K1','Ikan Nemu','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"10\",\"tbersih\":\"11.2\"}]','[{\"spek\":\"11\",\"bungkus\":\"12\",\"tkotor\":\"33\",\"tbersih\":\"50.1\"}]',0,'0',0,'61.3'),(59,'2024-04-16','K1','Bebek Bakar','[{\"spek\":\"19\",\"bungkus\":\"99\",\"tkotor\":\"99\",\"tbersih\":\"99\"}]','[{\"spek\":\"123\",\"bungkus\":\"123\",\"tkotor\":\"12\",\"tbersih\":\"119\"}]',0,'0',0,'218'),(60,'2024-04-16','K1','Kambing','[{\"spek\":\"10\",\"bungkus\":\"11\",\"tkotor\":\"14\",\"tbersih\":\"13.5\"}]','[{\"spek\":\"30\",\"bungkus\":\"120\",\"tkotor\":\"150\",\"tbersih\":\"551\"}]',0,'0',0,'564.5');
+INSERT INTO `tbl_daging` VALUES (1,'2024-04-22','K2','1','[{\"spek\":\"2\",\"bungkus\":\"3\",\"tkotor\":\"4\",\"tbersih\":\"5\"}]','[{\"spek\":\"6\",\"bungkus\":\"7\",\"tkotor\":\"8\",\"tbersih\":\"9\"}]',0,'0',0,'14'),(2,'2024-04-11','j6','1','[{\"spek\":\"2\",\"bungkus\":\"3\",\"tkotor\":\"4\",\"tbersih\":\"5\"}]','[{\"spek\":\"6\",\"bungkus\":\"6\",\"tkotor\":\"6\",\"tbersih\":\"6\"}]',0,'0',0,'11'),(3,'2024-04-24','K2','1','[{\"spek\":\"1\",\"bungkus\":\"2\",\"tkotor\":\"2\",\"tbersih\":\"3\"}]','[{\"spek\":\"4\",\"bungkus\":\"5\",\"tkotor\":\"6\",\"tbersih\":\"6\"}]',0,'0',0,'9'),(4,'0000-00-00','K2','22','[{\"spek\":\"2\",\"bungkus\":\"2\",\"tkotor\":\"2\",\"tbersih\":\"2\"}]','[{\"spek\":\"22\",\"bungkus\":\"22\",\"tkotor\":\"2\",\"tbersih\":\"22\"}]',0,'0',0,'24'),(5,'2024-04-18','K1','1','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"2\",\"tbersih\":\"3\"}]','[{\"spek\":\"1\",\"bungkus\":\"2\",\"tkotor\":\"4\",\"tbersih\":\"3\"}]',0,'0',0,'6'),(6,'2024-04-17','j6','1','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]','[{\"spek\":\"1\",\"bungkus\":\"1\",\"tkotor\":\"1\",\"tbersih\":\"1\"}]',0,'0',0,'2'),(7,'2024-04-24','rudi','11','[{\"spek\":\"23\",\"bungkus\":\"44\",\"tkotor\":\"3\",\"tbersih\":\"222\"}]','[{\"spek\":\"121\",\"bungkus\":\"121\",\"tkotor\":\"12\",\"tbersih\":\"121\"}]',0,'0',0,'343'),(8,'2024-04-16','j6','1','[{\"spek\":\"2\",\"bungkus\":\"3\",\"tkotor\":\"4\",\"tbersih\":\"5\"}]','[{\"spek\":\"6\",\"bungkus\":\"7\",\"tkotor\":\"8\",\"tbersih\":\"9\"}]',0,'0',0,'14'),(9,'2024-04-24','rudi','1','[{\"spek\":\"2\",\"bungkus\":\"3\",\"tkotor\":\"4\",\"tbersih\":\"5\"}]','[{\"spek\":\"5\",\"bungkus\":\"4\",\"tkotor\":\"3\",\"tbersih\":\"2\"}]',0,'0',0,'7');
 /*!40000 ALTER TABLE `tbl_daging` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +118,7 @@ CREATE TABLE `tbl_laporan` (
   `approved_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `tbl_laporan_id_IDX` (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +127,7 @@ CREATE TABLE `tbl_laporan` (
 
 LOCK TABLES `tbl_laporan` WRITE;
 /*!40000 ALTER TABLE `tbl_laporan` DISABLE KEYS */;
-INSERT INTO `tbl_laporan` VALUES (1,'1000000','1000000','1000000','1000000','1000000','2024-04-21',57,0,NULL);
+INSERT INTO `tbl_laporan` VALUES (1,'1000000','1000000','1000000','1000000','1000000','2024-04-21',57,0,NULL),(2,'500000','300000','100000','10000','10000','2024-04-22',1,0,NULL);
 /*!40000 ALTER TABLE `tbl_laporan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,9 +247,10 @@ CREATE TABLE `tbl_pengajuan` (
   `created_at` datetime DEFAULT NULL,
   `supplier` varchar(100) DEFAULT NULL,
   `approved_by` varchar(100) DEFAULT NULL,
+  `keterangan_approval` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `tbl_pengajuan_id_IDX` (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -258,7 +259,7 @@ CREATE TABLE `tbl_pengajuan` (
 
 LOCK TABLES `tbl_pengajuan` WRITE;
 /*!40000 ALTER TABLE `tbl_pengajuan` DISABLE KEYS */;
-INSERT INTO `tbl_pengajuan` VALUES (1,'Purwakarta','1',NULL,'1','1','2','Placeat unde ab et ','','2024-04-20','a',1,'2024-04-20 11:07:41','K1',NULL),(2,'Purwakarta','Doloremque dolore ex',NULL,'Elit quaerat est q','Exercitation odit no','Delectus neque sit ','bca','','2008-04-28','Deserunt illum enim',1,'2024-04-20 11:24:13','j6',NULL);
+INSERT INTO `tbl_pengajuan` VALUES (1,'Purwakarta','1',NULL,'1','1','2','Placeat unde ab et ','','2024-04-20','a',1,'2024-04-20 11:07:41','K1',NULL,'  1111'),(2,'Purwakarta','Doloremque dolore ex',NULL,'Elit quaerat est q','Exercitation odit no','Delectus neque sit ','bca','','2008-04-28','Deserunt illum enim',1,'2024-04-20 11:24:13','j6',NULL,NULL),(3,'Purwakarta','1',NULL,'15','10','25','Placeat unde ab et ','1234','2024-04-23','menunggu audit',0,'2024-04-22 09:52:29','K1',NULL,NULL),(4,'Purwakarta','3','user8-128x128.jpg','1','2','3','Placeat unde ab et ','1234','2024-04-22','p',0,'2024-04-22 09:56:23','K1',NULL,NULL);
 /*!40000 ALTER TABLE `tbl_pengajuan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,7 +285,7 @@ CREATE TABLE `tbl_price` (
 
 LOCK TABLES `tbl_price` WRITE;
 /*!40000 ALTER TABLE `tbl_price` DISABLE KEYS */;
-INSERT INTO `tbl_price` VALUES (1,'COL','560,000.00',2),(2,'JB','560,000.00',2),(3,'JBJK',' 285,000.00',2),(4,'JL','285,000.00 ',2),(5,'XLP','275,000.00 ',2),(6,'KJ',' 285,000.00 ',2),(7,'BF / LP',' 285,000.00 ',2),(8,'SPK',' 275,000.00 ',2),(9,'SP',' 5,000.00 ',2),(10,'SPH','5,000.00 ',0),(11,'CL',' 10,000.00 ',2),(12,'CLF',' 30,000.00 ',2),(13,'MH',' 3,000.00 ',2),(14,'MHR','  30,000.00 ',2),(15,'PHR','45,000.00 ',2),(16,'B COL','45,000.00 ',2),(17,'B JB','45,000.00 ',2),(18,'B JBJK	','45,000.00',2),(19,'B XLP','45,000.00',2),(20,'B BF / LP','45,000.00',2),(21,'B SPK','45,000.00',2),(22,'B SP','45,000.00',2),(23,'B CL','30,000.00 ',2),(24,'B MH','30,000.00 ',2),(25,'SHELL','1',2);
+INSERT INTO `tbl_price` VALUES (1,'COL','560000',2),(2,'JB','560000',2),(3,'JBJK',' 285000',2),(4,'JL','285000',2),(5,'XLP','275000',2),(6,'KJ',' 285000',2),(7,'BF / LP',' 285000',2),(8,'SPK','275000',2),(9,'SP',' 5,000',2),(10,'SPH',' 5,000',0),(11,'CL',' 10000',2),(12,'CLF',' 30000',2),(13,'MH',' 3000',2),(14,'MHR',' 30000',2),(15,'PHR','45000',2),(16,'B COL','45000',2),(17,'B JB','45000',2),(18,'B JBJK	','45000',2),(19,'B XLP','45000',2),(20,'B BF / LP','45000',2),(21,'B SPK','45000',2),(22,'B SP','45000',2),(23,'B CL',' 30000',2),(24,'B MH',' 30000',2),(25,'SHELL','1',2);
 /*!40000 ALTER TABLE `tbl_price` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,7 +370,7 @@ CREATE TABLE `tbl_sortir` (
   `loss` varchar(255) DEFAULT NULL,
   `timbangan_kotor` varchar(255) DEFAULT NULL,
   `timbangan_bb` varchar(255) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT 0,
   `jbb_jf` varchar(255) DEFAULT NULL,
   `spk_sp` varchar(255) DEFAULT NULL,
   `sp_sph` varchar(255) DEFAULT NULL,
@@ -378,7 +379,7 @@ CREATE TABLE `tbl_sortir` (
   `cap` varchar(100) DEFAULT NULL,
   `potong` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -387,7 +388,7 @@ CREATE TABLE `tbl_sortir` (
 
 LOCK TABLES `tbl_sortir` WRITE;
 /*!40000 ALTER TABLE `tbl_sortir` DISABLE KEYS */;
-INSERT INTO `tbl_sortir` VALUES (3,'K1','2024-04-18','2024-04-18',NULL,NULL,1,'1','2','23','3','4',NULL,'3','2','3','3','3','3','3','3','3','33','3','3','3','3','3',NULL,'3','3','3','222','9','09','8','77','11','123','123','123','11','1','112','1221','122','122','11',0,'3','3','3',55,NULL,NULL,NULL),(4,'j6','1989-08-27','2013-08-06',NULL,NULL,1,'50','23','64','60','53',NULL,'90','41','9','38','51','44','89','82','89','17','25','18','91','68','1',NULL,'12','20','73','89','55','92','14','43','47','35','7','92','80','3','59','1','48','54','33.2',0,'13','82','12',56,4,NULL,NULL),(5,'K2','1985-12-06','1979-03-12',NULL,NULL,1,'60','63','39','34','77',NULL,'55','75','14','51','58','15','57','23','72','96','21','39','92','84','35',NULL,'64','66','84','89','4','76','52','63','77','11','53','37','36','3','88','53','74','13','11.2',3,'2','86','27',57,4,NULL,NULL),(8,'j6','1996-09-09','2004-07-23','2024-04-18','2024-04-18',1,'26','0','70','99','50',NULL,'1','92','61','79','56','48','56','67','57','54','96','59','27','63','70',NULL,'26','98','0','29','78','11','70','90','97','27','99','16','60','82','38','2','37','1','78',4,'19','35','2',54,4,NULL,NULL),(9,'j6','2024-04-12','2024-04-05',NULL,NULL,8,'1.3','10.9','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',0,'','','',53,NULL,NULL,NULL),(10,'j6','2024-04-20','2024-04-20','2024-04-20',NULL,9,'9','9','9','9','99',NULL,'9','9','9','9','9','9','9','9','9','9','99','9','9','9','9',NULL,'9','9','9','99',NULL,'9','9','9','9','9','9',NULL,'9','9','9','9','9.5',NULL,NULL,NULL,'9','9','9',58,NULL,NULL,NULL);
+INSERT INTO `tbl_sortir` VALUES (6,'K2','2024-04-22','2024-04-22',NULL,NULL,1,'9','9','9','9','9',NULL,'9','99','','99','99','9','9','9','9','9','9','9','9','9','99',NULL,'9','9','9','9',NULL,'9','9','9','9','9','9',NULL,'9','9','9','9','9',NULL,NULL,1,'9','9','9',1,NULL,'ya','9'),(7,'j6','2024-04-23','2024-04-22',NULL,NULL,7,'3','8','8','8','8',NULL,'8','88','8','8','8','8','8','8','8','8','8','8','8','8','8',NULL,'8','8','8','8',NULL,'8','8','8','8','8','8',NULL,'8','8','8','8','8',NULL,NULL,0,'8','8','8',2,NULL,'ya','1');
 /*!40000 ALTER TABLE `tbl_sortir` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -421,7 +422,7 @@ CREATE TABLE `tbl_supplier` (
 
 LOCK TABLES `tbl_supplier` WRITE;
 /*!40000 ALTER TABLE `tbl_supplier` DISABLE KEYS */;
-INSERT INTO `tbl_supplier` VALUES (1,'K1','Et qui occaecat et i','Placeat unde ab et ','Recusandae Assumend','Odit eos nostrum eni','Adipisicing sint qu',443,0,'Asperiores duis dolo','',NULL),(2,'K2','Obcaecati eligendi s','Est veniam rerum s','Adipisci aut commodo','Ut dolores rem eiusm','Commodi in ex molest',443,0,'Deserunt officiis co','',NULL),(3,'j6','adi','bca','gddg','taufik','6565656',443,323232,'sasasas','',NULL),(4,'rudi','Rudianto','BCA','081','rudi','2.png',440,21,'Hehe','',NULL);
+INSERT INTO `tbl_supplier` VALUES (1,'K1','Et qui occaecat et i','Placeat unde ab et ','Recusandae Assumend','Odit eos nostrum eni','Adipisicing sint qu',443,0,'Asperiores duis dolo','','1234'),(2,'K2','Obcaecati eligendi s','Est veniam rerum s','Adipisci aut commodo','Ut dolores rem eiusm','Commodi in ex molest',443,0,'Deserunt officiis co','','1244'),(3,'j6','adi','bca','gddg','taufik','6565656',443,323232,'sasasas','','12345'),(4,'rudi','Rudianto','BCA','081','rudi','2.png',440,21,'Hehe','','11223344');
 /*!40000 ALTER TABLE `tbl_supplier` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -467,4 +468,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-21 20:48:24
+-- Dump completed on 2024-04-22 21:25:07

@@ -685,17 +685,17 @@ class Main extends CI_Controller {
 
 	public function approve_memo_dp($id, $status)
 	{
+		var_dump($this->input->post());
 		// Pastikan Anda menginisialisasi $user_id dari sesi atau sumber lainnya
 		$user_id = $this->session->userdata('user_id'); // contoh pengambilan ID pengguna dari sesi, sesuaikan dengan logika aplikasi Anda
-
-		$data = array('approved_by' => $user_id, 'status' => $status);
+		$data = array('approved_by' => $user_id, 'status' => $status, 'keterangan_approval' => $this->input->post('keterangan_approval'));
 		$this->Main_model->updateAll('tbl_pengajuan', $data, $id);
 
 		// Tambahkan pesan flash untuk memberi umpan balik kepada pengguna
-		$message = ($status == 'approved') ? 'Memo disetujui.' : 'Memo ditolak.'; // Pesan sesuai dengan status
+		$message = ($status != '-1') ? 'Memo disetujui.' : 'Memo ditolak.'; // Pesan sesuai dengan status
 		$this->session->set_flashdata('success', $message);
 
-		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		// redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
 
 

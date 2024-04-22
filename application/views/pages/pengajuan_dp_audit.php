@@ -404,13 +404,25 @@
                                     </div>
                                 </div>
                             </div>
+							<form action="<?php echo base_url('main/approve_memo_dp/'.$dd['id'].'/1'); ?>" method="post" id="form-approval">
+							<div class="col-md-12 col-sm-12">
+								<div class="form-group row">
+									<label for="" class="form-control-label col-md-12 col-sm-12">Keterangan Approval</label>
+									<div class="col-md-12 col-sm-12">
+									<textarea name="keterangan_approval" id="" cols="" <?php echo $dd['status'] != 0  ? 'readonly' : '' ?> rows="3" class="form-control"><?php echo $dd['keterangan_approval'] ?? '' ?></textarea>
+
+								</div>
+								</div>
+							</div>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<?php if($dd['status'] == 2 ) { ?> 
-										<a href="<?php echo base_url('main/approve_memo_dp/'.$dd['id'].'/3'); ?>"class="btn btn-primary" >Approve</a>
-										<?php } ?>
+									<?php if($dd['status'] == 2 || $dd['status'] == '-1' ) { ?> 
+										<button type="button" onclick="ApprovalPengajuan(<?php echo $dd['id'] ?>, '3')" class="btn btn-primary">Approve</button>
+										<button type="button" onclick="ApprovalPengajuan(<?php echo $dd['id'] ?>, '-1')" class="btn btn-primary">Rejected</button>
+									<?php } ?>
 								</div>
+								</form>
 							</div>
 						</div>
 					</div></td>
