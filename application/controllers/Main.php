@@ -271,7 +271,7 @@ class Main extends CI_Controller {
 
 	public function hapusSuplier($id) {
 		$this->Main_model->delete('tbl_supplier', $id);
-		redirect('main/supplier')
+		redirect('main/supplier');
 	}
 
 	public function updateSuplier($id) {
