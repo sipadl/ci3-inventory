@@ -299,7 +299,7 @@
                                     <div class="form-group row">
                                         <label for="" class="form-control-label col-md-12 col-sm-12">Upload Gambar</label>
                                         <div class="col-md-12 col-sm-12">
-                                            <img height="200" width="200" src="<?php echo base_url('upload/images/'.$dd['upload_images']); ?>" alt="...">
+                                            <img height="50" width="50" src="<?php echo base_url('upload/images/'.$dd['upload_images']); ?>" alt="...">
                                         </div>
                                     </div>
                                 </div>
