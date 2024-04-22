@@ -299,7 +299,7 @@
                                     <div class="form-group row">
                                         <label for="" class="form-control-label col-md-12 col-sm-12">Upload Gambar</label>
                                         <div class="col-md-12 col-sm-12">
-                                            <img src="<?php echo base_url('upload/images/'.$dd['upload_images']); ?>" alt="...">
+                                            <img height="200" width="200" src="<?php echo base_url('upload/images/'.$dd['upload_images']); ?>" alt="...">
                                         </div>
                                     </div>
                                 </div>
@@ -313,8 +313,7 @@
                                                 required="required"
                                                 name="dp_60"
 												readonly
-												value="
-												<?php echo $dd['dp_60'] ?>"
+												value="<?php echo $dd['dp_60'] ?>"
                                                 placeholder="DP 60%">
                                         </div>
                                     </div>
@@ -329,8 +328,7 @@
                                                 required="required"
                                                 name="request_dp"
 												readonly
-												value="
-												<?php echo $dd['request_dp'] ?>"
+												value="<?php echo $dd['request_dp'] ?>"
                                                 placeholder="DP yang diminta">
                                         </div>
                                     </div>
@@ -345,8 +343,7 @@
                                                 required="required"
                                                 name="total_bayar"
 												readonly
-												value="
-												<?php echo $dd['total_bayar'] ?>
+												value="<?php echo $dd['total_bayar'] ?>
 												"
                                                 placeholder="Total Bayar">
                                         </div>
@@ -363,7 +360,6 @@
                                                 readonly="readonly"
 												readonly
 												value="<?php echo $dd['bank'] ?>"
-
                                                 name="bank"
                                                 placeholder="Bank">
                                         </div>
@@ -411,7 +407,6 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save</button>
 								</div>
 							</div>
 						</div>

@@ -70,7 +70,7 @@ function SimpanSortir(event, val) {
 function SimpanSortirUpdate(event, val, id) {
     var form = $('#sortiresUpdate'); // Assuming #sortires is the ID of your form
     if (val === true) {
-        form.attr('action', '<?php echo base_url('main/sortirUpdateSimpan') ?>' + id);
+        form.attr('action', '<?php echo base_url('main/sortirUpdateSimpan/') ?>' + id);
     } else {
         form.attr('action', '<?php echo base_url('main/sortirUpdate/') ?>' + id);
     }
@@ -303,13 +303,14 @@ function printDisini(val) {
     // Kirim data menggunakan AJAX atau lakukan operasi lainnya di sini
 	$.post("<?php echo base_url('/main/tambahDaging'); ?>", data,
 		function (res, textStatus, jqXHR) {
-				console.log(res);
-				window.location.reload(true);
+			console.log(textStatus);
+			if(textStatus == 'success'){
+				window.location.reload();
+			}
 
 		},
 		"json"
 	);
-	window.location.reload()
 }
 
 </script>

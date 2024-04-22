@@ -87,6 +87,7 @@ class Main extends CI_Controller {
 		// Menyimpan data menggunakan model
 		$insert_id = $this->DataDaging_model->addDaging($data);
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
+		echo(json_encode($data));
        
     }
 
@@ -403,9 +404,9 @@ class Main extends CI_Controller {
 		$post_data = $this->input->post();
 		$sortir = $this->Main_model->getDataSortir($id);
 		
-		if($sortir['tanggal_rec2'] == null ){
+		if($sortir['tanggal_rec'] == date('Y-m-d H:i:s') ){
 			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
-		} else {
+		} else if ($sortir['tanggal_rec2'] == date('Y-m-d H:i:s')){
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
 		}
 		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
@@ -418,8 +419,11 @@ class Main extends CI_Controller {
 		$post_data = $this->input->post();
 		$sortir = $this->Main_model->getDataSortir($id);
 		
-		$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
-		$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
+		if($sortir['tanggal_rec'] == date('Y-m-d H:i:s') ){
+			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
+		} else if ($sortir['tanggal_rec2'] == date('Y-m-d H:i:s')){
+			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
+		}
 		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diubah.');
 
@@ -597,29 +601,32 @@ class Main extends CI_Controller {
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
 
-	public function post_pengajuan_dp () {
-		$data_post = $this->input->post();
-		$data_post['created_at'] = date('Y-m-d H:i:s');
-
-		$upload_img['upload_path'] = FCPATH . 'upload/images';
-		$upload_img['allowed_types'] = 'gif|jpg|png';
-		$this->load->library('upload', $upload_img);
-		
-		// Perform the upload for NPWP
+	public function post_pengajuan_dp() {
+		$data = $this->input->post();
+		$data['created_at'] = date('Y-m-d H:i:s');
+	
+		// Konfigurasi upload
+		$config['upload_path'] = FCPATH . 'upload/images';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$this->load->library('upload', $config);
+	
+		// Lakukan upload untuk NPWP
 		if (!$this->upload->do_upload('upload_images')) {
-			// If upload fails, handle the error
+			// Tangani error upload
 			$error = $this->upload->display_errors();
-			// Handle the error (e.g., display error message, redirect back to form)
-			echo $error;
-			return; // Stop further execution
+			echo $error; // Tampilkan pesan error
+			return; // Hentikan eksekusi lebih lanjut
+		} else {
+			// Jika upload berhasil, simpan nama file ke dalam data
+			$data['upload_images'] = $this->upload->data('file_name');
 		}
-		$data_post['upload_images'] = $upload_img['file_name'];
-		
-
-		$this->Main_model->insertAll('tbl_pengajuan', $data_post);
-		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
+	
+		// Simpan data ke dalam database
+		$this->Main_model->insertAll('tbl_pengajuan', $data);
+		$this->session->set_flashdata('success', 'Data berhasil diinput.');
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
+	
 
 	public function get_supplier($id) {
 		$supplier = $this->db->query("SELECT * FROM tbl_supplier a 
@@ -639,6 +646,14 @@ class Main extends CI_Controller {
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 
 	}
+
+	// public function_approve_dp($id, $status)
+	// {
+	// 	$data = array('approved_by' => $user_id ,'status' => $status);
+	// 	$this->Main_model->updateAll('tbl_pengajuan', $data, $id);
+	// 	redirect($_SERVER['HTTP_REFERER'], 'refresh');
+
+	// }
 
 	public function approve_laporan($id) {
 		$user_id = $this->session->userdata('id');
