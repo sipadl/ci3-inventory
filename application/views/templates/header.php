@@ -236,6 +236,24 @@
                 </a>
               </li>
 					<li class="nav-item">
+                <a href="<?php echo base_url('main/pengajuan_mt') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approval Pengajuan MT </p>
+                </a>
+              </li>
+					<li class="nav-item">
+                <a href="<?php echo base_url('main/pengajuan_gm') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approval Pengajuan GM </p>
+                </a>
+              </li>
+					<li class="nav-item">
+                <a href="<?php echo base_url('main/pengajuan_audit') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approval Pengajuan Audit </p>
+                </a>
+              </li>
+					<li class="nav-item">
                 <a href="<?php echo base_url('main/memo_subsidi') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Memo Subsidi </p>

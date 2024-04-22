@@ -12,6 +12,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                 <thead>
                     <tr>
                         <th scope="col">No</th>
+						<th>Id</th>
                         <th scope="col">Kode Supplier</th>
                         <th scope="col">Tanggal Input</th>
                         <th scope="col">Status</th>
@@ -28,6 +29,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 
                     <tr>
                         <th scope="row"><?php echo $no++ ?></th>
+						<td><?php echo $ss['id_bb'] ?></td>
                         <td><?php echo $ss['supplier'] ?></td>
                         <td><?php echo $ss['tanggal'] ?></td>
                         <td>
@@ -164,7 +166,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         type="button"
                                         class="btn btn-light mx-1"
                                         data-toggle="modal"
-                                        data-target="<?php echo '#modelId'.$ss['id'] ?>">
+                                        data-target="<?php echo '#modelId'.$ss['id_bb'] ?>">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                         Detail Sortir
                                     </button>
@@ -831,14 +833,11 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="">Cap</label>
-                                                                                <input
-                                                                                    type="text"
-                                                                                    min="0"
-                                                                                    class="form-control"
-                                                                                    id="Cap"
-                                                                                    value="<?php echo $ss['cap'] ?>"
-                                                                                    name="cap">
+																			<label for="">Cap</label>
+																			<select type="text" min="0" class="form-control" id="SHELL" name="cap">
+																				<option value="ya">Ya</option>
+																				<option value="Tidak">Tidak</option>
+																			</select>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -879,7 +878,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                             <!-- Modal Detail -->
                             <div
                                 class="modal fade"
-                                id="<?php echo 'modelId'.$ss['id'] ?>"
+                                id="<?php echo 'modelId'.$ss['id_bb'] ?>"
                                 tabindex="-1"
                                 role="dialog"
                                 aria-labelledby="modelTitleId"
@@ -898,7 +897,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                     <div class="d-flex justify-content-between border px-2">
                                                         <div class="">Supplier</div>
                                                         <div class="">
-                                                            <?php echo $ss['kode_supplier']; ?>
+                                                            <?php echo $ss['supplier']; ?>
                                                         </div>
                                                     </div>
                                                     <div class="d-flex justify-content-between  border px-2">
@@ -969,9 +968,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <th colspan=""><?php echo $ss['tanggal_rec2'] ?></th>
                                                             <th colspan=""><?php echo $ss['tanggal_rec3'] ?></th>
                                                             <th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
-                                                            <th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
-                                                            <th colspan=""><?php echo $ss['tanggal_rec2'] ?></th>
-                                                            <th colspan="" width="10%"><?php echo $ss['tanggal_rec3'] ?></th>
+                                                            <th colspan="" width="10%"><?php echo $ss['tanggal_rec2'] ?></th>
+                                                            <th colspan=""><?php echo $ss['tanggal_rec3'] ?></th>
+                                                            <th colspan="" width="10%"></th>
                                                             <th colspan=""></th>
                                                         </tr>
                                                     </thead>
@@ -1534,6 +1533,18 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td colspan="2">Timb. BB</td>
                                                             <?php 
+														$colX = (floatval($ss['col']) + floatval($ss['bf']));
+														$jbX = (floatval($ss['jb']) + floatval($ss['jbb_jf']));
+														$jkX = (floatval($ss['jbb_jk']) + floatval($ss['jbb_bf']));
+														$bfX = (floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jk'])
+														+ floatval($ss['bf_k3_jl']) + floatval($ss['bf_jl']) + floatval($ss['bf_bf']) + floatval($ss['bf_bf']) + floatval($ss['bf_kj']));
+														$spkX = (floatval($ss['spk_sp_jb']) +  floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp_sph']));
+														$spX = (floatval($ss['bf_spk_xlp']) + floatval($ss['bf_spk_sp']));
+														$mhX = (floatval($ss['mh']) + floatval($ss['mh_slb']));
+														$clX = floatval($ss['sp_cl']);
+														$clfX = floatval($ss['sp_clf']);
+														$sumXX = $colX + $jbX + $jkX + $bfX + $spkX + $spX + $mhX + $clX + $clfX;
+
 														$qty = 0;
 														$dataMerah = json_decode($ss['daging_merah']);
 														$dataPutih = json_decode($ss['daging_putih']);
@@ -1552,8 +1563,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="2">Total</td>
-                                                            <td></td>
+                                                            <td colspan="2">Grand Total</td>
+                                                            <td><?php echo $sumXX ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>

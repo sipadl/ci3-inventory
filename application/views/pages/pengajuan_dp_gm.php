@@ -224,11 +224,11 @@
 						} elseif ($status == 0) {
 							echo "Pending";
 						} elseif ($status == 1) {
-							echo "Accepted";
+							echo "Diterima Oleh MT";
 						} elseif ($status == 2) {
-							echo "Accepted By TL Sortir";
+							echo "Diterima Oleh GM";
 						} elseif ($status == 3) {
-							echo "Accepted By Bag. Produksi";
+							echo "Diterima Oleh Audit";
 						} elseif ($status == 4) {
 							echo "Accepted By Bag. Coasting";
 						} elseif ($status == 5) {
@@ -407,7 +407,9 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
- 									<a href="<?php echo base_url('main/approve_memo_dp/'.$dd['id'].'/1'); ?>"class="btn btn-primary" data-dismiss="modal">Approve</button>
+									<?php if($dd['status'] == 1 ) { ?> 
+										<a href="<?php echo base_url('main/approve_memo_dp/'.$dd['id'].'/2'); ?>"class="btn btn-primary">Approve</a>
+									<?php } ?>
 								</div>
 							</div>
 						</div>

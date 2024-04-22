@@ -231,29 +231,18 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <div class="d-flex justify-content-between  border px-2">
                                                                 <div class="">Cap</div>
                                                                 <div class="">
-                                                                    <?php if($ss['cap'] != null ) { ?>
-                                                                    <input type="radio" name="cap" value="Ya" class="mx-1" id="">Ya /
-                                                                    <input type="radio" name="cap" value="Tidak" class="mx-1" id="">Tidak
-                                                                <?php } else { ?>
-                                                                    <?php echo $ss['cap'] ?>
-                                                                    <?php } ?>
+                                                                                                                                          <?php echo $ss['cap'] ?>
+
                                                                 </div>
                                                             </div>
                                                             <div class="d-flex justify-content-between  border px-2">
                                                                 <div class="mt-2">Potong</div>
                                                                 <div class="ml-2 py-2">
-                                                                    <?php if($ss['potong'] != null ) { ?>
-                                                                    <input type="text" name="potong" class="form-control" id="">
-                                                                <?php } else { ?>
                                                                     <?php echo $ss['potong'] ?>
-                                                                    <?php } ?>
+                                                                   
                                                                 </div>
                                                             </div>
-                                                            <?php if($ss['cap'] != null) { ?>
-                                                            <div class="d-flex justify-content-end">
-                                                                <button type="submit" class="btn btn-sm  mt-2 btn-primary">Simpan</button>
-                                                            </div>
-                                                            <?php } ?>
+                                                           
                                                         </div>
                                                     </form>
                                                     <style>

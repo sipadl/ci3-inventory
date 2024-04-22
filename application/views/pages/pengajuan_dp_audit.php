@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-12">
         <!-- Button trigger modal -->
-        <button
+        <!-- <button
             type="button"
             class="btn btn-primary btn-sm my-2"
             data-toggle="modal"
             data-target="#modelId">
             Tambah Pengajuan DP
-        </button>
+        </button> -->
         <!-- Modal -->
         <div
             class="modal fade"
@@ -224,11 +224,11 @@
 						} elseif ($status == 0) {
 							echo "Pending";
 						} elseif ($status == 1) {
-							echo "Accepted";
+							echo "Diterima Oleh MT";
 						} elseif ($status == 2) {
-							echo "Accepted By TL Sortir";
+							echo "Diterima Oleh GM";
 						} elseif ($status == 3) {
-							echo "Accepted By Bag. Produksi";
+							echo "Diterima Oleh Audit";
 						} elseif ($status == 4) {
 							echo "Accepted By Bag. Coasting";
 						} elseif ($status == 5) {
@@ -299,7 +299,7 @@
                                     <div class="form-group row">
                                         <label for="" class="form-control-label col-md-12 col-sm-12">Upload Gambar</label>
                                         <div class="col-md-12 col-sm-12">
-                                            <img src="<?php echo base_url('upload/images/'.$dd['upload_images']); ?>" alt="...">
+                                            <img height="200" width="200" src="<?php echo base_url('upload/images/'.$dd['upload_images']); ?>" alt="...">
                                         </div>
                                     </div>
                                 </div>
@@ -313,8 +313,7 @@
                                                 required="required"
                                                 name="dp_60"
 												readonly
-												value="
-												<?php echo $dd['dp_60'] ?>"
+												value="<?php echo $dd['dp_60'] ?>"
                                                 placeholder="DP 60%">
                                         </div>
                                     </div>
@@ -329,8 +328,7 @@
                                                 required="required"
                                                 name="request_dp"
 												readonly
-												value="
-												<?php echo $dd['request_dp'] ?>"
+												value="<?php echo $dd['request_dp'] ?>"
                                                 placeholder="DP yang diminta">
                                         </div>
                                     </div>
@@ -345,8 +343,7 @@
                                                 required="required"
                                                 name="total_bayar"
 												readonly
-												value="
-												<?php echo $dd['total_bayar'] ?>
+												value="<?php echo $dd['total_bayar'] ?>
 												"
                                                 placeholder="Total Bayar">
                                         </div>
@@ -363,7 +360,6 @@
                                                 readonly="readonly"
 												readonly
 												value="<?php echo $dd['bank'] ?>"
-
                                                 name="bank"
                                                 placeholder="Bank">
                                         </div>
@@ -410,10 +406,10 @@
                             </div>
 								</div>
 								<div class="modal-footer">
-									<?php if($dd['status'] == 0 ) { ?>
-									<a href="<?php echo base_url('main/approve_pengajuan_by_gm/'.$dd['id']); ?>" class="btn btn-primary">Approve</a>
-									<?php } ?>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<?php if($dd['status'] == 2 ) { ?> 
+										<a href="<?php echo base_url('main/approve_memo_dp/'.$dd['id'].'/3'); ?>"class="btn btn-primary" >Approve</a>
+										<?php } ?>
 								</div>
 							</div>
 						</div>

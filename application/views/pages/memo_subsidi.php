@@ -139,17 +139,17 @@
 						<td><?php echo $ss['timbangan_bb'] ?></td>
 						<td>
 						<?php 
-						$status = $ss['status_memo'];
+						$status = $dd['status'];
 						if ($status == -1) {
 							echo "Rejected";
 						} elseif ($status == 0) {
 							echo "Pending";
 						} elseif ($status == 1) {
-							echo "Accepted";
+							echo "Diterima Oleh MT";
 						} elseif ($status == 2) {
-							echo "Accepted By TL Sortir";
+							echo "Diterima Oleh GM";
 						} elseif ($status == 3) {
-							echo "Accepted By Bag. Produksi";
+							echo "Diterima Oleh Audit";
 						} elseif ($status == 4) {
 							echo "Accepted By Bag. Coasting";
 						} elseif ($status == 5) {

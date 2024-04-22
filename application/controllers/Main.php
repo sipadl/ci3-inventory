@@ -359,6 +359,7 @@ class Main extends CI_Controller {
 
         // Get all post data
         $post_data = $this->input->post();
+		$post_data['status'] = 0;
         if ($this->form_validation->run() === FALSE) {
 			// Load view add.php with post data
             $this->load->view('main/sortir', $post_data);
@@ -386,8 +387,8 @@ class Main extends CI_Controller {
 			// Load view add.php with post data
             redirect('main/sortir', $post_data);
         } else {
-			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
-			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
+			$post_data['tanggal_rec'] = date('Y-m-d H:i:s');
+			$post_data['status'] = 1;
 			$insert = $this->Main_model->insertAll('tbl_sortir', $post_data);
             // Process form request
             // Misalnya, simpan data ke database atau lakukan tindakan lain yang diperlukan
@@ -404,11 +405,15 @@ class Main extends CI_Controller {
 		$post_data = $this->input->post();
 		$sortir = $this->Main_model->getDataSortir($id);
 		
+		$post_data['status'] = 0;
 		if($sortir['tanggal_rec'] == date('Y-m-d H:i:s') ){
 			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
+			$post_data['status'] = 0;
 		} else if ($sortir['tanggal_rec2'] == date('Y-m-d H:i:s')){
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
+			$post_data['status'] = 1;
 		}
+
 		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diubah.');
 
@@ -424,6 +429,8 @@ class Main extends CI_Controller {
 		} else if ($sortir['tanggal_rec2'] == date('Y-m-d H:i:s')){
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
 		}
+		$post_data['status'] = 1;
+		
 		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diubah.');
 
@@ -516,6 +523,35 @@ class Main extends CI_Controller {
 
 		$this->load->view('templates/header', $data);
         $this->load->view('pages/pengajuan_dp',['supplier' => $supplier, 'data' => $datax ]);
+        $this->load->view('templates/footer');
+	}
+
+
+	public function pengajuan_mt(){
+		$data['title'] = 'Pengajuan DP';
+		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+		$datax = $this->Datadaging_model->getDataNoOrder('tbl_pengajuan');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/pengajuan_dp_mt',['supplier' => $supplier, 'data' => $datax ]);
+        $this->load->view('templates/footer');
+	}
+	public function pengajuan_gm(){
+		$data['title'] = 'Pengajuan DP';
+		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+		$datax = $this->Datadaging_model->getDataNoOrder('tbl_pengajuan');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/pengajuan_dp_gm',['supplier' => $supplier, 'data' => $datax ]);
+        $this->load->view('templates/footer');
+	}
+	public function pengajuan_audit(){
+		$data['title'] = 'Pengajuan DP';
+		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+		$datax = $this->Datadaging_model->getDataNoOrder('tbl_pengajuan');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/pengajuan_dp_audit',['supplier' => $supplier, 'data' => $datax ]);
         $this->load->view('templates/footer');
 	}
 
@@ -647,13 +683,21 @@ class Main extends CI_Controller {
 
 	}
 
-	// public function_approve_dp($id, $status)
-	// {
-	// 	$data = array('approved_by' => $user_id ,'status' => $status);
-	// 	$this->Main_model->updateAll('tbl_pengajuan', $data, $id);
-	// 	redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	public function approve_memo_dp($id, $status)
+	{
+		// Pastikan Anda menginisialisasi $user_id dari sesi atau sumber lainnya
+		$user_id = $this->session->userdata('user_id'); // contoh pengambilan ID pengguna dari sesi, sesuaikan dengan logika aplikasi Anda
 
-	// }
+		$data = array('approved_by' => $user_id, 'status' => $status);
+		$this->Main_model->updateAll('tbl_pengajuan', $data, $id);
+
+		// Tambahkan pesan flash untuk memberi umpan balik kepada pengguna
+		$message = ($status == 'approved') ? 'Memo disetujui.' : 'Memo ditolak.'; // Pesan sesuai dengan status
+		$this->session->set_flashdata('success', $message);
+
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
 
 	public function approve_laporan($id) {
 		$user_id = $this->session->userdata('id');
