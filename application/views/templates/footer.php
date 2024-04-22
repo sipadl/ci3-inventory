@@ -40,9 +40,23 @@
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 
 
 <script>
+
+$('.generateId').on('change', (event) => {
+	console.log(event.target.value); // ini adalah nilai id yang dipilih
+    $.get(`<?php echo base_url('/main/get_supplier/') ?>${event.target.value}`, {},
+		function (data, textStatus, jqXHR) {
+			$('#supp_area').val(data.nama_area);
+			$('#supp_bank').val(data.bank);
+			$('#supp_no_rek').val(data.no_rekening);
+		},
+		"json"
+	);
+});
+
 function SimpanSortir(event, val) {
     var form = $('#sortires'); // Assuming #sortires is the ID of your form
     if (val === true) {
@@ -52,6 +66,25 @@ function SimpanSortir(event, val) {
     }
     form.submit(); // Submit the form
 }
+
+function SimpanSortirUpdate(event, val, id) {
+    var form = $('#sortiresUpdate'); // Assuming #sortires is the ID of your form
+    if (val === true) {
+        form.attr('action', '<?php echo base_url('main/sortirUpdateSimpan/') ?>' + id);
+    } else {
+        form.attr('action', '<?php echo base_url('main/sortirUpdate/') ?>' + id);
+    }
+    form.submit(); // Submit the form
+}
+
+function exportToExcel() {
+    $("#myTablePrintAble").table2excel({
+    // exclude: ".excludeThisClass",
+    name: "laporan_root",
+    filename: "laporan_root.xls", // do include extension
+    preserveColors: false // set to true if you want background colors and font colors preserved
+});
+  }
 
 function isiId(val){
 	$('#getId').html('');
@@ -78,6 +111,7 @@ function printDisini(val) {
     $('#myTable').DataTable();
     $('#myTable2').DataTable();
     $('#myTable3').DataTable();
+    $('#myTable4').DataTable();
   });
 
   $(document).ready(function() {
@@ -269,15 +303,14 @@ function printDisini(val) {
     // Kirim data menggunakan AJAX atau lakukan operasi lainnya di sini
 	$.post("<?php echo base_url('/main/tambahDaging'); ?>", data,
 		function (res, textStatus, jqXHR) {
-			// if(jqXHR == 200){
-				console.log(res);
-				window.location.reload(true);
+			console.log(textStatus);
+			if(textStatus == 'success'){
+				window.location.reload();
+			}
 
-			// }
 		},
 		"json"
 	);
-	window.location.reload()
 }
 
 </script>

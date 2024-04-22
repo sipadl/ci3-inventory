@@ -203,7 +203,7 @@
 									</div>
 								</div>
 								<div class="">
-									<a href="" class="btn btn-sm btn-danger mx-1">Hapus </a>
+									<a href="<?php echo base_url('main/deleteUser/'.$xx['id']); ?>" class="btn btn-sm btn-danger mx-1">Hapus </a>
 								</div>
 							</div>
 					</td>

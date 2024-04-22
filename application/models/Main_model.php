@@ -16,6 +16,16 @@ class Main_model extends CI_Model {
 		return $this->db->query("select td.*, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb order by ts.id desc")->result_array();
 	}
 
+	public function GetSortirWithMemo($val) {
+		return $this->db->query('select *,a.id as id_sortirs, a.kode_supplier as kode, b.id as memos , b.status as status_memo from tbl_sortir a left join tbl_memo b on a.kode_supplier = b.kode_supplier
+		where a.status in ('.$val.')')->result_array();
+	}
+
+
+	public function getTblMemo() {
+		return $this->db->query('select * from tbl_memo a left join tbl_sortir b on a.id_sortir = b.id where b.status in (3,4)')->result_array();
+	}
+
 	public function getBahanBakuWithStatus($val) {
 		return $this->db->query("select td.*, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.status in(".$val.") order by ts.id desc")->result_array();
 	}
@@ -71,5 +81,34 @@ class Main_model extends CI_Model {
 			return false;
 		}
 	}
+
+	public function get_datas_detail_from_table($table, $id, $condition){
+		$this->db->where($condition, $id);
+		$query = $this->db->get($table)->row_array();
+		return $query;
+	}
+
+	public function get_datas_all_from_table($table, $id){
+		$query = $this->db->get($table)->row_array();
+		return $query;
+	}
+
+	public function delete($table, $id) {
+		$this->db->where('id', $id);
+		$this->db->get($table);
+		$this->db->delete();
+	}
+	public function get_laporan_root () {
+		return $this->db->query("select *, d.status as status_laporan from tbl_supplier a 
+		left join tbl_sortir b
+		on a.kode_supplier = b.kode_supplier 
+		join tbl_daging c on c.id = b.id_bb 
+		left join tbl_laporan d on b.id_bb = d.id_sortir")->result_array();
+	} 
+
+	public function get_price() {
+		return $this->db->query('select * from tbl_price')->result_array();
+	}
 	
+
 }
