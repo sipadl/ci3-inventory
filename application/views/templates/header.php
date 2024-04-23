@@ -266,9 +266,9 @@
                 </a>
               </li>
 					<li class="nav-item">
-                <a href="<?php echo base_url('main/memo_subsidi_by_gm') ?>" class="nav-link">
+                <a href="<?php echo base_url('main/penerimaan_bahan') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Approval Memo Subsidi </p>
+                  <p>Penerimaan Bahan </p>
                 </a>
               </li>
 					

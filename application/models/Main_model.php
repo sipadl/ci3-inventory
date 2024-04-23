@@ -16,6 +16,11 @@ class Main_model extends CI_Model {
 		return $this->db->query("select td.*, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb order by ts.id desc")->result_array();
 	}
 
+
+	public function getBahanBakuBaru() {
+		return $this->db->query('select b.id as id_bahan_baku, b.*, a.* from tbl_daging b left join tbl_sortir a on a.id_bb = b.id order by b.id desc')->result_array();
+	}
+
 	public function GetSortirWithMemo($val) {
 		return $this->db->query('select *, b.status as status_memo from tbl_sortir a left join tbl_memo b on a.id = b.id_sortir')->result_array();
 	}
@@ -53,6 +58,7 @@ class Main_model extends CI_Model {
 	public function insertAll($table, $data)
 	{
 		$this->db->insert($table,  $data);
+		return $this->db->insert_id();
 	}
 
 	public function updateAll($table, $data, $id)
@@ -122,5 +128,10 @@ class Main_model extends CI_Model {
 		return $this->db->query('select * from tbl_price')->result_array();
 	}
 	
+
+	public function getDagingWithSubDaging()
+	{
+		return $this->db->query('select * from tbl_daging a left join tbl_sub_daging b on a.id = b.id_bahan_baku')->result_array();
+	}
 
 }

@@ -191,6 +191,14 @@ function printDisini(val) {
 		$('.isi').append(`
 		<div class="dagings" id="${dagingCount}">
 		
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="form-group">
+				<label for="tanggal">Spesifikasi Bahan:</label>
+				<input type="text" class="form-control" id="spec_bahan${dagingCountP}">
+				</div>
+			</div>
+		</div>
 		<div class="daging-putih">
 			<h5>Daging Putih</h5>
 			<hr>
@@ -265,23 +273,33 @@ function printDisini(val) {
 	function kirimData() {
     var tanggal = document.getElementById("tanggal").value;
     var supplier = document.getElementById("supplier").value;
-    var spesifikasi = document.getElementById("spesifikasi").value;
     var qty = 0;
 
     var dataDagingP = [];
     var dataDagingM = [];
+	var spesifikasi_bahan = [];
     var dagingPElements = document.getElementsByClassName("daging-putih");
     var dagingMElements = document.getElementsByClassName("daging-merah");
     for (var i = 0; i < dagingPElements.length; i++) {
+        var spesifikasi_bahan = document.getElementById("spec_bahan" + i).value;
         var spek = document.getElementById("spekDagingPutih" + i).value;
         var bungkus = document.getElementById("bungkusDagingPutih" + i).value;
         var tkotor = document.getElementById("tkotorDagingPutih" + i).value;
         var tbersih = document.getElementById("tbersihDagingPutih" + i).value;
+		var spek2 = document.getElementById("spekDagingMerah" + i).value;
+        var bungkus2 = document.getElementById("bungkusDagingMerah" + i).value;
+        var tkotor2 = document.getElementById("tkotorDagingMerah" + i).value;
+        var tbersih2 = document.getElementById("tbersihDagingMerah" + i).value;
         dataDagingP.push({
+			spesifikasi_bahan: spesifikasi_bahan,
             spek: spek,
             bungkus: bungkus,
             tkotor: tkotor,
-            tbersih: tbersih
+            tbersih: tbersih,
+			spek2: spek2,
+            bungkus2: bungkus2,
+            tkotor2: tkotor2,
+            tbersih2: tbersih2,
         });
     }
     for (var i = 0; i < dagingMElements.length; i++) {
@@ -301,7 +319,7 @@ function printDisini(val) {
     var data = {
         tanggal: tanggal,
         supplier: supplier,
-		spesifikasi: spesifikasi,
+		spesifikasi: null,
         dagingPutih: JSON.stringify(dataDagingP),
         dagingMerah: JSON.stringify(dataDagingM),
         qty: qty,

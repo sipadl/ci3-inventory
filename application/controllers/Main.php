@@ -59,33 +59,21 @@ class Main extends CI_Controller {
         // Tangkap data POST
         $tanggal = $this->input->post('tanggal');
         $supplier = $this->input->post('supplier');
-        $spesifikasiDagingMerah = $this->input->post('dagingMerah');
-		$qty = 0;
-		$dataDagingMerah = json_decode($spesifikasiDagingMerah);
-		$spesifikasiDagingPutih = $this->input->post('dagingPutih');
-		foreach($dataDagingMerah as $dag) {
-			$qty += $dag->tbersih;
-		}
-		$dataDagingPutih = json_decode($spesifikasiDagingPutih);
-		foreach($dataDagingPutih as $dag) {
-			$qty += $dag->tbersih;
-		}
-		$spesifikasi = $this->input->post('spesifikasi');
-		$this->load->model('DataDaging_model');
-
+		$dataSubBahanBaku = $this->input->post('dagingPutih');
 		// Menyiapkan data yang akan disimpan
 		$data = array(
 			'tanggal' => $tanggal ?? date('Y-m-d H:i:s'),
 			'supplier' => $supplier,
-			'spesifikasi' => $spesifikasi,
-			'daging_merah' => $spesifikasiDagingMerah,
-			'daging_putih' => $spesifikasiDagingPutih,
 			'wilayah' => 0,
-			'qty' => $qty,
 		);
-
 		// Menyimpan data menggunakan model
-		$insert_id = $this->DataDaging_model->addDaging($data);
+		$insert_id = $this->Main_model->insertAll('tbl_daging',$data);
+		$datas = json_decode($dataSubBahanBaku, true);
+		foreach($datas as $datax) {
+			$datax['id_bahan_baku'] = $insert_id;
+			$datax['qty'] = $datax['tbersih'] + $datax['tbersih2'];
+			$this->Main_model->insertAll('tbl_sub_daging',$datax);
+		}
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
 		echo(json_encode($data));
        
@@ -351,7 +339,7 @@ class Main extends CI_Controller {
 	public function sortir(){
 		$data['title'] = 'Sortir';
 		$sortir = $this->Main_model->getDataSortir(null);
-		$bahanbaku = $this->Main_model->getBahanBaku();
+		$bahanbaku = $this->Main_model->getBahanBakuBaru();
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -605,6 +593,20 @@ class Main extends CI_Controller {
 		$this->load->view('templates/header', $data);
         $this->load->view('pages/approval_memo_by_gm',['sortir' => $sortir, 'price' => $price, 'memo' => $memo ]);
         $this->load->view('templates/footer');
+	}
+
+	public function penerimaan_bahan() 
+	{
+		$data['title'] = 'Penerimaan Bahan';
+		$sortir = $this->Main_model->getTblMemo();
+		$price = $this->Main_model->get_price();
+		$memo = $this->Main_model->getTblMemo();
+
+
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/penerimaan_bahan',['sortir' => $sortir, 'price' => $price, 'memo' => $memo ]);
+		$this->load->view('templates/footer');
 	}
 
 	

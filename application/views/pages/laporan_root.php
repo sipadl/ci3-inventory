@@ -51,7 +51,8 @@
 					<tbody>
 						<?php 
 						$no = 1;
-						foreach ($supplier as $da) : ?>
+						foreach ($supplier as $da) : 
+						?>
 						<tr>
 							<td><?php echo $no++ ?></td>
 							<td><?php echo $da['kode_supplier'] ?></td>
@@ -138,7 +139,7 @@
 
 							<td><?php $receiving = (floatval($total_nota) + floatval($total_subsidi_dibayar));
 							if($receiving > 1 ) {
-								echo number_format($receiving / floatval($da['qty']),2);
+								// echo number_format($receiving / floatval($qty),2);
 							} else {
 								echo 0;
 							}
@@ -161,6 +162,13 @@
 						foreach ($supplier as $da) : ?>
 						
 						<?php 
+
+						$qty = 0;
+						$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$da['id_bb'])->result_array(); 
+						foreach($dataDaging as $sdb) {
+							$qty = floatval($sdb['tkotor']) + floatval($sdb['tkotor2']) + floatval($sdb['tbersih']) + floatval($sdb['tbersih']);
+						}
+
 						$fresh += floatval($da['col']) + floatval($da['bf']) + floatval($da['jb']) + floatval($da['jbb_jf']) + floatval($da['jbb_jk'])
 								+ floatval($da['jbb_bf']) + floatval($da['xlp']) + floatval($da['bf_k3_col']) + floatval($da['bf_k3_jb']) + floatval($da['bf_k3_jk'])
 								+ floatval($da['bf_k3_jl']) + floatval($da['bf_jl']) + floatval($da['bf_bf']) + floatval($da['bf_bf']) + floatval($da['bf_kj']) + 
@@ -255,7 +263,13 @@
 			<tbody>
 				<?php 
 				$no = 1;
-				foreach ($supplier as $da) : ?>
+				foreach ($supplier as $da) : 
+				$qty = 0;
+				$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$da['id_bb'])->result_array(); 
+				foreach($dataDaging as $sdb) {
+					$qty = floatval($sdb['tkotor']) + floatval($sdb['tkotor2']) + floatval($sdb['tbersih']) + floatval($sdb['tbersih']);
+				}
+				?>
 				<tr>
 					<td><?php echo $no ++ ?></td>
 					<td><?php echo $da['kode_supplier'] ++ ?></td>
@@ -344,6 +358,8 @@
 											floatval($da['bf_spk_xlp']) + floatval($da['bf_spk_sp']) + floatval($da['spk_sp_jb']) +  floatval($da['spk_sp_bfp']) + floatval($da['spk_sp_sph']) + 
 											floatval($da['sp_cl']) + floatval($da['sp_clf']) + floatval($da['mh']) + floatval($da['mh_slb']);
 											echo $fresh; 
+
+											
 										?></td>
 										<td id="mhr">
 										<?php $sum = floatval($da['phr']) + floatval($da['basi_col']) + floatval($da['basi_jb']) + floatval($da['basi_sp']) + floatval($da['mhr']) + 
@@ -365,7 +381,7 @@
 										?>
 										</td>
 										<td id="qty_bb">
-											<?php echo $da['timbangan_bb'] ?>
+											<?php echo $qty ?>
 										</td>
 										<td id="total_nota">
 											<?php 
@@ -420,7 +436,7 @@
 
 										<td><?php $receiving = (floatval($total_nota) + floatval($total_subsidi_dibayar));
 										if($receiving > 1 ) {
-											echo number_format($receiving / floatval($da['qty']),2);
+											// echo number_format($receiving / floatval($qty),2);
 										} else {
 											echo 0;
 										}
