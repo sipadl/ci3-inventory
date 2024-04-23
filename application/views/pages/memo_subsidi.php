@@ -43,13 +43,13 @@
 						} elseif ($status == 1) {
 							echo "Accepted";
 						} elseif ($status == 2) {
-							echo "Accepted By TL Sortir";
+							echo "Accepted";
 						} elseif ($status == 3) {
-							echo "Accepted By Bag. Produksi";
+							echo "Accepted";
 						} elseif ($status == 4) {
-							echo "Accepted By Bag. Coasting";
+							echo "Accepted";
 						} elseif ($status == 5) {
-							echo "Accepted By General Manager";
+							echo "Accepted";
 						} else {
 							echo "Unknown"; 
 						} ?>
@@ -73,7 +73,6 @@
 										</div>
 										<div class="modal-body">
 											<div class="">
-												<?php echo var_dump($ss['ids']) ?>)
 												<label for="">Kode Supplier</label>
 												<input type="hidden" name="id_sortir" value="<?php echo $ss['ids'] ?>">
 												<input type="text" name="kode_supplier" readonly value="<?php echo $ss['kode_supplier'] ?>" class="form-control mb-1">
@@ -143,18 +142,8 @@
 							echo "Rejected";
 						} elseif ($status == 0) {
 							echo "Pending";
-						} elseif ($status == 1) {
-							echo "Diterima Oleh MT";
-						} elseif ($status == 2) {
-							echo "Diterima Oleh GM";
-						} elseif ($status == 3) {
-							echo "Diterima Oleh Audit";
-						} elseif ($status == 4) {
-							echo "Accepted By Bag. Coasting";
-						} elseif ($status == 5) {
-							echo "Accepted By General Manager";
-						} else {
-							echo "Unknown"; 
+						} elseif ($status < 1) {
+							echo "Accepted"; 
 						} ?>
                         </td>
 						<td>
@@ -280,18 +269,8 @@
 							echo "Rejected";
 						} elseif ($status == 0) {
 							echo "Pending";
-						} elseif ($status == 1) {
+						} elseif ($status > 1) {
 							echo "Accepted";
-						} elseif ($status == 2) {
-							echo "Accepted By TL Sortir";
-						} elseif ($status == 3) {
-							echo "Accepted By Bag. Produksi";
-						} elseif ($status == 4) {
-							echo "Accepted By Bag. Coasting";
-						} elseif ($status == 5) {
-							echo "Accepted By General Manager";
-						} else {
-							echo "Unknown"; 
 						} ?>
                         </td>
 						<td>
