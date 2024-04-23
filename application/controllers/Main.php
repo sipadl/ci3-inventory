@@ -413,10 +413,10 @@ class Main extends CI_Controller {
 		$sortir = $this->Main_model->getDataSortir($id);
 		
 		$post_data['status'] = 0;
-		if($sortir['tanggal_rec'] == date('Y-m-d H:i:s') ){
+		if($sortir[0]['tanggal_rec'] == date('Y-m-d H:i:s') ){
 			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
 			$post_data['status'] = 0;
-		} else if ($sortir['tanggal_rec2'] == date('Y-m-d H:i:s')){
+		} else if ($sortir[0]['tanggal_rec2'] == date('Y-m-d H:i:s') ?? $sortir[0]['tanggal_rec2'] != null ){
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
 			$post_data['status'] = $status ?? 1;
 		}
@@ -432,9 +432,9 @@ class Main extends CI_Controller {
 		$sortir = $this->Main_model->getDataSortir($id);
 
 		
-		if($sortir['tanggal_rec'] == date('Y-m-d H:i:s') ){
+		if($sortir[0]['tanggal_rec'] == date('Y-m-d H:i:s') ){
 			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
-		} else if ($sortir['tanggal_rec2'] == date('Y-m-d H:i:s')){
+		} else if ($sortir[0]['tanggal_rec2'] == date('Y-m-d H:i:s')){
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
 		}
 		$post_data['status'] = $status ?? 1;
