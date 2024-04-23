@@ -596,6 +596,21 @@ class Main extends CI_Controller {
         $this->load->view('templates/footer');
 	}
 
+	public function memo_subsidi_by_gm(){
+		$data['title'] = 'Approval Memo Subsidi';
+		$sortir = $this->Main_model->getTblMemo();
+		$price = $this->Main_model->get_price();
+		$memo = $this->Main_model->getTblMemo();
+
+
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/approval_memo_by_gm',['sortir' => $sortir, 'price' => $price, 'memo' => $memo ]);
+        $this->load->view('templates/footer');
+	}
+
+	
+
 	public function input_memo_subdisi($id) {
 		$data_post = $this->input->post();
 		$data_post['id_sortir'] = $id;

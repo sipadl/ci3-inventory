@@ -221,7 +221,7 @@
 												<input type="hidden" name="kode_supplier" value="<?php echo $ss['kode_supplier'] ?>">
 												<input type="hidden" name="total" value="<?php echo $phr * floatval($price[14]['harga']) + (floatval($ss['mh']) + floatval($ss['mh_slb'])) * floatval($price[12]['harga']) + (floatval($ss['shell'])) * floatval($price[24]['harga']); ?>">
 												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-												<button type="submit" class="btn btn-primary">Simpan & Approve</button>
+												<!-- <button type="submit" class="btn btn-primary">Simpan & Approve</button> -->
 											</form>
 										</div>
 									</div>

@@ -1542,7 +1542,10 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														$mhX = (floatval($ss['mh']) + floatval($ss['mh_slb']));
 														$clX = floatval($ss['sp_cl']);
 														$clfX = floatval($ss['sp_clf']);
+														$mhr = floatval($ss['mh']) + floatval($ss['mh_slb']);
+														$phr = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
 														$sumXX = $colX + $jbX + $jkX + $bfX + $spkX + $spX + $mhX + $clX + $clfX;
+														$grand_total = $sumXX + $phr + $mhr;
 
 														$qty = 0;
 														$dataMerah = json_decode($ss['daging_merah']);
@@ -1568,7 +1571,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td colspan="2"></td>
                                                             <td colspan="2">Grand Total</td>
-                                                            <td></td>
+                                                            <td><?php echo $grand_total ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
