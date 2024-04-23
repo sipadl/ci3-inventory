@@ -602,8 +602,6 @@ class Main extends CI_Controller {
 		$price = $this->Main_model->get_price();
 		$memo = $this->Main_model->getTblMemo();
 
-
-
 		$this->load->view('templates/header', $data);
         $this->load->view('pages/approval_memo_by_gm',['sortir' => $sortir, 'price' => $price, 'memo' => $memo ]);
         $this->load->view('templates/footer');
@@ -638,6 +636,15 @@ class Main extends CI_Controller {
 		$data = array('approved_by' => $user_id ,'status' => 4);
 		$this->Main_model->updateAll('tbl_memo', $data, $id);
 		$this->session->set_flashdata('success', 'Memo berhasil diapprove.');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
+	public function approve_laporan_root($id) {
+		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => 1);
+		$this->Main_model->updateAll('tbl_laporan', $data, $id);
+		$this->session->set_flashdata('success', 'Laporan berhasil diapprove.');
 		// redirect(base_url(), 'refresh');
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}

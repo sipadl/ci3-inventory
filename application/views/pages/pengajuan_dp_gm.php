@@ -409,7 +409,8 @@
 								<div class="form-group row">
 									<label for="" class="form-control-label col-md-12 col-sm-12">Keterangan Approval</label>
 									<div class="col-md-12 col-sm-12">
-										<textarea name="keterangan_approval" id="" cols="" <?php echo $dd['keterangan_approval'] ? 'readonly' : '' ?> rows="3" class="form-control"> <?php echo $dd['keterangan_approval'] ?? '' ?></textarea>
+									<textarea name="keterangan_approval" id="" cols="" <?php echo $dd['status'] != 0  ? 'readonly' : '' ?> rows="3" class="form-control"><?php echo $dd['keterangan_approval'] ?? '' ?></textarea>
+
 									</div>
 								</div>
 							</div>

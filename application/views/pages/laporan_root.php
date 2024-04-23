@@ -247,8 +247,8 @@
 					<th>No.</th>
 					<th>Kode Supplier</th>
 					<th>Tanggal Input</th>
-					<!-- <th>Approved By</th> -->
-					<!-- <th>Status</th> -->
+					<th>Approved By</th>
+					<th>Status</th>
 					<th>Aksi</th>
 				</tr>
 			</thead>
@@ -260,13 +260,31 @@
 					<td><?php echo $no ++ ?></td>
 					<td><?php echo $da['kode_supplier'] ++ ?></td>
 					<td><?php echo $da['tanggal'] ?></td>
-					<!-- <td><?php echo $da['approved_by'] ?></td> -->
-					<!-- <td><?php echo $da['status'] ?></td> -->
+					<td>
+					<?php if($da['approved_by'] != null ) {
+							 $approved = $this->db->query("select username from tbl_user where id = ".$da['approved_by']."")->row_array();
+							 echo $approved['username'];
+							} else {
+							echo '';
+							}
+						?>
+					</td>
+					<td><?php 
+					$status = $da['status'];
+					if ($status == -1) {
+							echo "Rejected";
+						} elseif ($status == 0) {
+							echo "Pending";
+						} elseif ($status == 1) {
+							echo "Accepted";
+							} ?></td>
 					<td>
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modelId">
-					  Tambah Manual Data
-					</button>
+					<?php if(!$da['id_laporan']) { ?> 
+						<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modelId">
+							Tambah Manual Data
+						</button>
+					<?php } ?>
 					<!-- Button trigger modal -->
 					<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelId-<?php echo $da['id'] ?>">
 					  <i class="fa fa-eye" aria-hidden="true"></i>
@@ -317,7 +335,7 @@
 							</thead>
 								<tbody>
 									<tr>
-										<td><?php echo $no++ ?></td>
+										<td>1</td>
 										<td><?php echo $da['kode_supplier'] ?></td>
 										<td><?php echo $da['nama_supplier'] ?></td>
 										<td id="fresh"><?php $fresh = floatval($da['col']) + floatval($da['bf']) + floatval($da['jb']) + floatval($da['jbb_jf']) + floatval($da['jbb_jk'])
@@ -414,6 +432,9 @@
 								</table>
 								</div>
 								<div class="modal-footer">
+									<?php if($da['id_laporan']) { ?> 
+									<a href="<?php echo base_url('main/approve_laporan_root/'.$da['id_laporan']); ?>" class="btn btn-primary">Approve</a>
+									<?php } ?>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 								</div>
 							</div>
