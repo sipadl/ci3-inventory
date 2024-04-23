@@ -22,9 +22,11 @@ class Main_model extends CI_Model {
 
 
 	public function getTblMemo() {
-		return $this->db->query('select
+		return $this->db->query('
+		select
 		a.*,
 		c.*,
+		a.id as ids,
 		a.kode_supplier as supplier,
 		b.status as status_memo,
 		b.id as id_memo,
@@ -33,7 +35,7 @@ class Main_model extends CI_Model {
 		tbl_sortir a
 	left join tbl_memo b on
 		a.id = b.id_sortir
-	inner join tbl_daging c on c.id = a.id_bb ')->result_array();
+	join tbl_daging c on c.id = a.id_bb ')->result_array();
 	}
 
 	public function getBahanBakuWithStatus($val) {

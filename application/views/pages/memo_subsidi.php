@@ -63,7 +63,7 @@
 							<!-- Modal -->
 							<div class="modal fade" id="modelId-<?php echo $ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
 								<div class="modal-dialog" role="document">
-									<form action="<?php echo base_url('main/input_memo_subdisi/'.$ss['id']); ?>" method="post">
+									<form action="<?php echo base_url('main/input_memo_subdisi/'.$ss['ids']); ?>" method="post">
 									<div class="modal-content">
 										<div class="modal-header">
 											<h5 class="modal-title">Detail Subsidi</h5>
@@ -73,15 +73,16 @@
 										</div>
 										<div class="modal-body">
 											<div class="">
+												<?php echo var_dump($ss['ids']) ?>)
 												<label for="">Kode Supplier</label>
-												<input type="hidden" name="id_sortir" value="<?php echo $ss['id'] ?>">
+												<input type="hidden" name="id_sortir" value="<?php echo $ss['ids'] ?>">
 												<input type="text" name="kode_supplier" readonly value="<?php echo $ss['kode_supplier'] ?>" class="form-control mb-1">
 												<label for="">Tanggal Sortir</label>
 												<input type="text" name="tanggal" readonly value="<?php echo $ss['tanggal_rec'] ?>" class="form-control mb-1">
 												<label for="">Qty</label>
 												<input type="text" name="qty" readonly value="<?php echo $total ?>" class="form-control mb-1">
 												<label for="">Subsidi</label>
-												<?php if($ss['subsidi'] == null) { ?> 
+												<?php if(!$ss['subsidi']) { ?> 
 													<input type="text" name="subsidi" class="form-control mb-1" placeholder="Subsidi">
 													<?php } else { ?>
 														<input type="text" name="subsidi" readonly class="form-control mb-1" placeholder="Subsidi" value="<?php echo $ss['subsidi'] ?>">
@@ -558,7 +559,7 @@
 												<tbody>
 													<tr>
 														<td>1</td>
-														<td>Subsidi Rajungan Fresh</td>
+														<td>Subsidi <?php echo $ss['spesifikasi'] ?></td>
 														<td><?php echo $ss['qty'] ?></td>
 														<td><?php echo $total / $ss['qty'] ?></td>
 														<td><?php echo $total ?></td>
@@ -573,9 +574,9 @@
 													<tr>
 														<td>2</td>
 														<td>Potongan</td>
+														<td><?php echo $ss['subsidi'] ?></td>
 														<td></td>
-														<td></td>
-														<td><?php echo (floatval($total)); ?></td>
+														<td><?php echo (floatval($total) - $ss['subsidi']); ?></td>
 													</tr>
 													<tr>
 														<td colspan="4">Jumlah</td>
