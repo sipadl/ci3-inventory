@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2024 at 04:26 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.1.27
+-- Waktu pembuatan: 25 Apr 2024 pada 05.27
+-- Versi server: 10.4.28-MariaDB
+-- Versi PHP: 8.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_area`
+-- Struktur dari tabel `tbl_area`
 --
 
 CREATE TABLE `tbl_area` (
@@ -34,7 +34,7 @@ CREATE TABLE `tbl_area` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_area`
+-- Dumping data untuk tabel `tbl_area`
 --
 
 INSERT INTO `tbl_area` (`id_area`, `nama_area`, `kode_area`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `tbl_area` (`id_area`, `nama_area`, `kode_area`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_daging`
+-- Struktur dari tabel `tbl_daging`
 --
 
 CREATE TABLE `tbl_daging` (
@@ -59,7 +59,7 @@ CREATE TABLE `tbl_daging` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_daging`
+-- Dumping data untuk tabel `tbl_daging`
 --
 
 INSERT INTO `tbl_daging` (`id`, `tanggal`, `supplier`, `user_id`, `wilayah`, `status`) VALUES
@@ -69,7 +69,7 @@ INSERT INTO `tbl_daging` (`id`, `tanggal`, `supplier`, `user_id`, `wilayah`, `st
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_kota`
+-- Struktur dari tabel `tbl_kota`
 --
 
 CREATE TABLE `tbl_kota` (
@@ -80,7 +80,7 @@ CREATE TABLE `tbl_kota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_kota`
+-- Dumping data untuk tabel `tbl_kota`
 --
 
 INSERT INTO `tbl_kota` (`id_kota`, `kode_area`, `nama_kota`, `status`) VALUES
@@ -93,7 +93,7 @@ INSERT INTO `tbl_kota` (`id_kota`, `kode_area`, `nama_kota`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_laporan`
+-- Struktur dari tabel `tbl_laporan`
 --
 
 CREATE TABLE `tbl_laporan` (
@@ -106,21 +106,23 @@ CREATE TABLE `tbl_laporan` (
   `created_at` date DEFAULT NULL,
   `id_sortir` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT 0,
-  `approved_by` int(11) DEFAULT NULL
+  `approved_by` int(11) DEFAULT NULL,
+  `subsidi_dibayar_3` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_laporan`
+-- Dumping data untuk tabel `tbl_laporan`
 --
 
-INSERT INTO `tbl_laporan` (`id`, `subsidi_normal`, `subsidi_dibayar_1`, `subsidi_dibayar_2`, `cap_shell`, `subsidi_transport`, `created_at`, `id_sortir`, `status`, `approved_by`) VALUES
-(1, '1000000', '1000000', '1000000', '1000000', '1000000', '2024-04-21', 57, 0, NULL),
-(2, '500000', '300000', '100000', '10000', '10000', '2024-04-22', 1, 1, NULL);
+INSERT INTO `tbl_laporan` (`id`, `subsidi_normal`, `subsidi_dibayar_1`, `subsidi_dibayar_2`, `cap_shell`, `subsidi_transport`, `created_at`, `id_sortir`, `status`, `approved_by`, `subsidi_dibayar_3`) VALUES
+(1, '1000000', '1000000', '1000000', '1000000', '1000000', '2024-04-21', 57, 0, NULL, NULL),
+(2, '500000', '300000', '100000', '10000', '10000', '2024-04-22', 1, 1, NULL, NULL),
+(3, '40000', '40000', '20000', '10', '30000', '2024-04-24', 19, 0, NULL, '10000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_memo`
+-- Struktur dari tabel `tbl_memo`
 --
 
 CREATE TABLE `tbl_memo` (
@@ -135,7 +137,7 @@ CREATE TABLE `tbl_memo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_memo`
+-- Dumping data untuk tabel `tbl_memo`
 --
 
 INSERT INTO `tbl_memo` (`id`, `kode_supplier`, `tanggal`, `qty`, `status`, `subsidi`, `approved_by`, `id_sortir`) VALUES
@@ -147,7 +149,7 @@ INSERT INTO `tbl_memo` (`id`, `kode_supplier`, `tanggal`, `qty`, `status`, `subs
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pembayaran_dp`
+-- Struktur dari tabel `tbl_pembayaran_dp`
 --
 
 CREATE TABLE `tbl_pembayaran_dp` (
@@ -168,7 +170,7 @@ CREATE TABLE `tbl_pembayaran_dp` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_penerimaan`
+-- Struktur dari tabel `tbl_penerimaan`
 --
 
 CREATE TABLE `tbl_penerimaan` (
@@ -183,7 +185,7 @@ CREATE TABLE `tbl_penerimaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_penerimaan`
+-- Dumping data untuk tabel `tbl_penerimaan`
 --
 
 INSERT INTO `tbl_penerimaan` (`id`, `status`, `approved_by`, `kode_supplier`, `id_sortir`, `tanggal`, `potongan_harga`, `total`) VALUES
@@ -194,7 +196,7 @@ INSERT INTO `tbl_penerimaan` (`id`, `status`, `approved_by`, `kode_supplier`, `i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pengajuan`
+-- Struktur dari tabel `tbl_pengajuan`
 --
 
 CREATE TABLE `tbl_pengajuan` (
@@ -213,23 +215,26 @@ CREATE TABLE `tbl_pengajuan` (
   `created_at` datetime DEFAULT NULL,
   `supplier` varchar(100) DEFAULT NULL,
   `approved_by` varchar(100) DEFAULT NULL,
-  `keterangan_approval` varchar(100) DEFAULT NULL
+  `keterangan_approval` varchar(100) DEFAULT NULL,
+  `qty_kg` varchar(100) DEFAULT NULL,
+  `dp_100` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_pengajuan`
+-- Dumping data untuk tabel `tbl_pengajuan`
 --
 
-INSERT INTO `tbl_pengajuan` (`id`, `area`, `bahan_masuk`, `upload_images`, `dp_60`, `request_dp`, `total_bayar`, `bank`, `no_rek`, `tanggal_transaksi`, `keterangan`, `status`, `created_at`, `supplier`, `approved_by`, `keterangan_approval`) VALUES
-(1, 'Purwakarta', '1', NULL, '1', '1', '2', 'Placeat unde ab et ', '', '2024-04-20', 'a', 1, '2024-04-20 11:07:41', 'K1', NULL, '  1111'),
-(2, 'Purwakarta', 'Doloremque dolore ex', NULL, 'Elit quaerat est q', 'Exercitation odit no', 'Delectus neque sit ', 'bca', '', '2008-04-28', 'Deserunt illum enim', 1, '2024-04-20 11:24:13', 'j6', NULL, NULL),
-(3, 'Purwakarta', '1', NULL, '15', '10', '25', 'Placeat unde ab et ', '1234', '2024-04-23', 'menunggu audit', 0, '2024-04-22 09:52:29', 'K1', NULL, NULL),
-(4, 'Purwakarta', '3', 'user8-128x128.jpg', '1', '2', '3', 'Placeat unde ab et ', '1234', '2024-04-22', 'p', 0, '2024-04-22 09:56:23', 'K1', NULL, NULL);
+INSERT INTO `tbl_pengajuan` (`id`, `area`, `bahan_masuk`, `upload_images`, `dp_60`, `request_dp`, `total_bayar`, `bank`, `no_rek`, `tanggal_transaksi`, `keterangan`, `status`, `created_at`, `supplier`, `approved_by`, `keterangan_approval`, `qty_kg`, `dp_100`) VALUES
+(1, 'Purwakarta', '1', NULL, '1', '1', '2', 'Placeat unde ab et ', '', '2024-04-20', 'a', 1, '2024-04-20 11:07:41', 'K1', NULL, '  1111', NULL, NULL),
+(2, 'Purwakarta', 'Doloremque dolore ex', NULL, 'Elit quaerat est q', 'Exercitation odit no', 'Delectus neque sit ', 'bca', '', '2008-04-28', 'Deserunt illum enim', 1, '2024-04-20 11:24:13', 'j6', NULL, NULL, NULL, NULL),
+(3, 'Purwakarta', '1', NULL, '15', '10', '25', 'Placeat unde ab et ', '1234', '2024-04-23', 'menunggu audit', 0, '2024-04-22 09:52:29', 'K1', NULL, NULL, NULL, NULL),
+(4, 'Purwakarta', '3', 'user8-128x128.jpg', '1', '2', '3', 'Placeat unde ab et ', '1234', '2024-04-22', 'p', 0, '2024-04-22 09:56:23', 'K1', NULL, NULL, NULL, NULL),
+(5, 'Purwakarta', '1', 'AdminLTELogo2.png', '4', '5', '6', 'Placeat unde ab et ', '1234', '2024-04-24', '1', 0, '2024-04-24 14:27:40', 'K1', NULL, NULL, '2', '3');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_price`
+-- Struktur dari tabel `tbl_price`
 --
 
 CREATE TABLE `tbl_price` (
@@ -240,7 +245,7 @@ CREATE TABLE `tbl_price` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_price`
+-- Dumping data untuk tabel `tbl_price`
 --
 
 INSERT INTO `tbl_price` (`id_price`, `nama_produk`, `harga`, `id_area`) VALUES
@@ -273,7 +278,7 @@ INSERT INTO `tbl_price` (`id_price`, `nama_produk`, `harga`, `id_area`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_role`
+-- Struktur dari tabel `tbl_role`
 --
 
 CREATE TABLE `tbl_role` (
@@ -283,7 +288,7 @@ CREATE TABLE `tbl_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_role`
+-- Dumping data untuk tabel `tbl_role`
 --
 
 INSERT INTO `tbl_role` (`id_role`, `nama_role`, `descriptiom`) VALUES
@@ -301,7 +306,7 @@ INSERT INTO `tbl_role` (`id_role`, `nama_role`, `descriptiom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_sortir`
+-- Struktur dari tabel `tbl_sortir`
 --
 
 CREATE TABLE `tbl_sortir` (
@@ -361,22 +366,26 @@ CREATE TABLE `tbl_sortir` (
   `approved_by` int(11) DEFAULT NULL,
   `cap` varchar(100) DEFAULT NULL,
   `potong` varchar(100) DEFAULT NULL,
-  `note` varchar(100) DEFAULT NULL
+  `note` varchar(100) DEFAULT NULL,
+  `shell_phr_keras` varchar(100) DEFAULT NULL,
+  `shell_mhr_keras` varchar(100) DEFAULT NULL,
+  `shell_phr_halus` varchar(100) DEFAULT NULL,
+  `shell_mhr_halus` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_sortir`
+-- Dumping data untuk tabel `tbl_sortir`
 --
 
-INSERT INTO `tbl_sortir` (`id`, `kode_supplier`, `tanggal_sj`, `tanggal_rec`, `tanggal_rec2`, `tanggal_rec3`, `number`, `col`, `bf`, `jb`, `jb_bf`, `jbb_jk`, `jbb_bf`, `xlp`, `bf_k3_col`, `bf_k3_jb`, `bf_k3_jk`, `bf_k3_jl`, `bf_jl`, `bf_kj`, `bf_bf`, `bf_lp_slb`, `bf_sp`, `bf_spk_xlp`, `bf_spk_sp`, `spk_sp_jb`, `spk_sp_xlp`, `spk_sp_bfp`, `spk_sp_sph`, `sp_cl`, `sp_clf`, `mh`, `mh_slb`, `phr`, `basi_col`, `basi_jb`, `basi_jk`, `basi_xlp`, `basi_bf`, `basi_sp`, `mhr`, `basi_cl`, `basi_mh`, `air`, `shell`, `loss`, `timbangan_kotor`, `timbangan_bb`, `status`, `jbb_jf`, `spk_sp`, `sp_sph`, `id_bb`, `approved_by`, `cap`, `potong`, `note`) VALUES
-(6, 'K2', '2024-04-22', '2024-04-22', NULL, NULL, 1, '9', '9', '9', '9', '9', NULL, '9', '99', '', '99', '99', '9', '9', '9', '9', '9', '9', '9', '9', '9', '99', NULL, '9', '9', '9', '9', NULL, '9', '9', '9', '9', '9', '9', NULL, '9', '9', '9', '9', '9', NULL, NULL, 5, '9', '9', '9', 1, 4, 'ya', '9', NULL),
-(7, 'j6', '2024-04-23', '2024-04-22', NULL, NULL, 7, '3', '8', '8', '8', '8', NULL, '8', '88', '8', '8', '8', '8', '8', '8', '8', '8', '8', '8', '8', '8', '8', NULL, '8', '8', '8', '8', NULL, '8', '8', '8', '8', '8', '8', NULL, '8', '8', '8', '8', '5', NULL, NULL, 5, '8', '8', '8', 2, 4, 'ya', '11', NULL),
-(8, 'K1', '2024-04-23', '2024-04-23', NULL, NULL, 8, '1', '2', '3', '4', '5', NULL, '7', '8', '9', '9', '8', '7', '6', '5', '4', '3', '2', '1', '2', '2', '2', NULL, '1', '3', '3', '3', NULL, '4', '4', '4', '4', '4', '4', NULL, '4', '4', '5', '5', '5', NULL, NULL, 5, '6', '2', '2', 19, NULL, 'ya', '22', 'X');
+INSERT INTO `tbl_sortir` (`id`, `kode_supplier`, `tanggal_sj`, `tanggal_rec`, `tanggal_rec2`, `tanggal_rec3`, `number`, `col`, `bf`, `jb`, `jb_bf`, `jbb_jk`, `jbb_bf`, `xlp`, `bf_k3_col`, `bf_k3_jb`, `bf_k3_jk`, `bf_k3_jl`, `bf_jl`, `bf_kj`, `bf_bf`, `bf_lp_slb`, `bf_sp`, `bf_spk_xlp`, `bf_spk_sp`, `spk_sp_jb`, `spk_sp_xlp`, `spk_sp_bfp`, `spk_sp_sph`, `sp_cl`, `sp_clf`, `mh`, `mh_slb`, `phr`, `basi_col`, `basi_jb`, `basi_jk`, `basi_xlp`, `basi_bf`, `basi_sp`, `mhr`, `basi_cl`, `basi_mh`, `air`, `shell`, `loss`, `timbangan_kotor`, `timbangan_bb`, `status`, `jbb_jf`, `spk_sp`, `sp_sph`, `id_bb`, `approved_by`, `cap`, `potong`, `note`, `shell_phr_keras`, `shell_mhr_keras`, `shell_phr_halus`, `shell_mhr_halus`) VALUES
+(6, 'K2', '2024-04-22', '2024-04-22', NULL, NULL, 1, '9', '9', '9', '9', '9', NULL, '9', '99', '', '99', '99', '9', '9', '9', '9', '9', '9', '9', '9', '9', '99', NULL, '9', '9', '9', '9', NULL, '9', '9', '9', '9', '9', '9', NULL, '9', '9', '9', '9', '9', NULL, NULL, 5, '9', '9', '9', 1, 4, 'ya', '9', NULL, NULL, NULL, NULL, NULL),
+(7, 'j6', '2024-04-23', '2024-04-22', NULL, NULL, 7, '3', '8', '8', '8', '8', NULL, '8', '88', '8', '8', '8', '8', '8', '8', '8', '8', '8', '8', '8', '8', '8', NULL, '8', '8', '8', '8', NULL, '8', '8', '8', '8', '8', '8', NULL, '8', '8', '8', '8', '5', NULL, NULL, 5, '8', '8', '8', 2, 4, 'ya', '11', NULL, NULL, NULL, NULL, NULL),
+(8, 'K1', '2024-04-23', '2024-04-23', NULL, NULL, 8, '1', '2', '3', '4', '5', NULL, '7', '8', '9', '9', '8', '7', '6', '5', '4', '3', '2', '1', '2', '2', '2', NULL, '1', '3', '3', '3', NULL, '4', '4', '4', '4', '4', '4', NULL, '4', '4', '5', '5', '5', NULL, NULL, 5, '6', '2', '2', 19, NULL, 'ya', '22', 'X', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_sub_daging`
+-- Struktur dari tabel `tbl_sub_daging`
 --
 
 CREATE TABLE `tbl_sub_daging` (
@@ -395,7 +404,7 @@ CREATE TABLE `tbl_sub_daging` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_sub_daging`
+-- Dumping data untuk tabel `tbl_sub_daging`
 --
 
 INSERT INTO `tbl_sub_daging` (`id`, `id_bahan_baku`, `spesifikasi_bahan`, `spek`, `bungkus`, `tkotor`, `tbersih`, `spek2`, `bungkus2`, `tkotor2`, `tbersih2`, `qty`) VALUES
@@ -406,7 +415,7 @@ INSERT INTO `tbl_sub_daging` (`id`, `id_bahan_baku`, `spesifikasi_bahan`, `spek`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_supplier`
+-- Struktur dari tabel `tbl_supplier`
 --
 
 CREATE TABLE `tbl_supplier` (
@@ -425,7 +434,7 @@ CREATE TABLE `tbl_supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_supplier`
+-- Dumping data untuk tabel `tbl_supplier`
 --
 
 INSERT INTO `tbl_supplier` (`id_supplier`, `kode_supplier`, `nama_supplier`, `bank`, `nomor`, `an`, `npwp`, `id_area`, `no_ktp`, `alamat`, `wilayah`, `no_rekening`) VALUES
@@ -437,7 +446,7 @@ INSERT INTO `tbl_supplier` (`id_supplier`, `kode_supplier`, `nama_supplier`, `ba
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_user`
+-- Struktur dari tabel `tbl_user`
 --
 
 CREATE TABLE `tbl_user` (
@@ -451,7 +460,7 @@ CREATE TABLE `tbl_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_user`
+-- Dumping data untuk tabel `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id`, `username`, `password`, `role`, `tanggal`, `wilayah`, `email`) VALUES
@@ -467,170 +476,170 @@ INSERT INTO `tbl_user` (`id`, `username`, `password`, `role`, `tanggal`, `wilaya
 --
 
 --
--- Indexes for table `tbl_area`
+-- Indeks untuk tabel `tbl_area`
 --
 ALTER TABLE `tbl_area`
   ADD PRIMARY KEY (`id_area`);
 
 --
--- Indexes for table `tbl_daging`
+-- Indeks untuk tabel `tbl_daging`
 --
 ALTER TABLE `tbl_daging`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tbl_kota`
+-- Indeks untuk tabel `tbl_kota`
 --
 ALTER TABLE `tbl_kota`
   ADD PRIMARY KEY (`id_kota`);
 
 --
--- Indexes for table `tbl_laporan`
+-- Indeks untuk tabel `tbl_laporan`
 --
 ALTER TABLE `tbl_laporan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tbl_laporan_id_IDX` (`id`) USING BTREE;
 
 --
--- Indexes for table `tbl_memo`
+-- Indeks untuk tabel `tbl_memo`
 --
 ALTER TABLE `tbl_memo`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tbl_pembayaran_dp`
+-- Indeks untuk tabel `tbl_pembayaran_dp`
 --
 ALTER TABLE `tbl_pembayaran_dp`
   ADD PRIMARY KEY (`id_pembayaran_dp`);
 
 --
--- Indexes for table `tbl_penerimaan`
+-- Indeks untuk tabel `tbl_penerimaan`
 --
 ALTER TABLE `tbl_penerimaan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tbl_pengajuan`
+-- Indeks untuk tabel `tbl_pengajuan`
 --
 ALTER TABLE `tbl_pengajuan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tbl_pengajuan_id_IDX` (`id`) USING BTREE;
 
 --
--- Indexes for table `tbl_price`
+-- Indeks untuk tabel `tbl_price`
 --
 ALTER TABLE `tbl_price`
   ADD PRIMARY KEY (`id_price`);
 
 --
--- Indexes for table `tbl_role`
+-- Indeks untuk tabel `tbl_role`
 --
 ALTER TABLE `tbl_role`
   ADD PRIMARY KEY (`id_role`);
 
 --
--- Indexes for table `tbl_sortir`
+-- Indeks untuk tabel `tbl_sortir`
 --
 ALTER TABLE `tbl_sortir`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tbl_sub_daging`
+-- Indeks untuk tabel `tbl_sub_daging`
 --
 ALTER TABLE `tbl_sub_daging`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tbl_sub_daging_id_IDX` (`id`) USING BTREE;
 
 --
--- Indexes for table `tbl_supplier`
+-- Indeks untuk tabel `tbl_supplier`
 --
 ALTER TABLE `tbl_supplier`
   ADD PRIMARY KEY (`id_supplier`);
 
 --
--- Indexes for table `tbl_user`
+-- Indeks untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tbl_area`
+-- AUTO_INCREMENT untuk tabel `tbl_area`
 --
 ALTER TABLE `tbl_area`
   MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `tbl_daging`
+-- AUTO_INCREMENT untuk tabel `tbl_daging`
 --
 ALTER TABLE `tbl_daging`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `tbl_kota`
+-- AUTO_INCREMENT untuk tabel `tbl_kota`
 --
 ALTER TABLE `tbl_kota`
   MODIFY `id_kota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tbl_laporan`
+-- AUTO_INCREMENT untuk tabel `tbl_laporan`
 --
 ALTER TABLE `tbl_laporan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tbl_memo`
+-- AUTO_INCREMENT untuk tabel `tbl_memo`
 --
 ALTER TABLE `tbl_memo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `tbl_pembayaran_dp`
+-- AUTO_INCREMENT untuk tabel `tbl_pembayaran_dp`
 --
 ALTER TABLE `tbl_pembayaran_dp`
   MODIFY `id_pembayaran_dp` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbl_penerimaan`
+-- AUTO_INCREMENT untuk tabel `tbl_penerimaan`
 --
 ALTER TABLE `tbl_penerimaan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tbl_pengajuan`
+-- AUTO_INCREMENT untuk tabel `tbl_pengajuan`
 --
 ALTER TABLE `tbl_pengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tbl_price`
+-- AUTO_INCREMENT untuk tabel `tbl_price`
 --
 ALTER TABLE `tbl_price`
   MODIFY `id_price` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `tbl_role`
+-- AUTO_INCREMENT untuk tabel `tbl_role`
 --
 ALTER TABLE `tbl_role`
   MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `tbl_sortir`
+-- AUTO_INCREMENT untuk tabel `tbl_sortir`
 --
 ALTER TABLE `tbl_sortir`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `tbl_sub_daging`
+-- AUTO_INCREMENT untuk tabel `tbl_sub_daging`
 --
 ALTER TABLE `tbl_sub_daging`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tbl_supplier`
+-- AUTO_INCREMENT untuk tabel `tbl_supplier`
 --
 ALTER TABLE `tbl_supplier`
   MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;

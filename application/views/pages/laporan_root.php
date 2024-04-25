@@ -10,7 +10,7 @@
 			<div class="modal-dialog modal-xl modal-fullscreen" role="document">
 				<div class="modal-content ">
 					<div class="modal-header">
-						<h5 class="modal-title">Modal Laporan Root</h5>
+						<h5 class="modal-title">Laporan Root</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -341,6 +341,7 @@
 								<th style="width: 160px;" rowspan="2">TOTAL SUBSIDI TRANS</th>
 								<th style="width: 100px;" rowspan="2">UNTUNG / RUGI</th>
 								<th style="width: 140px;" rowspan="2">ROOT RECEIVING</th>
+								<th rowspan="2">JB %</th>
 								<tr>
 								<th style="width: 120px;" rowspan="1">awal</th>
 								<th style="width: 120px;" rowspan="1">-/+</th>
@@ -426,7 +427,7 @@
 										<td><?php echo $subsidi_dibayar_kedua = $da['subsidi_dibayar_2'] ?></td>
 										<td><?php echo number_format($subsidi_dibayar_kedua + $subsidi_dibayar_awal, 2)?></td>
 										<td><?php echo $cap_shell = $da['cap_shell'] ?></td>
-										<td><?php echo $total_subsidi_dibayar = ($subsidi_dibayar_kedua + $subsidi_dibayar_awal) * $fresh ?></td>
+										<td><?php echo $total_subsidi_dibayar = ($subsidi_dibayar_kedua + $subsidi_dibayar_awal - $da['subsidi_dibayar_3']) * $fresh ?></td>
 										<td><?php echo $total_nota_subsidi_bayar = ($total_subsidi_dibayar + $total_nota ) ?></td>
 										<td><?php echo $root_setelah_subsidi = number_format($total_nota_subsidi_bayar / $sumXX,2) ?></td>
 										<!-- Manual -->
@@ -435,13 +436,14 @@
 										<td><?php echo number_format(floatval($total_nota) + floatval($subsidi_normal) - floatval($cap_shell) - floatval($total_nota) + floatval($total_subsidi_dibayar) - floatval($subsidi_transport), 2) ?></td>
 
 										<td><?php $receiving = (floatval($total_nota) + floatval($total_subsidi_dibayar));
-										if($receiving > 1 ) {
-											// echo number_format($receiving / floatval($qty),2);
+										if($receiving > 1 && $qty ) {
+											echo number_format($receiving / floatval($qty),2);
 										} else {
 											echo 0;
 										}
 										?>
 									</td>
+									<td>1</td>
 									</tr>
 								</tbody>
 								
@@ -470,7 +472,8 @@
 								<div class="modal-body">
 										<input type="text" class="form-control my-2" name="subsidi_normal" id="" placeholder="subsidi normal">
 										<input type="text" class="form-control my-2" name="subsidi_dibayar_1" id="" placeholder="subsidi dibayar (awal)">
-										<input type="text" class="form-control my-2" name="subsidi_dibayar_2" id="" placeholder="subsidi dibayar (-/+)">
+										<input type="text" class="form-control my-2" name="subsidi_dibayar_2" id="" placeholder="subsidi dibayar (+)">
+										<input type="text" class="form-control my-2" name="subsidi_dibayar_3" id="" placeholder="subsidi dibayar (-)">
 										<input type="text" class="form-control my-2" name="cap_shell" id="" placeholder="cap/shell">
 										<input type="text" class="form-control my-2" name="subsidi_transport" id="" placeholder="subsidi transport">
 									</div>

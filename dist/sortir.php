@@ -923,18 +923,18 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                     </div>
                                                     <div class="d-flex justify-content-between  border px-2">
                                                     <div class="">KERAS</div>
-                                                        <div class=""><?php echo $ss['shell_phr_keras'] ?></div>
-                                                        <div class=""><?php echo $ss['shell_mhr_keras'] ?></div>
+                                                        <div class="">21</div>
+                                                        <div class="">22</div>
                                                     </div>
                                                     <div class="d-flex justify-content-between  border px-2">
-														<div class="">HALUS</div>
-														<div class=""><?php echo $ss['shell_phr_halus'] ?></div>
-														<div class=""><?php echo $ss['shell_mhr_halus'] ?></div>
+                                                    <div class="">HALUS</div>
+                                                        <div class="">21</div>
+                                                        <div class="">22</div>
                                                     </div>
                                                     <div class="d-flex justify-content-between  border px-2">
                                                     <div class="">TOTAL</div>
-                                                        <div class=""><?php echo floatval($ss['shell_phr_keras']) + floatval($ss['shell_phr_halus']) ?></div>
-                                                        <div class=""><?php echo floatval($ss['shell_mhr_keras']) + floatval($ss['shell_mhr_halus']) ?></div>
+                                                        <div class="">42</div>
+                                                        <div class="">44</div>
                                                     </div>
                                                 </div>
                                               
@@ -1579,19 +1579,17 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
 
                                                         </tr>
-														
+														<tr>
+															<td colspan="3" height="90px" class="text-center">Dibuat</td>
+															<td colspan="4" height="90px" class="text-center">Diperiksa</td>
+															<td colspan="4" height="90px" class="text-center">Diketahui</td>
+															<td colspan="3" height="90px" class="text-center">Disetujui</td>
+														</tr>
                                                     </tbody>
                                                 </table>
-												<table class="table table-bordered mt-3">
-												<tr>
-													<td colspan="3" height="90px" class="text-center">Dibuat</td>
-													<td colspan="4" height="90px" class="text-center">Diperiksa</td>
-													<td colspan="4" height="90px" class="text-center">Diketahui</td>
-													<td colspan="3" height="90px" class="text-center">Disetujui</td>
-												</tr>
-												</table>
                                             </div>
-                                            <p>Note: <?php echo $ss['note'] ?></p>
+                                            <a>Note: Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium deserunt veniam eveniet optio ad exercitationem voluptas nostrum excepturi amet voluptates, ex vitae facere consectetur saepe dicta et. Velit, cupiditate porro.</a
+
                                         </div>
 
                                     </div>
@@ -1979,25 +1977,25 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">SHELL PHR KERAS</label>
-                                                                    <input type="text" min="0" class="form-control" id="LOSS" name="shell_phr_keras">
+                                                                    <input type="text" min="0" class="form-control" id="LOSS" name="loss">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">SHELL MHR KERAS</label>
-                                                                    <input type="text" min="0" class="form-control" id="LOSS" name="shell_mhr_keras">
+                                                                    <input type="text" min="0" class="form-control" id="LOSS" name="loss">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                             <div class="form-group">
                                                                     <label for="">SHELL PHR HALUS</label>
-                                                                    <input type="text" min="0" class="form-control" id="LOSS" name="shell_phr_halus">
+                                                                    <input type="text" min="0" class="form-control" id="LOSS" name="loss">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">SHELL MHR HALUS</label>
-                                                                    <input type="text" min="0" class="form-control" id="LOSS" name="shell_mhr_halus">
+                                                                    <input type="text" min="0" class="form-control" id="LOSS" name="loss">
                                                                 </div>
                                                             </div>
                                                                   </div>
