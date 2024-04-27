@@ -78,7 +78,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 													<div class="">Tanggal : <?php echo $data['tanggal'] ?></div>
 												</div>
 												<?php 
-												$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$data['id'])->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
+												$dataDaging = $this->db->query("SELECT * FROM tbl_sub_daging 
+												WHERE id_bahan_baku = ".$data['id']." 
+												AND tbersih2 != '' ")->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
 												?>
 												<table class="table-bordered" id="myTable2">
 													<thead class="text-center">
@@ -102,7 +104,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														</tr>
 													</thead>
 													<tbody>
-														<?php foreach($dataDaging as $dd) { ?>
+														<?php foreach($dataDaging as $dd) { 
+															 ?>
 															<tr>
 																<td><?php echo $dd['spesifikasi_bahan'] ?></td>
 																<td><?php echo $dd['qty'] ?></td>
@@ -180,22 +183,16 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                 </div>
                                 <div class="col-md-12 col-sm-12">
 								</div>
-                                    <!-- <div class="form-group">
-                                        <label for="dagingMerah">Spesifikasi Bahan:</label>
-                                        <input type="text" class="form-control" id="spesifikasi"></div>
-                                    </div> -->
-                                    <!-- <div class="col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="qty">Qty:</label>
-                                            <input type="text" min="0" class="form-control" id="qty"></div>
-                                        </div>
-                                    </div> -->
                                     <div class="isi p-2">
-										</div>
+									</div>
+									<div>
+										<button class="btn btn-sm btn-warning mx-1" onclick="addDaging(false)" type="button">Tambah Daging Putih</button>
+										<button class="btn btn-sm btn-warning mx-1" onclick="addDaging(true)" type="button">Tambah Daging Merah</button>
+									</div>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-										<button type="button" class="btn btn-warning" onclick="addDaging()">Tambah Data</button>
+										<!-- <button type="button" class="btn btn-warning" onclick="addDaging()">Tambah Data</button> -->
 										<button type="button" onclick="kirimData()" class="btn btn-primary">Simpan</button>
 									</div>
 								</div>

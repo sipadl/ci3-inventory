@@ -135,11 +135,13 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												</div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <!-- <a href="<?php echo base_url('main/mainApprove/').$ss['id']; ?>" class="btn
-                                                    btn-primary">Aprove</a> -->
-                                                    <!-- <a href="<?php echo base_url('main/mainReject/').$ss['id']; ?>" class="btn
-                                                    btn-danger">Reject</a> -->
-                                                    <button
+													<?php if($ss['status'] == 2 ) { ?> 
+														<a href="<?php echo base_url('main/mainApprove/').$ss['id']; ?>" class="btn
+														btn-primary">Aprove</a>
+														<a href="<?php echo base_url('main/mainReject/').$ss['id']; ?>" class="btn
+														btn-danger">Reject</a>
+													<?php } ?>
+														<button
                                                         type="button"
                                                         onclick="printDisini(<?php echo $ss['id'] ?>)"
                                                         class="btn btn-primary">Print</a>
@@ -874,6 +876,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                             </div>
                                             <div class="modal-footer">
                                                 <?php if($ss['status'] == 2) { ?>
+                                                <a
+                                                    href="<?php echo base_url('main/rejectSortirProduksi/'.$ss['id_sortir']); ?>"
+                                                    class="btn btn-danger">Reject</a>
                                                 <a
                                                     href="<?php echo base_url('main/approveSortirProduksi/'.$ss['id_sortir']); ?>"
                                                     class="btn btn-primary">Approve</a>

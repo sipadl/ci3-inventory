@@ -71,7 +71,7 @@ class Main extends CI_Controller {
 		$datas = json_decode($dataSubBahanBaku, true);
 		foreach($datas as $datax) {
 			$datax['id_bahan_baku'] = $insert_id;
-			$datax['qty'] = $datax['tbersih'] + $datax['tbersih2'];
+			$datax['qty'] = floatval($datax['tbersih']) + floatval($datax['tbersih2']);
 			$this->Main_model->insertAll('tbl_sub_daging',$datax);
 		}
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
@@ -456,6 +456,15 @@ class Main extends CI_Controller {
 	public function approveSortirProduksi($id) {
 		$user_id = $this->session->userdata('id');
 		$data = array('approved_by' => $user_id ,'status' => 3);
+		$this->Main_model->updateAll('tbl_sortir', $data, $id);
+		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
+	public function rejectSortirProduksi($id) {
+		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => -1);
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
 		// redirect(base_url(), 'refresh');

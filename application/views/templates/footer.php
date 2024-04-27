@@ -175,7 +175,7 @@ function printDisini(val) {
 		);
 	})
 
-	function addDaging() {
+	function addDaging(status) {
 		const dagingCountP = $('.daging-putih').length;
 		const dagingCountM = $('.daging-putih').length;
 		const idP = `dagingPutih${dagingCountP}`;
@@ -187,10 +187,42 @@ function printDisini(val) {
         $('.remove-daging-btn').show();
     	}
 
-	
-		$('.isi').append(`
+		if(status == true ){
+			$('.isi').append(`<div class="daging-merah">
+			<h5>Daging Merah</h5>
+			<hr>
+			<div class="row">
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+					<label for="">Speck:</label>
+					<input type="text" class="form-control" id="spekDagingMerah${dagingCountM}">
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+						<label for="supplier">Bungkus:</label>
+						<input type="text" class="form-control" id="bungkusDagingMerah${dagingCountM}">
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+					<label for="dagingMerah">T.Kotor:</label>
+					<input type="text" class="form-control" id="tkotorDagingMerah${dagingCountM}">
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+					<label for="dagingMerah">T.Bersih:</label>
+					<input type="text" class="form-control" id="tbersihDagingMerah${dagingCountM}">
+					</div>
+				</div>
+				<div class="d-flex justify-content-end">
+				<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-2 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
+				</div>
+			</div>`);
+		} else {
+			$('.isi').append(`
 		<div class="dagings" id="${dagingCount}">
-		
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
 				<div class="form-group">
@@ -229,45 +261,23 @@ function printDisini(val) {
 				</div>
 			</div>
 			</div>
-			<div class="daging-merah">
-			<h5>Daging Merah</h5>
-			<hr>
-			<div class="row">
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="">Speck:</label>
-					<input type="text" class="form-control" id="spekDagingMerah${dagingCountM}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-						<label for="supplier">Bungkus:</label>
-						<input type="text" class="form-control" id="bungkusDagingMerah${dagingCountM}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="dagingMerah">T.Kotor:</label>
-					<input type="text" class="form-control" id="tkotorDagingMerah${dagingCountM}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="dagingMerah">T.Bersih:</label>
-					<input type="text" class="form-control" id="tbersihDagingMerah${dagingCountM}">
-					</div>
-				</div>
-			</div>
+			
 		</div>
 		<div class="d-flex justify-content-end">
-		<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-2 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
+		<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-3 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
 		</div>
         </div>
 		`)
+		}
 	}
 
 	function removeDaging(id) {
     $('#' + id).remove();
+	}
+
+	function addDagingMerah(){
+		const html = ``;
+			$('.dagings_merah').append(html)
 	}
 
 	function kirimData() {
@@ -281,15 +291,44 @@ function printDisini(val) {
     var dagingPElements = document.getElementsByClassName("daging-putih");
     var dagingMElements = document.getElementsByClassName("daging-merah");
     for (var i = 0; i < dagingPElements.length; i++) {
-        var spesifikasi_bahan = document.getElementById("spec_bahan" + i).value;
-        var spek = document.getElementById("spekDagingPutih" + i).value;
-        var bungkus = document.getElementById("bungkusDagingPutih" + i).value;
-        var tkotor = document.getElementById("tkotorDagingPutih" + i).value;
-        var tbersih = document.getElementById("tbersihDagingPutih" + i).value;
-		var spek2 = document.getElementById("spekDagingMerah" + i).value;
-        var bungkus2 = document.getElementById("bungkusDagingMerah" + i).value;
-        var tkotor2 = document.getElementById("tkotorDagingMerah" + i).value;
-        var tbersih2 = document.getElementById("tbersihDagingMerah" + i).value;
+		var spesifikasi_bahan = '';
+		var spek = '';
+		var bungkus = '';
+		var tkotor = '';
+		var tbersih = '';
+		var spek2 = '';
+		var bungkus2 = '';
+		var tkotor2 = '';
+		var tbersih2 = '';
+
+		if (document.getElementById("spec_bahan" + i)) {
+			spesifikasi_bahan = document.getElementById("spec_bahan" + i).value || '';
+		}
+		if (document.getElementById("spekDagingPutih" + i)) {
+			spek = document.getElementById("spekDagingPutih" + i).value || '';
+		}
+		if (document.getElementById("bungkusDagingPutih" + i)) {
+			bungkus = document.getElementById("bungkusDagingPutih" + i).value || '';
+		}
+		if (document.getElementById("tkotorDagingPutih" + i)) {
+			tkotor = document.getElementById("tkotorDagingPutih" + i).value || '';
+		}
+		if (document.getElementById("tbersihDagingPutih" + i)) {
+			tbersih = document.getElementById("tbersihDagingPutih" + i).value || '';
+		}
+		if (document.getElementById("spekDagingMerah" + i)) {
+			spek2 = document.getElementById("spekDagingMerah" + i).value || '';
+		}
+		if (document.getElementById("bungkusDagingMerah" + i)) {
+			bungkus2 = document.getElementById("bungkusDagingMerah" + i).value || '';
+		}
+		if (document.getElementById("tkotorDagingMerah" + i)) {
+			tkotor2 = document.getElementById("tkotorDagingMerah" + i).value || '';
+		}
+		if (document.getElementById("tbersihDagingMerah" + i)) {
+			tbersih2 = document.getElementById("tbersihDagingMerah" + i).value || '';
+		}
+
         dataDagingP.push({
 			spesifikasi_bahan: spesifikasi_bahan,
             spek: spek,
@@ -300,18 +339,6 @@ function printDisini(val) {
             bungkus2: bungkus2,
             tkotor2: tkotor2,
             tbersih2: tbersih2,
-        });
-    }
-    for (var i = 0; i < dagingMElements.length; i++) {
-        var spek = document.getElementById("spekDagingMerah" + i).value;
-        var bungkus = document.getElementById("bungkusDagingMerah" + i).value;
-        var tkotor = document.getElementById("tkotorDagingMerah" + i).value;
-        var tbersih = document.getElementById("tbersihDagingMerah" + i).value;
-        dataDagingM.push({
-            spek: spek,
-            bungkus: bungkus,
-            tkotor: tkotor,
-            tbersih: tbersih
         });
     }
 
