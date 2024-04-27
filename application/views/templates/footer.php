@@ -175,55 +175,24 @@ function printDisini(val) {
 		);
 	})
 
+	function shows(index) {
+		$(`.hiddens-${index}`).css({'display': 'block'});
+		$(`.addDaging${index}`).css({'display': 'none'});
+	}
+
 	function addDaging(status, index) {
 		const dagingCountP = $('.daging-putih').length;
 		const dagingCountM = $('.daging-putih').length;
 		const idP = `dagingPutih${dagingCountP}`;
     	const idM = `dagingMerah${dagingCountM}`;
-		if(index != null) {
-			$(`.addDaging${index}`).css({'display': 'none'});
-			console.log('disini')
-		}
-
+		
 		const dagingCount = $('.dagings').length;
 
 		if (dagingCount > 0) {
         $('.remove-daging-btn').show();
     	}
 
-		if(status == true ){
-			$('.kuda1').append(`<div class="daging-merah">
-			<h5>Daging Merah</h5>
-			<hr>
-			<div class="row">
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="">Speck:</label>
-					<input type="text" class="form-control" id="spekDagingMerah${dagingCountM - 1}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-						<label for="supplier">Bungkus:</label>
-						<input type="text" class="form-control" id="bungkusDagingMerah${dagingCountM - 1}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="dagingMerah">T.Kotor:</label>
-					<input type="text" class="form-control" id="tkotorDagingMerah${dagingCountM - 1}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="dagingMerah">T.Bersih:</label>
-					<input type="text" class="form-control" id="tbersihDagingMerah${dagingCountM - 1}">
-					</div>
-				</div>
-				
-			</div>`);
-		} else {
-			$('.isi').append(`
+		$('.isi').append(`
 		<div class="dagings" id="${dagingCount}">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
@@ -261,18 +230,46 @@ function printDisini(val) {
 					<input type="text" class="form-control" id="tbersihDagingPutih${dagingCountP}">
 					</div>
 				</div>
-				<button class="btn btn-sm btn-warning mx-1 addDaging${dagingCountP}" onclick="addDaging(true, ${dagingCountP})" type="button">Tambah Daging Merah</button>
+				<button class="btn btn-sm btn-warning mx-1 addDaging${dagingCountP}" onclick="shows(${dagingCountP})" type="button">Tambah Daging Merah</button>
 				<div class="kuda1"></div>
 			</div>
 			</div>
-			
+			<div class="daging-merah hiddens-${dagingCountP}" style="display:none">
+			<h5>Daging Merah</h5>
+			<hr>
+			<div class="row">
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+					<label for="">Speck:</label>
+					<input type="text" class="form-control" id="spekDagingMerah${dagingCountP}">
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+						<label for="supplier">Bungkus:</label>
+						<input type="text" class="form-control" id="bungkusDagingMerah${dagingCountP}">
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+					<label for="dagingMerah">T.Kotor:</label>
+					<input type="text" class="form-control" id="tkotorDagingMerah${dagingCountP}">
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-12">
+					<div class="form-group">
+					<label for="dagingMerah">T.Bersih:</label>
+					<input type="text" class="form-control" id="tbersihDagingMerah${dagingCountP}">
+					</div>
+				</div>
+				
+			</div>
 		</div>
 		<div class="d-flex justify-content-end">
 		<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-3 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
 		</div>
         </div>
 		`)
-		}
 	}
 
 	function removeDaging(id) {
@@ -295,6 +292,7 @@ function printDisini(val) {
     var dagingPElements = document.getElementsByClassName("daging-putih");
     var dagingMElements = document.getElementsByClassName("daging-merah");
     for (var i = 0; i < dagingPElements.length; i++) {
+		console.log(dagingPElements)
 		var spesifikasi_bahan = '';
 		var spek = '';
 		var bungkus = '';
