@@ -76,6 +76,8 @@ class Main extends CI_Controller {
 			if($is_exists){
 				$data = array( 'qty' => $is_exists['qty'] + floatval($datax['tbersih']) + floatval($datax['tbersih2']));
 				$this->Main_model->updateAll('tbl_sub_daging', $data, $is_exists['id'] );
+				$dataInsertDouble = array('tbersih' => $datax['tbersih'], 'tkotor' => $datax['tkotor'], 'bungkus' => $datax['bungkus'], 'id_bahan_baku' => $insert_id);
+				$this->Main_model->insertAll('tbl_sub_daging', $dataInsertDouble);
 			} else {		
 				$datax['id_bahan_baku'] = $insert_id;
 				$datax['qty'] = floatval($datax['tbersih']) + floatval($datax['tbersih2']);
