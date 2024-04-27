@@ -68,26 +68,43 @@ class Main extends CI_Controller {
 		);
 
 		// Menyimpan data menggunakan model
-		$insert_id = $this->Main_model->insertAll('tbl_daging',$data);
-		
+		$insert_id = $this->Main_model->insertAll('tbl_daging', $data);
+
 		$datas = json_decode($dataSubBahanBaku, true);
-		foreach($datas as $datax) {
-			$is_exists = $this->db->query('select * from tbl_sub_daging where id_bahan_baku = '.$insert_id.'')->row_array();
-			// var_dump($datas);
-			// die();
-			// if($is_exists != null){
-			// 	if($is_exists['spek'] == $datax['spek']) {
-			// 		$data = array( 'qty' => $is_exists['qty'] + floatval($datax['tbersih']) + floatval($datax['tbersih2']));
-			// 		$this->Main_model->updateAll('tbl_sub_daging', $data, $is_exists['id'] );
-			// 		$dataInsertDouble = array('tbersih' => $datax['tbersih'], 'tkotor' => $datax['tkotor'], 'bungkus' => $datax['bungkus'], 'id_bahan_baku' => $insert_id);
-			// 		$this->Main_model->insertAll('tbl_sub_daging', $dataInsertDouble);
-			// 	}
-			// } else {		
-				$datax['id_bahan_baku'] = $insert_id;
-				$datax['qty'] = floatval($datax['tbersih']) + floatval($datax['tbersih2']);
-				$this->Main_model->insertAll('tbl_sub_daging',$datax);
-			// }
+
+		// Check if $insert_id is valid
+		if ($insert_id !== false) {
+			// Fetch $is_exists outside the loop
+			$is_exists = $this->db->query("SELECT * FROM tbl_sub_daging WHERE id_bahan_baku = ?", [$insert_id])->row_array();
+
+			foreach ($datas as $datax) {
+				// Check if $is_exists is not empty before accessing its elements
+				// if (!empty($is_exists) && isset($is_exists['spek']) && $is_exists['spek'] == $datax['spek']) {
+				// 	$data = [
+				// 		'qty' => floatval($is_exists['qty']) + floatval($datax['tbersih']) + floatval($datax['tbersih2'])
+				// 	];
+				// 	// Use $this->Main_model->updateAll() method to update existing data
+				// 	$this->Main_model->updateAll('tbl_sub_daging', $data, ['id' => $is_exists['id']]);
+
+				// 	$dataInsertDouble = [
+				// 		'tbersih' => $datax['tbersih'],
+				// 		'tkotor' => $datax['tkotor'],
+				// 		'bungkus' => $datax['bungkus'],
+				// 		'id_bahan_baku' => $insert_id
+				// 	];
+				// 	// Insert new data
+				// 	$this->Main_model->insertAll('tbl_sub_daging', $dataInsertDouble);
+				// } else {
+					$datax['id_bahan_baku'] = $insert_id;
+					$datax['qty'] = floatval($datax['tbersih']) + floatval($datax['tbersih2']);
+					// Adjust data structure for insertion if necessary
+
+					// Insert new data
+					$this->Main_model->insertAll('tbl_sub_daging', $datax);
+				// }
+			}
 		}
+
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
 		echo(json_encode($data));
        

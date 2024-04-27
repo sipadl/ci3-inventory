@@ -195,7 +195,7 @@ function printDisini(val) {
 		$('.isi').append(`
 		<div class="dagings" id="${dagingCount}">
 		<div class="row">
-			<div class="col-md-12 col-sm-12">
+			<div class="col-md-12 col-sm-12" style="display:none">
 				<div class="form-group">
 				<label for="tanggal">Spesifikasi Bahan:</label>
 				<input type="text" class="form-control" id="spec_bahan${dagingCountP}">
