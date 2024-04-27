@@ -79,8 +79,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												</div>
 												<?php 
 												$dataDaging = $this->db->query("SELECT * FROM tbl_sub_daging 
-												WHERE id_bahan_baku = ".$data['id']." 
-												AND tbersih2 != '' ")->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
+												WHERE id_bahan_baku = ".$data['id'])->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
 												?>
 												<table class="table-bordered" id="myTable2">
 													<thead class="text-center">

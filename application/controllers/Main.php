@@ -66,13 +66,21 @@ class Main extends CI_Controller {
 			'supplier' => $supplier,
 			'wilayah' => 0,
 		);
+
 		// Menyimpan data menggunakan model
 		$insert_id = $this->Main_model->insertAll('tbl_daging',$data);
+		
 		$datas = json_decode($dataSubBahanBaku, true);
 		foreach($datas as $datax) {
-			$datax['id_bahan_baku'] = $insert_id;
-			$datax['qty'] = floatval($datax['tbersih']) + floatval($datax['tbersih2']);
-			$this->Main_model->insertAll('tbl_sub_daging',$datax);
+			$is_exists = $this->db->query('select * from tbl_sub_daging where id_bahan_baku = '.$insert_id.' and spek = "'.$datax['spek'].'" ')->row_array();
+			if($is_exists){
+				$data = array( 'qty' => $is_exists['qty'] + floatval($datax['tbersih']) + floatval($datax['tbersih2']));
+				$this->Main_model->updateAll('tbl_sub_daging', $data, $is_exists['id'] );
+			} else {		
+				$datax['id_bahan_baku'] = $insert_id;
+				$datax['qty'] = floatval($datax['tbersih']) + floatval($datax['tbersih2']);
+				$this->Main_model->insertAll('tbl_sub_daging',$datax);
+			}
 		}
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
 		echo(json_encode($data));
