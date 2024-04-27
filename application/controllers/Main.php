@@ -67,17 +67,24 @@ class Main extends CI_Controller {
 			'wilayah' => 0,
 		);
 
+		// var_dump($dataSubBahanBaku);
+		// die();
+
 		// Menyimpan data menggunakan model
 		$insert_id = $this->Main_model->insertAll('tbl_daging',$data);
 		
 		$datas = json_decode($dataSubBahanBaku, true);
 		foreach($datas as $datax) {
-			$is_exists = $this->db->query('select * from tbl_sub_daging where id_bahan_baku = '.$insert_id.' and spek = "'.$datax['spek'].'" ')->row_array();
-			if($is_exists){
-				$data = array( 'qty' => $is_exists['qty'] + floatval($datax['tbersih']) + floatval($datax['tbersih2']));
-				$this->Main_model->updateAll('tbl_sub_daging', $data, $is_exists['id'] );
-				$dataInsertDouble = array('tbersih' => $datax['tbersih'], 'tkotor' => $datax['tkotor'], 'bungkus' => $datax['bungkus'], 'id_bahan_baku' => $insert_id);
-				$this->Main_model->insertAll('tbl_sub_daging', $dataInsertDouble);
+			$is_exists = $this->db->query('select * from tbl_sub_daging where id_bahan_baku = '.$insert_id.'')->row_array();
+			// var_dump($datas);
+			// die();
+			if($is_exists != null){
+				if($is_exists['spek'] == $datax['spek']) {
+					$data = array( 'qty' => $is_exists['qty'] + floatval($datax['tbersih']) + floatval($datax['tbersih2']));
+					$this->Main_model->updateAll('tbl_sub_daging', $data, $is_exists['id'] );
+					$dataInsertDouble = array('tbersih' => $datax['tbersih'], 'tkotor' => $datax['tkotor'], 'bungkus' => $datax['bungkus'], 'id_bahan_baku' => $insert_id);
+					$this->Main_model->insertAll('tbl_sub_daging', $dataInsertDouble);
+				}
 			} else {		
 				$datax['id_bahan_baku'] = $insert_id;
 				$datax['qty'] = floatval($datax['tbersih']) + floatval($datax['tbersih2']);

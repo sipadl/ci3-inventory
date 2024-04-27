@@ -175,11 +175,15 @@ function printDisini(val) {
 		);
 	})
 
-	function addDaging(status) {
+	function addDaging(status, index) {
 		const dagingCountP = $('.daging-putih').length;
 		const dagingCountM = $('.daging-putih').length;
 		const idP = `dagingPutih${dagingCountP}`;
     	const idM = `dagingMerah${dagingCountM}`;
+		if(index != null) {
+			$(`.addDaging${index}`).css({'display': 'none'});
+			console.log('disini')
+		}
 
 		const dagingCount = $('.dagings').length;
 
@@ -188,37 +192,35 @@ function printDisini(val) {
     	}
 
 		if(status == true ){
-			$('.isi').append(`<div class="daging-merah">
+			$('.kuda1').append(`<div class="daging-merah">
 			<h5>Daging Merah</h5>
 			<hr>
 			<div class="row">
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 					<label for="">Speck:</label>
-					<input type="text" class="form-control" id="spekDagingMerah${dagingCountM}">
+					<input type="text" class="form-control" id="spekDagingMerah${dagingCountM - 1}">
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 						<label for="supplier">Bungkus:</label>
-						<input type="text" class="form-control" id="bungkusDagingMerah${dagingCountM}">
+						<input type="text" class="form-control" id="bungkusDagingMerah${dagingCountM - 1}">
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 					<label for="dagingMerah">T.Kotor:</label>
-					<input type="text" class="form-control" id="tkotorDagingMerah${dagingCountM}">
+					<input type="text" class="form-control" id="tkotorDagingMerah${dagingCountM - 1}">
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 					<label for="dagingMerah">T.Bersih:</label>
-					<input type="text" class="form-control" id="tbersihDagingMerah${dagingCountM}">
+					<input type="text" class="form-control" id="tbersihDagingMerah${dagingCountM - 1}">
 					</div>
 				</div>
-				<div class="d-flex justify-content-end">
-				<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-2 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
-				</div>
+				
 			</div>`);
 		} else {
 			$('.isi').append(`
@@ -259,6 +261,8 @@ function printDisini(val) {
 					<input type="text" class="form-control" id="tbersihDagingPutih${dagingCountP}">
 					</div>
 				</div>
+				<button class="btn btn-sm btn-warning mx-1 addDaging${dagingCountP}" onclick="addDaging(true, ${dagingCountP})" type="button">Tambah Daging Merah</button>
+				<div class="kuda1"></div>
 			</div>
 			</div>
 			
