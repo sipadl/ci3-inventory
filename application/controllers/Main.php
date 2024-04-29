@@ -68,8 +68,8 @@ class Main extends CI_Controller {
 		);
 
 		// Menyimpan data menggunakan model
-		// $insert_id = $this->Main_model->insertAll('tbl_daging', $data);
-		$insert_id = 60;
+		$insert_id = $this->Main_model->insertAll('tbl_daging', $data);
+		// $insert_id = 60;
 
 		$datas = json_decode($dataSubBahanBaku, true);
 
