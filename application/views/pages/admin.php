@@ -112,7 +112,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 																<!-- <td><?php echo $dd['spesifikasi_bahan'] ?></td> -->
 																<td><?php echo $dd['spek'] ?></td>
 																<?php if($dd['tipe'] == 0 ) { ?> 
-																<td><?php echo $dd['qty'] ?></td>
+																<td><?php echo $dd['qty'] > 1 ? $dd['qty'] : '' ?></td>
 																<td><?php echo $dd['spek'] ?></td>
 																<td><?php echo $dd['bungkus'] ?></td>
 																<td><?php echo $dd['tkotor'] ?></td>
