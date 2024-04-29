@@ -59,33 +59,52 @@ class Main extends CI_Controller {
         // Tangkap data POST
         $tanggal = $this->input->post('tanggal');
         $supplier = $this->input->post('supplier');
-        $spesifikasiDagingMerah = $this->input->post('dagingMerah');
-		$qty = 0;
-		$dataDagingMerah = json_decode($spesifikasiDagingMerah);
-		$spesifikasiDagingPutih = $this->input->post('dagingPutih');
-		foreach($dataDagingMerah as $dag) {
-			$qty += $dag->tbersih;
-		}
-		$dataDagingPutih = json_decode($spesifikasiDagingPutih);
-		foreach($dataDagingPutih as $dag) {
-			$qty += $dag->tbersih;
-		}
-		$spesifikasi = $this->input->post('spesifikasi');
-		$this->load->model('DataDaging_model');
-
+		$dataSubBahanBaku = $this->input->post('dagingPutih');
 		// Menyiapkan data yang akan disimpan
 		$data = array(
 			'tanggal' => $tanggal ?? date('Y-m-d H:i:s'),
 			'supplier' => $supplier,
-			'spesifikasi' => $spesifikasi,
-			'daging_merah' => $spesifikasiDagingMerah,
-			'daging_putih' => $spesifikasiDagingPutih,
 			'wilayah' => 0,
-			'qty' => $qty,
 		);
 
 		// Menyimpan data menggunakan model
-		$insert_id = $this->DataDaging_model->addDaging($data);
+		$insert_id = $this->Main_model->insertAll('tbl_daging', $data);
+
+		$datas = json_decode($dataSubBahanBaku, true);
+
+		// Check if $insert_id is valid
+		if ($insert_id !== false) {
+			// Fetch $is_exists outside the loop
+			$is_exists = $this->db->query("SELECT * FROM tbl_sub_daging WHERE id_bahan_baku = ?", [$insert_id])->row_array();
+
+			foreach ($datas as $datax) {
+				// Check if $is_exists is not empty before accessing its elements
+				// if (!empty($is_exists) && isset($is_exists['spek']) && $is_exists['spek'] == $datax['spek']) {
+				// 	$data = [
+				// 		'qty' => floatval($is_exists['qty']) + floatval($datax['tbersih']) + floatval($datax['tbersih2'])
+				// 	];
+				// 	// Use $this->Main_model->updateAll() method to update existing data
+				// 	$this->Main_model->updateAll('tbl_sub_daging', $data, ['id' => $is_exists['id']]);
+
+				// 	$dataInsertDouble = [
+				// 		'tbersih' => $datax['tbersih'],
+				// 		'tkotor' => $datax['tkotor'],
+				// 		'bungkus' => $datax['bungkus'],
+				// 		'id_bahan_baku' => $insert_id
+				// 	];
+				// 	// Insert new data
+				// 	$this->Main_model->insertAll('tbl_sub_daging', $dataInsertDouble);
+				// } else {
+					$datax['id_bahan_baku'] = $insert_id;
+					$datax['qty'] = floatval($datax['tbersih']) + floatval($datax['tbersih2']);
+					// Adjust data structure for insertion if necessary
+
+					// Insert new data
+					$this->Main_model->insertAll('tbl_sub_daging', $datax);
+				// }
+			}
+		}
+
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
 		echo(json_encode($data));
        
@@ -351,7 +370,7 @@ class Main extends CI_Controller {
 	public function sortir(){
 		$data['title'] = 'Sortir';
 		$sortir = $this->Main_model->getDataSortir(null);
-		$bahanbaku = $this->Main_model->getBahanBaku();
+		$bahanbaku = $this->Main_model->getBahanBakuBaru();
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -408,40 +427,41 @@ class Main extends CI_Controller {
         }
     }
 
-	public function sortirUpdate($id) {
+	public function sortirUpdate($id, $status = null) {
 		$post_data = $this->input->post();
 		$sortir = $this->Main_model->getDataSortir($id);
 		
 		$post_data['status'] = 0;
-		if($sortir['tanggal_rec'] == date('Y-m-d H:i:s') ){
+		if($sortir[0]['tanggal_rec'] == date('Y-m-d H:i:s') ){
 			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
 			$post_data['status'] = 0;
-		} else if ($sortir['tanggal_rec2'] == date('Y-m-d H:i:s')){
+		} else if ($sortir[0]['tanggal_rec2'] == date('Y-m-d H:i:s') ?? $sortir[0]['tanggal_rec2'] != null ){
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
-			$post_data['status'] = 1;
+			$post_data['status'] = $status ?? 1;
 		}
 
 		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diubah.');
 
-		redirect('main/sortir');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
 
-	public function sortirUpdateSimpan($id) {
+	public function sortirUpdateSimpan($id, $status = null) {
 		$post_data = $this->input->post();
 		$sortir = $this->Main_model->getDataSortir($id);
+
 		
-		if($sortir['tanggal_rec'] == date('Y-m-d H:i:s') ){
+		if($sortir[0]['tanggal_rec'] == date('Y-m-d H:i:s') ){
 			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
-		} else if ($sortir['tanggal_rec2'] == date('Y-m-d H:i:s')){
+		} else if ($sortir[0]['tanggal_rec2'] == date('Y-m-d H:i:s')){
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
 		}
-		$post_data['status'] = 1;
+		$post_data['status'] = $status ?? 1;
 		
 		$this->Main_model->updateAll('tbl_sortir', $post_data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diubah.');
 
-		redirect('main/sortir');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
 
 	public function approveSortir($id) {
@@ -454,9 +474,9 @@ class Main extends CI_Controller {
 		
 	}
 
-	public function approveSortirTL($id) {
+	public function approveSortirTL($id, $status) {
 		$user_id = $this->session->userdata('id');
-		$data = array('approved_by' => $user_id ,'status' => 2);
+		$data = array('approved_by' => $user_id ,'status' => $status);
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
 		// redirect(base_url(), 'refresh');
@@ -467,6 +487,15 @@ class Main extends CI_Controller {
 	public function approveSortirProduksi($id) {
 		$user_id = $this->session->userdata('id');
 		$data = array('approved_by' => $user_id ,'status' => 3);
+		$this->Main_model->updateAll('tbl_sortir', $data, $id);
+		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
+	public function rejectSortirProduksi($id) {
+		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => -1);
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
 		// redirect(base_url(), 'refresh');
@@ -485,7 +514,7 @@ class Main extends CI_Controller {
 	public function aproval_sortir(){
 		$data['title'] = 'Approval Sortir';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','1');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -495,7 +524,7 @@ class Main extends CI_Controller {
 	public function approval_produksi(){
 		$data['title'] = 'Approval Produksi';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','2');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -505,7 +534,7 @@ class Main extends CI_Controller {
 	public function approval_coasting(){
 		$data['title'] = 'Approval Coasting';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','3');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -515,7 +544,7 @@ class Main extends CI_Controller {
 	public function approval_gm(){
 		$data['title'] = 'Approval General Manager';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','3');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -584,7 +613,7 @@ class Main extends CI_Controller {
 
 	public function memo_subsidi(){
 		$data['title'] = 'Memo Subsidi';
-		$sortir = $this->Main_model->GetSortirWithMemo('3,4');
+		$sortir = $this->Main_model->getTblMemo();
 		$price = $this->Main_model->get_price();
 		$memo = $this->Main_model->getTblMemo();
 
@@ -594,6 +623,33 @@ class Main extends CI_Controller {
         $this->load->view('pages/memo_subsidi',['sortir' => $sortir, 'price' => $price, 'memo' => $memo ]);
         $this->load->view('templates/footer');
 	}
+
+	public function memo_subsidi_by_gm(){
+		$data['title'] = 'Approval Memo Subsidi';
+		$sortir = $this->Main_model->getTblMemo();
+		$price = $this->Main_model->get_price();
+		$memo = $this->Main_model->getTblMemo();
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/approval_memo_by_gm',['sortir' => $sortir, 'price' => $price, 'memo' => $memo ]);
+        $this->load->view('templates/footer');
+	}
+
+	public function penerimaan_bahan() 
+	{
+		$data['title'] = 'Penerimaan Bahan';
+		$sortir = $this->Main_model->getTblMemo();
+		$price = $this->Main_model->get_price();
+		$memo = $this->Main_model->getTblMemo();
+
+
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/penerimaan_bahan',['sortir' => $sortir, 'price' => $price, 'memo' => $memo ]);
+		$this->load->view('templates/footer');
+	}
+
+	
 
 	public function input_memo_subdisi($id) {
 		$data_post = $this->input->post();
@@ -622,6 +678,15 @@ class Main extends CI_Controller {
 		$data = array('approved_by' => $user_id ,'status' => 4);
 		$this->Main_model->updateAll('tbl_memo', $data, $id);
 		$this->session->set_flashdata('success', 'Memo berhasil diapprove.');
+		// redirect(base_url(), 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+
+	public function approve_laporan_root($id) {
+		$user_id = $this->session->userdata('id');
+		$data = array('approved_by' => $user_id ,'status' => 1);
+		$this->Main_model->updateAll('tbl_laporan', $data, $id);
+		$this->session->set_flashdata('success', 'Laporan berhasil diapprove.');
 		// redirect(base_url(), 'refresh');
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
@@ -694,15 +759,14 @@ class Main extends CI_Controller {
 	{
 		// Pastikan Anda menginisialisasi $user_id dari sesi atau sumber lainnya
 		$user_id = $this->session->userdata('user_id'); // contoh pengambilan ID pengguna dari sesi, sesuaikan dengan logika aplikasi Anda
-
-		$data = array('approved_by' => $user_id, 'status' => $status);
+		$data = array('approved_by' => $user_id, 'status' => $status, 'keterangan_approval' => $this->input->post('keterangan_approval'));
 		$this->Main_model->updateAll('tbl_pengajuan', $data, $id);
 
 		// Tambahkan pesan flash untuk memberi umpan balik kepada pengguna
-		$message = ($status == 'approved') ? 'Memo disetujui.' : 'Memo ditolak.'; // Pesan sesuai dengan status
+		$message = ($status != '-1') ? 'Memo disetujui.' : 'Memo ditolak.'; // Pesan sesuai dengan status
 		$this->session->set_flashdata('success', $message);
 
-		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		// redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
 
 

@@ -15,7 +15,6 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                         <th scope="col">Kode Supplier</th>
                         <th scope="col">Tanggal Input</th>
                         <th scope="col">Id Bahan Baku</th>
-                        <th scope="col">Spesifikasi</th>
                         <th scope="col">Approved By</th>
                         <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
@@ -32,7 +31,6 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                         <td><?php echo $ss['supplier'] ?></td>
                         <td><?php echo $ss['tanggal'] ?></td>
                         <td><?php echo $ss['id_bahan_baku'] ?></td>
-                        <td><?php echo $ss['spesifikasi'] ?></td>
                         <td>
                         <?php if($ss['approved_by'] != null ) {
 							 $approved = $this->db->query("select username from tbl_user where id = ".$ss['approved_by']."")->row_array();
@@ -92,79 +90,58 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                             </div>
                                             <div class="modal-body" id="<?php echo 'modal-print-'.$ss['id'] ?>">
                                                 <div class="container-fluid">
-                                                    <table class="table-bordered" id="myTable2">
+												<table class="table-bordered">
+                                                        <?php 
+															// var_dump($ss);
+															$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
+															?>
                                                         <thead class="text-center">
                                                             <tr class="text-center">
-                                                                <th class="w-50">Speck Bahan</th>
-                                                                <th>Quantity</th>
-                                                                <th colspan="">Daging Putih</th>
-                                                                <th colspan="">Daging Merah</th>
+                                                                <tr>
+                                                                    <th rowspan="2" class="w-50">Speck Bahan</th>
+                                                                    <th rowspan="2">Quantity</th>
+                                                                    <th colspan="4">Daging Putih</th>
+                                                                    <th colspan="4">Daging Merah</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Speck</th>
+                                                                    <th>Bungkus</th>
+                                                                    <th>T.Kotor</th>
+                                                                    <th>T.Bersih</th>
+                                                                    <th>Speck</th>
+                                                                    <th>Bungkus</th>
+                                                                    <th>T.Kotor</th>
+                                                                    <th>T.Bersih</th>
+                                                                </tr>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr class="text-center">
-                                                                <td><?php echo $ss['spesifikasi'] ?></td>
-                                                                <td><?php echo $ss['qty'] ?></td>
-                                                                <td class="">
-                                                                    <table class="table-bordered">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th class="hehes">Spek</th>
-                                                                                <th class="hehes">Bungkus</th>
-                                                                                <th class="hehes">T.Kotor</th>
-                                                                                <th class="hehes">T.Bersih</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <?php 
-																	$dagingPutih = json_decode($ss['daging_putih'], true); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
-																	?>
-                                                                        <tbody>
-                                                                            <?php foreach ($dagingPutih as $dp) : ?>
-                                                                            <tr>
-                                                                                <td class="hehes"><?php echo $dp['spek']; ?></td>
-                                                                                <td class="hehes"><?php echo $dp['bungkus']; ?></td>
-                                                                                <td class="hehes"><?php echo $dp['tkotor']; ?></td>
-                                                                                <td class="hehes"><?php echo $dp['tbersih']; ?></td>
-                                                                            </tr>
-                                                                            <?php endforeach; ?>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                                <td class="">
-                                                                    <table class="table table-bordered">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th class="hehes">Spek</th>
-                                                                                <th class="hehes">Bungkus</th>
-                                                                                <th class="hehes">T.Kotor</th>
-                                                                                <th class="hehes">T.Bersih</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <?php 
-																	$dagingPutihx = json_decode($ss['daging_merah'], true); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
-																	?>
-                                                                        <tbody>
-                                                                            <?php foreach ($dagingPutihx as $dp) : ?>
-                                                                            <tr>
-                                                                                <td class="hehes"><?php echo $dp['spek']; ?></td>
-                                                                                <td class="hehes"><?php echo $dp['bungkus']; ?></td>
-                                                                                <td class="hehes"><?php echo $dp['tkotor']; ?></td>
-                                                                                <td class="hehes"><?php echo $dp['tbersih']; ?></td>
-                                                                            </tr>
-                                                                            <?php endforeach; ?>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                            <?php foreach($dataDaging as $dd) { ?>
+                                                            <tr>
+                                                                <td><?php echo $dd['spesifikasi_bahan'] ?></td>
+                                                                <td><?php echo $dd['qty'] ?></td>
+                                                                <td><?php echo $dd['spek'] ?></td>
+                                                                <td><?php echo $dd['bungkus'] ?></td>
+                                                                <td><?php echo $dd['tkotor'] ?></td>
+                                                                <td><?php echo $dd['tbersih'] ?></td>
+                                                                <td><?php echo $dd['spek2'] ?></td>
+                                                                <td><?php echo $dd['bungkus2'] ?></td>
+                                                                <td><?php echo $dd['tkotor2'] ?></td>
+                                                                <td><?php echo $dd['tbersih2'] ?></td>
+                                                            </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+                                                    </table>
+												</div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <!-- <a href="<?php echo base_url('main/mainApprove/').$ss['id']; ?>" class="btn
-                                                    btn-primary">Aprove</a> -->
-                                                    <!-- <a href="<?php echo base_url('main/mainReject/').$ss['id']; ?>" class="btn
-                                                    btn-danger">Reject</a> -->
-                                                    <button
+													<?php if($ss['status'] == 2 ) { ?> 
+														<a href="<?php echo base_url('main/mainApprove/').$ss['id']; ?>" class="btn
+														btn-primary">Aprove</a>
+														<a href="<?php echo base_url('main/mainReject/').$ss['id']; ?>" class="btn
+														btn-danger">Reject</a>
+													<?php } ?>
+														<button
                                                         type="button"
                                                         onclick="printDisini(<?php echo $ss['id'] ?>)"
                                                         class="btn btn-primary">Print</a>
@@ -221,8 +198,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <p>No. Sortir :
-                                                            <?php echo $ss['id'] ?></p>
+                                                        <p>SD.100.3001</p>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <form
@@ -263,532 +239,636 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         }
                                                     </style>
                                                     <div class="col-md-12">
-                                                        <table class="table table-bordered mt-4 tbl-spesial">
-                                                            <thead class="text-center tbl-spesial">
-                                                                <tr>
-                                                                    <th colspan="2" rowspan="2">Spec</th>
-                                                                    <th colspan="3">Tanggal Sortir</th>
-                                                                    <th colspan="2" rowspan="2">Total</th>
-                                                                    <th colspan="2" rowspan="2">Spec</th>
-                                                                    <th>Tanggal Rec</th>
-                                                                    <th colspan="3">Tanggal Sortir</th>
-                                                                    <th>Total</th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th colspan=""><?php echo $ss['tanggal_rec'] ?></th>
-                                                                    <th colspan=""><?php echo $ss['tanggal_rec2'] ?></th>
-                                                                    <th colspan=""><?php echo $ss['tanggal_rec3'] ?></th>
-                                                                    <th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
-                                                                    <th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
-                                                                    <th colspan=""><?php echo $ss['tanggal_rec2'] ?></th>
-                                                                    <th colspan="" width="10%"><?php echo $ss['tanggal_rec3'] ?></th>
-                                                                    <th colspan=""></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <!-- COL -->
-                                                                <tr>
-                                                                    <td rowspan="2">COL</td>
-                                                                    <td>COL</td>
-                                                                    <td width="10%"><?php echo $ss['col'] ?></td>
-                                                                    <td width="10%"></td>
-                                                                    <td width="10%"></td>
-                                                                    <td width="10%" colspan="2"></td>
-                                                                    <td colspan="8" class="text-center">
-                                                                        <strong>
-                                                                            Receiving
-                                                                        </strong>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>BF</td>
-                                                                    <td width="10%"><?php echo $ss['bf'] ?></td>
-                                                                    <td width="10%"></td>
-                                                                    <td width="10%"></td>
-                                                                    <td width="10%" colspan="2"></td>
-                                                                    <td colspan="2">PHR</td>
-                                                                    <td><?php echo $ss['phr'] ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">Total COL</td>
-                                                                    <td><?php echo floatval($ss['col']) + floatval($ss['bf']) ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td rowspan="5">BASI</td>
-                                                                    <td>COL</td>
-                                                                    <td><?php echo $ss['basi_col'] ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
+													<table class="table table-bordered mt-4 tbl-spesial">
+                                                    <thead class="text-center tbl-spesial">
+                                                        <tr>
+                                                            <th colspan="2" rowspan="2">Spec</th>
+                                                            <th colspan="3">Tanggal Sortir</th>
+                                                            <th colspan="2" rowspan="2">Total</th>
+                                                            <th colspan="2" rowspan="2">Spec</th>
+                                                            <th>Tanggal Rec</th>
+                                                            <th colspan="3">Tanggal Sortir</th>
+                                                            <th>Total</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan=""><?php echo $ss['tanggal_rec'] ?></th>
+                                                            <th colspan=""><?php echo $ss['tanggal_rec2'] ?></th>
+                                                            <th colspan=""><?php echo $ss['tanggal_rec3'] ?></th>
+                                                            <th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
+                                                            <th colspan="" width="10%"><?php echo $ss['tanggal_rec2'] ?></th>
+                                                            <th colspan=""><?php echo $ss['tanggal_rec3'] ?></th>
+                                                            <th colspan="" width="10%"></th>
+                                                            <th colspan=""></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- COL -->
+                                                        <tr>
+                                                            <td rowspan="2">COL</td>
+                                                            <td>COL</td>
+                                                            <td width="10%"><?php echo $ss['col'] ?></td>
+                                                            <td width="10%"></td>
+                                                            <td width="10%"></td>
+                                                            <td width="10%" colspan="2"></td>
+                                                            <td colspan="8" class="text-center">
+                                                                <strong>
+                                                                    Receiving
+                                                                </strong>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>BF</td>
+                                                            <td width="10%"><?php echo $ss['bf'] ?></td>
+                                                            <td width="10%"></td>
+                                                            <td width="10%"></td>
+                                                            <td width="10%" colspan="2"></td>
+                                                            <td colspan="2">PHR</td>
+                                                            <td><?php echo $ss['phr'] ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">Total COL</td>
+                                                            <td>
+                                                            <?php $sum = floatval($ss['col']) + floatval($ss['bf']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	} ?>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td rowspan="5">BASI</td>
+                                                            <td>COL</td>
+                                                            <td><?php echo $ss['basi_col'] ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
 
-                                                                <!-- JB -->
-                                                                <tr>
-                                                                    <td rowspan="2">JB</td>
-                                                                    <td>JB</td>
-                                                                    <td><?php echo $ss['jb'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>JK</td>
-                                                                    <td><?php echo $ss['basi_jk'] ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>BF</td>
-                                                                    <td><?php echo $ss['jb_bf'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>XLP</td>
-                                                                    <td><?php echo $ss['basi_xlp'] ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">Total JB</td>
-                                                                    <td><?php echo floatval($ss['jb_bf']) + floatval($ss['jb']) ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>BF</td>
-                                                                    <td><?php echo $ss['basi_bf'] ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <!-- JK -->
-                                                                <tr>
-                                                                    <td rowspan="2">JK</td>
-                                                                    <td>JK</td>
-                                                                    <td><?php echo $ss['jbb_jk'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>SP</td>
-                                                                    <td><?php echo $ss['basi_sp'] ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>BF</td>
-                                                                    <td><?php echo $ss['jbb_bf'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">Total PHR</td>
-                                                                    <td><?php echo floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']) ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">Total JK</td>
-                                                                    <td><?php echo floatval($ss['jbb_bf']) + floatval($ss['jbb_jk']) ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="1">MHR</td>
-                                                                    <td><?php echo $ss['mhr'] ?></td>
-                                                                    <td></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <!-- XLP -->
-                                                                <tr>
-                                                                    <td colspan="2">XLP</td>
-                                                                    <td><?php echo $ss['xlp'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="1" rowspan="2">BASI</td>
-                                                                    <td>CL</td>
-                                                                    <td><?php echo $ss['basi_cl'] ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <!-- BF K3 -->
-                                                                <tr>
-                                                                    <td rowspan="8">BF</td>
-                                                                    <td>K3 COL</td>
-                                                                    <td><?php echo $ss['bf_k3_col'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>MH</td>
-                                                                    <td><?php echo $ss['basi_mh'] ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>K3 JB</td>
-                                                                    <td><?php echo $ss['bf_k3_jb'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">TOTAL MHR</td>
-                                                                    <td><?php echo floatval($ss['basi_mh']) + floatval($ss['basi_cl']) ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>K3 JK</td>
-                                                                    <td><?php echo $ss['bf_k3_jk'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="7" class="text-center">
-                                                                        <strong>
-                                                                            Sortir
-                                                                        </strong>
-                                                                    </td>
+                                                        <!-- JB -->
+                                                        <tr>
+                                                            <td rowspan="2">JB</td>
+                                                            <td>JB</td>
+                                                            <td><?php echo $ss['jb'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>JK</td>
+                                                            <td><?php echo $ss['basi_jk'] ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>BF</td>
+                                                            <td><?php echo $ss['jb_bf'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>XLP</td>
+                                                            <td><?php echo $ss['basi_xlp'] ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">Total JB</td>
+                                                            <td>
+                                                            <?php $sum = floatval($ss['jb_bf']) + floatval($ss['jb']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	} ?>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>BF</td>
+                                                            <td><?php echo $ss['basi_bf'] ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <!-- JK -->
+                                                        <tr>
+                                                            <td rowspan="2">JK</td>
+                                                            <td>JK</td>
+                                                            <td><?php echo $ss['jbb_jk'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>SP</td>
+                                                            <td><?php echo $ss['basi_sp'] ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>BF</td>
+                                                            <td><?php echo $ss['jbb_jf'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="2">Total PHR</td>
+                                                            <td>
+                                                            <?php $sum = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	} ?>
+                                                            </td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">Total JK</td>
+                                                            <td>
+                                                            <?php $sum = floatval($ss['jbb_jf']) + floatval($ss['jbb_jk']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	} ?>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="1">MHR</td>
+                                                            <td><?php echo $ss['mhr'] ?></td>
+                                                            <td></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <!-- XLP -->
+                                                        <tr>
+                                                            <td colspan="2">XLP</td>
+                                                            <td><?php echo $ss['xlp'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="1" rowspan="2">BASI</td>
+                                                            <td>CL</td>
+                                                            <td><?php echo $ss['basi_cl'] ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <!-- BF K3 -->
+                                                        <tr>
+                                                            <td rowspan="8">BF</td>
+                                                            <td>K3 COL</td>
+                                                            <td><?php echo $ss['bf_k3_col'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>MH</td>
+                                                            <td><?php echo $ss['basi_mh'] ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>K3 JB</td>
+                                                            <td><?php echo $ss['bf_k3_jb'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="2">TOTAL MHR</td>
+                                                            <td>
+                                                            <?php $sum = floatval($ss['basi_mh']) + floatval($ss['basi_cl']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	} ?>
+                                                            </td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>K3 JK</td>
+                                                            <td><?php echo $ss['bf_k3_jk'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="7" class="text-center">
+                                                                <strong>
+                                                                    Sortir
+                                                                </strong>
+                                                            </td>
 
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>JL</td>
-                                                                    <td><?php echo $ss['bf_jl'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>PHR</td>
-                                                                    <td><?php echo $ss['phr'] ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>KJ</td>
-                                                                    <td><?php echo $ss['bf_kj'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="1" rowspan="6">BASI</td>
-                                                                    <td>COL</td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td><?php echo $ss['basi_col'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>BF</td>
-                                                                    <td><?php echo $ss['bf_bf'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>JB</td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td><?php echo $ss['basi_jb'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>LP SLB</td>
-                                                                    <td><?php echo $ss['bf_lp_slb'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>JK</td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>JL</td>
+                                                            <td><?php echo $ss['bf_jl'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>PHR</td>
+                                                            <td><?php echo $ss['phr'] ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>KJ</td>
+                                                            <td><?php echo $ss['bf_kj'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="1" rowspan="6">BASI</td>
+                                                            <td>COL</td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td><?php echo $ss['basi_col'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>BF</td>
+                                                            <td><?php echo $ss['bf_bf'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>JB</td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td><?php echo $ss['basi_jb'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>LP SLB</td>
+                                                            <td><?php echo $ss['bf_lp_slb'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>JK</td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
 
-                                                                    <td><?php echo $ss['basi_jk'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>SP</td>
-                                                                    <td><?php echo $ss['bf_sp'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>XLP</td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
+                                                            <td><?php echo $ss['basi_jk'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>SP</td>
+                                                            <td><?php echo $ss['bf_sp'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>XLP</td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
 
-                                                                    <td><?php echo $ss['basi_xlp'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">Total BF</td>
-                                                                    <td><?php echo floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jl']) + floatval($ss['bf_k3_jk']) + floatval($ss['bf_bf']) + floatval($ss['bf_lp_slb']) + floatval($ss['bf_sp']) ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>BF</td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
+                                                            <td><?php echo $ss['basi_xlp'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">Total BF</td>
+                                                            <td>
+                                                            <?php 
+																	$sum = floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jl']) + floatval($ss['bf_k3_jk']) + floatval($ss['bf_bf']) + floatval($ss['bf_lp_slb']) + floatval($ss['bf_sp']);
+																		if($sum > 0) {
+																			echo $sum;
+																		} else {
+																			echo '';
+																		}
+																	?>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>BF</td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
 
-                                                                    <td><?php echo $ss['basi_bf'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <!-- SPK -->
-                                                                <tr>
-                                                                    <td rowspan="2">SPK</td>
-                                                                    <td>XLP</td>
-                                                                    <td><?php echo $ss['bf_spk_xlp'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>SP</td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
+                                                            <td><?php echo $ss['basi_bf'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <!-- SPK -->
+                                                        <tr>
+                                                            <td rowspan="2">SPK</td>
+                                                            <td>XLP</td>
+                                                            <td><?php echo $ss['bf_spk_xlp'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>SP</td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
 
-                                                                    <td><?php echo $ss['basi_sp'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>SP</td>
-                                                                    <td><?php echo $ss['bf_spk_sp'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">Total PHR</td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td><?php echo floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']) ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">Total SPK</td>
-                                                                    <td><?php echo floatval($ss['bf_spk_xlp']) + floatval($ss['bf_spk_sp']) ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>MHR</td>
-                                                                    <td><?php echo $ss['mhr'] ?></td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <!-- SP -->
-                                                                <tr>
-                                                                    <td rowspan="4">SP</td>
-                                                                    <td>JB</td>
-                                                                    <td><?php echo $ss['spk_sp_jb'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="1" rowspan="2">BASI</td>
-                                                                    <td>CL</td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
+                                                            <td><?php echo $ss['basi_sp'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>SP</td>
+                                                            <td><?php echo $ss['bf_spk_sp'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="2">Total PHR</td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td>
+                                                            <?php
+																	$sum = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_jb']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	}
+																	?>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">Total SPK</td>
+                                                            <td>
+                                                            <?php $sum = floatval($ss['bf_spk_xlp']) + floatval($ss['bf_spk_sp']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	}
+																	?>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>MHR</td>
+                                                            <td><?php echo $ss['mhr'] ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <!-- SP -->
+                                                        <tr>
+                                                            <td rowspan="4">SP</td>
+                                                            <td>JB</td>
+                                                            <td><?php echo $ss['spk_sp_jb'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="1" rowspan="2">BASI</td>
+                                                            <td>CL</td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
 
-                                                                    <td><?php echo $ss['basi_cl'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>XLP</td>
-                                                                    <td><?php echo $ss['spk_sp_xlp'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>MH</td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
+                                                            <td><?php echo $ss['basi_cl'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>XLP</td>
+                                                            <td><?php echo $ss['spk_sp_xlp'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>MH</td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
 
-                                                                    <td><?php echo $ss['basi_mh'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>BF</td>
-                                                                    <td><?php echo $ss['spk_sp_bfp'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">Total MHR</td>
-                                                                    <td class="bg-light" style="background-color: gray"></td>
-                                                                    <td><?php echo floatval($ss['basi_mh']) + floatval($ss['basi_cl']) ?></td>
+                                                            <td><?php echo $ss['basi_mh'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>BF</td>
+                                                            <td><?php echo $ss['spk_sp_bfp'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="2">Total MHR</td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td>
+                                                            <?php $sum = floatval($ss['basi_mh']) + floatval($ss['basi_cl']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	} ?>
+                                                            </td>
 
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>SP</td>
-                                                                    <td><?php echo $ss['spk_sp_sph'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">Total SP</td>
-                                                                    <td><?php echo floatval($ss['spk_sp_jb']) + floatval($ss['spk_sp_xlp']) + floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp_sph']) ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">SPH</td>
-                                                                    <td><?php echo $ss['spk_sp_sph'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">CL</td>
-                                                                    <td><?php echo $ss['sp_cl'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>AIR</td>
-                                                                    <td><?php echo $ss['air'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">CLF</td>
-                                                                    <td><?php echo $ss['sp_clf'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>SHELL</td>
-                                                                    <td><?php echo $ss['shell'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>SP</td>
+                                                            <td><?php echo $ss['spk_sp_sph'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">Total SP</td>
+                                                            <td>
+                                                            <?php $sum = floatval($ss['spk_sp_jb']) + floatval($ss['spk_sp_xlp']) + floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp_sph']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	}
+																	?>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">SPH</td>
+                                                            <td><?php echo $ss['spk_sp_sph'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">CL</td>
+                                                            <td><?php echo $ss['sp_cl'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>AIR</td>
+                                                            <td><?php echo $ss['air'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">CLF</td>
+                                                            <td><?php echo $ss['sp_clf'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>SHELL</td>
+                                                            <td><?php echo $ss['shell'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
 
-                                                                </tr>
-                                                                <tr>
-                                                                    <td rowspan="2">MH</td>
-                                                                    <td>MH</td>
-                                                                    <td><?php echo $ss['mh'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td>LOSS</td>
-                                                                    <td><?php echo $ss['loss'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>MH</td>
-                                                                    <td><?php echo $ss['mh_slb'] ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">Timb. Kotor</td>
-                                                                    <td><?php
-															$sum = floatval($ss['col']) + floatval($ss['bf']) + floatval($ss['jb']) + floatval($ss['jb_bf']) + floatval($ss['jbb_jk']) + floatval($ss['jbb_bf']) +
-															floatval($ss['xlp']) + floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jk']) + floatval($ss['bf_k3_jl']) +
-															floatval($ss['bf_jl']) + floatval($ss['bf_kj']) + floatval($ss['bf_bf']) + floatval($ss['bf_lp_slb']) + floatval($ss['bf_sp']) +
-															floatval($ss['bf_spk_xlp']) + floatval($ss['bf_spk_sp']) + floatval($ss['spk_sp_jb']) + floatval($ss['spk_sp_xlp']) +
-															floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp_sph']) + floatval($ss['sp_cl']) + floatval($ss['sp_clf']) + floatval($ss['mh']) +
-															floatval($ss['mh_slb']) + floatval($ss['phr']) + floatval($ss['basi_col']) + floatval($ss['basi_jb']) + floatval($ss['basi_jk']) +
-															floatval($ss['basi_xlp']) + floatval($ss['basi_bf']) + floatval($ss['basi_sp']) + floatval($ss['mhr']) + floatval($ss['basi_cl']) +
-															floatval($ss['basi_mh']) +
-															floatval($ss['timbangan_bb']) + floatval($ss['jbb_jf']) + floatval($ss['spk_sp']) + floatval($ss['sp_sph']);
-															echo $sum;
-															?>
-                                                                    </td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">Total MH</td>
-                                                                    <td><?php echo floatval($ss['mh']) + floatval($ss['mh_slb']) ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">Timb. BB</td>
-                                                                    <?php 
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowspan="2">MH</td>
+                                                            <td>MH</td>
+                                                            <td><?php echo $ss['mh'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td>LOSS</td>
+                                                            <td><?php echo $ss['loss'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>MH</td>
+                                                            <td><?php echo $ss['mh_slb'] ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="2">Timb. Kotor</td>
+                                                            <td>
+                                                            <?php
+																	$sum = floatval($ss['col']) + floatval($ss['bf']) + floatval($ss['jb']) + floatval($ss['jb_bf']) + floatval($ss['jbb_jk']) + floatval($ss['jbb_bf']) +
+																	floatval($ss['xlp']) + floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jk']) + floatval($ss['bf_k3_jl']) +
+																	floatval($ss['bf_jl']) + floatval($ss['bf_kj']) + floatval($ss['bf_bf']) + floatval($ss['bf_lp_slb']) + floatval($ss['bf_sp']) +
+																	floatval($ss['bf_spk_xlp']) + floatval($ss['bf_spk_sp']) + floatval($ss['spk_sp_jb']) + floatval($ss['spk_sp_xlp']) +
+																	floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp_sph']) + floatval($ss['sp_cl']) + floatval($ss['sp_clf']) + floatval($ss['mh']) +
+																	floatval($ss['mh_slb']) + floatval($ss['phr']) + floatval($ss['basi_col']) + floatval($ss['basi_jb']) + floatval($ss['basi_jk']) +
+																	floatval($ss['basi_xlp']) + floatval($ss['basi_bf']) + floatval($ss['basi_sp']) + floatval($ss['mhr']) + floatval($ss['basi_cl']) +
+																	floatval($ss['basi_mh']) +
+																	floatval($ss['timbangan_bb']) + floatval($ss['jbb_jf']) + floatval($ss['spk_sp']) + floatval($ss['sp_sph']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	}
+																	?>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">Total MH</td>
+                                                            <td>
+                                                            <?php $sum = floatval($ss['mh']) + floatval($ss['mh_slb']);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	} ?>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="2">Timb. BB</td>
+                                                            <?php 
+														$colX = (floatval($ss['col']) + floatval($ss['bf']));
+														$jbX = (floatval($ss['jb']) + floatval($ss['jbb_jf']));
+														$jkX = (floatval($ss['jbb_jk']) + floatval($ss['jbb_bf']));
+														$bfX = (floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jk'])
+														+ floatval($ss['bf_k3_jl']) + floatval($ss['bf_jl']) + floatval($ss['bf_bf']) + floatval($ss['bf_bf']) + floatval($ss['bf_kj']));
+														$spkX = (floatval($ss['spk_sp_jb']) +  floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp_sph']));
+														$spX = (floatval($ss['bf_spk_xlp']) + floatval($ss['bf_spk_sp']));
+														$mhX = (floatval($ss['mh']) + floatval($ss['mh_slb']));
+														$clX = floatval($ss['sp_cl']);
+														$clfX = floatval($ss['sp_clf']);
+														$mhr = floatval($ss['mh']) + floatval($ss['mh_slb']);
+														$phr = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
+														$sumXX = $colX + $jbX + $jkX + $bfX + $spkX + $spX + $mhX + $clX + $clfX;
+														$grand_total = $sumXX + $phr + $mhr;
+
 														$qty = 0;
-														$dataMerah = json_decode($ss['daging_merah']);
-														$dataPutih = json_decode($ss['daging_putih']);
-
-														foreach($dataMerah as $dag) {
-															$qty += $dag->tkotor + $dag->tbersih;
-														}
-														foreach($dataPutih as $dag) {
-															$qty += $dag->tkotor + $dag->tbersih;
+														$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); 
+														foreach($dataDaging as $sdb) {
+															$qty = floatval($sdb['tkotor']) + floatval($sdb['tkotor2']) + floatval($sdb['tbersih']) + floatval($sdb['tbersih']);
 														}
 															?>
-                                                                    <td><?php echo $qty ?></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td colspan="2">Total</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td colspan="2"></td>
-                                                                    <td colspan="2">Grand Total</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
+                                                            <td><?php echo $qty ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                           <tr>
+                                                            <td colspan="2">Grand Total</td>
+                                                            <td><?php echo $sumXX ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td colspan="2">Grand Total</td>
+                                                            <td><?php echo $grand_total ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
 
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                        </tr>
+														<tr>
+															<td colspan="3" height="90px" class="text-center">Dibuat</td>
+															<td colspan="4" height="90px" class="text-center">Diperiksa</td>
+															<td colspan="4" height="90px" class="text-center">Diketahui</td>
+															<td colspan="3" height="90px" class="text-center">Disetujui</td>
+														</tr>
+                                                    </tbody>
+                                                </table>
                                                     </div>
 
                                                 </div>
@@ -796,6 +876,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                             </div>
                                             <div class="modal-footer">
                                                 <?php if($ss['status'] == 2) { ?>
+                                                <a
+                                                    href="<?php echo base_url('main/rejectSortirProduksi/'.$ss['id_sortir']); ?>"
+                                                    class="btn btn-danger">Reject</a>
                                                 <a
                                                     href="<?php echo base_url('main/approveSortirProduksi/'.$ss['id_sortir']); ?>"
                                                     class="btn btn-primary">Approve</a>

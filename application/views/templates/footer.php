@@ -44,6 +44,12 @@
 
 
 <script>
+function ApprovalPengajuan(val,status) {
+	$('#form-approval').attr('action',  '<?php echo base_url('main/approve_memo_dp/'); ?>' + val + '/' + status);
+    $('#form-approval').submit(); // Submit the form
+
+}
+
 
 $('.generateId').on('change', (event) => {
 	console.log(event.target.value); // ini adalah nilai id yang dipilih
@@ -67,15 +73,16 @@ function SimpanSortir(event, val) {
     form.submit(); // Submit the form
 }
 
-function SimpanSortirUpdate(event, val, id) {
+function SimpanSortirUpdateCoasting(event, val, id, status) {
     var form = $('#sortiresUpdate'); // Assuming #sortires is the ID of your form
     if (val === true) {
-        form.attr('action', '<?php echo base_url('main/sortirUpdateSimpan/') ?>' + id);
+        form.attr('action', '<?php echo base_url('main/sortirUpdateSimpan/') ?>' + id + '/' + status);
     } else {
-        form.attr('action', '<?php echo base_url('main/sortirUpdate/') ?>' + id);
+        form.attr('action', '<?php echo base_url('main/sortirUpdate/') ?>' + id + '/' + status);
     }
     form.submit(); // Submit the form
 }
+
 
 function exportToExcel() {
     $("#myTablePrintAble").table2excel({
@@ -168,22 +175,33 @@ function printDisini(val) {
 		);
 	})
 
-	function addDaging() {
+	function shows(index) {
+		$(`.hiddens-${index}`).css({'display': 'block'});
+		$(`.addDaging${index}`).css({'display': 'none'});
+	}
+
+	function addDaging(status, index) {
 		const dagingCountP = $('.daging-putih').length;
 		const dagingCountM = $('.daging-putih').length;
 		const idP = `dagingPutih${dagingCountP}`;
     	const idM = `dagingMerah${dagingCountM}`;
-
+		
 		const dagingCount = $('.dagings').length;
 
 		if (dagingCount > 0) {
         $('.remove-daging-btn').show();
     	}
 
-	
 		$('.isi').append(`
 		<div class="dagings" id="${dagingCount}">
-		
+		<div class="row">
+			<div class="col-md-12 col-sm-12" style="display:none">
+				<div class="form-group">
+				<label for="tanggal">Spesifikasi Bahan:</label>
+				<input type="text" class="form-control" id="spec_bahan${dagingCountP}">
+				</div>
+			</div>
+		</div>
 		<div class="daging-putih">
 			<h5>Daging Putih</h5>
 			<hr>
@@ -212,40 +230,43 @@ function printDisini(val) {
 					<input type="text" class="form-control" id="tbersihDagingPutih${dagingCountP}">
 					</div>
 				</div>
+				<button class="btn btn-sm btn-warning mx-1 addDaging${dagingCountP}" onclick="shows(${dagingCountP})" type="button">Tambah Daging Merah</button>
+				<div class="kuda1"></div>
 			</div>
 			</div>
-			<div class="daging-merah">
+			<div class="daging-merah hiddens-${dagingCountP}" style="display:none">
 			<h5>Daging Merah</h5>
 			<hr>
 			<div class="row">
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 					<label for="">Speck:</label>
-					<input type="text" class="form-control" id="spekDagingMerah${dagingCountM}">
+					<input type="text" class="form-control" id="spekDagingMerah${dagingCountP}">
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 						<label for="supplier">Bungkus:</label>
-						<input type="text" class="form-control" id="bungkusDagingMerah${dagingCountM}">
+						<input type="text" class="form-control" id="bungkusDagingMerah${dagingCountP}">
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 					<label for="dagingMerah">T.Kotor:</label>
-					<input type="text" class="form-control" id="tkotorDagingMerah${dagingCountM}">
+					<input type="text" class="form-control" id="tkotorDagingMerah${dagingCountP}">
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 					<label for="dagingMerah">T.Bersih:</label>
-					<input type="text" class="form-control" id="tbersihDagingMerah${dagingCountM}">
+					<input type="text" class="form-control" id="tbersihDagingMerah${dagingCountP}">
 					</div>
 				</div>
+				
 			</div>
 		</div>
 		<div class="d-flex justify-content-end">
-		<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-2 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
+		<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-3 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
 		</div>
         </div>
 		`)
@@ -255,38 +276,71 @@ function printDisini(val) {
     $('#' + id).remove();
 	}
 
+	function addDagingMerah(){
+		const html = ``;
+			$('.dagings_merah').append(html)
+	}
+
 	function kirimData() {
     var tanggal = document.getElementById("tanggal").value;
     var supplier = document.getElementById("supplier").value;
-    var spesifikasi = document.getElementById("spesifikasi").value;
     var qty = 0;
 
     var dataDagingP = [];
     var dataDagingM = [];
+	var spesifikasi_bahan = [];
     var dagingPElements = document.getElementsByClassName("daging-putih");
     var dagingMElements = document.getElementsByClassName("daging-merah");
     for (var i = 0; i < dagingPElements.length; i++) {
-        var spek = document.getElementById("spekDagingPutih" + i).value;
-        var bungkus = document.getElementById("bungkusDagingPutih" + i).value;
-        var tkotor = document.getElementById("tkotorDagingPutih" + i).value;
-        var tbersih = document.getElementById("tbersihDagingPutih" + i).value;
+		console.log(dagingPElements)
+		var spesifikasi_bahan = '';
+		var spek = '';
+		var bungkus = '';
+		var tkotor = '';
+		var tbersih = '';
+		var spek2 = '';
+		var bungkus2 = '';
+		var tkotor2 = '';
+		var tbersih2 = '';
+
+		if (document.getElementById("spec_bahan" + i)) {
+			spesifikasi_bahan = document.getElementById("spec_bahan" + i).value || '';
+		}
+		if (document.getElementById("spekDagingPutih" + i)) {
+			spek = document.getElementById("spekDagingPutih" + i).value || '';
+		}
+		if (document.getElementById("bungkusDagingPutih" + i)) {
+			bungkus = document.getElementById("bungkusDagingPutih" + i).value || '';
+		}
+		if (document.getElementById("tkotorDagingPutih" + i)) {
+			tkotor = document.getElementById("tkotorDagingPutih" + i).value || '';
+		}
+		if (document.getElementById("tbersihDagingPutih" + i)) {
+			tbersih = document.getElementById("tbersihDagingPutih" + i).value || '';
+		}
+		if (document.getElementById("spekDagingMerah" + i)) {
+			spek2 = document.getElementById("spekDagingMerah" + i).value || '';
+		}
+		if (document.getElementById("bungkusDagingMerah" + i)) {
+			bungkus2 = document.getElementById("bungkusDagingMerah" + i).value || '';
+		}
+		if (document.getElementById("tkotorDagingMerah" + i)) {
+			tkotor2 = document.getElementById("tkotorDagingMerah" + i).value || '';
+		}
+		if (document.getElementById("tbersihDagingMerah" + i)) {
+			tbersih2 = document.getElementById("tbersihDagingMerah" + i).value || '';
+		}
+
         dataDagingP.push({
+			spesifikasi_bahan: spesifikasi_bahan,
             spek: spek,
             bungkus: bungkus,
             tkotor: tkotor,
-            tbersih: tbersih
-        });
-    }
-    for (var i = 0; i < dagingMElements.length; i++) {
-        var spek = document.getElementById("spekDagingMerah" + i).value;
-        var bungkus = document.getElementById("bungkusDagingMerah" + i).value;
-        var tkotor = document.getElementById("tkotorDagingMerah" + i).value;
-        var tbersih = document.getElementById("tbersihDagingMerah" + i).value;
-        dataDagingM.push({
-            spek: spek,
-            bungkus: bungkus,
-            tkotor: tkotor,
-            tbersih: tbersih
+            tbersih: tbersih,
+			spek2: spek2,
+            bungkus2: bungkus2,
+            tkotor2: tkotor2,
+            tbersih2: tbersih2,
         });
     }
 
@@ -294,7 +348,7 @@ function printDisini(val) {
     var data = {
         tanggal: tanggal,
         supplier: supplier,
-		spesifikasi: spesifikasi,
+		spesifikasi: null,
         dagingPutih: JSON.stringify(dataDagingP),
         dagingMerah: JSON.stringify(dataDagingM),
         qty: qty,

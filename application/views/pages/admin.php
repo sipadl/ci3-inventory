@@ -20,7 +20,6 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
             <thead>
                 <tr class="text-center">
                     <th>No</th>
-                    <th>Speck Bahan</th>
                     <th>Tanggal</th>
                     <th>Kode Suplier</th>
                     <th>Status</th>
@@ -32,7 +31,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                 <?php foreach ($daging as $data ) : ?>
                 <tr>
                     <td><?php print $no++ ?></td>
-                    <td><?php print $data['spesifikasi'] ?></td>
+                    <!-- <td><?php print $data['spesifikasi'] ?></td> -->
                     <td><?php print $data['tanggal'] ?></td>
                     <td><?php print $data['supplier'] ?></td>
                     <td class="text-center">
@@ -74,69 +73,51 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												</div>
 										<div class="modal-body" id="<?php echo 'modal-print-'.$data['id'] ?>">
 											<div class="container-fluid">
-												<table class="table-bordered" id="myTable2">
+												<div class="d-flex justify-content-between my-2">
+													<div class="">Kode Supplier : <?php echo $data['supplier'] ?></div>
+													<div class="">Tanggal : <?php echo $data['tanggal'] ?></div>
+												</div>
+												<?php 
+												$dataDaging = $this->db->query("SELECT * FROM tbl_sub_daging 
+												WHERE id_bahan_baku = ".$data['id'].' order by spek desc')->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
+												?>
+												<table class="table-bordered">
 													<thead class="text-center">
 														<tr class="text-center">
-															<th class="w-50">Speck Bahan</th>
-															<th>Quantity</th>
-															<th colspan="">Daging Putih</th>
-															<th colspan="">Daging Merah</th>
+															<tr>
+																<th rowspan="2" class="w-50">Speck Bahan</th>
+																<th rowspan="2">Quantity</th>
+																<th colspan="4">Daging Putih</th>
+																<th colspan="4">Daging Merah</th>
+															</tr>
+															<tr>
+																<th>Speck</th>
+																<th>Bungkus</th>
+																<th>T.Kotor</th>
+																<th>T.Bersih</th>
+																<th>Speck</th>
+																<th>Bungkus</th>
+																<th>T.Kotor</th>
+																<th>T.Bersih</th>
+															</tr>
 														</tr>
 													</thead>
 													<tbody>
-														<tr class="text-center">
-															<td><?php echo $data['spesifikasi'] ?></td>
-															<td><?php echo $data['qty'] ?></td>
-														<td class="">
-															<table class="table-bordered">
-																<thead>
-																	<tr>
-																		<th class="hehes">Spek</th>
-																		<th class="hehes">Bungkus</th>
-																		<th class="hehes">T.Kotor</th>
-																		<th class="hehes">T.Bersih</th>
-																	</tr>
-																</thead>
-																<?php 
-																	$dagingPutih = json_decode($data['daging_putih'], true); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
-																	?>
-																<tbody>
-																<?php foreach ($dagingPutih as $dp) : ?>
-																	<tr>
-																		<td class="hehes"><?php echo $dp['spek']; ?></td>
-																		<td class="hehes"><?php echo $dp['bungkus']; ?></td>
-																		<td class="hehes"><?php echo $dp['tkotor']; ?></td>
-																		<td class="hehes"><?php echo $dp['tbersih']; ?></td>
-																	</tr>
-																	<?php endforeach; ?>
-																</tbody>
-															</table>
-														</td>
-														<td class="">
-															<table class="table table-bordered">
-																<thead>
-																	<tr>
-																		<th class="hehes">Spek</th>
-																		<th class="hehes">Bungkus</th>
-																		<th class="hehes">T.Kotor</th>
-																		<th class="hehes">T.Bersih</th>
-																	</tr>
-																</thead>
-																<?php 
-																	$dagingPutihx = json_decode($data['daging_merah'], true); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
-																	?>
-																<tbody>
-																<?php foreach ($dagingPutihx as $dp) : ?>
-																	<tr>
-																		<td class="hehes"><?php echo $dp['spek']; ?></td>
-																		<td class="hehes"><?php echo $dp['bungkus']; ?></td>
-																		<td class="hehes"><?php echo $dp['tkotor']; ?></td>
-																		<td class="hehes"><?php echo $dp['tbersih']; ?></td>
-																	</tr>
-																	<?php endforeach; ?>
-																</tbody>
-															</table>
-													</td> 
+														<?php foreach($dataDaging as $dd) { 
+															 ?>
+															<tr>
+																<td><?php echo $dd['spesifikasi_bahan'] ?></td>
+																<td><?php echo $dd['qty'] ?></td>
+																<td><?php echo $dd['spek'] ?></td>
+																<td><?php echo $dd['bungkus'] ?></td>
+																<td><?php echo $dd['tkotor'] ?></td>
+																<td><?php echo $dd['tbersih'] ?></td>
+																<td><?php echo $dd['spek2'] ?></td>
+																<td><?php echo $dd['bungkus2'] ?></td>
+																<td><?php echo $dd['tkotor2'] ?></td>
+																<td><?php echo $dd['tbersih2'] ?></td>
+															</tr>
+														<?php } ?>
 													</tbody>
 												</table>
 											</div>
@@ -183,12 +164,12 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
             <div class="modal-body">
 			<form id="dataForm" method="post">
                     <div class="row">
-                        <div class="col-md-3 col-sm-12">
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="tanggal">Tanggal:</label>
                                 <input type="date" class="form-control" id="tanggal"></div>
                             </div>
-                            <div class="col-md-3 col-sm-12">
+                            <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label for="supplier">Supplier:</label>
                                     <select class="form-control" id="supplier" name="supplier">
@@ -199,23 +180,17 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 									</select>
 								</div>
                                 </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="dagingMerah">Spesifikasi Bahan:</label>
-                                        <input type="text" class="form-control" id="spesifikasi"></div>
-                                    </div>
-                                    <!-- <div class="col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="qty">Qty:</label>
-                                            <input type="text" min="0" class="form-control" id="qty"></div>
-                                        </div>
-                                    </div> -->
+                                <div class="col-md-12 col-sm-12">
+								</div>
                                     <div class="isi p-2">
-										</div>
+									</div>
+									<div>
+										<button class="btn btn-sm btn-warning mx-1" onclick="addDaging(false)" type="button">Tambah Daging Putih</button>
+									</div>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-										<button type="button" class="btn btn-warning" onclick="addDaging()">Tambah Data</button>
+										<!-- <button type="button" class="btn btn-warning" onclick="addDaging()">Tambah Data</button> -->
 										<button type="button" onclick="kirimData()" class="btn btn-primary">Simpan</button>
 									</div>
 								</div>

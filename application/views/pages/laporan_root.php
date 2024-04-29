@@ -10,7 +10,7 @@
 			<div class="modal-dialog modal-xl modal-fullscreen" role="document">
 				<div class="modal-content ">
 					<div class="modal-header">
-						<h5 class="modal-title">Modal Laporan Root</h5>
+						<h5 class="modal-title">Laporan Root</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -51,7 +51,8 @@
 					<tbody>
 						<?php 
 						$no = 1;
-						foreach ($supplier as $da) : ?>
+						foreach ($supplier as $da) : 
+						?>
 						<tr>
 							<td><?php echo $no++ ?></td>
 							<td><?php echo $da['kode_supplier'] ?></td>
@@ -138,7 +139,7 @@
 
 							<td><?php $receiving = (floatval($total_nota) + floatval($total_subsidi_dibayar));
 							if($receiving > 1 ) {
-								echo number_format($receiving / floatval($da['qty']),2);
+								// echo number_format($receiving / floatval($qty),2);
 							} else {
 								echo 0;
 							}
@@ -161,6 +162,13 @@
 						foreach ($supplier as $da) : ?>
 						
 						<?php 
+
+						$qty = 0;
+						$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$da['id_bb'])->result_array(); 
+						foreach($dataDaging as $sdb) {
+							$qty = floatval($sdb['tkotor']) + floatval($sdb['tkotor2']) + floatval($sdb['tbersih']) + floatval($sdb['tbersih']);
+						}
+
 						$fresh += floatval($da['col']) + floatval($da['bf']) + floatval($da['jb']) + floatval($da['jbb_jf']) + floatval($da['jbb_jk'])
 								+ floatval($da['jbb_bf']) + floatval($da['xlp']) + floatval($da['bf_k3_col']) + floatval($da['bf_k3_jb']) + floatval($da['bf_k3_jk'])
 								+ floatval($da['bf_k3_jl']) + floatval($da['bf_jl']) + floatval($da['bf_bf']) + floatval($da['bf_bf']) + floatval($da['bf_kj']) + 
@@ -247,26 +255,50 @@
 					<th>No.</th>
 					<th>Kode Supplier</th>
 					<th>Tanggal Input</th>
-					<!-- <th>Approved By</th> -->
-					<!-- <th>Status</th> -->
+					<th>Approved By</th>
+					<th>Status</th>
 					<th>Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php 
 				$no = 1;
-				foreach ($supplier as $da) : ?>
+				foreach ($supplier as $da) : 
+				$qty = 0;
+				$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$da['id_bb'])->result_array(); 
+				foreach($dataDaging as $sdb) {
+					$qty = floatval($sdb['tkotor']) + floatval($sdb['tkotor2']) + floatval($sdb['tbersih']) + floatval($sdb['tbersih']);
+				}
+				?>
 				<tr>
 					<td><?php echo $no ++ ?></td>
 					<td><?php echo $da['kode_supplier'] ++ ?></td>
 					<td><?php echo $da['tanggal'] ?></td>
-					<!-- <td><?php echo $da['approved_by'] ?></td> -->
-					<!-- <td><?php echo $da['status'] ?></td> -->
+					<td>
+					<?php if($da['approved_by'] != null ) {
+							 $approved = $this->db->query("select username from tbl_user where id = ".$da['approved_by']."")->row_array();
+							 echo $approved['username'];
+							} else {
+							echo '';
+							}
+						?>
+					</td>
+					<td><?php 
+					$status = $da['status'];
+					if ($status == -1) {
+							echo "Rejected";
+						} elseif ($status == 0) {
+							echo "Pending";
+						} elseif ($status == 1) {
+							echo "Accepted";
+							} ?></td>
 					<td>
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modelId">
-					  Tambah Manual Data
-					</button>
+					<?php if(!$da['id_laporan']) { ?> 
+						<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modelId">
+							Tambah Manual Data
+						</button>
+					<?php } ?>
 					<!-- Button trigger modal -->
 					<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelId-<?php echo $da['id'] ?>">
 					  <i class="fa fa-eye" aria-hidden="true"></i>
@@ -309,6 +341,7 @@
 								<th style="width: 160px;" rowspan="2">TOTAL SUBSIDI TRANS</th>
 								<th style="width: 100px;" rowspan="2">UNTUNG / RUGI</th>
 								<th style="width: 140px;" rowspan="2">ROOT RECEIVING</th>
+								<th rowspan="2">JB %</th>
 								<tr>
 								<th style="width: 120px;" rowspan="1">awal</th>
 								<th style="width: 120px;" rowspan="1">-/+</th>
@@ -317,7 +350,7 @@
 							</thead>
 								<tbody>
 									<tr>
-										<td><?php echo $no++ ?></td>
+										<td>1</td>
 										<td><?php echo $da['kode_supplier'] ?></td>
 										<td><?php echo $da['nama_supplier'] ?></td>
 										<td id="fresh"><?php $fresh = floatval($da['col']) + floatval($da['bf']) + floatval($da['jb']) + floatval($da['jbb_jf']) + floatval($da['jbb_jk'])
@@ -326,6 +359,8 @@
 											floatval($da['bf_spk_xlp']) + floatval($da['bf_spk_sp']) + floatval($da['spk_sp_jb']) +  floatval($da['spk_sp_bfp']) + floatval($da['spk_sp_sph']) + 
 											floatval($da['sp_cl']) + floatval($da['sp_clf']) + floatval($da['mh']) + floatval($da['mh_slb']);
 											echo $fresh; 
+
+											
 										?></td>
 										<td id="mhr">
 										<?php $sum = floatval($da['phr']) + floatval($da['basi_col']) + floatval($da['basi_jb']) + floatval($da['basi_sp']) + floatval($da['mhr']) + 
@@ -347,7 +382,7 @@
 										?>
 										</td>
 										<td id="qty_bb">
-											<?php echo $da['timbangan_bb'] ?>
+											<?php echo $qty ?>
 										</td>
 										<td id="total_nota">
 											<?php 
@@ -392,7 +427,7 @@
 										<td><?php echo $subsidi_dibayar_kedua = $da['subsidi_dibayar_2'] ?></td>
 										<td><?php echo number_format($subsidi_dibayar_kedua + $subsidi_dibayar_awal, 2)?></td>
 										<td><?php echo $cap_shell = $da['cap_shell'] ?></td>
-										<td><?php echo $total_subsidi_dibayar = ($subsidi_dibayar_kedua + $subsidi_dibayar_awal) * $fresh ?></td>
+										<td><?php echo $total_subsidi_dibayar = ($subsidi_dibayar_kedua + $subsidi_dibayar_awal - $da['subsidi_dibayar_3']) * $fresh ?></td>
 										<td><?php echo $total_nota_subsidi_bayar = ($total_subsidi_dibayar + $total_nota ) ?></td>
 										<td><?php echo $root_setelah_subsidi = number_format($total_nota_subsidi_bayar / $sumXX,2) ?></td>
 										<!-- Manual -->
@@ -401,19 +436,23 @@
 										<td><?php echo number_format(floatval($total_nota) + floatval($subsidi_normal) - floatval($cap_shell) - floatval($total_nota) + floatval($total_subsidi_dibayar) - floatval($subsidi_transport), 2) ?></td>
 
 										<td><?php $receiving = (floatval($total_nota) + floatval($total_subsidi_dibayar));
-										if($receiving > 1 ) {
-											echo number_format($receiving / floatval($da['qty']),2);
+										if($receiving > 1 && $qty ) {
+											echo number_format($receiving / floatval($qty),2);
 										} else {
 											echo 0;
 										}
 										?>
 									</td>
+									<td>1</td>
 									</tr>
 								</tbody>
 								
 								</table>
 								</div>
 								<div class="modal-footer">
+									<?php if($da['id_laporan']) { ?> 
+									<a href="<?php echo base_url('main/approve_laporan_root/'.$da['id_laporan']); ?>" class="btn btn-primary">Approve</a>
+									<?php } ?>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 								</div>
 							</div>
@@ -433,7 +472,8 @@
 								<div class="modal-body">
 										<input type="text" class="form-control my-2" name="subsidi_normal" id="" placeholder="subsidi normal">
 										<input type="text" class="form-control my-2" name="subsidi_dibayar_1" id="" placeholder="subsidi dibayar (awal)">
-										<input type="text" class="form-control my-2" name="subsidi_dibayar_2" id="" placeholder="subsidi dibayar (-/+)">
+										<input type="text" class="form-control my-2" name="subsidi_dibayar_2" id="" placeholder="subsidi dibayar (+)">
+										<input type="text" class="form-control my-2" name="subsidi_dibayar_3" id="" placeholder="subsidi dibayar (-)">
 										<input type="text" class="form-control my-2" name="cap_shell" id="" placeholder="cap/shell">
 										<input type="text" class="form-control my-2" name="subsidi_transport" id="" placeholder="subsidi transport">
 									</div>

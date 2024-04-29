@@ -16,14 +16,31 @@ class Main_model extends CI_Model {
 		return $this->db->query("select td.*, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb order by ts.id desc")->result_array();
 	}
 
+
+	public function getBahanBakuBaru() {
+		return $this->db->query('select b.id as id_bahan_baku, b.*, a.* from tbl_daging b left join tbl_sortir a on a.id_bb = b.id order by b.id desc')->result_array();
+	}
+
 	public function GetSortirWithMemo($val) {
-		return $this->db->query('select *,a.id as id_sortirs, a.kode_supplier as kode, b.id as memos , b.status as status_memo from tbl_sortir a left join tbl_memo b on a.kode_supplier = b.kode_supplier
-		where a.status in ('.$val.')')->result_array();
+		return $this->db->query('select *, b.status as status_memo from tbl_sortir a left join tbl_memo b on a.id = b.id_sortir')->result_array();
 	}
 
 
 	public function getTblMemo() {
-		return $this->db->query('select * from tbl_memo a left join tbl_sortir b on a.id_sortir = b.id where b.status in (3,4)')->result_array();
+		return $this->db->query('
+		select
+		a.*,
+		c.*,
+		a.id as ids,
+		a.kode_supplier as supplier,
+		b.status as status_memo,
+		b.id as id_memo,
+		subsidi
+	from
+		tbl_sortir a
+	left join tbl_memo b on
+		a.id = b.id_sortir
+	join tbl_daging c on c.id = a.id_bb ')->result_array();
 	}
 
 	public function getBahanBakuWithStatus($val) {
@@ -32,7 +49,7 @@ class Main_model extends CI_Model {
 
 	public function getDataSortir($id = null) {
 		if($id) {
-			return $this->db->query("select * from tbl_sortir where status = 0 and id =". $id." order by id desc")->result_array()[0];
+			return $this->db->query("select * from tbl_sortir where id =". $id." order by id desc")->result_array();
 		} else {
 			return $this->db->query("select * from tbl_sortir where status = 0 order by id desc")->result_array();
 		}
@@ -41,6 +58,7 @@ class Main_model extends CI_Model {
 	public function insertAll($table, $data)
 	{
 		$this->db->insert($table,  $data);
+		return $this->db->insert_id();
 	}
 
 	public function updateAll($table, $data, $id)
@@ -99,7 +117,7 @@ class Main_model extends CI_Model {
 		$this->db->delete();
 	}
 	public function get_laporan_root () {
-		return $this->db->query("select *, d.status as status_laporan from tbl_supplier a 
+		return $this->db->query("select *,d.id as id_laporan, d.status as status_laporan from tbl_supplier a 
 		left join tbl_sortir b
 		on a.kode_supplier = b.kode_supplier 
 		join tbl_daging c on c.id = b.id_bb 
@@ -110,5 +128,10 @@ class Main_model extends CI_Model {
 		return $this->db->query('select * from tbl_price')->result_array();
 	}
 	
+
+	public function getDagingWithSubDaging()
+	{
+		return $this->db->query('select * from tbl_daging a left join tbl_sub_daging b on a.id = b.id_bahan_baku')->result_array();
+	}
 
 }
