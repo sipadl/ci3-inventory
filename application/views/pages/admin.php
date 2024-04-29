@@ -85,7 +85,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 													<thead class="text-center">
 														<tr class="text-center">
 															<tr>
-																<!-- <th rowspan="2" class="w-50">Speck Bahan</th> -->
+																<th rowspan="2" class="w-50">Speck Bahan</th>
 																<th rowspan="2">Quantity</th>
 																<th colspan="4">Daging Putih</th>
 																<th colspan="4">Daging Merah</th>
@@ -107,12 +107,18 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															 ?>
 															<tr>
 																<!-- <td><?php echo $dd['spesifikasi_bahan'] ?></td> -->
+																<td><?php echo $dd['spek'] ?></td>
 																<?php if($dd['tipe'] == 0 ) { ?> 
 																<td><?php echo $dd['qty'] ?></td>
 																<td><?php echo $dd['spek'] ?></td>
 																<td><?php echo $dd['bungkus'] ?></td>
 																<td><?php echo $dd['tkotor'] ?></td>
 																<td><?php echo $dd['tbersih'] ?></td>
+																<!-- <td><?php echo $dd['spek2'] ?></td>
+																<td><?php echo $dd['bungkus2'] ?></td>
+																<td><?php echo $dd['tkotor2'] ?></td>
+																<td><?php echo $dd['tbersih2'] ?></td> -->
+																<td></td>
 																<?php } else { ?>
 																	<td></td>
 																	<td></td>
@@ -121,10 +127,10 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 																	<td></td>
 																<?php }?>
 																	 <?php if($dd['tipe'] == 1 ) { ?> 
-																	<td><?php echo $dd['spek'] ?></td>
-																	<td><?php echo $dd['bungkus'] ?></td>
-																	<td><?php echo $dd['tkotor'] ?></td>
-																	<td><?php echo $dd['tbersih'] ?></td>
+																	<td><?php echo $dd['spek2'] ?></td>
+																	<td><?php echo $dd['bungkus2'] ?></td>
+																	<td><?php echo $dd['tkotor2'] ?></td>
+																	<td><?php echo $dd['tbersih2'] ?></td>
 																<?php } else { ?>
 																	<td></td>
 																	<td></td>
@@ -137,7 +143,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														<tr>
 															<td colspan="3" height="90px" class="text-center">Dibuat</td>
 															<td colspan="3" height="90px" class="text-center">Diperiksa</td>
-															<td colspan="3" height="90px" class="text-center">Disetujui</td>
+															<td colspan="4" height="90px" class="text-center">Disetujui</td>
 														</tr>
 													</tbody>
 												</table>
