@@ -81,11 +81,11 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												$dataDaging = $this->db->query("SELECT * FROM tbl_sub_daging 
 												WHERE id_bahan_baku = ".$data['id'].' order by spek desc')->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
 												?>
-												<table class="table-bordered">
+												<table class="table-bordered w-100">
 													<thead class="text-center">
 														<tr class="text-center">
 															<tr>
-																<th rowspan="2" class="w-50">Speck Bahan</th>
+																<!-- <th rowspan="2" class="w-50">Speck Bahan</th> -->
 																<th rowspan="2">Quantity</th>
 																<th colspan="4">Daging Putih</th>
 																<th colspan="4">Daging Merah</th>
@@ -106,18 +106,39 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														<?php foreach($dataDaging as $dd) { 
 															 ?>
 															<tr>
-																<td><?php echo $dd['spesifikasi_bahan'] ?></td>
+																<!-- <td><?php echo $dd['spesifikasi_bahan'] ?></td> -->
+																<?php if($dd['tipe'] == 0 ) { ?> 
 																<td><?php echo $dd['qty'] ?></td>
 																<td><?php echo $dd['spek'] ?></td>
 																<td><?php echo $dd['bungkus'] ?></td>
 																<td><?php echo $dd['tkotor'] ?></td>
 																<td><?php echo $dd['tbersih'] ?></td>
-																<td><?php echo $dd['spek2'] ?></td>
-																<td><?php echo $dd['bungkus2'] ?></td>
-																<td><?php echo $dd['tkotor2'] ?></td>
-																<td><?php echo $dd['tbersih2'] ?></td>
+																<?php } else { ?>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																<?php }?>
+																	 <?php if($dd['tipe'] == 1 ) { ?> 
+																	<td><?php echo $dd['spek'] ?></td>
+																	<td><?php echo $dd['bungkus'] ?></td>
+																	<td><?php echo $dd['tkotor'] ?></td>
+																	<td><?php echo $dd['tbersih'] ?></td>
+																<?php } else { ?>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																<?php }?>
 															</tr>
 														<?php } ?>
+
+														<tr>
+															<td colspan="3" height="90px" class="text-center">Dibuat</td>
+															<td colspan="3" height="90px" class="text-center">Diperiksa</td>
+															<td colspan="3" height="90px" class="text-center">Disetujui</td>
+														</tr>
 													</tbody>
 												</table>
 											</div>
@@ -185,7 +206,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                     <div class="isi p-2">
 									</div>
 									<div>
-										<button class="btn btn-sm btn-warning mx-1" onclick="addDaging(false)" type="button">Tambah Daging Putih</button>
+										<button class="btn btn-sm btn-warning mx-1" onclick="addDaging(false, 0)" type="button">Tambah Daging Putih</button>
+										<button class="btn btn-sm btn-warning mx-1" onclick="addDaging(true, 1)" type="button">Tambah Daging Merah</button>
 									</div>
 									</div>
 									<div class="modal-footer">

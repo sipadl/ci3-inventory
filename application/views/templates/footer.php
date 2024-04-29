@@ -175,66 +175,58 @@ function printDisini(val) {
 		);
 	})
 
-	function shows(index) {
-		$(`.hiddens-${index}`).css({'display': 'block'});
-		$(`.addDaging${index}`).css({'display': 'none'});
-	}
-
-	function addDaging(status, index) {
+	function addDaging(status, index = 0) {
 		const dagingCountP = $('.daging-putih').length;
 		const dagingCountM = $('.daging-putih').length;
 		const idP = `dagingPutih${dagingCountP}`;
     	const idM = `dagingMerah${dagingCountM}`;
-		
 		const dagingCount = $('.dagings').length;
-
 		if (dagingCount > 0) {
         $('.remove-daging-btn').show();
     	}
-
 		$('.isi').append(`
 		<div class="dagings" id="${dagingCount}">
-		<div class="row">
-			<div class="col-md-12 col-sm-12" style="display:none">
-				<div class="form-group">
-				<label for="tanggal">Spesifikasi Bahan:</label>
-				<input type="text" class="form-control" id="spec_bahan${dagingCountP}">
-				</div>
-			</div>
-		</div>
 		<div class="daging-putih">
-			<h5>Daging Putih</h5>
+			<h5>${index == 0 ? 'Daging Putih' : 'Daging Merah'}</h5>
 			<hr>
 			<div class="row">
+				<input type="hidden" id="tipe${dagingCountP}" value="${index}">
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 					<label for="tanggal">Speck:</label>
-					<input type="text" class="form-control" id="spekDagingPutih${dagingCountP}">
+					<input type="text" class="form-control" id="spek${dagingCountP}">
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 						<label for="supplier">Bungkus:</label>
-						<input type="text" class="form-control" id="bungkusDagingPutih${dagingCountP}">
+						<input type="text" class="form-control" id="bungkus${dagingCountP}">
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 					<label for="dagingMerah">T.Kotor:</label>
-					<input type="text" class="form-control" id="tkotorDagingPutih${dagingCountP}">
+					<input type="text" class="form-control" id="tkotor${dagingCountP}">
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-12">
 					<div class="form-group">
 					<label for="dagingMerah">T.Bersih:</label>
-					<input type="text" class="form-control" id="tbersihDagingPutih${dagingCountP}">
+					<input type="text" class="form-control" id="tbersih${dagingCountP}">
 					</div>
 				</div>
-				<button class="btn btn-sm btn-warning mx-1 addDaging${dagingCountP}" onclick="shows(${dagingCountP})" type="button">Tambah Daging Merah</button>
 				<div class="kuda1"></div>
 			</div>
 			</div>
-			<div class="daging-merah hiddens-${dagingCountP}" style="display:none">
+		</div>
+		<div class="d-flex justify-content-end">
+		<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-3 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
+		</div>
+        </div>
+		`)
+
+		const dagingMerah = `
+		<div class="daging-merah hiddens-${dagingCountP}" style="display:none">
 			<h5>Daging Merah</h5>
 			<hr>
 			<div class="row">
@@ -262,23 +254,11 @@ function printDisini(val) {
 					<input type="text" class="form-control" id="tbersihDagingMerah${dagingCountP}">
 					</div>
 				</div>
-				
-			</div>
-		</div>
-		<div class="d-flex justify-content-end">
-		<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-3 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
-		</div>
-        </div>
-		`)
+			</div>`
 	}
 
 	function removeDaging(id) {
     $('#' + id).remove();
-	}
-
-	function addDagingMerah(){
-		const html = ``;
-			$('.dagings_merah').append(html)
 	}
 
 	function kirimData() {
@@ -306,29 +286,20 @@ function printDisini(val) {
 		if (document.getElementById("spec_bahan" + i)) {
 			spesifikasi_bahan = document.getElementById("spec_bahan" + i).value || '';
 		}
-		if (document.getElementById("spekDagingPutih" + i)) {
-			spek = document.getElementById("spekDagingPutih" + i).value || '';
+		if (document.getElementById("spek" + i)) {
+			spek = document.getElementById("spek" + i).value || '';
 		}
-		if (document.getElementById("bungkusDagingPutih" + i)) {
-			bungkus = document.getElementById("bungkusDagingPutih" + i).value || '';
+		if (document.getElementById("bungkus" + i)) {
+			bungkus = document.getElementById("bungkus" + i).value || '';
 		}
-		if (document.getElementById("tkotorDagingPutih" + i)) {
-			tkotor = document.getElementById("tkotorDagingPutih" + i).value || '';
+		if (document.getElementById("tkotor" + i)) {
+			tkotor = document.getElementById("tkotor" + i).value || '';
 		}
-		if (document.getElementById("tbersihDagingPutih" + i)) {
-			tbersih = document.getElementById("tbersihDagingPutih" + i).value || '';
+		if (document.getElementById("tbersih" + i)) {
+			tbersih = document.getElementById("tbersih" + i).value || '';
 		}
-		if (document.getElementById("spekDagingMerah" + i)) {
-			spek2 = document.getElementById("spekDagingMerah" + i).value || '';
-		}
-		if (document.getElementById("bungkusDagingMerah" + i)) {
-			bungkus2 = document.getElementById("bungkusDagingMerah" + i).value || '';
-		}
-		if (document.getElementById("tkotorDagingMerah" + i)) {
-			tkotor2 = document.getElementById("tkotorDagingMerah" + i).value || '';
-		}
-		if (document.getElementById("tbersihDagingMerah" + i)) {
-			tbersih2 = document.getElementById("tbersihDagingMerah" + i).value || '';
+		if (document.getElementById("tipe" + i)) {
+			tipe = document.getElementById("tipe" + i).value || '';
 		}
 
         dataDagingP.push({
@@ -337,10 +308,7 @@ function printDisini(val) {
             bungkus: bungkus,
             tkotor: tkotor,
             tbersih: tbersih,
-			spek2: spek2,
-            bungkus2: bungkus2,
-            tkotor2: tkotor2,
-            tbersih2: tbersih2,
+			tipe: tipe
         });
     }
 
@@ -365,6 +333,12 @@ function printDisini(val) {
 		},
 		"json"
 	);
+}
+
+function EditKocak ( url, selector ){
+	var form = $(`#${selector}`); // Assuming #sortires is the ID of your form
+	form.attr('action', url);
+    form.submit(); // Submit the form
 }
 
 </script>

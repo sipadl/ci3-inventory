@@ -72,6 +72,8 @@ class Main extends CI_Controller {
 
 		$datas = json_decode($dataSubBahanBaku, true);
 
+		// var_dump($datas);
+		// die();
 		// Check if $insert_id is valid
 		if ($insert_id !== false) {
 			// Fetch $is_exists outside the loop
@@ -96,10 +98,7 @@ class Main extends CI_Controller {
 				// 	$this->Main_model->insertAll('tbl_sub_daging', $dataInsertDouble);
 				// } else {
 					$datax['id_bahan_baku'] = $insert_id;
-					$datax['qty'] = floatval($datax['tbersih']) + floatval($datax['tbersih2']);
-					// Adjust data structure for insertion if necessary
-
-					// Insert new data
+					$datax['qty'] = floatval($datax['tbersih']);
 					$this->Main_model->insertAll('tbl_sub_daging', $datax);
 				// }
 			}
@@ -486,7 +485,7 @@ class Main extends CI_Controller {
 
 	public function approveSortirProduksi($id) {
 		$user_id = $this->session->userdata('id');
-		$data = array('approved_by' => $user_id ,'status' => 3);
+		$data = array('approved_by' => $user_id ,'status' => 3, 'keterangan' => $this->input->post('keterangan'));
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
 		// redirect(base_url(), 'refresh');
@@ -495,7 +494,7 @@ class Main extends CI_Controller {
 
 	public function rejectSortirProduksi($id) {
 		$user_id = $this->session->userdata('id');
-		$data = array('approved_by' => $user_id ,'status' => -1);
+		$data = array('approved_by' => $user_id ,'status' => -1, 'keterangan' => $this->input->post('keterangan'));
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
 		$this->session->set_flashdata('success', 'Data Sortir berhasil diapprove.');
 		// redirect(base_url(), 'refresh');

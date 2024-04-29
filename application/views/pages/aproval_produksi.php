@@ -116,20 +116,36 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php foreach($dataDaging as $dd) { ?>
-                                                            <tr>
-                                                                <td><?php echo $dd['spesifikasi_bahan'] ?></td>
-                                                                <td><?php echo $dd['qty'] ?></td>
-                                                                <td><?php echo $dd['spek'] ?></td>
-                                                                <td><?php echo $dd['bungkus'] ?></td>
-                                                                <td><?php echo $dd['tkotor'] ?></td>
-                                                                <td><?php echo $dd['tbersih'] ?></td>
-                                                                <td><?php echo $dd['spek2'] ?></td>
-                                                                <td><?php echo $dd['bungkus2'] ?></td>
-                                                                <td><?php echo $dd['tkotor2'] ?></td>
-                                                                <td><?php echo $dd['tbersih2'] ?></td>
-                                                            </tr>
-                                                            <?php } ?>
+														<?php foreach($dataDaging as $dd) { 
+															 ?>
+															<tr>
+																<!-- <td><?php echo $dd['spesifikasi_bahan'] ?></td> -->
+																<?php if($dd['tipe'] == 0 ) { ?> 
+																<td><?php echo $dd['qty'] ?></td>
+																<td><?php echo $dd['spek'] ?></td>
+																<td><?php echo $dd['bungkus'] ?></td>
+																<td><?php echo $dd['tkotor'] ?></td>
+																<td><?php echo $dd['tbersih'] ?></td>
+																<?php } else { ?>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																<?php }?>
+																	 <?php if($dd['tipe'] == 1 ) { ?> 
+																	<td><?php echo $dd['spek'] ?></td>
+																	<td><?php echo $dd['bungkus'] ?></td>
+																	<td><?php echo $dd['tkotor'] ?></td>
+																	<td><?php echo $dd['tbersih'] ?></td>
+																<?php } else { ?>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																<?php }?>
+															</tr>
+														<?php } ?>
                                                         </tbody>
                                                     </table>
 												</div>
@@ -875,15 +891,20 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 
                                             </div>
                                             <div class="modal-footer">
+											<form id="kocak" method="post">
+												<textarea type="text" name="" <?php echo $ss['status'] != 2 ? 'readonly' : '' ?> id="keterangan" placeholder="keterangan" class="form-control w-100 mb-2"><?php echo $ss['keterangan'] ?></textarea>
                                                 <?php if($ss['status'] == 2) { ?>
-                                                <a
-                                                    href="<?php echo base_url('main/rejectSortirProduksi/'.$ss['id_sortir']); ?>"
-                                                    class="btn btn-danger">Reject</a>
-                                                <a
-                                                    href="<?php echo base_url('main/approveSortirProduksi/'.$ss['id_sortir']); ?>"
-                                                    class="btn btn-primary">Approve</a>
-                                                <?php } ?>
-                                                <button class="btn btn-primary" onclick="printDisini(<?php echo $ss['id'] ?>)">Print</button>
+													<button
+													type="button"
+                                                    onclick="EditKocak('<?php echo base_url('main/rejectSortirProduksi/'.$ss['id_sortir']) ?>', 'kocak')"
+                                                    class="btn btn-danger">Reject</button>
+													<button
+													type="button"
+                                                    onclick="EditKocak('<?php echo base_url('main/approveSortirProduksi/'.$ss['id_sortir'])?>', 'kocak')"
+                                                    class="btn btn-primary">Approve</button>
+													<?php } ?>
+													<button class="btn btn-primary" onclick="printDisini(<?php echo $ss['id'] ?>)">Print</button>
+											</form>
 
                                             </div>
                                         </div>
