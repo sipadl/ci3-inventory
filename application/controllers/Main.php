@@ -68,8 +68,8 @@ class Main extends CI_Controller {
 		);
 
 		// Menyimpan data menggunakan model
-		$insert_id = $this->Main_model->insertAll('tbl_daging', $data);
-		// $insert_id = 60;
+		// $insert_id = $this->Main_model->insertAll('tbl_daging', $data);
+		$insert_id = 60;
 
 		$datas = json_decode($dataSubBahanBaku, true);
 
@@ -79,25 +79,32 @@ class Main extends CI_Controller {
 			
 			
 			foreach ($datas as $datax) {
-				// $is_exists = $this->db->query("SELECT * FROM tbl_sub_daging WHERE id_bahan_baku = ?", array($insert_id))->row_array();
-				// // var_dump($is_exists);
-				// // die();
-				// if($is_exists['spek'] == $datax['spek']) {
-				// 	// var_dump($datax['spek']);
-				// 	// die();
-				// 	if($datax['tipe'] == 1 ){
-				// 		$update = $this->Main_model->updateAll('tbl_sub_daging', array(
-				// 			'spek2' => $datax['spek'],
-				// 			'bungkus2' => $datax['bungkus'],
-				// 			'tkotor2' => $datax['tkotor'],
-				// 			'tbersih2' => $datax['tbersih'] )
-				// 			,$is_exists['id']);
-				// 		}
-				// 	} else {
-						$datax['id_bahan_baku'] = $insert_id;
-						$datax['qty'] = floatval($datax['tbersih']);
-						$this->Main_model->insertAll('tbl_sub_daging', $datax);
-					// }
+				$is_exists = $this->db->query("SELECT * FROM tbl_sub_daging WHERE id_bahan_baku = ?", array($insert_id))->result_array();
+				if(count($is_exists) !=  null ) {
+					$qtys = 0;
+					foreach($is_exists as $ada) {
+						if($ada['spek'] == $datax['spek']) {
+							$qtys += $ada['tbersih'];
+							if($datax['tipe'] == 1 ){
+								$update = $this->Main_model->updateAll('tbl_sub_daging', array(
+									'spek2' => $datax['spek'],
+									'bungkus2' => $datax['bungkus'],
+									'tkotor2' => $datax['tkotor'],
+									'tbersih2' => $datax['tbersih'] )
+									,$ada['id']);
+								}
+							 else if($datax['tipe'] == 0) {
+								$this->Main_model->updateAll('tbl_sub_daging', array(
+									'qty' => $qtys )
+									,$ada['id']);
+							}
+					}
+				}
+			} else {
+					$datax['id_bahan_baku'] = $insert_id;
+					$datax['qty'] = floatval($datax['tbersih']);
+					$this->Main_model->insertAll('tbl_sub_daging', $datax);
+				}
 			}
 		}
 
