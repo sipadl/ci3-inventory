@@ -84,9 +84,10 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                 <div class="container-fluid">
 												<table class="table-bordered">
 												<?php 
-												// var_dump($ss);
-												$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
+												$dataDaging = $this->db->query("SELECT * FROM tbl_sub_daging 
+												WHERE id_bahan_baku = ".$ss['id_bahan_baku'].' order by spek desc')->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
 												?>
+												<table class="table-bordered w-100">
 													<thead class="text-center">
 														<tr class="text-center">
 															<tr>
@@ -108,36 +109,47 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														</tr>
 													</thead>
 													<tbody>
-													<?php foreach($dataDaging as $dd) { 
-															 ?>
+														<?php 
+														$qtys = 0;
+														foreach($dataDaging as $dd) { 
+														$qtys += $dd['qty'];	 
+														?>
 															<tr>
 																<!-- <td><?php echo $dd['spesifikasi_bahan'] ?></td> -->
+																<td><?php echo $dd['spek'] ?></td>
 																<?php if($dd['tipe'] == 0 ) { ?> 
 																<td><?php echo $dd['qty'] ?></td>
 																<td><?php echo $dd['spek'] ?></td>
 																<td><?php echo $dd['bungkus'] ?></td>
 																<td><?php echo $dd['tkotor'] ?></td>
 																<td><?php echo $dd['tbersih'] ?></td>
-																<?php } else { ?>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
+																<td><?php echo $dd['spek2'] ?></td>
+																<td><?php echo $dd['bungkus2'] ?></td>
+																<td><?php echo $dd['tkotor2'] ?></td>
+																<td><?php echo $dd['tbersih2'] ?></td>
 																<?php }?>
-																	 <?php if($dd['tipe'] == 1 ) { ?> 
+																<?php if($dd['tipe'] == 1  && !$dd['spek2'] ) { ?> 
+																	<td><?php echo $dd['qty'] ?></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
 																	<td><?php echo $dd['spek'] ?></td>
 																	<td><?php echo $dd['bungkus'] ?></td>
 																	<td><?php echo $dd['tkotor'] ?></td>
 																	<td><?php echo $dd['tbersih'] ?></td>
-																<?php } else { ?>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
 																<?php }?>
 															</tr>
 														<?php } ?>
+														<tr>
+															<td>Total</td>
+															<td colspan="9"><?php echo $qtys ?></td>
+														</tr>
+														<tr>
+															<td colspan="2" height="90px" class="text-center">Dibuat</td>
+															<td colspan="4" height="90px" class="text-center">Diperiksa</td>
+															<td colspan="4" height="90px" class="text-center">Disetujui</td>
+														</tr>
 													</tbody>
 												</table>
                                                     </div>

@@ -176,86 +176,55 @@ function printDisini(val) {
 	})
 
 	function addDaging(status, index = 0) {
-		const dagingCountP = $('.daging-putih').length;
-		const dagingCountM = $('.daging-putih').length;
-		const idP = `dagingPutih${dagingCountP}`;
-    	const idM = `dagingMerah${dagingCountM}`;
-		const dagingCount = $('.dagings').length;
-		if (dagingCount > 0) {
-        $('.remove-daging-btn').show();
-    	}
-		$('.isi').append(`
-		<div class="dagings" id="${dagingCount}">
-		<div class="daging-putih">
-			<h5>${index == 0 ? 'Daging Putih' : 'Daging Merah'}</h5>
-			<hr>
-			<div class="row">
-				<input type="hidden" id="tipe${dagingCountP}" value="${index}">
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="tanggal">Speck:</label>
-					<input type="text" class="form-control" id="spek${dagingCountP}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-						<label for="supplier">Bungkus:</label>
-						<input type="text" class="form-control" id="bungkus${dagingCountP}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="dagingMerah">T.Kotor:</label>
-					<input type="text" class="form-control" id="tkotor${dagingCountP}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="dagingMerah">T.Bersih:</label>
-					<input type="text" class="form-control" id="tbersih${dagingCountP}">
-					</div>
-				</div>
-				<div class="kuda1"></div>
-			</div>
-			</div>
-		</div>
-		<div class="d-flex justify-content-end">
-		<button type="button" class="remove-daging-btn btn btn-sm mx-2 px-3 btn-danger text-right" onclick="removeDaging(${dagingCount})" style="display: none;">X</button>
-		</div>
-        </div>
-		`)
+    const dagingCount = $('.dagings').length;
+    const id = `daging${dagingCount}`;
+    const jenisDaging = index === 0 ? 'Daging Putih' : 'Daging Merah';
 
-		const dagingMerah = `
-		<div class="daging-merah hiddens-${dagingCountP}" style="display:none">
-			<h5>Daging Merah</h5>
-			<hr>
-			<div class="row">
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="">Speck:</label>
-					<input type="text" class="form-control" id="spekDagingMerah${dagingCountP}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-						<label for="supplier">Bungkus:</label>
-						<input type="text" class="form-control" id="bungkusDagingMerah${dagingCountP}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="dagingMerah">T.Kotor:</label>
-					<input type="text" class="form-control" id="tkotorDagingMerah${dagingCountP}">
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12">
-					<div class="form-group">
-					<label for="dagingMerah">T.Bersih:</label>
-					<input type="text" class="form-control" id="tbersihDagingMerah${dagingCountP}">
-					</div>
-				</div>
-			</div>`
-	}
+    if (dagingCount > 0) {
+        $('.remove-daging-btn').show();
+    }
+
+    $('.isi').append(`
+        <div class="dagings" id="${id}">
+            <div class="daging-putih">
+                <h5>${jenisDaging}</h5>
+                <hr>
+                <div class="row">
+                    <input type="hidden" id="tipe${dagingCount}" value="${index}">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <label for="speck">Speck:</label>
+                            <input type="text" class="form-control" id="spek${id}">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <label for="bungkus">Bungkus:</label>
+                            <input type="text" class="form-control" id="bungkus${id}">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <label for="tkotor">T.Kotor:</label>
+                            <input type="text" class="form-control" id="tkotor${id}">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <div class="form-group">
+                            <label for="tbersih">T.Bersih:</label>
+                            <input type="text" class="form-control" id="tbersih${id}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                ${index !== 0 ? `
+                    <button type="button" class="remove-daging-btn btn btn-sm mx-2 px-3 btn-danger text-right" onclick="removeDaging('${id}')" style="display: none;">X</button>
+                ` : ''}
+            </div>
+        </div>
+    `);
+}
 
 	function removeDaging(id) {
     $('#' + id).remove();

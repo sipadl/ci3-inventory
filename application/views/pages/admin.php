@@ -117,29 +117,21 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 																<td><?php echo $dd['bungkus'] ?></td>
 																<td><?php echo $dd['tkotor'] ?></td>
 																<td><?php echo $dd['tbersih'] ?></td>
-																<?php } else if($dd['spek2'] != null ){ ?>
-																	<td><?php echo $dd['qty'] ?></td>
-																	<td><?php echo $dd['spek2'] ?></td>
-																	<td><?php echo $dd['bungkus2'] ?></td>
-																	<td><?php echo $dd['tkotor2'] ?></td>
-																	<td><?php echo $dd['tbersih2'] ?></td>
-																	<?php } else {?>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																		<td></td>
+																<td><?php echo $dd['spek2'] ?></td>
+																<td><?php echo $dd['bungkus2'] ?></td>
+																<td><?php echo $dd['tkotor2'] ?></td>
+																<td><?php echo $dd['tbersih2'] ?></td>
 																<?php }?>
-																	 <?php if($dd['tipe'] == 1 ) { ?> 
-																	<td><?php echo $dd['spek2'] ?></td>
-																	<td><?php echo $dd['bungkus2'] ?></td>
-																	<td><?php echo $dd['tkotor2'] ?></td>
-																	<td><?php echo $dd['tbersih2'] ?></td>
-																<?php } else { ?>
+																<?php if($dd['tipe'] == 1  && !$dd['spek2'] ) { ?> 
+																	<td><?php echo $dd['qty'] ?></td>
 																	<td></td>
 																	<td></td>
 																	<td></td>
 																	<td></td>
+																	<td><?php echo $dd['spek'] ?></td>
+																	<td><?php echo $dd['bungkus'] ?></td>
+																	<td><?php echo $dd['tkotor'] ?></td>
+																	<td><?php echo $dd['tbersih'] ?></td>
 																<?php }?>
 															</tr>
 														<?php } ?>
@@ -148,8 +140,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td colspan="9"><?php echo $qtys ?></td>
 														</tr>
 														<tr>
-															<td colspan="3" height="90px" class="text-center">Dibuat</td>
-															<td colspan="3" height="90px" class="text-center">Diperiksa</td>
+															<td colspan="2" height="90px" class="text-center">Dibuat</td>
+															<td colspan="4" height="90px" class="text-center">Diperiksa</td>
 															<td colspan="4" height="90px" class="text-center">Disetujui</td>
 														</tr>
 													</tbody>

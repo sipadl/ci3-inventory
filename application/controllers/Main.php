@@ -84,23 +84,30 @@ class Main extends CI_Controller {
 					$qtys = 0;
 					foreach($is_exists as $ada) {
 						if($ada['spek'] == $datax['spek']) {
-							$qtys += $ada['tbersih'];
 							if($datax['tipe'] == 1 ){
-								$update = $this->Main_model->updateAll('tbl_sub_daging', array(
+								$this->Main_model->updateAll('tbl_sub_daging', array(
 									'spek2' => $datax['spek'],
 									'bungkus2' => $datax['bungkus'],
 									'tkotor2' => $datax['tkotor'],
 									'tbersih2' => $datax['tbersih'] )
 									,$ada['id']);
 								}
-							 else if($datax['tipe'] == 0) {
+								else if($datax['tipe'] == 0) {
+								 $qtys += $ada['qty'] + $datax['tbersih'];
+								//  var_dump($qtys);
+								//  die();
 								$this->Main_model->updateAll('tbl_sub_daging', array(
 									'qty' => $qtys )
 									,$ada['id']);
 							}
-					}
+					} else {
+							$datax['id_bahan_baku'] = $insert_id;
+							$datax['qty'] = floatval($datax['tbersih']);
+							$this->Main_model->insertAll('tbl_sub_daging', $datax);
+						}
 				}
 			} else {
+				var_dump($datax);
 					$datax['id_bahan_baku'] = $insert_id;
 					$datax['qty'] = floatval($datax['tbersih']);
 					$this->Main_model->insertAll('tbl_sub_daging', $datax);
@@ -356,12 +363,15 @@ class Main extends CI_Controller {
 	}
 	
 	public function mainApprove($id) {
-		$this->Datadaging_model->aprrovalData($id);
-		redirect("main/adminUser");
+		$this->Main_model->updateAll('tbl_sortir', array('keterangan' => $this->input->post('keterangan'), 'status' => 3), $id);
+		$this->session->set_flashdata('success', 'Bahan Baku berhasil diapprove.');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+
 	}
 	
 	public function mainReject($id){
-		$this->Datadaging_model->rejctData($id);
+		$this->Main_model->updateAll('tbl_sortir', array('keterangan' => $this->input->post('keterangan'), 'status' => -1), $id);
+		$this->session->set_flashdata('success', 'Bahan Baku berhasil direject.');
 		redirect("main/adminUser");
 	}
 

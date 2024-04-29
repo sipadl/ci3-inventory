@@ -90,79 +90,94 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                             </div>
                                             <div class="modal-body" id="<?php echo 'modal-print-'.$ss['id'] ?>">
                                                 <div class="container-fluid">
-												<table class="table-bordered">
-                                                        <?php 
-															// var_dump($ss);
-															$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
-															?>
-                                                        <thead class="text-center">
-                                                            <tr class="text-center">
-                                                                <tr>
-                                                                    <th rowspan="2" class="w-50">Speck Bahan</th>
-                                                                    <th rowspan="2">Quantity</th>
-                                                                    <th colspan="4">Daging Putih</th>
-                                                                    <th colspan="4">Daging Merah</th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Speck</th>
-                                                                    <th>Bungkus</th>
-                                                                    <th>T.Kotor</th>
-                                                                    <th>T.Bersih</th>
-                                                                    <th>Speck</th>
-                                                                    <th>Bungkus</th>
-                                                                    <th>T.Kotor</th>
-                                                                    <th>T.Bersih</th>
-                                                                </tr>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-														<?php foreach($dataDaging as $dd) { 
-															 ?>
+												<?php 
+												$dataDaging = $this->db->query("SELECT * FROM tbl_sub_daging 
+												WHERE id_bahan_baku = ".$ss['id_bahan_baku'].' order by spek desc')->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
+												?>
+												<table class="table-bordered w-100">
+													<thead class="text-center">
+														<tr class="text-center">
+															<tr>
+																<th rowspan="2" class="w-50">Speck Bahan</th>
+																<th rowspan="2">Quantity</th>
+																<th colspan="4">Daging Putih</th>
+																<th colspan="4">Daging Merah</th>
+															</tr>
+															<tr>
+																<th>Speck</th>
+																<th>Bungkus</th>
+																<th>T.Kotor</th>
+																<th>T.Bersih</th>
+																<th>Speck</th>
+																<th>Bungkus</th>
+																<th>T.Kotor</th>
+																<th>T.Bersih</th>
+															</tr>
+														</tr>
+													</thead>
+													<tbody>
+														<?php 
+														$qtys = 0;
+														foreach($dataDaging as $dd) { 
+														$qtys += $dd['qty'];	 
+														?>
 															<tr>
 																<!-- <td><?php echo $dd['spesifikasi_bahan'] ?></td> -->
+																<td><?php echo $dd['spek'] ?></td>
 																<?php if($dd['tipe'] == 0 ) { ?> 
 																<td><?php echo $dd['qty'] ?></td>
 																<td><?php echo $dd['spek'] ?></td>
 																<td><?php echo $dd['bungkus'] ?></td>
 																<td><?php echo $dd['tkotor'] ?></td>
 																<td><?php echo $dd['tbersih'] ?></td>
-																<?php } else { ?>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
+																<td><?php echo $dd['spek2'] ?></td>
+																<td><?php echo $dd['bungkus2'] ?></td>
+																<td><?php echo $dd['tkotor2'] ?></td>
+																<td><?php echo $dd['tbersih2'] ?></td>
 																<?php }?>
-																	 <?php if($dd['tipe'] == 1 ) { ?> 
+																<?php if($dd['tipe'] == 1  && !$dd['spek2'] ) { ?> 
+																	<td><?php echo $dd['qty'] ?></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
 																	<td><?php echo $dd['spek'] ?></td>
 																	<td><?php echo $dd['bungkus'] ?></td>
 																	<td><?php echo $dd['tkotor'] ?></td>
 																	<td><?php echo $dd['tbersih'] ?></td>
-																<?php } else { ?>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
 																<?php }?>
 															</tr>
 														<?php } ?>
-                                                        </tbody>
-                                                    </table>
+														<tr>
+															<td>Total</td>
+															<td colspan="9"><?php echo $qtys ?></td>
+														</tr>
+														<tr>
+															<td colspan="2" height="90px" class="text-center">Dibuat</td>
+															<td colspan="4" height="90px" class="text-center">Diperiksa</td>
+															<td colspan="4" height="90px" class="text-center">Disetujui</td>
+														</tr>
+													</tbody>
+												</table>
 												</div>
                                                 </div>
-                                                <div class="modal-footer">
-													<?php if($ss['status'] == 2 ) { ?> 
-														<a href="<?php echo base_url('main/mainApprove/').$ss['id']; ?>" class="btn
-														btn-primary">Aprove</a>
-														<a href="<?php echo base_url('main/mainReject/').$ss['id']; ?>" class="btn
-														btn-danger">Reject</a>
-													<?php } ?>
+												<form action="" method="post" enctype="multipart/form" id="edit_kocak">
+													<div class="modal-footer">
+														<input type="text" name="keterangan" class="form-control mx-2" placeholder="keterangan" id="">
+														<?php
+														if($ss['status'] == 2 ) { ?> 
+														<button onclick="EditKocak('<?php echo base_url('main/mainApprove/').$ss['id']; ?>', 'edit_kocak')" class="btn
+														btn-primary">Aprove</button>
+														<button onclick="EditKocak('<?php echo base_url('main/mainReject/').$ss['id']; ?>', 'edit_kocak')" class="btn
+														btn-danger">Reject</button>
+														<?php } ?>
 														<button
                                                         type="button"
                                                         onclick="printDisini(<?php echo $ss['id'] ?>)"
                                                         class="btn btn-primary">Print</a>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                </div>
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+													</div>
+												</form>
                                             </div>
                                         </div>
                                     </div>
