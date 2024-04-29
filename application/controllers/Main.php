@@ -68,15 +68,14 @@ class Main extends CI_Controller {
 		);
 
 		// Menyimpan data menggunakan model
-		// $insert_id = $this->Main_model->insertAll('tbl_daging', $data);
-		$insert_id = 60;
+		$insert_id = $this->Main_model->insertAll('tbl_daging', $data);
+		// $insert_id = 60;
 
 		$datas = json_decode($dataSubBahanBaku, true);
 
 		// Check if $insert_id is valid
 		if ($insert_id !== false) {
 			// Fetch $is_exists outside the loop
-			
 			
 			foreach ($datas as $datax) {
 				$is_exists = $this->db->query("SELECT * FROM tbl_sub_daging WHERE id_bahan_baku = ?", array($insert_id))->result_array();
@@ -93,21 +92,20 @@ class Main extends CI_Controller {
 									,$ada['id']);
 								}
 								else if($datax['tipe'] == 0) {
-								 $qtys += $ada['qty'] + $datax['tbersih'];
+								 $qtys += floatval($ada['qty']) + floatval($datax['tbersih']);
 								//  var_dump($qtys);
 								//  die();
 								$this->Main_model->updateAll('tbl_sub_daging', array(
 									'qty' => $qtys )
 									,$ada['id']);
 							}
-					} else {
-							$datax['id_bahan_baku'] = $insert_id;
-							$datax['qty'] = floatval($datax['tbersih']);
-							$this->Main_model->insertAll('tbl_sub_daging', $datax);
+							} else {
+								$datax['id_bahan_baku'] = $insert_id;
+								$datax['qty'] = floatval($datax['tbersih']);
+								$this->Main_model->insertAll('tbl_sub_daging', $datax);
 						}
 				}
 			} else {
-				var_dump($datax);
 					$datax['id_bahan_baku'] = $insert_id;
 					$datax['qty'] = floatval($datax['tbersih']);
 					$this->Main_model->insertAll('tbl_sub_daging', $datax);

@@ -177,7 +177,7 @@ function printDisini(val) {
 
 	function addDaging(status, index = 0) {
     const dagingCount = $('.dagings').length;
-    const id = `daging${dagingCount}`;
+    const id = `${dagingCount}`;
     const jenisDaging = index === 0 ? 'Daging Putih' : 'Daging Merah';
 
     if (dagingCount > 0) {
@@ -247,10 +247,7 @@ function printDisini(val) {
 		var bungkus = '';
 		var tkotor = '';
 		var tbersih = '';
-		var spek2 = '';
-		var bungkus2 = '';
-		var tkotor2 = '';
-		var tbersih2 = '';
+		var tipe = '';
 
 		if (document.getElementById("spec_bahan" + i)) {
 			spesifikasi_bahan = document.getElementById("spec_bahan" + i).value || '';
