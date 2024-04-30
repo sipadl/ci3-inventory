@@ -115,7 +115,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														$qtys += $dd['qty'];	 
 														?>
 															<tr>
-																<!-- <td><?php echo $dd['spesifikasi_bahan'] ?></td> -->
+																<td><?php echo $dd['spesifikasi_bahan'] ?></td>
 																<td><?php echo $dd['spek'] ?></td>
 																<?php if($dd['tipe'] == 0 ) { ?> 
 																<td><?php echo $dd['qty'] ?></td>
@@ -1565,26 +1565,26 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td colspan="2">Timb. BB</td>
                                                             <?php 
-														$colX = (floatval($ss['col']) + floatval($ss['bf']));
-														$jbX = (floatval($ss['jb']) + floatval($ss['jbb_jf']));
-														$jkX = (floatval($ss['jbb_jk']) + floatval($ss['jbb_bf']));
-														$bfX = (floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jk'])
-														+ floatval($ss['bf_k3_jl']) + floatval($ss['bf_jl']) + floatval($ss['bf_bf']) + floatval($ss['bf_bf']) + floatval($ss['bf_kj']));
-														$spkX = (floatval($ss['spk_sp_jb']) +  floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp_sph']));
-														$spX = (floatval($ss['bf_spk_xlp']) + floatval($ss['bf_spk_sp']));
-														$mhX = (floatval($ss['mh']) + floatval($ss['mh_slb']));
-														$clX = floatval($ss['sp_cl']);
-														$clfX = floatval($ss['sp_clf']);
-														$mhr = floatval($ss['mh']) + floatval($ss['mh_slb']);
-														$phr = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
-														$sumXX = $colX + $jbX + $jkX + $bfX + $spkX + $spX + $mhX + $clX + $clfX;
-														$grand_total = $sumXX + $phr + $mhr;
+															$colX = (floatval($ss['col']) + floatval($ss['bf']));
+															$jbX = (floatval($ss['jb']) + floatval($ss['jbb_jf']));
+															$jkX = (floatval($ss['jbb_jk']) + floatval($ss['jbb_bf']));
+															$bfX = (floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jk'])
+															+ floatval($ss['bf_k3_jl']) + floatval($ss['bf_jl']) + floatval($ss['bf_bf']) + floatval($ss['bf_bf']) + floatval($ss['bf_kj']));
+															$spkX = (floatval($ss['spk_sp_jb']) +  floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp_sph']));
+															$spX = (floatval($ss['bf_spk_xlp']) + floatval($ss['bf_spk_sp']));
+															$mhX = (floatval($ss['mh']) + floatval($ss['mh_slb']));
+															$clX = floatval($ss['sp_cl']);
+															$clfX = floatval($ss['sp_clf']);
+															$mhr = floatval($ss['mh']) + floatval($ss['mh_slb']);
+															$phr = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
+															$sumXX = $colX + $jbX + $jkX + $bfX + $spkX + $spX + $mhX + $clX + $clfX;
+															$grand_total = $sumXX + $phr + $mhr;
 
-														$qty = 0;
-														$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); 
-														foreach($dataDaging as $sdb) {
-															$qty = floatval($sdb['tkotor']) + floatval($sdb['tkotor2']) + floatval($sdb['tbersih']) + floatval($sdb['tbersih']);
-														}
+															$qty = 0;
+															$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); 
+															foreach($dataDaging as $sdb) {
+																$qty += floatval($sdb['tbersih']);
+															}
 
 															?>
                                                             <td><?php echo $qty ?></td>
