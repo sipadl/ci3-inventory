@@ -127,6 +127,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 																	<td></td>
 																	<td></td>
 																	<td></td>
+																	<td></td>
 																	<td><?php echo $dd['spek'] ?></td>
 																	<td><?php echo $dd['bungkus'] ?></td>
 																	<td><?php echo $dd['tkotor'] ?></td>

@@ -109,6 +109,13 @@ class Main extends CI_Controller {
 					$datax['spesifikasi_bahan'] = $datax['spek'];
 					$datax['id_bahan_baku'] = $insert_id;
 					$datax['qty'] = floatval($datax['tbersih']);
+					// if($datax['tipe'] == 1) {
+					// 	$datax['tipe'] = 0;
+					// 	$datax['tbersih2'] = $datax['tbersih'];
+					// 	$datax['tkotor2'] = $datax['tkotor'];
+					// 	$datax['bungkus2'] = $datax['bungkus'];
+					// 	$datax['spek2'] = $datax['spek'];
+					// }
 					$this->Main_model->insertAll('tbl_sub_daging', $datax);
 				}
 			}
