@@ -99,13 +99,14 @@ class Main extends CI_Controller {
 									$this->Main_model->updateAll('tbl_sub_daging', array('qty' => $qtys), $ada['id']);
 							}
 						} else {
-							$datax['spesifikasi_bahan'] = $datax['spek'];
+							$datax['spesifikasi_bahan'] = '';
 							$datax['id_bahan_baku'] = $insert_id;
 							$datax['qty'] = floatval($datax['tbersih']);
 							$this->Main_model->insertAll('tbl_sub_daging', $datax);
 						}
 					}
 			} else {
+					$datax['spesifikasi_bahan'] = $datax['spek'];
 					$datax['id_bahan_baku'] = $insert_id;
 					$datax['qty'] = floatval($datax['tbersih']);
 					$this->Main_model->insertAll('tbl_sub_daging', $datax);
