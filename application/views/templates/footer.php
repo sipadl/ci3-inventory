@@ -127,6 +127,19 @@ function printDisini(val) {
 		var value = parseFloat($(this).text().replaceAll(',' , '')); // Get the value of the cell and convert it to a float
 		totalSum += value; // Add the value to the totalSum
 	});
+
+	var totalSubsidi = 0;
+	$('.total_subsidi_trans').each(function() {
+		var values = parseFloat($(this).text().replaceAll(',', ''));
+		console.log(values);
+		if(values > 0) {
+			totalSubsidi += values
+		} else {
+			totalSubsidi += 0;
+		}
+	});
+
+	$('#hasil_total_subsidi_trans').html(totalSubsidi)
 	$('#laba_rugi').html(totalSum);
 
 	const detailSortir = $('#hehep');

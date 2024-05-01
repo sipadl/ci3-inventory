@@ -42,6 +42,7 @@
 					<th style="width: 160px;" rowspan="2">TOTAL SUBSIDI TRANS</th>
 					<th style="width: 100px;" rowspan="2">UNTUNG / RUGI</th>
 					<th style="width: 140px;" rowspan="2">ROOT RECEIVING</th>
+					<th style="width: 140px;" rowspan="2"> %JB </th>
 					<tr>
 					<th style="width: 120px;" rowspan="1">awal</th>
 					<th style="width: 120px;" rowspan="1">-/+</th>
@@ -52,6 +53,12 @@
 						<?php 
 						$no = 1;
 						foreach ($supplier as $da) : 
+
+							$qty = 0;
+							$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$da['id_bb'])->result_array(); 
+							foreach($dataDaging as $sdb) {
+								$qty = floatval($sdb['tbersih']) + floatval($sdb['tbersih']);
+						}
 						?>
 						<tr>
 							<td><?php echo $no++ ?></td>
@@ -84,7 +91,7 @@
 							?>
 							</td>
 							<td id="qty_bb">
-								<?php echo $da['timbangan_bb'] ?>
+								<?php echo $qty ?>
 							</td>
 							<td id="total_nota">
 								<?php 
@@ -112,6 +119,7 @@
 								$clX = floatval($da['sp_cl']);
 								$clfX = floatval($da['sp_clf']);
 								$sumXX = $colX + $jbX + $jkX + $bfX + $spkX + $spX + $mhX + $clX + $clfX;
+								$jbpersen = $jbX + $jkX + $colX;
 
 								$subsidi_normal = floatval($da['subsidi_normal']);
 									echo number_format($total_nota, 2);
@@ -133,9 +141,9 @@
 							<td><?php echo $total_nota_subsidi_bayar = ($total_subsidi_dibayar + $total_nota ) ?></td>
 							<td><?php echo $root_setelah_subsidi = number_format($total_nota_subsidi_bayar / $sumXX,2) ?></td>
 							<!-- Manual -->
-							<td><?php echo $subsidi_transport = $da['subsidi_transport'] ?></td>
-							<td><?php echo number_format($subsidi_transport * $total,2) ?></td>
-							<td class="total_laba"><?php echo number_format(floatval($total_nota) + floatval($subsidi_normal) - floatval($cap_shell) - floatval($total_nota) + floatval($total_subsidi_dibayar) - floatval($subsidi_transport), 2) ?></td>
+							<td class="subsidi_trans"><?php echo $subsidi_transport = $da['subsidi_transport'] ?></td>
+							<td class="total_subsidi_trans"><?php echo number_format($subsidi_transport * $total,2) ?></td>
+							<td class="total_laba "><?php echo number_format(floatval($total_nota) + floatval($subsidi_normal) - floatval($cap_shell) - floatval($total_nota) + floatval($total_subsidi_dibayar) - floatval($subsidi_transport), 2) ?></td>
 
 							<td><?php $receiving = (floatval($total_nota) + floatval($total_subsidi_dibayar));
 							if($receiving > 1 ) {
@@ -145,6 +153,7 @@
 							}
 							?>
 						</td>
+						<td><?php echo number_format($jbpersen / $sumXX, 1) ?> %</td>
 						</tr>
 						<?php endforeach; ?>
 					</tbody>
@@ -166,7 +175,7 @@
 						$qty = 0;
 						$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$da['id_bb'])->result_array(); 
 						foreach($dataDaging as $sdb) {
-							$qty = floatval($sdb['tkotor']) + floatval($sdb['tkotor2']) + floatval($sdb['tbersih']) + floatval($sdb['tbersih']);
+							$qty = floatval($sdb['tbersih']) + floatval($sdb['tbersih']);
 						}
 
 						$fresh += floatval($da['col']) + floatval($da['bf']) + floatval($da['jb']) + floatval($da['jbb_jf']) + floatval($da['jbb_jk'])
@@ -202,6 +211,8 @@
 						$subsidi_bayar_1 += $da['subsidi_dibayar_1'];
 						$subsidi_bayar_2 += $da['subsidi_dibayar_2'];
 						$subsidi_bayar_3 += $da['subsidi_transport'];
+						$jbpersen = $jbX + $jkX + $colX;
+
 						
 						?>
 						<?php endforeach; ?>
@@ -216,7 +227,7 @@
 							<?php echo $total ?>
 						</td>
 						<td id="hasil_total_qty"><?php echo $loss ?></td>
-						<td id="hasil_total_nota"><?php echo $qty_bb ?></td>
+						<td id="hasil_total_nota"><?php echo $qty ?></td>
 						<td id="hasil_total_nota"><?php echo number_format($total_notas,2) ?></td>
 						<td colspan=""></td>
 						<td colspan=""></td>
@@ -229,9 +240,11 @@
 						<td id="hasil_total_subsidi_bayar_plus_nota"></td>
 						<td id="hasil_total_subsidi_bayar_plus_nota"></td>
 						<td></td>
-						<td colspan=""><?php echo $subsidi_bayar_3 ?></td>
+						<td></td>
 						<td id="hasil_total_subsidi_trans"></td>
 						<td id="laba_rugi"></td>
+						<td id="root_receiving"></td>
+						<td id="%jb"></td>
 					</tfoot>
 					</table>
 
@@ -413,6 +426,8 @@
 											$clfX = floatval($da['sp_clf']);
 											$sumXX = $colX + $jbX + $jkX + $bfX + $spkX + $spX + $mhX + $clX + $clfX;
 
+											$jbpersen = $jbX + $jkX + $colX;
+
 											$subsidi_normal = floatval($da['subsidi_normal']);
 												echo number_format($total_nota, 2);
 											?>
@@ -445,7 +460,7 @@
 										}
 										?>
 									</td>
-									<td>1</td>
+									<td><?php echo $jbpersen ?> </td>
 									</tr>
 								</tbody>
 								
