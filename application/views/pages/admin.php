@@ -109,8 +109,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														$qtys += $dd['qty'];	 
 														?>
 															<tr>
-																<!-- <td><?php echo $dd['spesifikasi_bahan'] ?></td> -->
-																<td><?php echo $dd['spek'] ?></td>
+																<td><?php echo $dd['spesifikasi_bahan'] ?></td>
 																<?php if($dd['tipe'] == 0 ) { ?> 
 																<td><?php echo $dd['qty'] > 1 ? $dd['qty'] : '' ?></td>
 																<td><?php echo $dd['spek'] ?></td>

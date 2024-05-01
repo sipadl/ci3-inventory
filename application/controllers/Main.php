@@ -81,6 +81,7 @@ class Main extends CI_Controller {
 						if($ada['spek'] == $datax['spek']) {
 							if($datax['tipe'] == 1 ){
 								$this->Main_model->updateAll('tbl_sub_daging', array(
+									'spesifikasi_bahan' => $datax['spek'],
 									'spek2' => $datax['spek'],
 									'bungkus2' => $datax['bungkus'],
 									'tkotor2' => $datax['tkotor'],
@@ -90,7 +91,7 @@ class Main extends CI_Controller {
 								}
 								else if($datax['tipe'] == 0) {
 									$datax['id_bahan_baku'] = $insert_id;
-									$datax['spek'] = '';
+									$datax['spesifikasi_bahan'] = '';
 									$datax['qty'] = 0;
 									$this->Main_model->insertAll('tbl_sub_daging', $datax);
 									$qtys = floatval($ada['qty']) + floatval($datax['tbersih']);
@@ -98,6 +99,7 @@ class Main extends CI_Controller {
 							}
 						} else {
 							$datax['id_bahan_baku'] = $insert_id;
+							$datax['spesifikasi_bahan'] = $datax['spek'];
 							$datax['qty'] = floatval($datax['tbersih']);
 							$this->Main_model->insertAll('tbl_sub_daging', $datax);
 						}
