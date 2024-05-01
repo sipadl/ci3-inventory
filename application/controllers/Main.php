@@ -67,8 +67,8 @@ class Main extends CI_Controller {
 			'wilayah' => 0,
 		);
 		// Menyimpan data menggunakan model
-		$insert_id = $this->Main_model->insertAll('tbl_daging', $data);
-		// $insert_id = 60;
+		// $insert_id = $this->Main_model->insertAll('tbl_daging', $data);
+		$insert_id = 149;
 		$datas = json_decode($dataSubBahanBaku, true);
 		// Check if $insert_id is valid
 		if ($insert_id !== false) {
@@ -77,51 +77,88 @@ class Main extends CI_Controller {
 				$ada = $this->db->query("SELECT * FROM tbl_sub_daging WHERE id_bahan_baku = ? and spek = ? and spek2 is null", array($insert_id, $datax['spek']))->row_array();
 				if($ada !=  null ) {
 					$qtys = 0;
-					// foreach($is_exists as $ada) {
 						if($ada['spek'] == $datax['spek']) {
-							if($datax['tipe'] == 1 ){
+							if($ada['tipe'] == 0 && $datax['tipe'] == 1 && !$ada['spek2']) {
 								$this->Main_model->updateAll('tbl_sub_daging', array(
 									'spesifikasi_bahan' => $datax['spek'],
 									'spek2' => $datax['spek'],
 									'bungkus2' => $datax['bungkus'],
 									'tkotor2' => $datax['tkotor'],
 									'tbersih2' => $datax['tbersih'],
-									'qty' => floatval($datax['tbersih']) + floatval($ada['qty']) )
+									'qty' => floatval($datax['tbersih']) + floatval($ada['qty']), 
+									)
 									,$ada['id']);
-								}
-								else if($datax['tipe'] == 0) {
+								} else {
 									$datax['spesifikasi_bahan'] = '';
 									$datax['id_bahan_baku'] = $insert_id;
-									$datax['spesifikasi_bahan'] = '';
 									$datax['qty'] = 0;
 									$this->Main_model->insertAll('tbl_sub_daging', $datax);
 									$qtys = floatval($ada['qty']) + floatval($datax['tbersih']);
 									$this->Main_model->updateAll('tbl_sub_daging', array('qty' => $qtys), $ada['id']);
 							}
-						} else {
-							$datax['spesifikasi_bahan'] = '';
-							$datax['id_bahan_baku'] = $insert_id;
+					// 		if($datax['tipe'] == 1 ){
+					// 			if($ada['spek2']) {
+					// 				$datax['spesifikasi_bahan'] = '';
+					// 				$datax['id_bahan_baku'] = $insert_id;
+					// 				$datax['qty'] = 0;
+					// 				$this->Main_model->insertAll('tbl_sub_daging', $datax);
+					// 				$qtys = floatval($ada['qty']) + floatval($datax['tbersih']);
+					// 				$this->Main_model->updateAll('tbl_sub_daging', array('qty' => $qtys), $ada['id']);
+					// 			} else {
+					// 				$this->Main_model->updateAll('tbl_sub_daging', array(
+					// 					'spesifikasi_bahan' => $datax['spek'],
+					// 					'spek2' => $datax['spek'],
+					// 					'bungkus2' => $datax['bungkus'],
+					// 					'tkotor2' => $datax['tkotor'],
+					// 					'tbersih2' => $datax['tbersih'],
+					// 					'qty' => floatval($datax['tbersih']) + floatval($ada['qty']), 
+					// 					)
+					// 					,$ada['id']);
+					// 				}
+					// 			}
+					// 			else {
+					// 				if($datax['tipe'] == 0) {
+					// 				$datax['spesifikasi_bahan'] = '';
+					// 				$datax['id_bahan_baku'] = $insert_id;
+					// 				$datax['spesifikasi_bahan'] = '';
+					// 				$datax['qty'] = 0;
+					// 				$this->Main_model->insertAll('tbl_sub_daging', $datax);
+					// 				$qtys = floatval($ada['qty']) + floatval($datax['tbersih']);
+					// 				$this->Main_model->updateAll('tbl_sub_daging', array('qty' => $qtys), $ada['id']);
+					// 		// }
+					// 	} else {
+					// 		$datax['spesifikasi_bahan'] = '';
+					// 		$datax['id_bahan_baku'] = $insert_id;
+					// 		$datax['qty'] = floatval($datax['tbersih']);
+					// 		$this->Main_model->insertAll('tbl_sub_daging', $datax);
+					// 	}
+					// }
+					}
+					// else if($merah != null) {
+					// 	$datax['spesifikasi_bahan'] = '';
+					// 	$datax['id_bahan_baku'] = $insert_id;
+					// 	$datax['spesifikasi_bahan'] = '';
+					// 	$datax['qty'] = 0;
+					// 	$this->Main_model->insertAll('tbl_sub_daging', $datax);
+					// 	$qtys = floatval($merah['qty']) + floatval($datax['tbersih']);
+					// 	$this->Main_model->updateAll('tbl_sub_daging', array('qty' => $qtys), $merah['id']);
+					} else {
 							$datax['spesifikasi_bahan'] = $datax['spek'];
+							$datax['id_bahan_baku'] = $insert_id;
 							$datax['qty'] = floatval($datax['tbersih']);
+							// if($datax['tipe'] == 1) {
+							// 	$datax['tipe'] = 0;
+							// 	$datax['tbersih2'] = $datax['tbersih'];
+							// 	$datax['tkotor2'] = $datax['tkotor'];
+							// 	$datax['bungkus2'] = $datax['bungkus'];
+							// 	$datax['spek2'] = $datax['spek'];
+							// }
 							$this->Main_model->insertAll('tbl_sub_daging', $datax);
-						}
-					// }
-			} else {
-					$datax['spesifikasi_bahan'] = $datax['spek'];
-					$datax['id_bahan_baku'] = $insert_id;
-					$datax['qty'] = floatval($datax['tbersih']);
-					// if($datax['tipe'] == 1) {
-					// 	$datax['tipe'] = 0;
-					// 	$datax['tbersih2'] = $datax['tbersih'];
-					// 	$datax['tkotor2'] = $datax['tkotor'];
-					// 	$datax['bungkus2'] = $datax['bungkus'];
-					// 	$datax['spek2'] = $datax['spek'];
-					// }
-					$this->Main_model->insertAll('tbl_sub_daging', $datax);
 				}
 			}
 		}
 
+		
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
 		echo(json_encode($data));
        
