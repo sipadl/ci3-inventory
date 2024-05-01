@@ -408,14 +408,17 @@ class Main extends CI_Controller {
 	}
 	
 	public function mainApprove($id) {
-		$this->Main_model->updateAll('tbl_sortir', array('keterangan' => $this->input->post('keterangan'), 'status' => 3), $id);
+		
+		$this->Main_model->updateAll('tbl_daging', array('keterangan' => $this->input->post('keterangan'), 'status' => 1), $id);
+		$this->Main_model->updateAll('tbl_sortir', array('status' => 3), $id);
 		$this->session->set_flashdata('success', 'Bahan Baku berhasil diapprove.');
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 
 	}
 	
 	public function mainReject($id){
-		$this->Main_model->updateAll('tbl_sortir', array('keterangan' => $this->input->post('keterangan'), 'status' => -1), $id);
+		$this->Main_model->updateAll('tbl_daging', array('keterangan' => $this->input->post('keterangan'), 'status' => -1), $id);
+		$this->Main_model->updateAll('tbl_sortir', array('status' => -1), $id);
 		$this->session->set_flashdata('success', 'Bahan Baku berhasil direject.');
 		redirect("main/adminUser");
 	}

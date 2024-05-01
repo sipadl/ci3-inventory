@@ -45,9 +45,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 						} elseif ($status == 0) {
 							echo "Pending";
 						} elseif ($status == 1) {
-							echo "Waiting";
-						} elseif ($status == 2) {
 							echo "Accepted";
+						} elseif ($status == -1) {
+							echo "Rejected";
 						} else {
 							echo "Unknown"; // Handle any other status code
 						}
@@ -219,12 +219,17 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												</div> -->
 											</div>
 										</div>
-										<div class="modal-footer">
-											<!-- <a href="<?php echo base_url('main/mainApprove/').$data['id']; ?>" class="btn btn-primary">Aprove</a>
-											<a href="<?php echo base_url('main/mainReject/').$data['id']; ?>" class="btn btn-danger">Reject</a> -->
-											<button type="button" onclick="printDisini(<?php echo $data['id'] ?>)" class="btn btn-primary">Print</a>
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										</div>
+										<form action="" method="post" enctype="multipart/form" id="kocak">
+											<div class="form-group container">
+												<input type="text" name="keterangan" placeholder="keterangan" class="form-control px-4" id="">
+											</div>
+											<div class="modal-footer">
+												<button onclick="EditKocak('<?php echo base_url('main/mainApprove/').$data['id']; ?>','kocak')" class="btn btn-primary">Aprove</button>
+												<button onclick="EditKocak('<?php echo base_url('main/mainReject/').$data['id']; ?>','kocak')" class="btn btn-danger">Reject</button>
+												<button type="button" onclick="printDisini(<?php echo $data['id'] ?>)" class="btn btn-primary">Print</a>
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
