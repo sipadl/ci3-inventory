@@ -894,7 +894,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                             </button>
                                         </div>
                                         <div class="modal-body" id="modal-print-<?php echo $ss['id'] ?>">
-                                            <div class="row justify-content-between">
+                                        <div class="row justify-content-between">
                                                 <div class="col-md-3">
                                                     <div class="d-flex justify-content-between border px-2">
                                                         <div class="">Supplier</div>
@@ -916,7 +916,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <p>SD.100.3001</p>
+                                                    <p style="text-align: center;">SD.100.3001 / <?php echo $ss['id'] ?></p>
+                                                  
                                                 </div>
                                                 <div class="col-md-3">
                                                     <!-- <form action="<?php echo
@@ -935,6 +936,33 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-3">
+                                                    <!-- <form action="<?php echo
+                                                    base_url('main/updateMiniSortir/'.$ss['id_sortir']) ?>" method="post"> -->
+
+                                                    <div class="d-flex justify-content-between  border px-2">
+                                                        <div class="">SHELL</div>
+                                                        <div class="">PHR</div>
+                                                        <div class="">MHR</div>
+                                                     
+                                                    </div>
+                                                    <div class="d-flex justify-content-between  border px-2">
+                                                    <div class="">KERAS</div>
+                                                        <div class=""><?php echo $ss['shell_phr_keras'] ?></div>
+                                                        <div class=""><?php echo $ss['shell_mhr_keras'] ?></div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between  border px-2">
+														<div class="">HALUS</div>
+														<div class=""><?php echo $ss['shell_phr_halus'] ?></div>
+														<div class=""><?php echo $ss['shell_mhr_halus'] ?></div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between  border px-2">
+                                                    <div class="">TOTAL</div>
+                                                        <div class=""><?php echo floatval($ss['shell_phr_keras']) + floatval($ss['shell_phr_halus']) ?></div>
+                                                        <div class=""><?php echo floatval($ss['shell_mhr_keras']) + floatval($ss['shell_mhr_halus']) ?></div>
+                                                    </div>
+                                                </div>
+                                              
                                             </form>
                                             <style>
                                                 .tbl-spesial {
@@ -953,7 +981,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                 }
                                             </style>
                                             <div class="col-md-12">
-											<table class="table table-bordered mt-4 tbl-spesial">
+                                                <table class="table table-bordered mt-4 tbl-spesial">
                                                     <thead class="text-center tbl-spesial">
                                                         <tr>
                                                             <th colspan="2" rowspan="2">Spec</th>
@@ -1096,7 +1124,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td colspan="2">Total PHR</td>
                                                             <td>
-                                                            <?php $sum = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
+                                                            <?php $sum = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) +  floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1534,28 +1562,27 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td colspan="2">Timb. BB</td>
                                                             <?php 
-														$colX = (floatval($ss['col']) + floatval($ss['bf']));
-														$jbX = (floatval($ss['jb']) + floatval($ss['jbb_jf']));
-														$jkX = (floatval($ss['jbb_jk']) + floatval($ss['jbb_bf']));
-														$bfX = (floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jk'])
-														+ floatval($ss['bf_k3_jl']) + floatval($ss['bf_jl']) + floatval($ss['bf_bf']) + floatval($ss['bf_bf']) + floatval($ss['bf_kj']));
-														$spkX = (floatval($ss['spk_sp_jb']) +  floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp_sph']));
-														$spX = (floatval($ss['bf_spk_xlp']) + floatval($ss['bf_spk_sp']));
-														$mhX = (floatval($ss['mh']) + floatval($ss['mh_slb']));
-														$clX = floatval($ss['sp_cl']);
-														$clfX = floatval($ss['sp_clf']);
-														$sumXX = $colX + $jbX + $jkX + $bfX + $spkX + $spX + $mhX + $clX + $clfX;
+															$colX = (floatval($ss['col']) + floatval($ss['bf']));
+															$jbX = (floatval($ss['jb']) + floatval($ss['jbb_jf']));
+															$jkX = (floatval($ss['jbb_jk']) + floatval($ss['jbb_bf']));
+															$bfX = (floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jk'])
+															+ floatval($ss['bf_k3_jl']) + floatval($ss['bf_jl']) + floatval($ss['bf_bf']) + floatval($ss['bf_bf']) + floatval($ss['bf_kj']));
+															$spkX = (floatval($ss['spk_sp_jb']) +  floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp_sph']));
+															$spX = (floatval($ss['bf_spk_xlp']) + floatval($ss['bf_spk_sp']));
+															$mhX = (floatval($ss['mh']) + floatval($ss['mh_slb']));
+															$clX = floatval($ss['sp_cl']);
+															$clfX = floatval($ss['sp_clf']);
+															$mhr = floatval($ss['mh']) + floatval($ss['mh_slb']);
+															$phr = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
+															$sumXX = $colX + $jbX + $jkX + $bfX + $spkX + $spX + $mhX + $clX + $clfX;
+															$grand_total = $sumXX + $phr + $mhr;
 
-														$mhr = floatval($ss['mh']) + floatval($ss['mh_slb']);
-														$phr = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
-														$sumXX = $colX + $jbX + $jkX + $bfX + $spkX + $spX + $mhX + $clX + $clfX;
-														$grand_total = $sumXX + $phr + $mhr;
+															$qty = 0;
+															$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); 
+															foreach($dataDaging as $sdb) {
+																$qty += floatval($sdb['tbersih']);
+															}
 
-														$qty = 0;
-														$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); 
-														foreach($dataDaging as $sdb) {
-															$qty = floatval($sdb['tkotor']) + floatval($sdb['tkotor2']) + floatval($sdb['tbersih']) + floatval($sdb['tbersih']);
-														}
 															?>
                                                             <td><?php echo $qty ?></td>
                                                             <td></td>
@@ -1577,16 +1604,19 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
 
                                                         </tr>
-														<tr>
-															<td colspan="3" height="90px" class="text-center">Dibuat</td>
-															<td colspan="4" height="90px" class="text-center">Diperiksa</td>
-															<td colspan="4" height="90px" class="text-center">Diketahui</td>
-															<td colspan="3" height="90px" class="text-center">Disetujui</td>
-														</tr>
+														
                                                     </tbody>
                                                 </table>
+												<table class="table table-bordered mt-3">
+												<tr>
+													<td colspan="3" height="90px" class="text-center">Dibuat</td>
+													<td colspan="4" height="90px" class="text-center">Diperiksa</td>
+													<td colspan="4" height="90px" class="text-center">Diketahui</td>
+													<td colspan="3" height="90px" class="text-center">Disetujui</td>
+												</tr>
+												</table>
                                             </div>
-
+                                            <p>Note: <?php echo $ss['note'] ?></p>
                                         </div>
 
                                     </div>
