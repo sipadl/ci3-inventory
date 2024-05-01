@@ -67,8 +67,8 @@ class Main extends CI_Controller {
 			'wilayah' => 0,
 		);
 		// Menyimpan data menggunakan model
-		// $insert_id = $this->Main_model->insertAll('tbl_daging', $data);
-		$insert_id = 149;
+		$insert_id = $this->Main_model->insertAll('tbl_daging', $data);
+		// $insert_id = 149;
 		$datas = json_decode($dataSubBahanBaku, true);
 		// Check if $insert_id is valid
 		if ($insert_id !== false) {
@@ -95,6 +95,7 @@ class Main extends CI_Controller {
 									$this->Main_model->insertAll('tbl_sub_daging', $datax);
 									$qtys = floatval($ada['qty']) + floatval($datax['tbersih']);
 									$this->Main_model->updateAll('tbl_sub_daging', array('qty' => $qtys), $ada['id']);
+									
 							}
 					// 		if($datax['tipe'] == 1 ){
 					// 			if($ada['spek2']) {
