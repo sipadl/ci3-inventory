@@ -135,7 +135,7 @@
 							<!-- Manual -->
 							<td><?php echo $subsidi_transport = $da['subsidi_transport'] ?></td>
 							<td><?php echo number_format($subsidi_transport * $total,2) ?></td>
-							<td><?php echo number_format(floatval($total_nota) + floatval($subsidi_normal) - floatval($cap_shell) - floatval($total_nota) + floatval($total_subsidi_dibayar) - floatval($subsidi_transport), 2) ?></td>
+							<td class="total_laba"><?php echo number_format(floatval($total_nota) + floatval($subsidi_normal) - floatval($cap_shell) - floatval($total_nota) + floatval($total_subsidi_dibayar) - floatval($subsidi_transport), 2) ?></td>
 
 							<td><?php $receiving = (floatval($total_nota) + floatval($total_subsidi_dibayar));
 							if($receiving > 1 ) {
@@ -198,6 +198,7 @@
 						$cl += floatval($da['sp_cl']) * floatval($price[10]['harga']);
 						$clf += floatval($da['sp_clf']) * floatval($price[11]['harga']);
 						$total_notas += $col+ $jb+ $jk+ $bf+ $spk+ $sp+ $mh+ $cl+ $clf;
+
 						$subsidi_bayar_1 += $da['subsidi_dibayar_1'];
 						$subsidi_bayar_2 += $da['subsidi_dibayar_2'];
 						$subsidi_bayar_3 += $da['subsidi_transport'];
@@ -230,6 +231,7 @@
 						<td></td>
 						<td colspan=""><?php echo $subsidi_bayar_3 ?></td>
 						<td id="hasil_total_subsidi_trans"></td>
+						<td id="laba_rugi"></td>
 					</tfoot>
 					</table>
 

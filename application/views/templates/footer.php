@@ -122,6 +122,13 @@ function printDisini(val) {
   });
 
   $(document).ready(function() {
+	var totalSum = 0;
+	$('.total_laba').each(function() {
+		var value = parseFloat($(this).text().replaceAll(',' , '')); // Get the value of the cell and convert it to a float
+		totalSum += value; // Add the value to the totalSum
+	});
+	$('#laba_rugi').html(totalSum);
+
 	const detailSortir = $('#hehep');
 	const x = detailSortir.children();
 	console.log(x)
