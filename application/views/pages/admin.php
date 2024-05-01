@@ -81,6 +81,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												$dataDaging = $this->db->query("SELECT * FROM tbl_sub_daging 
 												WHERE id_bahan_baku = ".$data['id'].' order by spek desc')->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
 												?>
+												
 												<table class="table-bordered w-100">
 													<thead class="text-center">
 														<tr class="text-center">
@@ -111,7 +112,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<tr>
 																<td><?php echo $dd['spesifikasi_bahan'] ?></td>
 																<?php if($dd['tipe'] == 0 ) { ?> 
-																<td><?php echo $dd['qty'] > 1 ? $dd['qty'] : '' ?></td>
+																<td><?php echo $dd['qty'] >= 1 ? $dd['qty'] : '' ?></td>
 																<td><?php echo $dd['spek'] ?></td>
 																<td><?php echo $dd['bungkus'] ?></td>
 																<td><?php echo $dd['tkotor'] ?></td>
@@ -145,6 +146,73 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														</tr>
 													</tbody>
 												</table>
+													
+												<!-- <div class="d-flex">
+													<table class="table-bordered w-75">
+														<thead class="text-center">
+															<tr class="text-center">
+																<th rowspan="2" class="w-50">Speck Bahan</th>
+																<th rowspan="2">Quantity</th>
+																<th colspan="4">Daging Putih</th>
+															</tr>
+															<tr>
+																<th>Speck</th>
+																<th>Bungkus</th>
+																<th>T.Kotor</th>
+																<th>T.Bersih</th>
+															</tr>
+														</thead>
+														<tbody>
+															<?php 
+															$qtys = 0;
+															foreach($dataDaging as $dd) { 
+																$qtys += $dd['qty'];
+																if($dd['tipe'] == 0) {
+															?>
+															<tr>
+																<td><?php echo $dd['spesifikasi_bahan'] ?></td>
+																<td><?php echo $dd['qty'] > 1 ? $dd['qty'] : '' ?></td>
+																<td><?php echo $dd['spek'] ?></td>
+																<td><?php echo $dd['bungkus'] ?></td>
+																<td><?php echo $dd['tkotor'] ?></td>
+																<td><?php echo $dd['tbersih'] ?></td>
+															</tr>
+															<?php } ?>
+															<?php } ?>
+															<tr>
+																<td>Total</td>
+																<td colspan=""><?php echo $qtys ?></td>
+															</tr>
+														</tbody>
+													</table>
+													<table class="table-bordered w-25">
+															<thead class="text-center">
+																<tr>
+																	<th colspan="4">Daging Merah</th>
+																</tr>
+																<tr>
+																	<th>Speck</th>
+																	<th>Bungkus</th>
+																	<th>T.Kotor</th>
+																	<th>T.Bersih</th>
+																</tr>
+															</thead>
+															<tbody>
+																<?php 
+																foreach($dataDaging as $dd) { 
+																	if($dd['tipe'] == 1 && !$dd['spek2']) {
+																?>
+																<tr>
+																	<td><?php echo $dd['spek'] ?></td>
+																	<td><?php echo $dd['bungkus'] ?></td>
+																	<td><?php echo $dd['tkotor'] ?></td>
+																	<td><?php echo $dd['tbersih'] ?></td>
+																</tr>
+																<?php } ?>
+																<?php } ?>
+															</tbody>
+														</table>
+												</div> -->
 											</div>
 										</div>
 										<div class="modal-footer">
