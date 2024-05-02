@@ -80,6 +80,14 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                             </div>
                                             <div class="modal-body" id="<?php echo 'modal-print-'.$ss['id'] ?>">
                                                 <div class="container-fluid">
+												<div class="text-center">
+													<h4>Nota Timbang Bahan Baku Rajungan</h4>
+												</div>
+												<div class="d-flex justify-content-between my-2">
+													<div class="">Kode Supplier : <?php echo $ss['supplier'] ?></div>
+													<div class="">(SD.100.1002)</div>
+													<div class="">Tanggal : <?php echo $ss['tanggal'] ?></div>
+												</div>
 												<?php 
 												$dataDaging = $this->db->query("SELECT * FROM tbl_sub_daging 
 												WHERE id_bahan_baku = ".$ss['id_bahan_baku'].' order by spek desc')->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'

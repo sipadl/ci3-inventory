@@ -73,8 +73,12 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												</div>
 										<div class="modal-body" id="<?php echo 'modal-print-'.$data['id'] ?>">
 											<div class="container-fluid">
+												<div class="text-center">
+													<h4>Nota Timbang Bahan Baku Rajungan</h4>
+												</div>
 												<div class="d-flex justify-content-between my-2">
 													<div class="">Kode Supplier : <?php echo $data['supplier'] ?></div>
+													<div class="">(SD.100.1002)</div>
 													<div class="">Tanggal : <?php echo $data['tanggal'] ?></div>
 												</div>
 												<?php 
