@@ -220,9 +220,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 											</div>
 										</div>
 										<form action="" method="post" enctype="multipart/form" id="kocak">
-											<div class="form-group container">
+											<!-- <div class="form-group container">
 												<input type="text" name="keterangan" placeholder="keterangan" class="form-control px-4" id="">
-											</div>
+											</div> -->
 											<div class="modal-footer">
 												<!-- <button onclick="EditKocak('<?php echo base_url('main/mainApprove/').$data['id']; ?>','kocak')" class="btn btn-primary">Aprove</button>
 												<button onclick="EditKocak('<?php echo base_url('main/mainReject/').$data['id']; ?>','kocak')" class="btn btn-danger">Reject</button> -->
