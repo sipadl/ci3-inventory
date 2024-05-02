@@ -410,7 +410,7 @@ class Main extends CI_Controller {
 	public function mainApprove($id) {
 		
 		$this->Main_model->updateAll('tbl_daging', array('keterangan' => $this->input->post('keterangan'), 'status' => 1), $id);
-		$this->Main_model->updateAll('tbl_sortir', array('status' => 3), $id);
+		// $this->Main_model->updateAll('tbl_sortir', array('status' => 3), $id);
 		$this->session->set_flashdata('success', 'Bahan Baku berhasil diapprove.');
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 
@@ -418,9 +418,10 @@ class Main extends CI_Controller {
 	
 	public function mainReject($id){
 		$this->Main_model->updateAll('tbl_daging', array('keterangan' => $this->input->post('keterangan'), 'status' => -1), $id);
-		$this->Main_model->updateAll('tbl_sortir', array('status' => -1), $id);
+		// $this->Main_model->updateAll('tbl_sortir', array('status' => -1), $id);
 		$this->session->set_flashdata('success', 'Bahan Baku berhasil direject.');
-		redirect("main/adminUser");
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		// redirect("main/adminUser");
 	}
 
 	public function getWilayahById($id){
@@ -575,7 +576,7 @@ class Main extends CI_Controller {
 	public function aproval_sortir(){
 		$data['title'] = 'Approval Sortir';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','1');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('-1,0,1,2,3,4,5');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -585,7 +586,7 @@ class Main extends CI_Controller {
 	public function approval_produksi(){
 		$data['title'] = 'Approval Produksi';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','2');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('-1,0,1,2,3,4,5');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);

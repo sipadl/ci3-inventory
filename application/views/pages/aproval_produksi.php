@@ -169,16 +169,20 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														</tr>
 													</tbody>
 												</table>
+												<p class="mt-2">Keterangan : 
+													<?php 
+													echo $ss['keterangan_bahan_baku'] ?>	
+												</p>
 												</div>
-                                                </div>
+												</div>
 												<form action="" method="post" enctype="multipart/form" id="edit_kocak">
 													<div class="modal-footer">
-														<?php
-														if($ss['status'] == 2 ) { ?> 
+													<?php
+														if($ss['status'] == 0 && !$ss['keterangan_bahan_baku'] ) { ?> 
 														<input type="text" name="keterangan" class="form-control mx-2" placeholder="keterangan" id="">
-														<button onclick="EditKocak('<?php echo base_url('main/mainApprove/').$ss['id']; ?>', 'edit_kocak')" class="btn
+														<button onclick="EditKocak('<?php echo base_url('main/mainApprove/').$ss['id_bahan_baku']; ?>', 'edit_kocak')" class="btn
 														btn-primary">Aprove</button>
-														<button onclick="EditKocak('<?php echo base_url('main/mainReject/').$ss['id']; ?>', 'edit_kocak')" class="btn
+														<button onclick="EditKocak('<?php echo base_url('main/mainReject/').$ss['id_bahan_baku']; ?>', 'edit_kocak')" class="btn
 														btn-danger">Reject</button>
 														<?php } ?>
 														<button
