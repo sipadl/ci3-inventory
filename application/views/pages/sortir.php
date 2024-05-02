@@ -1613,8 +1613,6 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 																'bf',
 																'jb',
 																'jb_bf',
-																'jbb_jk',
-																'jbb_bf',
 																'xlp',
 																'bf_k3_col',
 																'bf_k3_jb',
@@ -1626,15 +1624,12 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 																'bf_lp_slb',
 																'bf_sp',
 																'bf_spk_xlp',
-																'bf_spk_sp',
 																'spk_sp_jb',
 																'spk_sp_xlp',
 																'spk_sp_bfp',
-																'spk_sp_sph',
 																'sp_cl',
 																'sp_clf',
 																'mh',
-																'mh_slb'
 															);
 														
 															$total = 0;
