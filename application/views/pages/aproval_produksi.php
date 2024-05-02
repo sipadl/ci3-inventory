@@ -165,9 +165,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                 </div>
 												<form action="" method="post" enctype="multipart/form" id="edit_kocak">
 													<div class="modal-footer">
-														<input type="text" name="keterangan" class="form-control mx-2" placeholder="keterangan" id="">
 														<?php
 														if($ss['status'] == 2 ) { ?> 
+														<input type="text" name="keterangan" class="form-control mx-2" placeholder="keterangan" id="">
 														<button onclick="EditKocak('<?php echo base_url('main/mainApprove/').$ss['id']; ?>', 'edit_kocak')" class="btn
 														btn-primary">Aprove</button>
 														<button onclick="EditKocak('<?php echo base_url('main/mainReject/').$ss['id']; ?>', 'edit_kocak')" class="btn
@@ -931,14 +931,14 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												</tr>
 												</table>
                                             </div>
-                                            <p>Note: <?php echo $ss['keterangan'] ?></p>
+                                            <p>Note: <?php echo $ss['note'] ?></p>
                                         </div>
 
                                             </div>
                                             <div class="modal-footer">
 											<form id="kocak" method="post">
 											<?php if($ss['status'] == 2) { ?>
-												<textarea type="text" name="" id="keterangan" placeholder="keterangan" class="form-control w-100 mb-2"><?php echo $ss['keterangan'] ?></textarea>
+												<textarea type="text" name="note" id="keterangan" placeholder="keterangan" class="form-control w-100 mb-2"><?php echo $ss['note'] ?></textarea>
 											<?php } ?>
                                                 <?php if($ss['status'] == 2) { ?>
 													<button

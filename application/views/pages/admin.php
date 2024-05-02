@@ -224,8 +224,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												<input type="text" name="keterangan" placeholder="keterangan" class="form-control px-4" id="">
 											</div>
 											<div class="modal-footer">
-												<button onclick="EditKocak('<?php echo base_url('main/mainApprove/').$data['id']; ?>','kocak')" class="btn btn-primary">Aprove</button>
-												<button onclick="EditKocak('<?php echo base_url('main/mainReject/').$data['id']; ?>','kocak')" class="btn btn-danger">Reject</button>
+												<!-- <button onclick="EditKocak('<?php echo base_url('main/mainApprove/').$data['id']; ?>','kocak')" class="btn btn-primary">Aprove</button>
+												<button onclick="EditKocak('<?php echo base_url('main/mainReject/').$data['id']; ?>','kocak')" class="btn btn-danger">Reject</button> -->
 												<button type="button" onclick="printDisini(<?php echo $data['id'] ?>)" class="btn btn-primary">Print</a>
 												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 											</div>

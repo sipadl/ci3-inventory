@@ -40,7 +40,7 @@
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+<script src="https://github.com/rainabba/jquery-table2excel/raw/1.1.0/dist/jquery.table2excel.min.js"></script>
 
 
 <script>
@@ -139,6 +139,61 @@ function printDisini(val) {
 		}
 	});
 
+	var SumNormaltotalSubsidi = 0;
+	$('.sum_subsidi_normal').each(function() {
+		var values = parseFloat($(this).text().replaceAll(',', ''));
+		console.log(values);
+		if(values > 0) {
+			SumNormaltotalSubsidi += values
+		} else {
+			SumNormaltotalSubsidi += 0;
+		}
+	});
+	var SumNormaltotalSubsidi2 = 0;
+	$('.sum_total_plus_subsidi').each(function() {
+		var values = parseFloat($(this).text().replaceAll(',', ''));
+		console.log(values);
+		if(values > 0) {
+			SumNormaltotalSubsidi2 += values
+		} else {
+			SumNormaltotalSubsidi2 += 0;
+		}
+	});
+	var total_subsidi1 = 0;
+	$('.total_subsidi1').each(function() {
+		var values = parseFloat($(this).text().replaceAll(',', ''));
+		console.log(values);
+		if(values > 0) {
+			total_subsidi1 += values
+		} else {
+			total_subsidi1 += 0;
+		}
+	});
+	var total_subsidi2 = 0;
+	$('.sum_total_plus_subsidi').each(function() {
+		var values = parseFloat($(this).text().replaceAll(',', ''));
+		console.log(values);
+		if(values > 0) {
+			total_subsidi2 += values
+		} else {
+			total_subsidi2 += 0;
+		}
+	});
+	var total_subsidi3 = 0;
+	$('.sum_total_plus_subsidi').each(function() {
+		var values = parseFloat($(this).text().replaceAll(',', ''));
+		console.log(values);
+		if(values > 0) {
+			total_subsidi3 += values
+		} else {
+			total_subsidi3 += 0;
+		}
+	});
+	
+	$('#total_subsidi1').html(total_subsidi1)
+	$('#total_subsidi2').html(total_subsidi2)
+	$('#total_subsidi3').html(total_subsidi3)
+	$('#sum_subsidi_normal').html(SumNormaltotalSubsidi)
 	$('#hasil_total_subsidi_trans').html(totalSubsidi)
 	$('#laba_rugi').html(totalSum);
 
@@ -205,46 +260,52 @@ function printDisini(val) {
     }
 
     $('.isi').append(`
-        <div class="dagings" id="${id}">
-            <div class="daging-putih">
-                <h5>${jenisDaging}</h5>
-                <hr>
-                <div class="row">
-                    <input type="hidden" id="tipe${dagingCount}" value="${index}">
-                    <div class="col-md-3 col-sm-12">
-                        <div class="form-group">
-                            <label for="speck">Speck:</label>
-                            <input type="text" class="form-control" id="spek${id}">
-                        </div>
+    <div class="dagings" id="${id}">
+        <div class="daging-putih">
+			<div class="d-flex justify-content-between">
+            <h5>${jenisDaging}</h5>
+			${id != 0 ? 
+				`<button type="button" class="btn btn-danger btn-sm remove-daging" data-index="${id}">Remove</button>`
+			 : ''}
+			</div>
+            <hr>
+            <div class="row">
+                <input type="hidden" id="tipe${dagingCount}" value="${index}">
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <label for="speck">Speck:</label>
+                        <input type="text" class="form-control" id="spek${id}">
                     </div>
-                    <div class="col-md-3 col-sm-12">
-                        <div class="form-group">
-                            <label for="bungkus">Bungkus:</label>
-                            <input type="text" class="form-control" id="bungkus${id}">
-                        </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <label for="bungkus">Bungkus:</label>
+                        <input type="text" class="form-control" id="bungkus${id}">
                     </div>
-                    <div class="col-md-3 col-sm-12">
-                        <div class="form-group">
-                            <label for="tkotor">T.Kotor:</label>
-                            <input type="text" class="form-control" id="tkotor${id}">
-                        </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <label for="tkotor">T.Kotor:</label>
+                        <input type="text" class="form-control" id="tkotor${id}">
                     </div>
-                    <div class="col-md-3 col-sm-12">
-                        <div class="form-group">
-                            <label for="tbersih">T.Bersih:</label>
-                            <input type="text" class="form-control" id="tbersih${id}">
-                        </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-group">
+                        <label for="tbersih">T.Bersih:</label>
+                        <input type="text" class="form-control" id="tbersih${id}">
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-end">
-                ${index !== 0 ? `
-                    <button type="button" class="remove-daging-btn btn btn-sm mx-2 px-3 btn-danger text-right" onclick="removeDaging('${id}')" style="display: none;">X</button>
-                ` : ''}
-            </div>
         </div>
-    `);
+    </div>
+`);
+
 }
+
+$(document).on('click', '.remove-daging', function() {
+    var indexToRemove = $(this).data('index');
+    $('#'+indexToRemove).remove(); // Menghapus elemen daging berdasarkan ID
+});
 
 	function removeDaging(id) {
     $('#' + id).remove();
