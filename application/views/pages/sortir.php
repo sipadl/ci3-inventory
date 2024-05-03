@@ -1494,7 +1494,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td>MHR</td>
                                                             <td></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
-                                                            <td><?php echo $mhr ?></td>
+                                                            <td></td>
                                                             <td></td>
                                                             <td></td>
                                                         </tr>
