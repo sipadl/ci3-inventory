@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Apr 2024 pada 06.11
+-- Waktu pembuatan: 03 Bulan Mei 2024 pada 08.31
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -53,22 +53,18 @@ CREATE TABLE `tbl_daging` (
   `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `supplier` varchar(255) NOT NULL,
-  `spesifikasi` varchar(255) NOT NULL,
-  `daging_putih` text NOT NULL,
-  `daging_merah` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `wilayah` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
-  `qty` varchar(10) NOT NULL DEFAULT '1'
+  `keterangan` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tbl_daging`
 --
 
-INSERT INTO `tbl_daging` (`id`, `tanggal`, `supplier`, `spesifikasi`, `daging_putih`, `daging_merah`, `user_id`, `wilayah`, `status`, `qty`) VALUES
-(61, '2024-04-22', 'K2', 'jb', '[{\"spek\":\"jk\",\"bungkus\":\"11\",\"tkotor\":\"7.85\",\"tbersih\":\"7.28\"}]', '[{\"spek\":\"wes5\",\"bungkus\":\"wes6\",\"tkotor\":\"56.87\",\"tbersih\":\"9.39\"}]', 0, '0', 0, '16.67'),
-(62, '2024-04-22', 'j6', 'bahan jadi', '[{\"spek\":\"wes1\",\"bungkus\":\"wes2\",\"tkotor\":\"11.6\",\"tbersih\":\"56.98\"}]', '[{\"spek\":\"wes5\",\"bungkus\":\"wes6\",\"tkotor\":\"56.87\",\"tbersih\":\"87,98\"}]', 0, '0', 0, '143.98');
+INSERT INTO `tbl_daging` (`id`, `tanggal`, `supplier`, `user_id`, `wilayah`, `status`, `keterangan`) VALUES
+(78, '2024-05-03', 'K2', 0, '0', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -110,15 +106,18 @@ CREATE TABLE `tbl_laporan` (
   `created_at` date DEFAULT NULL,
   `id_sortir` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT 0,
-  `approved_by` int(11) DEFAULT NULL
+  `approved_by` int(11) DEFAULT NULL,
+  `subsidi_dibayar_3` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tbl_laporan`
 --
 
-INSERT INTO `tbl_laporan` (`id`, `subsidi_normal`, `subsidi_dibayar_1`, `subsidi_dibayar_2`, `cap_shell`, `subsidi_transport`, `created_at`, `id_sortir`, `status`, `approved_by`) VALUES
-(1, '1000000', '1000000', '1000000', '1000000', '1000000', '2024-04-21', 57, 0, NULL);
+INSERT INTO `tbl_laporan` (`id`, `subsidi_normal`, `subsidi_dibayar_1`, `subsidi_dibayar_2`, `cap_shell`, `subsidi_transport`, `created_at`, `id_sortir`, `status`, `approved_by`, `subsidi_dibayar_3`) VALUES
+(1, '1000000', '1000000', '1000000', '1000000', '1000000', '2024-04-21', 57, 0, NULL, NULL),
+(2, '500000', '300000', '100000', '10000', '10000', '2024-04-22', 1, 1, NULL, NULL),
+(3, '40000', '40000', '20000', '10', '30000', '2024-04-24', 19, 0, NULL, '10000');
 
 -- --------------------------------------------------------
 
@@ -142,7 +141,10 @@ CREATE TABLE `tbl_memo` (
 --
 
 INSERT INTO `tbl_memo` (`id`, `kode_supplier`, `tanggal`, `qty`, `status`, `subsidi`, `approved_by`, `id_sortir`) VALUES
-(6, 'K2', '1979-03-12', '1363', '0', '1', NULL, 5);
+(6, 'K2', '1979-03-12', '1363', '4', '1', '4', 5),
+(7, 'K2', '2024-04-22', '594', '0', '50000', NULL, 1),
+(8, 'K2', '2024-04-22', '594', '0', '30000', NULL, 1),
+(9, 'K2', '2024-04-22', '594', '4', '100000', '4', 6);
 
 -- --------------------------------------------------------
 
@@ -187,7 +189,9 @@ CREATE TABLE `tbl_penerimaan` (
 --
 
 INSERT INTO `tbl_penerimaan` (`id`, `status`, `approved_by`, `kode_supplier`, `id_sortir`, `tanggal`, `potongan_harga`, `total`) VALUES
-(1, '1', '4', 'K2', '2', '2024-04-21', '11', '12317');
+(1, '1', '4', 'K2', '2', '2024-04-21', '11', '12317'),
+(2, '1', '4', 'K2', '6', '2024-04-22', '', '2079009'),
+(3, '1', '4', 'K2', '6', '2024-04-22', '', '2079009');
 
 -- --------------------------------------------------------
 
@@ -210,16 +214,22 @@ CREATE TABLE `tbl_pengajuan` (
   `status` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `supplier` varchar(100) DEFAULT NULL,
-  `approved_by` varchar(100) DEFAULT NULL
+  `approved_by` varchar(100) DEFAULT NULL,
+  `keterangan_approval` varchar(100) DEFAULT NULL,
+  `qty_kg` varchar(100) DEFAULT NULL,
+  `dp_100` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tbl_pengajuan`
 --
 
-INSERT INTO `tbl_pengajuan` (`id`, `area`, `bahan_masuk`, `upload_images`, `dp_60`, `request_dp`, `total_bayar`, `bank`, `no_rek`, `tanggal_transaksi`, `keterangan`, `status`, `created_at`, `supplier`, `approved_by`) VALUES
-(1, 'Purwakarta', '1', NULL, '1', '1', '2', 'Placeat unde ab et ', '', '2024-04-20', 'a', 1, '2024-04-20 11:07:41', 'K1', NULL),
-(2, 'Purwakarta', 'Doloremque dolore ex', NULL, 'Elit quaerat est q', 'Exercitation odit no', 'Delectus neque sit ', 'bca', '', '2008-04-28', 'Deserunt illum enim', 1, '2024-04-20 11:24:13', 'j6', NULL);
+INSERT INTO `tbl_pengajuan` (`id`, `area`, `bahan_masuk`, `upload_images`, `dp_60`, `request_dp`, `total_bayar`, `bank`, `no_rek`, `tanggal_transaksi`, `keterangan`, `status`, `created_at`, `supplier`, `approved_by`, `keterangan_approval`, `qty_kg`, `dp_100`) VALUES
+(1, 'Purwakarta', '1', NULL, '1', '1', '2', 'Placeat unde ab et ', '', '2024-04-20', 'a', 1, '2024-04-20 11:07:41', 'K1', NULL, '  1111', NULL, NULL),
+(2, 'Purwakarta', 'Doloremque dolore ex', NULL, 'Elit quaerat est q', 'Exercitation odit no', 'Delectus neque sit ', 'bca', '', '2008-04-28', 'Deserunt illum enim', 1, '2024-04-20 11:24:13', 'j6', NULL, NULL, NULL, NULL),
+(3, 'Purwakarta', '1', NULL, '15', '10', '25', 'Placeat unde ab et ', '1234', '2024-04-23', 'menunggu audit', 0, '2024-04-22 09:52:29', 'K1', NULL, NULL, NULL, NULL),
+(4, 'Purwakarta', '3', 'user8-128x128.jpg', '1', '2', '3', 'Placeat unde ab et ', '1234', '2024-04-22', 'p', 0, '2024-04-22 09:56:23', 'K1', NULL, NULL, NULL, NULL),
+(5, 'Purwakarta', '1', 'AdminLTELogo2.png', '4', '5', '6', 'Placeat unde ab et ', '1234', '2024-04-24', '1', 0, '2024-04-24 14:27:40', 'K1', NULL, NULL, '2', '3');
 
 -- --------------------------------------------------------
 
@@ -231,7 +241,7 @@ CREATE TABLE `tbl_price` (
   `id_price` int(11) NOT NULL,
   `nama_produk` varchar(250) NOT NULL,
   `harga` varchar(250) NOT NULL,
-  `id_area` int(30) NOT NULL
+  `id_area` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -239,30 +249,30 @@ CREATE TABLE `tbl_price` (
 --
 
 INSERT INTO `tbl_price` (`id_price`, `nama_produk`, `harga`, `id_area`) VALUES
-(1, 'COL', '560,000.00', 2),
-(2, 'JB', '560,000.00', 2),
-(3, 'JBJK', ' 285,000.00', 2),
-(4, 'JL', '285,000.00 ', 2),
-(5, 'XLP', '275,000.00 ', 2),
-(6, 'KJ', ' 285,000.00 ', 2),
-(7, 'BF / LP', ' 285,000.00 ', 2),
-(8, 'SPK', ' 275,000.00 ', 2),
-(9, 'SP', ' 5,000.00 ', 2),
-(10, 'SPH', '5,000.00 ', 0),
-(11, 'CL', ' 10,000.00 ', 2),
-(12, 'CLF', ' 30,000.00 ', 2),
-(13, 'MH', ' 3,000.00 ', 2),
-(14, 'MHR', '  30,000.00 ', 2),
-(15, 'PHR', '45,000.00 ', 2),
-(16, 'B COL', '45,000.00 ', 2),
-(17, 'B JB', '45,000.00 ', 2),
-(18, 'B JBJK	', '45,000.00', 2),
-(19, 'B XLP', '45,000.00', 2),
-(20, 'B BF / LP', '45,000.00', 2),
-(21, 'B SPK', '45,000.00', 2),
-(22, 'B SP', '45,000.00', 2),
-(23, 'B CL', '30,000.00 ', 2),
-(24, 'B MH', '30,000.00 ', 2),
+(1, 'COL', '560000', 2),
+(2, 'JB', '560000', 2),
+(3, 'JBJK', ' 285000', 2),
+(4, 'JL', '285000', 2),
+(5, 'XLP', '275000', 2),
+(6, 'KJ', ' 285000', 2),
+(7, 'BF / LP', ' 285000', 2),
+(8, 'SPK', '275000', 2),
+(9, 'SP', ' 5,000', 2),
+(10, 'SPH', ' 5,000', 0),
+(11, 'CL', ' 10000', 2),
+(12, 'CLF', ' 30000', 2),
+(13, 'MH', ' 3000', 2),
+(14, 'MHR', ' 30000', 2),
+(15, 'PHR', '45000', 2),
+(16, 'B COL', '45000', 2),
+(17, 'B JB', '45000', 2),
+(18, 'B JBJK	', '45000', 2),
+(19, 'B XLP', '45000', 2),
+(20, 'B BF / LP', '45000', 2),
+(21, 'B SPK', '45000', 2),
+(22, 'B SP', '45000', 2),
+(23, 'B CL', ' 30000', 2),
+(24, 'B MH', ' 30000', 2),
 (25, 'SHELL', '1', 2);
 
 -- --------------------------------------------------------
@@ -348,15 +358,66 @@ CREATE TABLE `tbl_sortir` (
   `loss` varchar(255) DEFAULT NULL,
   `timbangan_kotor` varchar(255) DEFAULT NULL,
   `timbangan_bb` varchar(255) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT 0,
   `jbb_jf` varchar(255) DEFAULT NULL,
   `spk_sp` varchar(255) DEFAULT NULL,
   `sp_sph` varchar(255) DEFAULT NULL,
   `id_bb` int(11) DEFAULT NULL,
   `approved_by` int(11) DEFAULT NULL,
   `cap` varchar(100) DEFAULT NULL,
-  `potong` varchar(100) DEFAULT NULL
+  `potong` varchar(100) DEFAULT NULL,
+  `note` varchar(100) DEFAULT NULL,
+  `shell_phr_keras` varchar(100) DEFAULT NULL,
+  `shell_mhr_keras` varchar(100) DEFAULT NULL,
+  `shell_phr_halus` varchar(100) DEFAULT NULL,
+  `shell_mhr_halus` varchar(100) DEFAULT NULL,
+  `keterangan` varchar(100) DEFAULT NULL,
+  `basi_col2` varchar(255) DEFAULT NULL,
+  `basi_jb2` varchar(255) DEFAULT NULL,
+  `basi_jk2` varchar(255) DEFAULT NULL,
+  `basi_xlp2` varchar(255) DEFAULT NULL,
+  `basi_bf2` varchar(255) DEFAULT NULL,
+  `basi_sp2` varchar(255) DEFAULT NULL,
+  `mhr2` varchar(255) DEFAULT NULL,
+  `basi_cl2` varchar(255) DEFAULT NULL,
+  `basi_mh2` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_sortir`
+--
+
+INSERT INTO `tbl_sortir` (`id`, `kode_supplier`, `tanggal_sj`, `tanggal_rec`, `tanggal_rec2`, `tanggal_rec3`, `number`, `col`, `bf`, `jb`, `jb_bf`, `jbb_jk`, `jbb_bf`, `xlp`, `bf_k3_col`, `bf_k3_jb`, `bf_k3_jk`, `bf_k3_jl`, `bf_jl`, `bf_kj`, `bf_bf`, `bf_lp_slb`, `bf_sp`, `bf_spk_xlp`, `bf_spk_sp`, `spk_sp_jb`, `spk_sp_xlp`, `spk_sp_bfp`, `spk_sp_sph`, `sp_cl`, `sp_clf`, `mh`, `mh_slb`, `phr`, `basi_col`, `basi_jb`, `basi_jk`, `basi_xlp`, `basi_bf`, `basi_sp`, `mhr`, `basi_cl`, `basi_mh`, `air`, `shell`, `loss`, `timbangan_kotor`, `timbangan_bb`, `status`, `jbb_jf`, `spk_sp`, `sp_sph`, `id_bb`, `approved_by`, `cap`, `potong`, `note`, `shell_phr_keras`, `shell_mhr_keras`, `shell_phr_halus`, `shell_mhr_halus`, `keterangan`, `basi_col2`, `basi_jb2`, `basi_jk2`, `basi_xlp2`, `basi_bf2`, `basi_sp2`, `mhr2`, `basi_cl2`, `basi_mh2`) VALUES
+(14, 'K2', '2024-05-03', '2024-05-03', NULL, NULL, 78, '33.2', '33.2', '33.2', '33.2', '2.58', '43.23', '33.2', '45.32', '45.32', '45.32', '45.32', '33.2', '1.46', '33.2', '45.32', '33.2', '33.2', '0.16', '2.26', '33.19', '45.32', NULL, '33.2', '33.2', '18.24', '33.2', NULL, '33.2', '1.44', '45.32', '33.2', '33.2', '45.32', NULL, '33.2', '0.79', '33', '44', '33', NULL, NULL, 1, NULL, '33.2', '0.94', 78, NULL, 'ya', NULL, 'okeoekeo', '2', '2', '2', '2', NULL, '21', '22', '33', '44', '11', '11', NULL, '22', '33');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_sub_daging`
+--
+
+CREATE TABLE `tbl_sub_daging` (
+  `id` int(11) NOT NULL,
+  `id_bahan_baku` int(11) DEFAULT NULL,
+  `spesifikasi_bahan` varchar(100) DEFAULT NULL,
+  `spek` varchar(100) DEFAULT NULL,
+  `bungkus` varchar(100) DEFAULT NULL,
+  `tkotor` varchar(100) DEFAULT NULL,
+  `tbersih` varchar(100) DEFAULT NULL,
+  `spek2` varchar(100) DEFAULT NULL,
+  `bungkus2` varchar(100) DEFAULT NULL,
+  `tkotor2` varchar(100) DEFAULT NULL,
+  `tbersih2` varchar(100) DEFAULT NULL,
+  `qty` varchar(100) DEFAULT NULL,
+  `tipe` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_sub_daging`
+--
+
+INSERT INTO `tbl_sub_daging` (`id`, `id_bahan_baku`, `spesifikasi_bahan`, `spek`, `bungkus`, `tkotor`, `tbersih`, `spek2`, `bungkus2`, `tkotor2`, `tbersih2`, `qty`, `tipe`) VALUES
+(114, 78, 'jk', 'jk', '11', '23', '22', NULL, NULL, NULL, NULL, '22', 0);
 
 -- --------------------------------------------------------
 
@@ -384,10 +445,10 @@ CREATE TABLE `tbl_supplier` (
 --
 
 INSERT INTO `tbl_supplier` (`id_supplier`, `kode_supplier`, `nama_supplier`, `bank`, `nomor`, `an`, `npwp`, `id_area`, `no_ktp`, `alamat`, `wilayah`, `no_rekening`) VALUES
-(1, 'K1', 'Et qui occaecat et i', 'Placeat unde ab et ', 'Recusandae Assumend', 'Odit eos nostrum eni', 'Adipisicing sint qu', 443, 0, 'Asperiores duis dolo', '', NULL),
-(2, 'K2', 'Obcaecati eligendi s', 'Est veniam rerum s', 'Adipisci aut commodo', 'Ut dolores rem eiusm', 'Commodi in ex molest', 443, 0, 'Deserunt officiis co', '', NULL),
-(3, 'j6', 'adi', 'bca', 'gddg', 'taufik', '6565656', 443, 323232, 'sasasas', '', NULL),
-(4, 'rudi', 'Rudianto', 'BCA', '081', 'rudi', '2.png', 440, 21, 'Hehe', '', NULL);
+(1, 'K1', 'Et qui occaecat et i', 'Placeat unde ab et ', 'Recusandae Assumend', 'Odit eos nostrum eni', 'Adipisicing sint qu', 443, 0, 'Asperiores duis dolo', '', '1234'),
+(2, 'K2', 'Obcaecati eligendi s', 'Est veniam rerum s', 'Adipisci aut commodo', 'Ut dolores rem eiusm', 'Commodi in ex molest', 443, 0, 'Deserunt officiis co', '', '1244'),
+(3, 'j6', 'adi', 'bca', 'gddg', 'taufik', '6565656', 443, 323232, 'sasasas', '', '12345'),
+(4, 'rudi', 'Rudianto', 'BCA', '081', 'rudi', '2.png', 440, 21, 'Hehe', '', '11223344');
 
 -- --------------------------------------------------------
 
@@ -490,6 +551,13 @@ ALTER TABLE `tbl_sortir`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `tbl_sub_daging`
+--
+ALTER TABLE `tbl_sub_daging`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tbl_sub_daging_id_IDX` (`id`) USING BTREE;
+
+--
 -- Indeks untuk tabel `tbl_supplier`
 --
 ALTER TABLE `tbl_supplier`
@@ -515,7 +583,7 @@ ALTER TABLE `tbl_area`
 -- AUTO_INCREMENT untuk tabel `tbl_daging`
 --
 ALTER TABLE `tbl_daging`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_kota`
@@ -527,13 +595,13 @@ ALTER TABLE `tbl_kota`
 -- AUTO_INCREMENT untuk tabel `tbl_laporan`
 --
 ALTER TABLE `tbl_laporan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_memo`
 --
 ALTER TABLE `tbl_memo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_pembayaran_dp`
@@ -545,13 +613,13 @@ ALTER TABLE `tbl_pembayaran_dp`
 -- AUTO_INCREMENT untuk tabel `tbl_penerimaan`
 --
 ALTER TABLE `tbl_penerimaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_pengajuan`
 --
 ALTER TABLE `tbl_pengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_price`
@@ -569,7 +637,13 @@ ALTER TABLE `tbl_role`
 -- AUTO_INCREMENT untuk tabel `tbl_sortir`
 --
 ALTER TABLE `tbl_sortir`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_sub_daging`
+--
+ALTER TABLE `tbl_sub_daging`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_supplier`
