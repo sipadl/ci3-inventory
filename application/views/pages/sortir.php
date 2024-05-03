@@ -1037,6 +1037,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														 $phr = $ss['phr'];
 														 $basi_col = $ss['basi_col'];
 														 $basi_jk = $ss['basi_jk'];
+														 $basi_jb = $ss['basi_jb'];
 														 $basi_xlp = $ss['basi_xlp'];
 														 $basi_bf = $ss['basi_bf'];
 														 $basi_sp = $ss['basi_sp'];
@@ -1196,7 +1197,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         <tr>
                                                             <td colspan="2">Total JB</td>
                                                             <td>
-                                                            <?php $sum = floatval($jbb_jf) + floatval($jb);
+                                                            <?php $sum = floatval($jb_bf) + floatval($jb);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1236,7 +1237,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td colspan="2">Total PHR</td>
                                                             <td>
-                                                            <?php $sum = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) +  floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
+                                                            <?php $sum = floatval($basi_col) + floatval($basi_jk) + floatval($basi_xlp) + floatval($basi_sp) + floatval($basi_bf);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1358,7 +1359,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="1" rowspan="6">BASI</td>
                                                             <td>COL</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
-                                                            <td><?php echo $ss['basi_col'] ?></td>
+                                                            <td><?php echo $basi_col ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -1371,7 +1372,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td>JB</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
-                                                            <td><?php echo $basi_jk ?></td>
+                                                            <td><?php echo $basi_jb ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -1408,7 +1409,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2">Total BF</td>
                                                             <td>
 														<?php 
-															$sum = floatval($bf_k3_col) + floatval($bf_k3_jb) + floatval($bf_k3_jk) + floatval($bf_k3_jl) + floatval($bf_jl) + floatval($bf_bf) + floatval($bf_lp_slb) + floatval($bf_sp);
+															$sum = floatval($bf_k3_col) + floatval($bf_k3_jb) + floatval($bf_k3_jk) + floatval($bf_k3_jl) + floatval($bf_kj) + floatval($bf_bf) + floatval($bf_lp_slb) + floatval($bf_sp);
 															if($sum > 0) {
 																	echo $sum;
 																} else {
@@ -1455,7 +1456,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td>
                                                             <?php
-																	$sum = floatval($ss['basi_sp']) + floatval($ss['basi_bf']) + floatval($ss['basi_jb']) + floatval($ss['basi_xlp']) + floatval($ss['basi_jk']) + floatval($ss['basi_col']);
+																	$sum = floatval($basi_col) + floatval($basi_jb) + floatval($basi_jk) + floatval($basi_xlp) + floatval($basi_bf) + floatval($basi_sp);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1557,7 +1558,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         <tr>
                                                             <td colspan="2">Total SP</td>
                                                             <td>
-                                                            <?php $sum = floatval($sp_jb) + floatval($sp_xlp) + floatval($sp_bf) + floatval($sp_sph);
+                                                            <?php $sum = floatval($sp_jb) + floatval($sp_xlp) + floatval($sp_bf) + floatval($spk_sp);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
