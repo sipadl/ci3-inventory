@@ -1272,7 +1272,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td colspan="1">MHR</td>
                                                             <td></td>
-                                                            <td><?php echo $mhr ?></td>
+                                                            <td></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1653,7 +1653,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2">Timb. Kotor</td>
                                                             <td>
                                                             <?php
-																	$sum = $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + $total_mh + floatval($cl) + floatval($clf) + floatval($mhr) + $total_mhr + $total_mhr2 + $total_phr + $total_phr2;
+																	$sum =$total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + $air + $shell + $loss + floatval($mh) + floatval($mh2);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
