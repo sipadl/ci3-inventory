@@ -1287,7 +1287,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td colspan="1" rowspan="2">BASI</td>
                                                             <td>CL</td>
-                                                            <td><?php echo $basi_cl2 ?></td>
+                                                            <td><?php echo $basi_cl ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1302,7 +1302,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td colspan="2"></td>
                                                             <td>MH</td>
-                                                            <td><?php echo $basi_mh2 ?></td>
+                                                            <td><?php echo $basi_mh ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1465,7 +1465,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td>
                                                             <?php
-																	$total_phr2 = $sum = floatval($basi_col) + floatval($basi_jb) + floatval($basi_jk) + floatval($basi_xlp) + floatval($basi_bf) + floatval($basi_sp);
+																	$total_phr2 = $sum = floatval($basi_col2) + floatval($basi_jb2) + floatval($basi_jk2) + floatval($basi_xlp2) + floatval($basi_bf2) + floatval($basi_sp2);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
