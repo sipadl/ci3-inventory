@@ -384,8 +384,17 @@ CREATE TABLE `tbl_sortir` (
   `shell_phr_halus` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `shell_mhr_halus` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `keterangan` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `basi_col2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `basi_jb2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `basi_jk2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `basi_xlp2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `basi_bf2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `basi_sp2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `mhr2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `basi_cl2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `basi_mh2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -394,7 +403,7 @@ CREATE TABLE `tbl_sortir` (
 
 LOCK TABLES `tbl_sortir` WRITE;
 /*!40000 ALTER TABLE `tbl_sortir` DISABLE KEYS */;
-INSERT INTO `tbl_sortir` VALUES (6,'K2','2024-04-22','2024-04-22',NULL,NULL,1,'9','9','9','9','9',NULL,'9','99','','99','99','9','9','9','9','9','9','9','9','9','99',NULL,'9','9','9','9',NULL,'9','9','9','9','9','9',NULL,'9','9','9','9','9',NULL,NULL,5,'9','9','9',1,4,'ya','9',NULL,NULL,NULL,NULL,NULL,NULL),(7,'j6','2024-04-23','2024-04-22',NULL,NULL,7,'3','8','8','8','8',NULL,'8','88','8','8','8','8','8','8','8','8','8','8','8','8','8',NULL,'8','8','8','8',NULL,'8','8','8','8','8','8',NULL,'8','8','8','8','5',NULL,NULL,5,'8','8','8',2,4,'ya','11',NULL,NULL,NULL,NULL,NULL,NULL),(8,'K1','2024-04-23','2024-04-23',NULL,NULL,8,'1','2','3','4','5',NULL,'7','8','9','9','8','7','6','5','4','3','2','1','2','2','2',NULL,'1','3','3','3',NULL,'4','4','4','4','4','4',NULL,'4','4','5','5','5',NULL,NULL,5,'6','2','2',19,NULL,'ya','22','X',NULL,NULL,NULL,NULL,NULL),(9,'K1','2024-04-30','2024-04-29',NULL,NULL,24,'9','9','9','9','9',NULL,'9','9','99','9','9','9','9','9','9','9','9','9','9','9','9',NULL,'9','9','9','9',NULL,'9','9','9','99','9','9',NULL,'9','9','','9','99',NULL,NULL,3,'9','9','',24,4,'ya',NULL,'Woke','9','9','9','9',NULL),(10,'K1','2024-04-30','2024-04-30',NULL,NULL,60,'1','','','','',NULL,'','','','','','','','','','','','','','','',NULL,'','','','',NULL,'','','','','','',NULL,'','','','','',NULL,NULL,0,'','','',60,NULL,'ya',NULL,'','','','','',NULL),(11,'K1','2024-04-25','2024-04-17',NULL,NULL,60,'1','2','3','4','5',NULL,'','','','','','','','','','','','','','','',NULL,'','','','',NULL,'','','','','','',NULL,'','','','','',NULL,NULL,0,'','','',59,NULL,'ya',NULL,'Hehehe','','','','',NULL);
+INSERT INTO `tbl_sortir` VALUES (6,'K2','2024-04-22','2024-04-22',NULL,NULL,1,'9','9','9','9','9',NULL,'9','99','','99','99','9','9','9','9','9','9','9','9','9','99',NULL,'9','9','9','9',NULL,'9','9','9','9','9','9',NULL,'9','9','9','9','9',NULL,NULL,5,'9','9','9',1,4,'ya','9',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,'j6','2024-04-23','2024-04-22',NULL,NULL,7,'3','8','8','8','8',NULL,'8','88','8','8','8','8','8','8','8','8','8','8','8','8','8',NULL,'8','8','8','8',NULL,'8','8','8','8','8','8',NULL,'8','8','8','8','5',NULL,NULL,5,'8','8','8',2,4,'ya','11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,'K1','2024-04-23','2024-04-23',NULL,NULL,8,'1','2','3','4','5',NULL,'7','8','9','9','8','7','6','5','4','3','2','1','2','2','2',NULL,'1','3','3','3',NULL,'4','4','4','4','4','4',NULL,'4','4','5','5','5',NULL,NULL,5,'6','2','2',19,NULL,'ya','22','X',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,'K1','2024-04-30','2024-04-29',NULL,NULL,24,'9','9','9','9','9',NULL,'9','9','99','9','9','9','9','9','9','9','9','9','9','9','9',NULL,'9','9','9','9',NULL,'9','9','9','99','9','9',NULL,'9','9','','9','99',NULL,NULL,3,'9','9','',24,4,'ya',NULL,'Woke','9','9','9','9',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,'K1','2024-04-30','2024-04-30',NULL,NULL,60,'1','','','','',NULL,'','','','','','','','','','','','','','','',NULL,'','','','',NULL,'','','','','','',NULL,'','','','','',NULL,NULL,0,'','','',60,NULL,'ya',NULL,'','','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,'K1','2024-04-25','2024-04-17',NULL,NULL,60,'1','2','3','4','5',NULL,'','','','','','','','','','','','','','','',NULL,'','','','',NULL,'','','','','','',NULL,'','','','','',NULL,NULL,0,'','','',59,NULL,'ya',NULL,'Hehehe','','','','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(12,'K1','2024-05-02','2024-05-02',NULL,NULL,77,'9','9','9','9','9',NULL,'9','9','9','9','9','9','9','9','9','9','9','9','9','9','9',NULL,'9','9','9','9',NULL,'9','9','9','9','9','9',NULL,'9','9','9','9','9',NULL,NULL,1,'9','9','9',77,NULL,'ya',NULL,'','9','1','9','9',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(13,'K1','2024-05-04','2024-05-03',NULL,NULL,77,'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21',NULL,'24','25','26','27',NULL,'1','2','3','4','5','6',NULL,'7','8','9','10','11',NULL,NULL,0,'6','22','23',76,NULL,'ya',NULL,'','12','13','14','15',NULL,'1','2','3','4','5','6',NULL,'7','8');
 /*!40000 ALTER TABLE `tbl_sortir` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -510,4 +519,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-02 13:55:02
+-- Dump completed on 2024-05-03 11:18:43

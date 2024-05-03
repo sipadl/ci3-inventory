@@ -1041,9 +1041,17 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														 $basi_xlp = $ss['basi_xlp'];
 														 $basi_bf = $ss['basi_bf'];
 														 $basi_sp = $ss['basi_sp'];
+														 $basi_col2 = $ss['basi_col2'];
+														 $basi_jk2 = $ss['basi_jk2'];
+														 $basi_jb2 = $ss['basi_jb2'];
+														 $basi_xlp2 = $ss['basi_xlp2'];
+														 $basi_bf2 = $ss['basi_bf2'];
+														 $basi_sp2 = $ss['basi_sp2'];
 														 $mhr = $ss['mhr'];
 														 $basi_cl = $ss['basi_cl'];
 														 $basi_mh = $ss['basi_mh'];
+														 $basi_cl2 = $ss['basi_cl2'];
+														 $basi_mh2 = $ss['basi_mh2'];
 														 $air = $ss['air'];
 														 $shell = $ss['shell'];
 														 $loss = $ss['loss'];
@@ -1138,7 +1146,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td width="10%"></td>
                                                             <td width="10%" colspan="2"></td>
                                                             <td colspan="2">PHR</td>
-                                                            <td><?php echo $phr ?></td>
+                                                            <td></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1147,7 +1155,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         <tr>
                                                             <td colspan="2">Total COL</td>
                                                             <td>
-                                                            <?php $sum = floatval($col) + floatval($col_bf);
+                                                            <?php $total_col = $sum = floatval($col) + floatval($col_bf);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1197,7 +1205,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         <tr>
                                                             <td colspan="2">Total JB</td>
                                                             <td>
-                                                            <?php $sum = floatval($jb_bf) + floatval($jb);
+                                                            <?php $total_jb = $sum = floatval($jb_bf) + floatval($jb);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1237,7 +1245,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td colspan="2">Total PHR</td>
                                                             <td>
-                                                            <?php $sum = floatval($basi_col) + floatval($basi_jk) + floatval($basi_xlp) + floatval($basi_sp) + floatval($basi_bf);
+                                                            <?php $total_phr = $sum = floatval($basi_col) + floatval($basi_jk) + floatval($basi_xlp) + floatval($basi_sp) + floatval($basi_bf);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1252,7 +1260,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         <tr>
                                                             <td colspan="2">Total JK</td>
                                                             <td>
-                                                            <?php $sum = floatval($jk) + floatval($jk_bf);
+                                                            <?php $total_jk = $sum = floatval($jk) + floatval($jk_bf);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1263,8 +1271,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td colspan="2"></td>
                                                             <td colspan="1">MHR</td>
-                                                            <td><?php echo $mhr ?></td>
                                                             <td></td>
+                                                            <td><?php echo $mhr ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1279,7 +1287,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td colspan="1" rowspan="2">BASI</td>
                                                             <td>CL</td>
-                                                            <td><?php echo $basi_cl ?></td>
+                                                            <td><?php echo $basi_cl2 ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1294,7 +1302,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td colspan="2"></td>
                                                             <td>MH</td>
-                                                            <td><?php echo $basi_mh ?></td>
+                                                            <td><?php echo $basi_mh2 ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1308,7 +1316,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td colspan="2">TOTAL MHR</td>
                                                             <td>
-                                                            <?php $sum = floatval($basi_mh) + floatval($basi_cl);
+                                                            <?php $total_mhr2 = $sum = floatval($basi_mh) + floatval($basi_cl);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1343,7 +1351,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td colspan="2"></td>
                                                             <td>PHR</td>
-                                                            <td><?php echo $ss['phr'] ?></td>
+                                                            <td></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td></td>
                                                             <td></td>
@@ -1359,7 +1367,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="1" rowspan="6">BASI</td>
                                                             <td>COL</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
-                                                            <td><?php echo $basi_col ?></td>
+                                                            <td><?php echo $basi_col2 ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -1372,7 +1380,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2"></td>
                                                             <td>JB</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
-                                                            <td><?php echo $basi_jb ?></td>
+                                                            <td><?php echo $basi_jb2 ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -1386,7 +1394,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td>JK</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
 
-                                                            <td><?php echo $basi_jk ?></td>
+                                                            <td><?php echo $basi_jk2 ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -1400,16 +1408,17 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td>XLP</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
 
-                                                            <td><?php echo $ss['basi_xlp'] ?></td>
+                                                            <td><?php echo $basi_xlp2 ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="2">Total BF</td>
+														<td colspan="2">Total BF</td>
                                                             <td>
+																<!-- <?php echo $bf_k3_col.' '.$bf_k3_jb.' '.$bf_k3_jk.' '.$bf_k3_jl.' '.$bf_kj.' '.$bf_bf.' '.$bf_lp_slb.' '.$bf_sp ?> -->
 														<?php 
-															$sum = floatval($bf_k3_col) + floatval($bf_k3_jb) + floatval($bf_k3_jk) + floatval($bf_k3_jl) + floatval($bf_kj) + floatval($bf_bf) + floatval($bf_lp_slb) + floatval($bf_sp);
+															$total_bf = $sum = floatval($bf_k3_col) + floatval($bf_k3_jb) + floatval($bf_k3_jk) + floatval($bf_k3_jl) + floatval($bf_kj) + floatval($bf_bf) + floatval($bf_lp_slb) + floatval($bf_sp);
 															if($sum > 0) {
 																	echo $sum;
 																} else {
@@ -1425,7 +1434,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td>BF</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
 
-                                                            <td><?php echo $basi_bf ?></td>
+                                                            <td><?php echo $basi_bf2 ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -1441,7 +1450,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td>SP</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
 
-                                                            <td><?php echo $basi_sp ?></td>
+                                                            <td><?php echo $basi_sp2 ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -1456,7 +1465,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td>
                                                             <?php
-																	$sum = floatval($basi_col) + floatval($basi_jb) + floatval($basi_jk) + floatval($basi_xlp) + floatval($basi_bf) + floatval($basi_sp);
+																	$total_phr2 = $sum = floatval($basi_col) + floatval($basi_jb) + floatval($basi_jk) + floatval($basi_xlp) + floatval($basi_bf) + floatval($basi_sp);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1471,7 +1480,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         <tr>
                                                             <td colspan="2">Total SPK</td>
                                                             <td>
-                                                            <?php $sum = floatval($col_18) + floatval($spk_xlp);
+                                                            <?php $total_spk = $sum = floatval($col_18) + floatval($spk_xlp);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1483,9 +1492,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td colspan="2"></td>
                                                             <td>MHR</td>
-                                                            <td><?php echo $mhr ?></td>
-                                                            <td class="bg-light" style="background-color: gray"></td>
                                                             <td></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td><?php echo $mhr ?></td>
                                                             <td></td>
                                                             <td></td>
                                                         </tr>
@@ -1529,7 +1538,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2">Total MHR</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td>
-                                                            <?php $sum = floatval($basi_mh) + floatval($basi_cl);
+                                                            <?php $total_mhr_1 = $sum = floatval($basi_mh) + floatval($basi_cl);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1558,7 +1567,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         <tr>
                                                             <td colspan="2">Total SP</td>
                                                             <td>
-                                                            <?php $sum = floatval($sp_jb) + floatval($sp_xlp) + floatval($sp_bf) + floatval($spk_sp);
+                                                            <?php $total_sp = $sum = floatval($sp_jb) + floatval($sp_xlp) + floatval($sp_bf) + floatval($spk_sp);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1612,7 +1621,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td colspan="2"></td>
                                                             <td>SHELL</td>
-                                                            <td><?php echo $ss['shell'] ?></td>
+                                                            <td><?php echo $shell ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -1644,7 +1653,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td colspan="2">Timb. Kotor</td>
                                                             <td>
                                                             <?php
-																	$sum = $timbangan_kotor;
+																	$sum = $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + $total_mh + floatval($cl) + floatval($clf) + floatval($mhr) + $total_mhr + $total_mhr2 + $total_phr + $total_phr2;
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1660,7 +1669,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         <tr>
                                                             <td colspan="2">Total MH</td>
                                                             <td>
-                                                            <?php $sum = floatval($mh) + floatval($mh2);
+                                                            <?php $total_mh = $sum = floatval($mh) + floatval($mh2);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
@@ -1681,12 +1690,12 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         </tr>
                                                            <tr>
                                                             <td colspan="2">Grand Total</td>
-                                                            <td><?php echo $total ?></td>
+                                                            <td><?php echo $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + $total_mh ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
                                                             <td colspan="2">Grand Total</td>
-                                                            <td><?php echo $grand_total ?></td>
+                                                            <td><?php echo $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + $total_mh ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
@@ -1816,7 +1825,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="jb_bf">JK BF</label>
-                                                                <input type="text" min="0" class="form-control" id="jbb_jf" name="jbb_jf">
+                                                                <input type="text" min="0" class="form-control" id="jbb_jf" name="jbb_bf">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -2024,49 +2033,49 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">BASI COL</label>
-                                                                    <input type="text" min="0" class="form-control" id="BASI COL" name="basi_col">
+                                                                    <input type="text" min="0" class="form-control" id="BASI COL" name="basi_col2">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">BASI JB</label>
-                                                                    <input type="text" min="0" class="form-control" id="BASI JB" name="basi_jb">
+                                                                    <input type="text" min="0" class="form-control" id="BASI JB" name="basi_jb2">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">BASI JK</label>
-                                                                    <input type="text" min="0" class="form-control" id="BASI JK" name="basi_jk">
+                                                                    <input type="text" min="0" class="form-control" id="BASI JK" name="basi_jk2">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">BASI XLP</label>
-                                                                    <input type="text" min="0" class="form-control" id="BASI XLP" name="basi_xlp">
+                                                                    <input type="text" min="0" class="form-control" id="BASI XLP" name="basi_xlp2">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">BASI BF</label>
-                                                                    <input type="text" min="0" class="form-control" id="BASI BF" name="basi_bf">
+                                                                    <input type="text" min="0" class="form-control" id="BASI BF" name="basi_bf2">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">BASI SP</label>
-                                                                    <input type="text" min="0" class="form-control" id="BASI SP" name="basi_sp">
+                                                                    <input type="text" min="0" class="form-control" id="BASI SP" name="basi_sp2">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">BASI CL</label>
-                                                                    <input type="text" min="0" class="form-control" id="BASI CL" name="basi_cl">
+                                                                    <input type="text" min="0" class="form-control" id="BASI CL" name="basi_cl2">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label for="">BASI MH</label>
-                                                                    <input type="text" min="0" class="form-control" id="BASI MH" name="basi_mh">
+                                                                    <input type="text" min="0" class="form-control" id="BASI MH" name="basi_mh2">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
