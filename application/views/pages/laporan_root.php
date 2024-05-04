@@ -200,7 +200,7 @@
 
 							<td><?php $root = (floatval($total_nota) + floatval($total_subsidi_dibayar));
 							if($root > 1 ) {
-								echo $root_receiving += $root / floatval($qty);
+								// echo $root_receiving += $root / floatval($qty);
 							} else {
 								$root_receiving += 0;
 								echo 0;
@@ -310,7 +310,7 @@
 			<tbody>
 				<?php 
 				$no = 1;
-				foreach ($supplier as $da) : 
+				foreach ($supolier as $da) : 
 				$qty = 0;
 				$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$da['id_bb'])->result_array(); 
 				foreach($dataDaging as $sdb) {
@@ -341,15 +341,15 @@
 							} ?></td>
 					<td>
 					<!-- Button trigger modal -->
-					<?php if(!$da['id_laporan']) { ?> 
+					<!-- <?php if(!$da['id_laporan']) { ?>  -->
 						<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modelId">
 							Tambah Manual Data
 						</button>
-					<?php } ?>
+					<!-- <?php } ?> -->
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelId-<?php echo $da['id'] ?>">
+					<!-- <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelId-<?php echo $da['id'] ?>">
 					  <i class="fa fa-eye" aria-hidden="true"></i>
-					</button>
+					</button> -->
 					
 					<!-- Modal -->
 					<div class="modal fade" id="modelId-<?php echo $da['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -499,9 +499,9 @@
 								</table>
 								</div>
 								<div class="modal-footer">
-									<?php if($da['id_laporan']) { ?> 
-									<a href="<?php echo base_url('main/approve_laporan_root/'.$da['id_laporan']); ?>" class="btn btn-primary">Approve</a>
-									<?php } ?>
+									<!-- <?php if($da['id_laporan']) { ?>  -->
+									<!-- <a href="<?php echo base_url('main/approve_laporan_root/'.$da['id_laporan']); ?>" class="btn btn-primary">Approve</a> -->
+									<!-- <?php } ?> -->
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 								</div>
 							</div>

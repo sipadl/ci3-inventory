@@ -666,10 +666,11 @@ class Main extends CI_Controller {
 	public function laporan_root(){
 		$data['title'] = 'Laporan Root';
 		$supplier = $this->Main_model->get_laporan_root();
+		$supplier2 = $this->Main_model->get_laporan_root2();
 		$price = $this->Main_model->get_price();
 
 		$this->load->view('templates/header', $data);
-        $this->load->view('pages/laporan_root',['supplier' => $supplier, 'price' => $price ]);
+        $this->load->view('pages/laporan_root',['supplier' => $supplier, 'supolier' => $supplier2,  'price' => $price ]);
         $this->load->view('templates/footer');
 	}
 

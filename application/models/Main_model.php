@@ -124,6 +124,13 @@ class Main_model extends CI_Model {
 		left join tbl_laporan d on b.id_bb = d.id_sortir")->result_array();
 	} 
 
+	public function get_laporan_root2 () {
+		return $this->db->query("select * from tbl_supplier a 
+		left join tbl_sortir b
+		on a.kode_supplier = b.kode_supplier 
+		join tbl_daging c on c.id = b.id_bb")->result_array();
+	}
+
 	public function get_price() {
 		return $this->db->query('select * from tbl_price')->result_array();
 	}
