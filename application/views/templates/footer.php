@@ -73,7 +73,8 @@ function SimpanSortir(event, val) {
     form.submit(); // Submit the form
 }
 
-function SimpanSortirUpdateCoasting(event, val, id, status) {
+function SimpanSortirUpdate(event, val, id, status) {
+	console.log('disini');
     var form = $('#sortiresUpdate'); // Assuming #sortires is the ID of your form
     if (val === true) {
         form.attr('action', '<?php echo base_url('main/sortirUpdateSimpan/') ?>' + id + '/' + status);
