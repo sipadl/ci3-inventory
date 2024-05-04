@@ -140,7 +140,7 @@
 							
 							$basi += $basi_col2 + $basi_jk2 + $basi_jb2 + $basi_xlp2 + $basi_bf2 + $basi_sp2;
 							$fresh += $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($mh) + floatval($mh2) + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp);
-							$lose += $air + $shell + $loss;
+							$lose += floatval($air) + floatval($shell) + floatval($loss);
 							$total += $fresh + $basi;
 						?>
 						<tr>
