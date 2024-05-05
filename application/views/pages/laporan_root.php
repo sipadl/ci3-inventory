@@ -424,8 +424,33 @@
 					<?php if(!$das['id_laporan']) { ?> 
 						<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modelId-<?php echo $das['id_sortir_baru'] ?>">
 							Tambah Manual Data
-							<?php echo $das['id_sortir_baru'] ?>
 						</button>
+						<div class="modal fade" id="modelId-<?php echo $das['id_sortir_baru'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title">Tambah Manual Data</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+								</div>
+								<form action="<?php echo base_url('main/post_laporan_root/'.$da['id_sortir_baru']); ?>" method="post">
+								<div class="modal-body">
+										<input type="text" class="form-control my-2" name="subsidi_normal" id="" placeholder="subsidi normal">
+										<input type="text" class="form-control my-2" name="subsidi_dibayar_1" id="" placeholder="subsidi dibayar (awal)">
+										<input type="text" class="form-control my-2" name="subsidi_dibayar_2" id="" placeholder="subsidi dibayar (+)">
+										<input type="text" class="form-control my-2" name="subsidi_dibayar_3" id="" placeholder="subsidi dibayar (-)">
+										<input type="text" class="form-control my-2" name="cap_shell" id="" placeholder="cap/shell">
+										<input type="text" class="form-control my-2" name="subsidi_transport" id="" placeholder="subsidi transport">
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary">Simpan</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 					<?php } ?>
 					<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelIdBaru-<?php echo $das['id_sortir_baru'] ?>">
 						<i class="fa fa-eye" aria-hidden="true"></i>
