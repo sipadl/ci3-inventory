@@ -140,7 +140,7 @@
 										<div class="modal-dialog modal-lg modal-fullscreen" role="document">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title">Form Tambah User</h5>
+													<h5 class="modal-title">Form Ubah User</h5>
 														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 															<span aria-hidden="true">&times;</span>
 														</button>
@@ -158,39 +158,11 @@
 														<label for="email">Email</label>
 														<input class="form-control mb-2" type="email" id="email" value="<?php echo $xx['email'] ?>" name="email" placeholder="Email" required>
 													</div>
+													<img class="my-2" src="<?php echo $xx['sign'] ?>" width="100" height="100" alt="...">
 													<div class="form-group">
 														<label for="email">Sign / TTD</label>
 														<input class="form-control mb-2" type="file" id="email" name="sign" placeholder="Sign">
 													</div>
-
-													<div class="form-group">
-														<label for="password">Password</label>
-														<input class="form-control mb-2" type="password"  id="password" name="password" placeholder="Password" required>
-													</div>
-													<!-- <div class="form-group">
-														<div class="col-md-12">
-															<label for="area">Area</label><br>
-														</div>
-														<select name="wilayah[]" class="form-control col-md-12" multiple="multiple" id="basic-multipleEdit2" >
-															<option value="0">Pilih Area</option>
-															<?php foreach($wilayah as $wil) : ?>
-																<option value="<?php echo $wil['kode_area'] ?>"><?php echo $wil['nama_area'] ?></option>
-															<?php endforeach ?>
-														</select>
-													</div> -->
-													<div class="innerDropdown"></div>
-													<!-- Dropdown untuk memilih peran -->
-													<!-- <div class="form-group">
-														<div class="col-md-12">
-															<label for="role">Role</label>
-														</div>
-														<select name="role" class="form-control w-100 mb-2 col-md-12" id="basic-multipleEdit">
-														<option value="<?php echo $xx['role'] ?>"><?php echo $xx['description'] ?></option>
-															<?php foreach ($role as $dd) : ?>
-																<option value="<?php echo $dd['id_role'] ?>"><?php echo $dd['descriptiom'] ?></option>
-																<?php endforeach; ?>
-															</select>
-														</div> -->
 													</div>
 												</div>
 												<div class="modal-footer">

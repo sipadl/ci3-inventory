@@ -210,7 +210,7 @@ class Main extends CI_Controller {
 			
 			// Retrieve upload data for NPWP
 			$ttd_data = $this->upload->data();
-			$data['ttd'] = $ttd_data['file_name'];
+			$data['sign'] = $ttd_data['file_name'];
 		}
 		$this->Main_model->updateAll('tbl_user', $data, $id);
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
@@ -226,6 +226,7 @@ class Main extends CI_Controller {
 		$this->Main_model->delete('tb_supplier', $id);
 		$this->session->set_flashdata('success', 'Your data has been removed successfully!');
 		redirect('main/tambahSupplier');
+		
 	}
 
 	public function tambahUser() {
@@ -282,7 +283,9 @@ class Main extends CI_Controller {
 		$data = $this->input->post();
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
-		redirect('main/sortir');
+		// redirect('main/sortir');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+
 	}
 
 	public function tambahSuplier() {
@@ -458,9 +461,10 @@ class Main extends CI_Controller {
 
             // Set flashdata untuk pesan sukses atau error
             $this->session->set_flashdata('success', 'Data Sortir berhasil ditambahkan.');
-
             // Redirect to index
-            redirect('main/sortir');
+            // redirect('main/sortir');
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
+
         }
     }
 
@@ -483,9 +487,9 @@ class Main extends CI_Controller {
 
             // Set flashdata untuk pesan sukses atau error
             $this->session->set_flashdata('success', 'Data Sortir berhasil ditambahkan.');
-
             // Redirect to index
-            redirect('main/sortir');
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
+            // redirect('main/sortir');
         }
     }
 
@@ -605,12 +609,15 @@ class Main extends CI_Controller {
 	}
 	public function approval_gm(){
 		$data['title'] = 'Approval General Manager';
+		$datax = $this->Main_model->query_laporan();
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','3');
 		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
+		$price = $this->Main_model->get_price();
+
 
 		$this->load->view('templates/header', $data);
-        $this->load->view('pages/approval_gm', array('sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
+        $this->load->view('pages/approval_gm', array('datax' => $datax, 'price' => $price, 'sortir' => $sortir,'supplier' => $supplier, 'bahanbaku' => $bahanbaku));
         $this->load->view('templates/footer');
 	}
 
@@ -635,7 +642,7 @@ class Main extends CI_Controller {
         $this->load->view('templates/footer');
 	}
 	public function pengajuan_gm(){
-		$data['title'] = 'Pengajuan DP';
+		$data['title'] = 'Pengajuan GM';
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 		$datax = $this->Datadaging_model->getDataNoOrder('tbl_pengajuan');
 
@@ -644,7 +651,7 @@ class Main extends CI_Controller {
         $this->load->view('templates/footer');
 	}
 	public function pengajuan_audit(){
-		$data['title'] = 'Pengajuan DP';
+		$data['title'] = 'Pengajuan Audit';
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 		$datax = $this->Datadaging_model->getDataNoOrder('tbl_pengajuan');
 
@@ -654,7 +661,7 @@ class Main extends CI_Controller {
 	}
 
 	public function approval_pengajuan_gm(){
-		$data['title'] = 'Pengajuan DP';
+		$data['title'] = 'Pengajuan GM';
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 		$datax = $this->Datadaging_model->getDataNoOrder('tbl_pengajuan');
 
@@ -666,11 +673,12 @@ class Main extends CI_Controller {
 	public function laporan_root(){
 		$data['title'] = 'Laporan Root';
 		$supplier = $this->Main_model->get_laporan_root();
+		$datax = $this->Main_model->query_laporan();
 		$supplier2 = $this->Main_model->get_laporan_root2();
 		$price = $this->Main_model->get_price();
 
 		$this->load->view('templates/header', $data);
-        $this->load->view('pages/laporan_root',['supplier' => $supplier, 'supolier' => $supplier2,  'price' => $price ]);
+        $this->load->view('pages/laporan_root',['datax' => $datax ,'supplier' => $supplier, 'supolier' => $supplier2,  'price' => $price ]);
         $this->load->view('templates/footer');
 	}
 
@@ -829,7 +837,7 @@ class Main extends CI_Controller {
 		$message = ($status != '-1') ? 'Memo disetujui.' : 'Memo ditolak.'; // Pesan sesuai dengan status
 		$this->session->set_flashdata('success', $message);
 
-		// redirect($_SERVER['HTTP_REFERER'], 'refresh');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
 
 

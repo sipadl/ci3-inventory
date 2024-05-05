@@ -191,7 +191,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         Tambah Sortir
                                     </button>
                                     <?php } ?>
-                                    <?php if($ss['id_bb'] != null && $ss['tanggal_rec3'] == null && $ss['status'] == 0 ) { ?>
+                                    <?php if($ss['id_bb'] != null && $ss['tanggal_rec3'] == null && $ss['status'] < 3 ) { ?>
                                     <button
                                         type="button"
                                         class="btn btn-warning mx-1"

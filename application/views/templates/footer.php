@@ -161,27 +161,38 @@ function printDisini(val) {
 		}
 	});
 	var total_subsidi1 = 0;
-	$('.total_subsidi1').each(function() {
+	$('.total_subsidi2').each(function() {
 		var values = parseFloat($(this).text().replaceAll(',', ''));
-		console.log(values);
+		console.log('subsidi2', values);
 		if(values > 0) {
 			total_subsidi1 += values
 		} else {
 			total_subsidi1 += 0;
 		}
 	});
-	var total_subsidi2 = 0;
-	$('.sum_total_plus_subsidi').each(function() {
+	var total_subsidix = 0;
+	$('.total_subsidi').each(function() {
 		var values = parseFloat($(this).text().replaceAll(',', ''));
-		console.log(values);
+		console.log('subsidi3', values);
 		if(values > 0) {
-			total_subsidi2 += values
+			total_subsidix += values
 		} else {
-			total_subsidi2 += 0;
+			total_subsidix += 0;
 		}
 	});
+	var total_subsidi_dibayar = 0;
+	$('.total_subsidi_dibayar').each(function() {
+		var values = parseFloat($(this).text().replaceAll(',', ''));
+		console.log('subsidi3', values);
+		if(values > 0) {
+			total_subsidi_dibayar += values
+		} else {
+			total_subsidi_dibayar += 0;
+		}
+	});
+
 	var total_subsidi3 = 0;
-	$('.sum_total_plus_subsidi').each(function() {
+	$('.total_subsidi3').each(function() {
 		var values = parseFloat($(this).text().replaceAll(',', ''));
 		console.log(values);
 		if(values > 0) {
@@ -190,13 +201,37 @@ function printDisini(val) {
 			total_subsidi3 += 0;
 		}
 	});
+	var subsidi_trans = 0;
+	$('.subsidi_trans').each(function() {
+		var values = parseFloat($(this).text().replaceAll(',', ''));
+		console.log(values);
+		if(values > 0) {
+			subsidi_trans += values
+		} else {
+			subsidi_trans += 0;
+		}
+	});
 	
-	$('#total_subsidi1').html(total_subsidi1)
-	$('#total_subsidi2').html(total_subsidi2)
+	$('#total_subsidi2').html(total_subsidi1)
+	$('#total_subsidi').html(total_subsidix)
+	$('#total_subsidi_dibayar').html(total_subsidi_dibayar)
+	// $('#total_subsidi2').html(total_subsidi2)
+	$('#subsidi_trans').html(subsidi_trans)
 	$('#total_subsidi3').html(total_subsidi3)
 	$('#sum_subsidi_normal').html(SumNormaltotalSubsidi)
-	$('#hasil_total_subsidi_trans').html(totalSubsidi)
+	$('#total_subsidi_trans').html(totalSubsidi)
 	$('#laba_rugi').html(totalSum);
+
+
+	$('#copy_total_subsidi2').html(total_subsidi1)
+	$('#copy_total_subsidi').html(total_subsidix)
+	$('#copy_total_subsidi_dibayar').html(total_subsidi_dibayar)
+	// $('#copy_total_subsidi2').html(total_subsidi2)
+	$('#copy_subsidi_trans').html(subsidi_trans)
+	$('#copy_total_subsidi3').html(total_subsidi3)
+	$('#copy_sum_subsidi_normal').html(SumNormaltotalSubsidi)
+	$('#copy_total_subsidi_trans').html(totalSubsidi)
+	$('#copy_laba_rugi').html(totalSum);
 
 	const detailSortir = $('#hehep');
 	const x = detailSortir.children();

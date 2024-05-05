@@ -178,7 +178,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												<form action="" method="post" enctype="multipart/form" id="edit_kocak">
 													<div class="modal-footer">
 													<?php
-														if($ss['status'] == 0 && !$ss['keterangan_bahan_baku'] ) { ?> 
+														if(!$ss['keterangan_bahan_baku'] ) { ?> 
 														<input type="text" name="keterangan" class="form-control mx-2" placeholder="keterangan" id="">
 														<button onclick="EditKocak('<?php echo base_url('main/mainApprove/').$ss['id_bahan_baku']; ?>', 'edit_kocak')" class="btn
 														btn-primary">Aprove</button>
