@@ -550,7 +550,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         Detail Sortir
                                     </button>
                                     <?php } ?>
-                                    <?php if($ss['id_bb'] == null ) { ?>
+									<a href="<?php echo '' ?>" class="btn btn-warning mx-1">
+									Approve</a>
+                                    <!-- <?php if($ss['id_bb'] == null ) { ?>
                                     <button
                                         type="button"
                                         class="btn btn-primary mx-1"
@@ -559,15 +561,15 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         onclick="isiId(<?php echo $ss['id_bahan_baku'] ?>)">
                                         Tambah Sortir
                                     </button>
-                                    <?php } ?>
+                                    <?php } ?> -->
                                     <?php if($ss['id_bb'] != null && $ss['tanggal_rec3'] == null && $ss['status'] == 0 ) { ?>
-                                    <button
+                                    <!-- <button
                                         type="button"
                                         class="btn btn-warning mx-1"
                                         data-toggle="modal"
                                         data-target="#myModalUbah-<?php echo $ss['id_bb'] ?>">
                                         Ubah Data
-                                    </button>
+                                    </button> -->
 
                                     <!-- Modal Ubah -->
                                     <div

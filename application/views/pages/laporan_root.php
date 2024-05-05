@@ -21,7 +21,7 @@
 					<tr>
 					<th style="width: 40px;" rowspan="2">NO.</th>
 					<th style="width: 40px;" rowspan="2">KD</th>
-					<th style="width: 100px;" rowspan="2">SUPPLIER</th>
+					<th style="width: auto;" rowspan="2">SUPPLIER</th>
 					<th style="width: 60px;" rowspan="2">FRESH</th>
 					<th style="width: 80px;" rowspan="2">PHR / MHR</th>
 					<th style="width: 60px;" rowspan="2">TOTAL</th>
@@ -54,13 +54,26 @@
 						$no = 1;
 						$sum_total_nota = 0;
 						$sum_total_subsidi_normal = 0;
+						$sum_root_sblm_subsidi = 0;
 						$sum_total_normal_plus_subsidi = 0;
 						$sum_total_subsidi_trans = 0;
 						$sum_total_total_subsidi_trans = 0;
 						$sum_subsidi_dibayar = 0;
 						$sum_capshell = 0;
+						$sum_subsidi_normal = 0;
 						$sum_total_nota_plus_subsidi_dibayar = 0;
+						$sum_root_stlh_subsidi = 0;
+						$sum_subsidi_1 = 0;
+						$sum_subsidi_2 = 0;
+						$root_stlh_subsidi = 0;
+						$sum_untung_rugi = 0;
+						$sum_root_rec = 0;
 						foreach ($datax as $da) : 
+
+						
+						$sum_subsidi_1 += $da['subsidi_dibayar_1'];
+						$sum_subsidi_2 += $da['subsidi_dibayar_2'];
+						$root_stlh_subsidi += ($da['subsidi_dibayar_2'] + $da['subsidi_dibayar_1']) * $da['fresh'] / $da['fresh'];
 
 						$col = $da['sum_col'] * floatval($price[0]['harga']);
 						$jb = $da['sum_jb'] * floatval($price[1]['harga']);
@@ -80,20 +93,31 @@
 						$sum_total_total_subsidi_trans += $da['subsidi_transport'] * $da['total'];
 						$sum_capshell += $da['cap_shell'];
 						$sum_total_nota_plus_subsidi_dibayar += ($da['subsidi_dibayar_2'] + $da['subsidi_dibayar_1']) * $da['fresh'] + $total_nota;
+						$sum_root_sblm_subsidi += ($total_nota / $da['fresh']);
+						$sum_subsidi_normal += $da['subsidi_normal'];
+						$sum_root_stlh_subsidi += ($total_nota + $da['subsidi_normal']) / $da['fresh'];
+
+
+						$a = $total_nota + $da['subsidi_normal'];
+						$b = $da['cap_shell'];
+						$c = $total_nota + ($da['subsidi_dibayar_1'] + $da['subsidi_dibayar_2']) + $b;
+						
+						$sum_untung_rugi += $c - $a;
+						$sum_root_rec += $total_nota / $da['qty'];
 						?>
 						<tr>
 							<td><?php echo $no++ ?></td>
 							<td><?php echo $da['kode_supplier'] ?></td>
 							<td><?php echo $da['nama_supplier'] ?></td>
-							<td id="fresh"><?php echo $da['fresh']; 
+							<td id="fresh"><?php echo number_format($da['fresh'],2 ); 
 							?></td>
 							<td id="mhr">
 							<?php echo $da['phrmhr'];
 							?>
 							</td>
-							<td id="total"><?php echo $da['total']; 
+							<td id="total"><?php echo number_format($da['total'],2); 
 							?></td>
-							<td id="loss"><?php echo $da['sum_loss'];
+							<td id="loss"><?php echo number_format($da['sum_loss'],2 );
 							?>
 							</td>
 							<td id="qty_bb">
@@ -102,40 +126,41 @@
 							<td id="total_nota">
 								<?php 
 								$sum_total_nota += $total_nota;
-								echo $total_nota;
+								echo number_format($total_nota,2);
 								
 								?>
 							</td>
-							<td id="root_sebelum_subsidi"><?php echo $root_sebelum_subsidi = ($total_nota / $da['fresh']) ?> </td>
+							<td id="root_sebelum_subsidi"><?php echo number_format($root_sebelum_subsidi = ($total_nota / $da['fresh']),2) ?> </td>
 							<!-- Manual -->
-							<td class="subsidi_normal"><?php echo $subsidi_normal = $da['subsidi_normal']  ?> </td>
-							<td class="sum_subsidi_normal"><?php echo $total_subsidi_normal = $subsidi_normal * $da['fresh'] ?></td>
-							<td class="sum_total_plus_subsidi"><?php echo $total_nota_pls_subsidi_normal = $total_nota + $da['subsidi_normal'] ?></td>
-							<td><?php echo  $root_setelah_subsidi_pls_nota = ($total_nota + $da['subsidi_normal']) / $da['fresh'] ?></td>
+							<td class="subsidi_normal"><?php echo number_format($subsidi_normal = $da['subsidi_normal'],2)  ?> </td>
+							<td class="sum_subsidi_normal"><?php echo number_format($total_subsidi_normal = $subsidi_normal * $da['fresh'],2 ) ?></td>
+							<td class="sum_total_plus_subsidi"><?php echo number_format($total_nota_pls_subsidi_normal = $total_nota + $da['subsidi_normal'],2 ) ?></td>
+							<td><?php echo  $root_setelah_subsidi_pls_nota = number_format(($total_nota + $da['subsidi_normal']) / $da['fresh'],2) ?></td>
 							<!-- Manual -->
-							<td><?php echo $subsidi_bayar_1 = $da['subsidi_dibayar_1'] ?></td>
+							<td><?php echo $subsidi_bayar_1 = number_format($da['subsidi_dibayar_1'],2) ?></td>
 							<!-- Manual -->
-							<td><?php echo $subsidi_bayar_2 = $da['subsidi_dibayar_2'] ?></td>
-							<td class="total_subsidi"><?php echo $subsidi_bayar_3 = $subsidi_bayar_2 + $subsidi_bayar_1 ?></td>
-							<td><?php echo $capshell = $da['cap_shell'] ?></td>
-							<td class="total_subsidi_dibayar"><?php echo $total_subsidi_dibayar = $subsidi_bayar_3 * $da['fresh'] ?></td>
-							<td class="total_subsidi2"><?php echo $root_setelah_subsidi_pls_nota = ($total_subsidi_dibayar + $total_nota ) ?></td>
-							<td class="total_subsidi3"><?php echo $root_setelah_subsidi = $total_subsidi_dibayar / $da['fresh'] ?></td>
+							<td><?php echo $subsidi_bayar_2 = number_format($da['subsidi_dibayar_2'],2) ?></td>
+							<td class="total_subsidi"><?php echo number_format($subsidi_bayar_3 = ($da['subsidi_dibayar_1'] + $da['subsidi_dibayar_2']) ,2 ) ?></td>
+							<td><?php echo $capshell = number_format($da['cap_shell'],2) ?></td>
+							<td class="total_subsidi_dibayar"><?php echo $total_subsidi_dibayar = number_format(($da['subsidi_dibayar_1'] + $da['subsidi_dibayar_2']) * $da['fresh'],2) ?></td>
+							<td class="total_subsidi2"><?php echo number_format((($da['subsidi_dibayar_1'] + $da['subsidi_dibayar_2']) * $da['fresh'] )+ $total_nota,2) ?></td>
+							<td class="total_subsidi3"><?php echo $root_setelah_subsidi = number_format(($da['subsidi_dibayar_1'] + $da['subsidi_dibayar_2']) * $da['fresh'] / $da['fresh'],2 ) ?></td>
 							<!-- Manual -->
-							<td class="subsidi_trans"><?php echo $subsidi_trans = $da['subsidi_transport'] ?></td>
-							<td class="total_subsidi_trans"><?php echo $total_subsidi_trans = $subsidi_trans * $da['total'] ?></td>
-							<td class="total_laba"><?php echo $untung_rugi = (floatval($total_nota) + floatval($subsidi_normal)) - (floatval($root_setelah_subsidi_pls_nota) + floatval($total_subsidi_trans) + floatval($capshell)) ?></td>
-							<td><?php $root = (floatval($total_nota) + floatval($total_subsidi_dibayar));
-							if($root > 1 ) {
-								echo $root_receiving = $total_nota / $da['qty'];
-							} else {
-								// $root_receiving += 0;
-								echo 0;
-							}
+							<td class="subsidi_trans"><?php echo $subsidi_trans = number_format($da['subsidi_transport'],2) ?></td>
+							<td class="total_subsidi_trans"><?php echo number_format($total_subsidi_trans = $da['subsidi_transport'] * $da['total'],2) ?></td>
+							<td class="">
+							<?php
+							$a = $total_nota + $da['subsidi_normal'];
+							$b = $da['cap_shell'];
+							$c = $total_nota + ($da['subsidi_dibayar_1'] + $da['subsidi_dibayar_2']) + $b;
+							echo number_format($c - $a,2);
+							?></td>
+							<td>
+							<?php
+								echo number_format($total_nota / $da['qty'], 2);
 							?>
 						</td>
-						<td></td>
-						<!-- <td>0</td> -->
+						<td>10%</td>
 						<!-- <td><?php echo ($jbpersen / $da['fresh']) ?> %</td> -->
 						</tr>
 						<?php endforeach; ?>
@@ -220,12 +245,13 @@
 							?>
 					<tfoot>
 						<tr>
-							<td></td>
-							<td></td>
-							<td colspan="">Total All</td>
+							<td colspan="10"></td>
+						</tr>
+						<tr>
+							<td colspan="3">Total All</td>
 							<td id="hasil_total_fresh">
 								<?php 
-								echo $total['total_fresh']
+								echo number_format($total['total_fresh'],2);
 								?>
 							</td>
 							<td id="hasil_total_phr_mhr">
@@ -235,28 +261,28 @@
 							</td>
 							<td id="hasil_total_total">
 							<?php 
-								echo $total['total_semua'];
+								echo number_format($total['total_semua'],2);
 								?>
 							</td>
 							<td id="hasil_total_qty"><?php echo $total['total_loss'] ?></td>
 							<td id="hasil_total_nota"><?php echo $total['total_qty'] ?></td>
-							<td><?php echo $sum_total_nota ?></td>
-							<td></td>
-							<td></td>
-							<td><?php echo $sum_total_subsidi_normal ?></td>
-							<td colspan="" id=""><?php echo $sum_total_normal_plus_subsidi ?></td>
-							<td colspan=""></td>
-							<td colspan=""></td>
-							<td colspan=""></td>
-							<td colspan="" id=""><?php echo '' ?></td>
-							<td id=""><?php echo $sum_capshell ?></td>
-							<td id=""><?php echo $sum_total_normal_plus_subsidi ?></td>
-							<td id=""><?php echo $sum_total_nota_plus_subsidi_dibayar ?></td>
-							<td id=""></td>
-							<td id=""><?php echo ''?></td>
-							<td id=""><?php echo $sum_total_total_subsidi_trans ?></td>
-							<td id="total_laba">0</td>
-							<td id=""></td>
+							<td><?php echo number_format($sum_total_nota,2) ?></td>
+							<td><?php echo number_format($sum_root_sblm_subsidi,2) ?></td>
+							<td><?php echo number_format($sum_subsidi_normal,2) ?></td>
+							<td><?php echo number_format($sum_total_subsidi_normal,2) ?></td>
+							<td colspan="" id=""><?php echo number_format($sum_total_normal_plus_subsidi,2) ?></td>
+							<td><?php echo number_format($sum_root_stlh_subsidi,2) ?></td>
+							<td><?php echo number_format($sum_subsidi_1,2) ?></td>
+							<td><?php echo number_format($sum_subsidi_2,2) ?></td>
+							<td colspan="" id=""><?php echo number_format($sum_subsidi_dibayar,2) ?></td>
+							<td id=""><?php echo number_format($sum_capshell,2) ?></td>
+							<td id=""><?php echo number_format($sum_total_normal_plus_subsidi,2) ?></td>
+							<td id=""><?php echo number_format($sum_total_nota_plus_subsidi_dibayar,2) ?></td>
+							<td id=""><?php echo number_format($root_stlh_subsidi,2) ?></td>
+							<td id=""><?php echo number_format($sum_total_subsidi_trans,2) ?></td>
+							<td id=""><?php echo number_format($sum_total_total_subsidi_trans,2) ?></td>
+							<td id=""><?php echo number_format($sum_untung_rugi,2) ?></td>
+							<td id=""><?php echo number_format($sum_root_rec,2) ?></td>
 							<td id=""></td>
 						</tr>
 						<tr>
@@ -268,64 +294,64 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<!-- <td><?php echo $sum_total_nota ?></td> -->
+							<!-- <td><?php echo number_format($sum_total_nota,2) ?></td> -->
 							<!-- <td>Subsidi Harian</td> -->
 							<td></td>
 							<td colspan="2">Subsidi Harian</td>
-							<td></td>
-							<td><?php echo $sum_total_subsidi_normal ?></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><?php echo $sum_subsidi_dibayar ?></td>
+							<td><?php echo number_format($sum_total_subsidi_normal,2) ?></td>
 							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
-							<td><?php echo $sum_total_subsidi_trans ?></td>
+							<td><?php echo number_format($sum_subsidi_dibayar,2) ?></td>
 							<td></td>
 							<td></td>
+							<td></td>
+							<td></td>
+							<td id=""><?php 
+							$x = $sum_total_total_subsidi_trans + $sum_subsidi_dibayar / $total['total_fresh'];
+							echo number_format($x,2) ?></td>
+							<td></td>
+							<td id=""><?php echo number_format($x - $sum_total_subsidi_normal,2)?></td>
 							<td></td>
 							<td></td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-							<td colspan="">Total All</td>
+							<td colspan="3">Cap + Shell</td>
 							<td id="hasil_total_fresh">
 								<?php 
-								echo $total['total_fresh']
+								echo number_format($total['total_fresh'],2)
 								?>
 							</td>
 							<td id="hasil_total_phr_mhr">
 							<?php 
-								echo $total['total_phrmhr']
+								echo number_format($total['total_phrmhr'],2)
 								?>
 							</td>
 							<td id="hasil_total_total">
 							<?php 
-								echo $total['total_semua'];
+								echo number_format($total['total_semua'],2);
 								?>
 							</td>
 							<td id="hasil_total_qty"><?php echo $total['total_loss'] ?></td>
 							<td id="hasil_total_nota"><?php echo $total['total_qty'] ?></td>
-							<td><?php echo $sum_total_nota ?></td>
-							<td></td>
-							<td></td>
-							<td><?php echo $sum_total_subsidi_normal ?></td>
-							<td colspan="" id=""><?php echo $sum_total_normal_plus_subsidi ?></td>
-							<td colspan=""></td>
-							<td colspan=""></td>
-							<td colspan=""></td>
-							<td colspan="" id=""><?php echo '' ?></td>
-							<td id=""><?php echo $sum_capshell ?></td>
-							<td id=""><?php echo $sum_total_normal_plus_subsidi ?></td>
-							<td id=""><?php echo $sum_total_nota_plus_subsidi_dibayar ?></td>
-							<td id=""></td>
-							<td id=""><?php echo ''?></td>
-							<td id=""><?php echo $sum_total_total_subsidi_trans ?></td>
-							<td id="total_laba">0</td>
-							<td id=""></td>
+							<td><?php echo number_format($sum_total_nota,2) ?></td>
+							<td><?php echo number_format($sum_root_sblm_subsidi,2) ?></td>
+							<td><?php echo number_format($sum_subsidi_normal,2) ?></td>
+							<td><?php echo number_format($sum_total_subsidi_normal,2) ?></td>
+							<td colspan="" id=""><?php echo number_format($sum_total_normal_plus_subsidi,2) ?></td>
+							<td><?php echo number_format($sum_root_stlh_subsidi,2) ?></td>
+							<td><?php echo number_format($sum_subsidi_1,2) ?></td>
+							<td><?php echo number_format($sum_subsidi_2,2) ?></td>
+							<td colspan="" id=""><?php echo number_format($sum_subsidi_dibayar,2) ?></td>
+							<td id=""><?php echo number_format($sum_capshell,2) ?></td>
+							<td id=""><?php echo number_format($sum_total_normal_plus_subsidi,2) ?></td>
+							<td id=""><?php echo number_format($sum_total_nota_plus_subsidi_dibayar,2) ?></td>
+							<td id=""><?php echo number_format($root_stlh_subsidi,2) ?></td>
+							<td id=""><?php echo number_format($sum_total_subsidi_trans,2) ?></td>
+							<td id=""><?php echo number_format($sum_total_total_subsidi_trans,2) ?></td>
+							<td id=""><?php echo number_format($sum_untung_rugi,2) ?></td>
+							<td id=""><?php echo number_format($sum_root_rec,2) ?></td>
 							<td id=""></td>
 						</tr>
 						<tr>
@@ -337,23 +363,25 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<!-- <td><?php echo $sum_total_nota ?></td> -->
+							<!-- <td><?php echo number_format($sum_total_nota,2) ?></td> -->
 							<!-- <td>Subsidi Harian</td> -->
 							<td></td>
-							<td colspan="2">Subsidi Harian</td>
-							<td></td>
-							<td><?php echo $sum_total_subsidi_normal ?></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><?php echo $sum_subsidi_dibayar ?></td>
+							<td colspan="2">Subsidi Harian + Cap + Shell</td>
+							<td><?php echo number_format($sum_total_subsidi_normal,2) ?></td>
 							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
-							<td><?php echo $sum_total_subsidi_trans ?></td>
+							<td><?php echo number_format($sum_subsidi_dibayar,2) ?></td>
 							<td></td>
 							<td></td>
+							<td></td>
+							<td></td>
+							<td><?php
+							$x = $sum_total_total_subsidi_trans + $sum_subsidi_dibayar / $total['total_fresh'];
+							echo number_format($x, 2) ?></td>
+							<td></td>
+							<td><?php echo number_format(($sum_total_subsidi_trans - $sum_subsidi_dibayar),2 ) ?></td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -434,7 +462,7 @@
 											<span aria-hidden="true">&times;</span>
 										</button>
 								</div>
-								<form action="<?php echo base_url('main/post_laporan_root/'.$da['id_sortir_baru']); ?>" method="post">
+								<form action="<?php echo base_url('main/post_laporan_root/'.$das['id_sortir_baru']); ?>" method="post">
 								<div class="modal-body">
 										<input type="text" class="form-control my-2" name="subsidi_normal" id="" placeholder="subsidi normal">
 										<input type="text" class="form-control my-2" name="subsidi_dibayar_1" id="" placeholder="subsidi dibayar (awal)">
