@@ -191,7 +191,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         Tambah Sortir
                                     </button>
                                     <?php } ?>
-                                    <?php if($ss['id_bb'] != null && $ss['tanggal_rec3'] == null && $ss['status'] < 3 ) { ?>
+                                    <?php if($ss['id_bb'] != null && $ss['tanggal_rec3'] == null && $ss['status'] <= 3 ) { ?>
                                     <button
                                         type="button"
                                         class="btn btn-warning mx-1"
@@ -870,11 +870,11 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                     <div class="modal-footer">
                                                         <button
                                                             type="button"
-                                                            onclick="SimpanSortirUpdate(event ,true, <?php echo $ss['id_sortir'] ?>)"
+                                                            onclick="SimpanSortirUpdate(event ,true, <?php echo $ss['id_sortir'] ?>, 3)"
                                                             class="btn btn-primary">Simpan</button>
                                                         <button
                                                             type="button"
-                                                            onclick="SimpanSortirUpdate(event, false, <?php echo $ss['id_sortir'] ?>)"
+                                                            onclick="SimpanSortirUpdate(event, false, <?php echo $ss['id_sortir'] ?>, 2)"
                                                             class="btn btn-primary">Simpan Sementara</button>
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                     </div>
