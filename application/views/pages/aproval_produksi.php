@@ -943,16 +943,18 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												</tr>
 												</table>
                                             </div>
-                                            <p>Note: <?php echo $ss['note'] ?></p>
+                                            <p>Note: <?php echo $ss['keterangan'] ?></p>
                                         </div>
 
                                             </div>
-                                            <div class="modal-footer">
 											<form id="kocak" method="post">
-											<?php if($ss['status'] == 2) { ?>
-												<textarea type="text" name="note" id="keterangan" placeholder="keterangan" class="form-control w-100 mb-2"><?php echo $ss['note'] ?></textarea>
-											<?php } ?>
-                                                <?php if($ss['status'] == 2) { ?>
+												<?php if($ss['status'] == 2 && !$ss['keterangan']) { ?>
+												<div class="form-group container">
+													<input type="text" name="keterangan" id="keterangan" placeholder="keterangan" class="form-control w-100 mb-2 p-2" value="<?php echo $ss['keterangan'] ?>" />
+												</div>
+												<?php } ?>
+                                            <div class="modal-footer">
+                                                <?php if($ss['status'] == 2 && !$ss['keterangan']) { ?>
 													<button
 													type="button"
                                                     onclick="EditKocak('<?php echo base_url('main/rejectSortirProduksi/'.$ss['id_sortir']) ?>', 'kocak')"

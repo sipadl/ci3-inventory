@@ -560,6 +560,7 @@ class Main extends CI_Controller {
 	}
 
 	public function rejectSortirProduksi($id) {
+		var_dump($this->input->post());
 		$user_id = $this->session->userdata('id');
 		$data = array('approved_by' => $user_id ,'status' => -1, 'keterangan' => $this->input->post('keterangan'));
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
