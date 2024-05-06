@@ -132,21 +132,21 @@
 							</td>
 							<td id="root_sebelum_subsidi"><?php echo number_format($root_sebelum_subsidi = ($total_nota / $da['fresh']),2) ?> </td>
 							<!-- Manual -->
-							<td class="subsidi_normal"><?php echo number_format($subsidi_normal = $da['subsidi_normal'],2)  ?> </td>
+							<td class="subsidi_normal"><?php echo number_format($subsidi_normal = $da['subsidi_normal'] ?? 0,2)  ?> </td>
 							<td class="sum_subsidi_normal"><?php echo number_format($total_subsidi_normal = $subsidi_normal * $da['fresh'],2 ) ?></td>
 							<td class="sum_total_plus_subsidi"><?php echo number_format($total_nota_pls_subsidi_normal = $total_nota + $da['subsidi_normal'],2 ) ?></td>
 							<td><?php echo  $root_setelah_subsidi_pls_nota = number_format(($total_nota + $da['subsidi_normal']) / $da['fresh'],2) ?></td>
 							<!-- Manual -->
-							<td><?php echo $subsidi_bayar_1 = number_format($da['subsidi_dibayar_1'],2) ?></td>
+							<td><?php echo $subsidi_bayar_1 = number_format($da['subsidi_dibayar_1'] ?? 0,2) ?></td>
 							<!-- Manual -->
-							<td><?php echo $subsidi_bayar_2 = number_format($da['subsidi_dibayar_2'],2) ?></td>
+							<td><?php echo $subsidi_bayar_2 = number_format($da['subsidi_dibayar_2'] ?? 0,2) ?></td>
 							<td class="total_subsidi"><?php echo number_format($subsidi_bayar_3 = ($da['subsidi_dibayar_1'] + $da['subsidi_dibayar_2']) ,2 ) ?></td>
-							<td><?php echo $capshell = number_format($da['cap_shell'],2) ?></td>
+							<td><?php echo $capshell = number_format($da['cap_shell'] ?? 0,2) ?></td>
 							<td class="total_subsidi_dibayar"><?php echo $total_subsidi_dibayar = number_format(($da['subsidi_dibayar_1'] + $da['subsidi_dibayar_2']) * $da['fresh'],2) ?></td>
 							<td class="total_subsidi2"><?php echo number_format((($da['subsidi_dibayar_1'] + $da['subsidi_dibayar_2']) * $da['fresh'] )+ $total_nota,2) ?></td>
 							<td class="total_subsidi3"><?php echo $root_setelah_subsidi = number_format(($da['subsidi_dibayar_1'] + $da['subsidi_dibayar_2']) * $da['fresh'] / $da['fresh'],2 ) ?></td>
 							<!-- Manual -->
-							<td class="subsidi_trans"><?php echo $subsidi_trans = number_format($da['subsidi_transport'],2) ?></td>
+							<td class="subsidi_trans"><?php echo $subsidi_trans = number_format($da['subsidi_transport'] ?? 0,2) ?></td>
 							<td class="total_subsidi_trans"><?php echo number_format($total_subsidi_trans = $da['subsidi_transport'] * $da['total'],2) ?></td>
 							<td class="">
 							<?php
