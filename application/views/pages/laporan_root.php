@@ -248,7 +248,9 @@
 							<td colspan="10"></td>
 						</tr>
 						<tr>
-							<td colspan="3">Total All</td>
+							<td></td>
+							<td></td>
+							<td colspan="">Total All</td>
 							<td id="hasil_total_fresh">
 								<?php 
 								echo number_format($total['total_fresh'],2);
@@ -317,7 +319,9 @@
 							<td></td>
 						</tr>
 						<tr>
-							<td colspan="3">Cap + Shell</td>
+							<td></td>
+							<td></td>
+							<td colspan="">Cap + Shell</td>
 							<td id="hasil_total_fresh">
 								<?php 
 								echo number_format($total['total_fresh'],2)
