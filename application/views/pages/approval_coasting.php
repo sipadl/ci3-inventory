@@ -1002,11 +1002,11 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         </tr>
                                                         <tr>
                                                             <th colspan=""><?php echo $ss['tanggal_rec'] ?></th>
-                                                            <th colspan=""><?php echo $ss['tanggal_rec2'] ?></th>
-                                                            <th colspan=""><?php echo $ss['tanggal_rec3'] ?></th>
+                                                            <th colspan=""><?php echo $ss['tanggal_rec2'] == '0000-00-00' ? '' : $ss['tanggal_rec2'] ?></th>
+                                                            <th colspan=""><?php echo $ss['tanggal_rec3']  == '0000-00-00' ? '' : $ss['tanggal_rec3'] ?></th>
                                                             <th colspan="" width="10%"><?php echo $ss['tanggal_rec'] ?></th>
-                                                            <th colspan="" width="10%"><?php echo $ss['tanggal_rec2'] ?></th>
-                                                            <th colspan=""><?php echo $ss['tanggal_rec3'] ?></th>
+                                                            <th colspan="" width="10%"><?php echo $ss['tanggal_rec2'] == '0000-00-00' ? '' : $ss['tanggal_rec3'] ?></th>
+                                                            <th colspan=""><?php echo $ss['tanggal_rec3']  == '0000-00-00' ? '' : $ss['tanggal_rec3'] ?></th>
                                                             <th colspan="" width="10%"></th>
                                                             <th colspan=""></th>
                                                         </tr>

@@ -521,6 +521,9 @@ class Main extends CI_Controller {
 			$post_data['tanggal_rec2'] = date('Y-m-d H:i:s');
 		} else if ($sortir[0]['tanggal_rec2'] == date('Y-m-d H:i:s')){
 			$post_data['tanggal_rec3'] = date('Y-m-d H:i:s');
+		} else {
+			$post_data['tanggal_rec2'] = ' ';
+			$post_data['tanggal_rec3'] = ' ';
 		}
 		$post_data['status'] = $status ?? 1;
 		
