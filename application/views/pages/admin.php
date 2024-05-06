@@ -46,6 +46,10 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 							echo "Pending";
 						} elseif ($status == 1) {
 							echo "Accepted";
+						} elseif ($status == 2) {
+							echo "Accepted";
+						} elseif ($status == 3) {
+							echo "Accepted";
 						} elseif ($status == -1) {
 							echo "Rejected";
 						} else {
