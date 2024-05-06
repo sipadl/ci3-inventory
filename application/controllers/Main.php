@@ -489,8 +489,22 @@ class Main extends CI_Controller {
             $this->session->set_flashdata('success', 'Data Sortir berhasil ditambahkan.');
             // Redirect to index
 			redirect($_SERVER['HTTP_REFERER'], 'refresh');
-            // redirect('main/sortir');
         }
+    }
+
+	public function fullsortirPostCorrection($id) {
+		$post_data = $this->input->post();
+		// var_dump($post_data);
+		// die();
+		// $sortir = $this->Main_model->getDataSortir($id);
+		// Get all post data
+		$post_data['tanggal_rec'] = date('Y-m-d H:i:s');
+		$post_data['status'] = 3;
+		$post_data['id_bb'] = $id;
+		$post_data['is_corection'] = 1;
+		$insert = $this->Main_model->insertAll('tbl_sortir', $post_data);
+		$this->session->set_flashdata('success', 'Data Sortir berhasil ditambahkan.');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
     }
 
 	public function sortirUpdate($id, $status = null) {
