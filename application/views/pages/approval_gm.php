@@ -572,7 +572,14 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                             </div>
                                         </div>
                                     </div>
-                                    <?php if($ss['id_bb'] != null ) { ?>
+									<?php 
+									if($ss['id_bb']){
+										$data2 = $this->db->query('select * from tbl_sortir where id_bb ='.$ss['id_bb'].' and is_corection = 1')->row_array();
+									}  else {
+										$data2 = false;
+									}
+									?>
+                                    <?php if($ss['id_bb'] != null && $ss['is_corection'] == 0 && !$data2 ) { ?>
                                     <button
                                         type="button"
                                         class="btn btn-light mx-1"
@@ -582,13 +589,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         Detail Sortir
                                     </button>
                                     <?php } ?>
-									<?php 
-									if($ss['id_bb']){
-										$data2 = $this->db->query('select * from tbl_sortir where id_bb ='.$ss['id_bb'].' and is_corection = 1')->row_array();
-									}  else {
-										$data2 = false;
-									}
-									?>
+									
 									<?php if($data2 && $data2['is_corection'] == 1 ) { ?>
 										<button
 										type="button"
@@ -596,7 +597,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 										data-toggle="modal"
 										data-target="<?php echo '#modelId'.$data2['id_bb'].'is-corectoion' ?>">
 										<i class="fa fa-eye" aria-hidden="true"></i>
-										Detail Sortir Koreksi
+										Detail Sortir 
 										</button>
 										<div
 										class="modal fade"
