@@ -944,7 +944,17 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 										</div>
 										</div>
 
-                                <?php } ?>
+                                	<?php } ?>
+									<?php if($ss['id_bb'] == null ) { ?>
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary mx-1"
+                                        data-toggle="modal"
+                                        data-target="#myModal"
+                                        onclick="isiId(<?php echo $ss['id_bahan_baku'] ?>)">
+                                        Tambah Sortir
+                                    </button>
+                                    <?php } ?>
                             </div>
                             <!-- Modal Detail -->
                             <div

@@ -214,7 +214,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<div class="d-flex justify-content-between border px-2">
 																<div class="">Supplier</div>
 																<div class="">
-																	<?php echo $ss['supplier'] ?? 0 ?>
+																	<?php echo $ss['supplier']; ?>
 																</div>
 															</div>
 															<div class="d-flex justify-content-between  border px-2">
@@ -945,10 +945,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 											</div>
 											</div>
 											</div>
-											</div>
 
                                     <?php } ?>
-                                    <?php if($ss['id_bb'] == null ) { ?>
+                                    <!-- <?php if($ss['id_bb'] == null ) { ?>
                                     <button
                                         type="button"
                                         class="btn btn-primary mx-1"
@@ -957,7 +956,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                         onclick="isiId(<?php echo $ss['id_bahan_baku'] ?>)">
                                         Tambah Sortir
                                     </button>
-                                    <?php } ?>
+                                    <?php } ?> -->
                                     <?php if($ss['id_bb'] != null && $ss['tanggal_rec3'] == null && $ss['status'] <= 3 && !$data2 ) { ?>
                                     <button
                                         type="button"
