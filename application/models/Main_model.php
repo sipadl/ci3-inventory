@@ -18,7 +18,7 @@ class Main_model extends CI_Model {
 
 
 	public function getBahanBakuBaru() {
-		return $this->db->query('select b.id as id_bahan_baku, a.id as id_sortir, b.*, a.* from tbl_daging b left join tbl_sortir a on a.id_bb = b.id order by b.id desc')->result_array();
+		return $this->db->query('select b.id as id_bahan_baku, a.id as id_sortir, b.*, a.* from tbl_daging b left join tbl_sortir a on a.id_bb = b.id where is_corection is null OR is_corection = 0 order by b.id desc')->result_array();
 	}
 
 	public function GetSortirWithMemo($val) {
@@ -44,7 +44,7 @@ class Main_model extends CI_Model {
 	}
 
 	public function getBahanBakuWithStatus($val) {
-		return $this->db->query("select td.*, td.keterangan as keterangan_bahan_baku, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.status in(".$val.") order by ts.id desc")->result_array();
+		return $this->db->query("select td.*, td.keterangan as keterangan_bahan_baku, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.status in(".$val.") and is_corection = 0 order by ts.id desc")->result_array();
 	}
 
 	public function getDataSortir($id = null) {
