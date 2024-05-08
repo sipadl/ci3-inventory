@@ -695,8 +695,10 @@ class Main extends CI_Controller {
 		$supplier2 = $this->Main_model->get_laporan_root2();
 		$price = $this->Main_model->get_price();
 
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
+
 		$this->load->view('templates/header', $data);
-        $this->load->view('pages/laporan_root',['datax' => $datax ,'supplier' => $supplier, 'supolier' => $supplier2,  'price' => $price ]);
+        $this->load->view('pages/laporan_root',['datax' => $datax ,'supplier' => $supplier, 'supolier' => $supplier2,  'price' => $price, 'bahanbaku' => $bahanbaku]);
         $this->load->view('templates/footer');
 	}
 
