@@ -43,6 +43,7 @@
 										<th>Total Timb. Kotor</th>
 										<th>Total Timb. BB</th>
 										<th>Total Grand Total</th>
+										<th>Total Grand Total</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -69,6 +70,8 @@
 								$total_grand_total = 0;
 
 								foreach($bahanbaku as $ss ) :
+
+										$data2 = $this->db->query('select * from tbl_sortir where id_bb ='. $ss['id_bb'].' and is_corection = 1')->row_array();
 										$col = $ss['col'];
 										$col_bf = $ss['bf'];
 										$jb = $ss['jb'];
@@ -130,6 +133,7 @@
 									floatval($mhr) + floatval($basi_cl) + floatval($basi_mh) + floatval($air) + floatval($shell) +
 									floatval($loss) + floatval($jbb_jf) + floatval($col_18);
 
+									
 
 									$colX = (floatval($col) + floatval($col_bf));
 									$jbX = (floatval($jb) + floatval($jbb_jf));
@@ -151,6 +155,30 @@
 									floatval($spk_xlp) + floatval($spk_sp) + floatval($sp_jb) + floatval($sp_xlp) + floatval($sp_bf) +
 									floatval($sp_sph) + floatval($sp_sp) + floatval($cl) + floatval($clf) + floatval($mh) + floatval($mh2);
 
+
+									$data2 = $this->db->query('select * from tbl_sortir where id_bb ='.$ss['id_bb'].' and is_corection = 1')->row_array();
+
+
+									$grand_totalX = 0;
+									$total_grand_x_2 = 0;
+									if($data2) {
+									$colXX = (floatval($data2['col']) + floatval($data2['bf']));
+									$jbXX = (floatval($data2['jb']) + floatval($data2['jbb_jf']));
+									$jkXX = (floatval($data2['jbb_jk']) + floatval($data2['jbb_bf']));
+									$bfXX = (floatval($data2['bf_k3_col']) + floatval($data2['bf_k3_jb']) + floatval($data2['bf_k3_jk'])
+									+ floatval($data2['bf_k3_jl']) + floatval($data2['bf_jl']) + floatval($data2['bf_bf']) + floatval($data2['bf_bf']) + floatval($data2['bf_kj']));
+									$spkXX = (floatval($data2['spk_sp_jb']) +  floatval($data2['spk_sp_bfp']) + floatval($data2['spk_sp_sph']));
+									$spXX = (floatval($data2['bf_spk_xlp']) + floatval($data2['bf_spk_sp']));
+									$mhXX = (floatval($data2['mh']) + floatval($data2['mh_slb']));
+									$clXX = floatval($data2['sp_cl']);
+									$clfXX = floatval($data2['sp_clf']);
+									$mhrX = floatval($data2['mh']) + floatval($data2['mh_slb']);
+									$phrX = floatval($data2['basi_sp']) + floatval($data2['basi_bf']) + floatval($data2['basi_xlp']) + floatval($data2['basi_jk']) + floatval($data2['basi_col']);
+									$sumXXX = $colXX + $jbXX + $jkXX + $bfXX + $spkXX + $spXX + $mhXX + $clXX + $clfXX;
+									$grand_totalX = $sumXXX + $phrX + $mhrX;
+
+									$total_grand_x_2 += $grand_totalX;
+									}
 									$qty = 0;
 									$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); 
 									foreach($dataDaging as $sdb) {
@@ -184,6 +212,7 @@
 									$total_tmb_kotor += $timbangan_kotor;
 									$total_qty += $qty;
 									$total_grand_total += $grand_total;
+
 									?>
 									<tr>
 										<td><?php echo $number++ ?></td>
@@ -216,6 +245,7 @@
 										<td> <?php echo $timbangan_kotor ?> </td>
 										<td> <?php echo $qty ?> </td>
 										<td> <?php echo $grand_total ?> </td>
+										<td> <?php echo $grand_totalX ?> </td>
 									</tr>
 									<?php endforeach ?>
 								</tbody>
@@ -281,6 +311,7 @@
 										<td><?php echo 
 								$total_grand_total
 								?></td>
+								<td><?php echo $total_grand_x_2 ?></td>
 									</tr>
 								</tfoot>
 							</table>
