@@ -210,31 +210,31 @@
 
 									$nama_supplier = $this->db->query('select nama_supplier from tbl_supplier where kode_supplier = "'.$ss['kode_supplier'].'"' )->row_array();
 
-									$total_col += $colX;
-									$total_jb += $jbX;
-									$total_jk += $jkX;
-									$total_xlp += $xlp;
-									$total_bf += $bfX;
-									$total_spk += $spkX;
-									$total_sp += $spX;
-									$total_mh1 += $mh;
-									$total_mh2 += $mh2;
-									$total_phr1 += $phr;
-									$total_mhr1 += $basi_cl + $basi_mh;
+									$total_col += floatval($colX);
+									$total_jb += floatval($jbX);
+									$total_jk += floatval($jkX);
+									$total_xlp += floatval($xlp);
+									$total_bf += floatval($bfX);
+									$total_spk += floatval($spkX);
+									$total_sp += floatval($spX);
+									$total_mh1 += floatval($mh);
+									$total_mh2 += floatval($mh2);
+									$total_phr1 += floatval($phr);
+									$total_mhr1 += floatval($basi_cl) + floatval($basi_mh);
 									$total_phr2 +=
-												$basi_col2 +
-												$basi_jk2 +
-												$basi_jb2 +
-												$basi_xlp2 +
-												$basi_bf2 +
-												$basi_sp2 ;
-									$total_mhr2 += $basi_cl2 + $basi_mh2;
-									$total_air += $air;
-									$total_shell += $shell;
-									$total_loss += $loss;
-									$total_tmb_kotor += $timbangan_kotor;
-									$total_qty += $qty;
-									$total_grand_total += $grand_total;
+												floatval($basi_col2) +
+												floatval($basi_jk2) +
+												floatval($basi_jb2) +
+												floatval($basi_xlp2) +
+												floatval($basi_bf2) +
+												floatval($basi_sp2) ;
+									$total_mhr2 += floatval($basi_cl2) + floatval($basi_mh2);
+									$total_air += floatval($air);
+									$total_shell += floatval($shell);
+									$total_loss += floatval($loss);
+									$total_tmb_kotor += floatval($timbangan_kotor);
+									$total_qty += floatval($qty);
+									$total_grand_total += floatval($grand_total);
 
 									?>
 									<tr>
@@ -251,17 +251,17 @@
 										<td><?php echo $mh ?></td>
 										<td><?php echo $mh2 ?></td>
 										<td><?php echo $phr ?></td>
-										<td><?php echo $basi_cl + $basi_mh ?></td>
+										<td><?php echo floatval($basi_cl) + floatval($basi_mh) ?></td>
 										<td>
-										<?php echo $basi_col2 +
-											$basi_jk2 +
-											$basi_jb2 +
-											$basi_xlp2 +
-											$basi_bf2 +
-											$basi_sp2 
+										<?php echo floatval($basi_col2) +
+											floatval($basi_jk2) +
+											floatval($basi_jb2) +
+											floatval($basi_xlp2) +
+											floatval($basi_bf2) +
+											floatval($basi_sp2) 
 										?> 
 										</td>
-										<td><?php echo $basi_cl2 + $basi_mh2 ?></td>
+										<td><?php echo floatval($basi_cl2) + floatval($basi_mh2) ?></td>
 										<td> <?php echo $air ?> </td>
 										<td> <?php echo $shell ?> </td>
 										<td> <?php echo $loss ?> </td>
