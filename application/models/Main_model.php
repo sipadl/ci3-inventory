@@ -179,7 +179,7 @@ class Main_model extends CI_Model {
 				LEFT JOIN tbl_sortir b ON a.id = b.id_bb 
 				LEFT JOIN tbl_laporan c ON c.id_sortir = b.id
 				LEFT JOIN (SELECT kode_supplier, nama_supplier FROM tbl_supplier) d ON d.kode_supplier = a.supplier 
-				WHERE b.status >= 3
+				WHERE b.status >= 3 AND b.is_corection = 0
 			ORDER BY 
 				b.tanggal_rec DESC
 		) a

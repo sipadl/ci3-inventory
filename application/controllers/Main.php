@@ -627,7 +627,15 @@ class Main extends CI_Controller {
 	}
 	public function approval_gm(){
 		$data['title'] = 'Approval General Manager';
-		$datax = $this->Main_model->query_laporan();
+		if($this->input->post()) {
+			$data['start'] = $this->input->post('start');
+			$data['end'] = $this->input->post('end');
+		} else {
+			$data['start'] = date('Y-m-d');
+			$data['end'] = date('Y-m-d');
+		}
+
+		$datax = $this->Main_model->query_laporan($data['start'], $data['end']);
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','3');
 		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
