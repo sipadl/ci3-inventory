@@ -278,61 +278,61 @@
 										<td></td>
 										<td>Total</td>
 										<td><?php echo 
-								$total_col
+								$total_col ?? 0 
 								?></td>
 										<td><?php echo 
-								$total_jb
+								$total_jb ?? 0
 								?></td>
 										<td><?php echo 
-								$total_jk
+								$total_jk ?? 0
 								?></td>
 										<td><?php echo 
-								$total_xlp
+								$total_xlp ?? 0
 								?></td>
 										<td><?php echo 
-								$total_bf
+								$total_bf ?? 0
 								?></td>
 										<td><?php echo 
-								$total_spk
+								$total_spk ?? 0
 								?></td>
 										<td><?php echo 
-								$total_sp
+								$total_sp ?? 0
 								?></td>
 										<td><?php echo 
-								$total_mh1
+								$total_mh1 ?? 0
 								?></td>
 										<td><?php echo 
-								$total_mh2
+								$total_mh2 ?? 0
 								?></td>
 										<td><?php echo 
-								$total_phr1
+								$total_phr1 ?? 0
 								?></td>
 										<td><?php echo 
-								$total_mhr1
+								$total_mhr1 ?? 0
 								?></td>
 										<td><?php echo 
-								$total_phr2
+								$total_phr2 ?? 0
 								?></td>
 										<td><?php echo 
-								$total_mhr2
+								$total_mhr2 ?? 0
 								?></td>
 										<td><?php echo 
-								$total_air
+								$total_air ?? 0
 								?></td>
 										<td><?php echo 
-								$total_shell
+								$total_shell ?? 0
 								?></td>
 										<td><?php echo 
-								$total_loss
+								$total_loss ?? 0
 								?></td>
 										<td><?php echo 
-								$total_tmb_kotor
+								$total_tmb_kotor ?? 0
 								?></td>
 										<td><?php echo 
-								$total_qty
+								$total_qty ?? 0
 								?></td>
 										<td><?php echo 
-								$total_grand_total
+								$total_grand_total ?? 0
 								?></td>
 								<td><?php echo $total_grand_x_2 ?? 0 ?></td>
 									</tr>
