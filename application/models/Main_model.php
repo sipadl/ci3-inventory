@@ -48,7 +48,7 @@ class Main_model extends CI_Model {
 	}
 
 	public function getBahanBakuWithDate($start, $end) {
-		return $this->db->query("select td.*, td.keterangan as keterangan_bahan_baku, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.tanggal_rec >= ? and ts.tanggal_rec <= ? and ts.status >= 3 and is_corection = 0 order by ts.id desc", [$start, $end])->result_array();
+		return $this->db->query("select td.*, ts.status as status_sortir, td.keterangan as keterangan_bahan_baku, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.tanggal_rec >= ? and ts.tanggal_rec <= ? and ts.status >= 3 and is_corection = 0 order by ts.id desc", [$start, $end])->result_array();
 	}
 
 	public function getDataSortir($id = null) {
