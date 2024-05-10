@@ -2,10 +2,31 @@
 	<div class="col-md-12">
 		<!-- Button trigger modal -->
 		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modelIdLaporan">
-		  Laporan
-		</button>
+		<div class="d-flex">
+			<form action="<?php base_url('main/laporan_root'); ?>" method="post">
+				<div class="d-flex mx-2">
+					<div class="form-group mx-2">
+						<label for="">Mulai</label>
+						<input type="date" name="start" class="form-control mx-1" value="<?php echo $start ?>" />
+					</div>
+					<div class="form-group mx-2">
+						<label for="">Sampai</label>
+						<input type="date" name="end" class="form-control mx-1" value="<?php echo $end ?>" />
+					</div>
+					<div class="align-self-center mt-3">
+						<button class="btn-sm btn btn-light" type="submit">Filter Laporan</button>
+					</div>
+				</div>
+			</form>
+			<div class="d-flex justify-content-center align-self-center mt-3">
+				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modelIdLaporan">
+					Laporan
+				</button>
+			</div>
+		</div>
 		
+
+
 		<!-- Modal -->
 		<div class="modal fade" id="modelIdLaporan" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
 			<div class="modal-dialog modal-xl modal-fullscreen" role="document">
@@ -42,8 +63,8 @@
 										<th>Total Loss</th>
 										<th>Total Timb. Kotor</th>
 										<th>Total Timb. BB</th>
-										<th>Total Grand Total</th>
-										<th>Total Grand Total</th>
+										<th>Total Grand Before</th>
+										<th>Total Grand After</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -160,25 +181,27 @@
 
 
 									$grand_totalX = 0;
-									$total_grand_x_2 = 0;
-									if($data2) {
-									$colXX = (floatval($data2['col']) + floatval($data2['bf']));
-									$jbXX = (floatval($data2['jb']) + floatval($data2['jbb_jf']));
-									$jkXX = (floatval($data2['jbb_jk']) + floatval($data2['jbb_bf']));
-									$bfXX = (floatval($data2['bf_k3_col']) + floatval($data2['bf_k3_jb']) + floatval($data2['bf_k3_jk'])
-									+ floatval($data2['bf_k3_jl']) + floatval($data2['bf_jl']) + floatval($data2['bf_bf']) + floatval($data2['bf_bf']) + floatval($data2['bf_kj']));
-									$spkXX = (floatval($data2['spk_sp_jb']) +  floatval($data2['spk_sp_bfp']) + floatval($data2['spk_sp_sph']));
-									$spXX = (floatval($data2['bf_spk_xlp']) + floatval($data2['bf_spk_sp']));
-									$mhXX = (floatval($data2['mh']) + floatval($data2['mh_slb']));
-									$clXX = floatval($data2['sp_cl']);
-									$clfXX = floatval($data2['sp_clf']);
-									$mhrX = floatval($data2['mh']) + floatval($data2['mh_slb']);
-									$phrX = floatval($data2['basi_sp']) + floatval($data2['basi_bf']) + floatval($data2['basi_xlp']) + floatval($data2['basi_jk']) + floatval($data2['basi_col']);
-									$sumXXX = $colXX + $jbXX + $jkXX + $bfXX + $spkXX + $spXX + $mhXX + $clXX + $clfXX;
-									$grand_totalX = $sumXXX + $phrX + $mhrX;
-
-									$total_grand_x_2 += $grand_totalX;
+									if ($data2) {
+										$total_grand_x_2 = 0; // Initializing total_grand_x_2 to 0
+										// Calculation of $total_grand_x_2
+										$colXX = (floatval($data2['col']) + floatval($data2['bf']));
+										$jbXX = (floatval($data2['jb']) + floatval($data2['jbb_jf']));
+										$jkXX = (floatval($data2['jbb_jk']) + floatval($data2['jbb_bf']));
+										$bfXX = (floatval($data2['bf_k3_col']) + floatval($data2['bf_k3_jb']) + floatval($data2['bf_k3_jk'])
+												+ floatval($data2['bf_k3_jl']) + floatval($data2['bf_jl']) + floatval($data2['bf_bf']) + floatval($data2['bf_bf']) + floatval($data2['bf_kj']));
+										$spkXX = (floatval($data2['spk_sp_jb']) +  floatval($data2['spk_sp_bfp']) + floatval($data2['spk_sp_sph']));
+										$spXX = (floatval($data2['bf_spk_xlp']) + floatval($data2['bf_spk_sp']));
+										$mhXX = (floatval($data2['mh']) + floatval($data2['mh_slb']));
+										$clXX = floatval($data2['sp_cl']);
+										$clfXX = floatval($data2['sp_clf']);
+										$mhrX = floatval($data2['mh']) + floatval($data2['mh_slb']);
+										$phrX = floatval($data2['basi_sp']) + floatval($data2['basi_bf']) + floatval($data2['basi_xlp']) + floatval($data2['basi_jk']) + floatval($data2['basi_col']);
+										$sumXXX = $colXX + $jbXX + $jkXX + $bfXX + $spkXX + $spXX + $mhXX + $clXX + $clfXX;
+										$grand_totalX = $sumXXX + $phrX + $mhrX;
+										$total_grand_x_2 += $grand_totalX;
+										
 									}
+
 									$qty = 0;
 									$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); 
 									foreach($dataDaging as $sdb) {
@@ -311,7 +334,7 @@
 										<td><?php echo 
 								$total_grand_total
 								?></td>
-								<td><?php echo $total_grand_x_2 ?></td>
+								<td><?php echo $total_grand_x_2 ?? 0 ?></td>
 									</tr>
 								</tfoot>
 							</table>

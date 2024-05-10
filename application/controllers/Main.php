@@ -689,13 +689,23 @@ class Main extends CI_Controller {
 	}
 
 	public function laporan_root(){
+
 		$data['title'] = 'Laporan Root';
+		if($this->input->post()) {
+			$data['start'] = $this->input->post('start');
+			$data['end'] = $this->input->post('end');
+		} else {
+			$data['start'] = date('Y-m-d');
+			$data['end'] = date('Y-m-d');
+		}
+
 		$supplier = $this->Main_model->get_laporan_root();
-		$datax = $this->Main_model->query_laporan();
+		$datax = $this->Main_model->query_laporan($data['start'], $data['end']);
 		$supplier2 = $this->Main_model->get_laporan_root2();
 		$price = $this->Main_model->get_price();
 
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
+
+		$bahanbaku = $this->Main_model->getBahanBakuWithDate($data['start'], $data['end']);
 
 		$this->load->view('templates/header', $data);
         $this->load->view('pages/laporan_root',['datax' => $datax ,'supplier' => $supplier, 'supolier' => $supplier2,  'price' => $price, 'bahanbaku' => $bahanbaku]);

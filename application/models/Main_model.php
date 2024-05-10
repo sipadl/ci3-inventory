@@ -47,6 +47,10 @@ class Main_model extends CI_Model {
 		return $this->db->query("select td.*, td.keterangan as keterangan_bahan_baku, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.status in(".$val.") and is_corection = 0 order by ts.id desc")->result_array();
 	}
 
+	public function getBahanBakuWithDate($start, $end) {
+		return $this->db->query("select td.*, td.keterangan as keterangan_bahan_baku, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.tanggal_rec >= ? and ts.tanggal_rec <= ? and is_corection = 0 order by ts.id desc", [$start, $end])->result_array();
+	}
+
 	public function getDataSortir($id = null) {
 		if($id) {
 			return $this->db->query("select * from tbl_sortir where id =". $id." order by id desc")->result_array();
@@ -130,7 +134,7 @@ class Main_model extends CI_Model {
 		left join tbl_laporan c on c.id_sortir  = b.id")->result_array();
 	}
 
-	public function query_laporan () {
+	public function query_laporan ($start, $end) {
 		return $this->db->query("SELECT 
 		*,
 		(fresh + phrmhr) AS total,
@@ -178,7 +182,7 @@ class Main_model extends CI_Model {
 			ORDER BY 
 				b.tanggal_rec DESC
 		) a
-	) b;")->result_array();
+	) b where tanggal >= ? and tanggal <= ?;",[$start, $end])->result_array();
 	}
 
 	public function get_total()
