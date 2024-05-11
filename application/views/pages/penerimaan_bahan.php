@@ -69,7 +69,7 @@
 													<tr>
 														<td>No.</td>
 														<td width="20%">Jenis Bag.</td>
-														<td width="50%">Keterangan</td>
+														<td width="20%">Keterangan</td>
 														<td>Berat Bersih (Kg)</td>
 														<td>Harga Satuan</td>
 														<td>Jumlah Harga (Rp)</td>
@@ -82,15 +82,16 @@
 														<td></td>
 														<td><?php
 														$col = (floatval($ss['col']) + floatval($ss['bf']));
-														$jb = (floatval($ss['jb']) + floatval($ss['jbb_jf']));
+														$jb = (floatval($ss['jb']) + floatval($ss['jb_bf']));
 														$jk = (floatval($ss['jbb_jk']) + floatval($ss['jbb_bf']));
 														$xlp = floatval($ss['xlp']);
 														$bf = (floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jk']) + floatval($ss['bf_lp_slb'])
 														+ floatval($ss['bf_k3_jl']) + floatval($ss['bf_jl']) + floatval($ss['bf_bf']) + floatval($ss['bf_kj']) + floatval($ss['bf_sp']));
 														$spk = floatval($ss['bf_spk_sp']) + floatval($ss['bf_spk_xlp']);
-														$sp = floatval($ss['spk_sp_jb']) + floatval($ss['spk_sp_xlp']) + floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp']) + floatval($ss['sp_sph']);
+														$sp = floatval($ss['spk_sp_jb']) + floatval($ss['spk_sp_xlp']) + floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp']);
+														// floatval($sp_jb) + floatval($sp_xlp) + floatval($sp_bf) + floatval($spk_sp)
 														$cl = floatval($ss['sp_cl']) + floatval($ss['sp_clf']);
-														$mh = floatval($ss['mh']) + floatval($ss['mhr']);
+														$mh = floatval($ss['mh']) + floatval($ss['mh_slb']);
 
 														$total_mh = $mh * floatval($price[14]['harga']);
 														$total_col = $col * floatval($price[0]['harga']);
@@ -195,7 +196,7 @@
 														<td colspan="3">Jumlah</td>
 														<td>
 														<?php echo 
-														number_format($col 
+														$col 
 														+ $mh
 														+ $cl
 														+ $sp
@@ -203,7 +204,7 @@
 														+ $bf
 														+  $xlp
 														+ $jk
-														+ $jb)
+														+ $jb
 														; ?>
 														</td>
 														<td></td>
@@ -223,7 +224,7 @@
 													<tr>
 														<td>No.</td>
 														<td width="20%">Jenis Bag.</td>
-														<td width="50%">Keterangan</td>
+														<td width="20%">Keterangan</td>
 														<td>Berat Bersih (Kg)</td>
 														<td>Harga Satuan</td>
 														<td>Jumlah Harga (Rp)</td>
@@ -239,8 +240,8 @@
 														$total_phrx =  floatval($ss['basi_col2']) + floatval($ss['basi_jb2']) + floatval($ss['basi_jk2']) + floatval($ss['basi_xlp2']) + floatval($ss['basi_bf2']) + floatval($ss['basi_sp2'])
 														+ floatval($ss['basi_col']) + floatval($ss['basi_jb']) + floatval($ss['basi_jk']) + floatval($ss['basi_xlp']) + floatval($ss['basi_bf']) + floatval($ss['basi_sp']);
 														echo $total_phrx ?></td>
-														<td><?php echo floatval($price[14]['harga']) ?></td>
-														<td><?php echo $total_phrx * floatval($price[14]['harga']) ?></td>
+														<td><?php echo number_format(floatval($price[14]['harga'])) ?></td>
+														<td><?php echo number_format($total_phrx * floatval($price[14]['harga'])) ?></td>
 													</tr>
 													<tr>
 														<td>2</td>
@@ -248,7 +249,7 @@
 														<td></td>
 														<td><?php echo $total_mhrx; ?></td>
 														<td><?php echo number_format(floatval($price[12]['harga'])) ?></td>
-														<td><?php echo number_format( $total_mhrx * $price[12]['harga'] )?></td>
+														<td><?php echo number_format( $total_mhrx * $price[13]['harga'] )?></td>
 													</tr>
 													<tr>
 														<td>2</td>
@@ -262,7 +263,7 @@
 														<td colspan="3">Jumlah</td>
 														<td><?php echo $total_phrx + $total_mhrx + (floatval($ss['shell'])) ?></td>
 														<td></td>
-														<td><?php echo number_format(($total_phrx * floatval($price[14]['harga'])) + ($total_mhrx * floatval($price[12]['harga'])) + (floatval($ss['shell'])) * floatval($price[24]['harga'])); ?></td>
+														<td><?php echo number_format(($total_phrx * floatval($price[14]['harga'])) + ($total_mhrx * floatval($price[13]['harga'])) + (floatval($ss['shell'])) * floatval($price[24]['harga'])); ?></td>
 													</tr>
 												</tbody>
 											</table>
@@ -301,8 +302,8 @@
 														echo 
 														number_format($tot) ?>
 														</td>
-														<td><?php echo number_format($ss['subsidi']) ?></td>
-														<td><?php echo number_format($tot * $ss['subsidi']) ?></td>
+														<td><?php echo number_format($ss['subsidi'] ?? 0) ?></td>
+														<td><?php echo number_format($tot * $ss['subsidi'] ?? 0) ?></td>
 													</tr>
 													<tr>
 														<td>2</td>
@@ -321,7 +322,7 @@
 													<tr>
 														<td colspan="4">Jumlah</td>
 														<td><?php echo 
-														number_format($tot * $ss['subsidi'])  ?></td>
+														number_format($tot * $ss['subsidi'] ?? 0)  ?></td>
 													</tr>
 												</tbody>
 											</table>
