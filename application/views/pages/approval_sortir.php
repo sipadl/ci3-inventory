@@ -752,7 +752,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td>
 																<!-- <?php echo $bf_k3_col.' '.$bf_k3_jb.' '.$bf_k3_jk.' '.$bf_k3_jl.' '.$bf_kj.' '.$bf_bf.' '.$bf_lp_slb.' '.$bf_sp ?> -->
 														<?php 
-															$total_bf = $sum = floatval($bf_k3_col) + floatval($bf_k3_jb) + floatval($bf_k3_jk) + floatval($bf_k3_jl) + floatval($bf_kj) + floatval($bf_bf) + floatval($bf_lp_slb) + floatval($bf_sp);
+															$total_bf = $sum = floatval($bf_k3_col) + floatval($bf_k3_jb) + floatval($bf_k3_jk) + floatval($bf_k3_jl) + floatval($bf_jl) + floatval($bf_kj) + floatval($bf_bf) + floatval($bf_lp_slb) + floatval($bf_sp);
 															if($sum > 0) {
 																	echo $sum;
 																} else {
@@ -872,7 +872,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td colspan="2">Total MHR</td>
 															<td class="bg-light" style="background-color: gray"></td>
 															<td>
-															<?php $total_mhr_1 = $sum = floatval($basi_mh) + floatval($basi_cl);
+															<?php $total_mhr_1 = $sum = floatval($basi_mh2) + floatval($basi_cl2);
 																	if($sum > 0) {
 																		echo $sum;
 																	} else {
