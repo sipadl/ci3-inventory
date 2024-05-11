@@ -43,6 +43,9 @@
 							<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelId-frsh-<?php echo $ss['id'] ?>">
 							Detail Penerimaan Fresh
 							</button>
+							<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelIdX-<?php echo $ss['id'] ?>">
+							  	Tambah Subsidi
+							</button>
 							
 							<!-- Modal -->
 							<div class="modal fade" id="modelId-frsh-<?php echo $ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -231,18 +234,21 @@
 														<td>1</td>
 														<td>PHR</td>
 														<td></td>
-														<td><?php echo $phr = floatval($ss['phr']) + floatval($ss['basi_col']) + floatval($ss['basi_jb']) + floatval($ss['basi_sp']) + floatval($ss['mhr']) + 
-														floatval($ss['basi_cl']) + floatval($ss['basi_mh']); ?></td>
+														<td><?php 
+														$total_mhrx = floatval($ss['basi_mh2']) + floatval($ss['basi_cl2']) + floatval($ss['basi_mh']) + floatval($ss['basi_cl']); 
+														$total_phrx =  floatval($ss['basi_col2']) + floatval($ss['basi_jb2']) + floatval($ss['basi_jk2']) + floatval($ss['basi_xlp2']) + floatval($ss['basi_bf2']) + floatval($ss['basi_sp2'])
+														+ floatval($ss['basi_col']) + floatval($ss['basi_jb']) + floatval($ss['basi_jk']) + floatval($ss['basi_xlp']) + floatval($ss['basi_bf']) + floatval($ss['basi_sp']);
+														echo $total_phrx ?></td>
 														<td><?php echo floatval($price[14]['harga']) ?></td>
-														<td><?php echo $phr * floatval($price[14]['harga']) ?></td>
+														<td><?php echo $total_phrx * floatval($price[14]['harga']) ?></td>
 													</tr>
 													<tr>
 														<td>2</td>
 														<td>MHR</td>
 														<td></td>
-														<td><?php echo (floatval($ss['mh']) + floatval($ss['mh_slb'])) ; ?></td>
-														<td><?php echo floatval($price[12]['harga']) ?></td>
-														<td><?php echo (floatval($ss['mh']) + floatval($ss['mh_slb'])) * floatval($price[12]['harga']) ?></td>
+														<td><?php echo $total_mhrx; ?></td>
+														<td><?php echo number_format(floatval($price[12]['harga'])) ?></td>
+														<td><?php echo number_format( $total_mhrx * $price[12]['harga'] )?></td>
 													</tr>
 													<tr>
 														<td>2</td>
@@ -254,9 +260,9 @@
 													</tr>
 													<tr>
 														<td colspan="3">Jumlah</td>
-														<td><?php echo $phr + (floatval($ss['mh']) + floatval($ss['mh_slb'])) + (floatval($ss['shell'])) ?></td>
+														<td><?php echo $total_phrx + $total_mhrx + (floatval($ss['shell'])) ?></td>
 														<td></td>
-														<td><?php echo $phr * floatval($price[14]['harga']) + (floatval($ss['mh']) + floatval($ss['mh_slb'])) * floatval($price[12]['harga']) + (floatval($ss['shell'])) * floatval($price[24]['harga']); ?></td>
+														<td><?php echo number_format(($total_phrx * floatval($price[14]['harga'])) + ($total_mhrx * floatval($price[12]['harga'])) + (floatval($ss['shell'])) * floatval($price[24]['harga'])); ?></td>
 													</tr>
 												</tbody>
 											</table>
@@ -279,7 +285,24 @@
 												<tbody>
 													<tr>
 														<td>1</td>
-														<td><?php echo $total ?></td>
+														<td>
+															Subsidi Rajungan Fresh
+														</td>
+														<td><?php 
+														$tot = $col 
+														+ $mh
+														+ $cl
+														+ $sp
+														+ $spk
+														+ $bf
+														+  $xlp
+														+ $jk
+														+ $jb;
+														echo 
+														number_format($tot) ?>
+														</td>
+														<td><?php echo number_format($ss['subsidi']) ?></td>
+														<td><?php echo number_format($tot * $ss['subsidi']) ?></td>
 													</tr>
 													<tr>
 														<td>2</td>
@@ -293,11 +316,12 @@
 														<td>Potongan</td>
 														<td></td>
 														<td></td>
-														<td><?php echo (floatval($total)) ?></td>
+														<td></td>
 													</tr>
 													<tr>
 														<td colspan="4">Jumlah</td>
-														<td><?php echo $phr * floatval($price[14]['harga']) + (floatval($ss['mh']) + floatval($ss['mh_slb'])) * floatval($price[12]['harga']) + (floatval($ss['shell'])) * floatval($price[24]['harga']); ?></td>
+														<td><?php echo 
+														number_format($tot * $ss['subsidi'])  ?></td>
 													</tr>
 												</tbody>
 											</table>
@@ -306,12 +330,55 @@
 													<input type="tel" name="potongan_harga" class="form-control my-2" id="" placeholder="Keterangan">
 												<input type="hidden" name="id_sortir" value="<?php echo $ss['id'] ?>">
 												<input type="hidden" name="kode_supplier" value="<?php echo $ss['kode_supplier'] ?>">
-												<input type="hidden" name="total" value="<?php echo $phr * floatval($price[14]['harga']) + (floatval($ss['mh']) + floatval($ss['mh_slb'])) * floatval($price[12]['harga']) + (floatval($ss['shell'])) * floatval($price[24]['harga']); ?>">
+												<input type="hidden" name="total" value="<?php echo $total_phrx + $total_mhrx ?>">
 												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 												<button type="submit" class="btn btn-primary">Simpan & Approve</button>
 											</form>
 										</div>
 									</div>
+								</div>
+								</div>
+							</div>
+							
+							<!-- Modal -->
+							<div class="modal fade" id="modelIdX-<?php echo $ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<form action="<?php echo base_url('main/input_memo_subdisi/'.$ss['ids']); ?>" method="post">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Detail Subsidi</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+										</div>
+										<div class="modal-body">
+											<div class="">
+												<label for="">Kode Supplier</label>
+												<input type="hidden" name="id_sortir" value="<?php echo $ss['ids'] ?>">
+												<input type="text" name="kode_supplier" readonly value="<?php echo $ss['kode_supplier'] ?>" class="form-control mb-1">
+												<label for="">Tanggal Sortir</label>
+												<input type="text" name="tanggal" readonly value="<?php echo $ss['tanggal_rec'] ?>" class="form-control mb-1">
+												<label for="">Qty</label>
+												<input type="text" name="qty" readonly value="<?php echo $total ?>" class="form-control mb-1">
+												<label for="">Subsidi</label>
+												<?php if(!$ss['subsidi']) { ?> 
+													<input type="text" name="subsidi" class="form-control mb-1" placeholder="Subsidi">
+													<?php } else { ?>
+														<input type="text" name="subsidi" readonly class="form-control mb-1" placeholder="Subsidi" value="<?php echo $ss['subsidi'] ?>">
+														<?php }  ?>
+													</div>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+													<?php if($ss['subsidi'] == null) { ?> 
+														<button type="submit" class="btn btn-primary">Simpan</button>
+													<?php }  ?>
+													<?php if($ss['id_memo'] != null) { ?> 
+														<a href="<?php echo base_url('main/approve_memo_subsidi/'.$ss['id_memo']); ?>"class="btn btn-primary">Approve</a>
+													<?php }  ?>
+										</div>
+									</div>
+									</form>
 								</div>
 							</div>
 						</td>
