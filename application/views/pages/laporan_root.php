@@ -195,7 +195,11 @@
 											$mhrX = floatval($data2['mh']) + floatval($data2['mh_slb']);
 											$phrX = floatval($data2['basi_sp']) + floatval($data2['basi_bf']) + floatval($data2['basi_xlp']) + floatval($data2['basi_jk']) + floatval($data2['basi_col']);
 											$sumXXX = $colXX + $jbXX + $jkXX + $bfXX + $spkXX + $spXX + $mhXX + $clXX;
-											
+											$total_mhrxx = floatval($data2['basi_mh2']) + floatval($data2['basi_cl2']) + floatval($data2['basi_mh']) + floatval($data2['basi_cl']); 
+											$total_phrxx =  floatval($data2['basi_col2']) + floatval($data2['basi_jb2']) + floatval($data2['basi_jk2']) + floatval($data2['basi_xlp2']) + floatval($data2['basi_bf2']) + floatval($data2['basi_sp2'])
+											+ floatval($data2['basi_col']) + floatval($data2['basi_jb']) + floatval($data2['basi_jk']) + floatval($data2['basi_xlp']) + floatval($data2['basi_bf']) + floatval($data2['basi_sp']);
+	
+
 											$col1 = $colXX * floatval($price[0]['harga']);
 											$jb1 = $jbXX * floatval($price[1]['harga']);
 											$jk1 = $jkXX * floatval($price[2]['harga']);
@@ -206,22 +210,10 @@
 											$shell_total = floatval($data2['shell']) * floatval($price[20]['harga']);
 											$cl = floatval($data2['sp_cl']) * floatval($price[10]['harga']);
 											$clf = floatval($data2['sp_clf']) * floatval($price[11]['harga']);
-											$basi_11 = [ 
-												floatval($data2['basi_col']) * floatval($price[16]['harga']),
-												floatval($data2['basi_jb']) * floatval($price[17]['harga']),
-												floatval($data2['basi_jk']) * floatval($price[17]['harga']),
-												floatval($data2['basi_xlp']) * floatval($price[19]['harga']),
-												floatval($data2['basi_bf']) * floatval($price[20]['harga']),
-												floatval($data2['basi_sp']) * floatval($price[22]['harga']),
-											];
-											$basi_21 = [ 
-												floatval($data2['basi_col2']) * floatval($price[16]['harga']),
-												floatval($data2['basi_jb2']) * floatval($price[17]['harga']),
-												floatval($data2['basi_jk2']) * floatval($price[17]['harga']),
-												floatval($data2['basi_xlp2']) * floatval($price[19]['harga']),
-												floatval($data2['basi_bf2']) * floatval($price[20]['harga']),
-												floatval($data2['basi_sp2']) * floatval($price[22]['harga']),
-											];
+											
+											$basi_11 = $total_phrxx * floatval($price[14]['harga']);
+											$basi_21 = $total_mhrxx * floatval($price[13]['harga']);
+
 											
 											$shell_total1 = floatval($data2['shell']) * floatval($price[24]['harga']);
 											$total_price2 = $col1+ $jb1+ $jk1+ $bf1+ $spk1+ $sp1+ $mh1;
@@ -342,7 +334,7 @@
                                         <td><?php echo 
 								$total_sp ?? 0
 								?></td>
-                                        <td>disini <?php echo 
+                                        <td><?php echo 
 								$total_mh1 ?? 0
 								?></td>
                                         <td> <?php echo 
