@@ -685,7 +685,78 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 													</div>
 												
 												</form>
-												<style>
+												<div class="modal-body" id="modal-print-<?php echo $ss['id'] ?>">
+                                            <div class="row justify-content-between">
+                                                <div class="col-md-3">
+                                                    <div class="d-flex justify-content-between border px-2">
+                                                        <div class="">Supplier</div>
+                                                        <div class="">
+                                                            <?php echo $ss['supplier']; ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between  border px-2">
+                                                        <div class="">TGL SJ</div>
+                                                        <div class="">
+                                                            <?php echo $ss['tanggal_sj']; ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between  border px-2">
+                                                        <div class="">TGL Rec</div>
+                                                        <div class="">
+                                                            <?php echo $ss['tanggal_rec']; ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p style="text-align: center;">SD.100.3001 / <?php echo $ss['id'] ?></p>
+                                                  
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <!-- <form action="<?php echo
+                                                    base_url('main/updateMiniSortir/'.$ss['id_sortir']) ?>" method="post"> -->
+
+                                                    <div class="d-flex justify-content-between  border px-2">
+                                                        <div class="">Cap</div>
+                                                        <div class="">
+                                                            <?php echo $ss['cap'] ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between  border px-2">
+                                                        <div class="mt-2">Potong</div>
+                                                        <div class="ml-2 py-2">
+                                                            <?php echo $ss['potong'] ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <!-- <form action="<?php echo
+                                                    base_url('main/updateMiniSortir/'.$ss['id_sortir']) ?>" method="post"> -->
+
+                                                    <div class="d-flex justify-content-between  border px-2">
+                                                        <div class="">SHELL</div>
+                                                        <div class="">PHR</div>
+                                                        <div class="">MHR</div>
+                                                     
+                                                    </div>
+                                                    <div class="d-flex justify-content-between  border px-2">
+                                                    <div class="">KERAS</div>
+                                                        <div class=""><?php echo $ss['shell_phr_keras'] ?></div>
+                                                        <div class=""><?php echo $ss['shell_mhr_keras'] ?></div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between  border px-2">
+														<div class="">HALUS</div>
+														<div class=""><?php echo $ss['shell_phr_halus'] ?></div>
+														<div class=""><?php echo $ss['shell_mhr_halus'] ?></div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between  border px-2">
+                                                    <div class="">TOTAL</div>
+                                                        <div class=""><?php echo floatval($ss['shell_phr_keras']) + floatval($ss['shell_phr_halus']) ?></div>
+                                                        <div class=""><?php echo floatval($ss['shell_mhr_keras']) + floatval($ss['shell_mhr_halus']) ?></div>
+                                                    </div>
+                                                </div>
+                                              
+                                            </form>
+                                            <style>
                                                 .tbl-spesial {
                                                     border-collapse: collapse;
                                                 }
@@ -885,7 +956,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
-                                                            <td rowspan="5">BASI</td>
+                                                            <td rowspan="6">BASI</td>
                                                             <td>COL</td>
                                                             <td><?php echo $basi_col ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -902,12 +973,13 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
-                                                            <td>JK</td>
-                                                            <td><?php echo $basi_jk ?></td>
+                                                            <td>JB</td>
+                                                            <td><?php echo $basi_jb ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td></td>
+                                                           
                                                         </tr>
                                                         <tr>
                                                             <td>BF</td>
@@ -915,12 +987,13 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
-                                                            <td>XLP</td>
-                                                            <td><?php echo $basi_xlp ?></td>
+															<td>JK</td>
+                                                            <td><?php echo $basi_jk ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td></td>
+                                                            
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2">Total JB</td>
@@ -935,8 +1008,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
-                                                            <td>BF</td>
-                                                            <td><?php echo $basi_bf ?></td>
+                                                            <td>XLP</td>
+                                                            <td><?php echo $basi_xlp ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -950,12 +1023,13 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
-                                                            <td>SP</td>
-                                                            <td><?php echo $basi_sp ?></td>
+															<td>BF</td>
+                                                            <td><?php echo $basi_bf ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td></td>
+                                                            
                                                         </tr>
                                                         <tr>
                                                             <td>BF</td>
@@ -963,19 +1037,13 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
-                                                            <td colspan="2">Total PHR</td>
-                                                            <td>
-                                                            <?php $total_phr = $sum = floatval($basi_col) + floatval($basi_jk) + floatval($basi_xlp) + floatval($basi_sp) + floatval($basi_bf);
-																	if($sum > 0) {
-																		echo $sum;
-																	} else {
-																		echo '';
-																	} ?>
-                                                            </td>
+															<td>SP</td>
+                                                            <td><?php echo $basi_sp ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td></td>
+                                                            
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2">Total JK</td>
@@ -990,9 +1058,15 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
-                                                            <td colspan="1">MHR</td>
-                                                            <td></td>
-                                                            <td></td>
+															<td colspan="2">Total PHR</td>
+                                                            <td>
+                                                            <?php $total_phr = $sum = floatval($basi_col) + floatval($basi_jk) + floatval($basi_xlp) + floatval($basi_sp) + floatval($basi_bf);
+																	if($sum > 0) {
+																		echo $sum;
+																	} else {
+																		echo '';
+																	} ?>
+                                                            </td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1005,9 +1079,9 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
-                                                            <td colspan="1" rowspan="2">BASI</td>
-                                                            <td>CL</td>
-                                                            <td><?php echo $basi_cl ?></td>
+                                                            <td colspan="1" rowspan="1">MHR</td>
+                                                            <td></td>
+                                                            <td></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1015,14 +1089,15 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                         </tr>
                                                         <!-- BF K3 -->
                                                         <tr>
-                                                            <td rowspan="8">BF</td>
+                                                            <td rowspan="9">BF</td>
                                                             <td>K3 COL</td>
                                                             <td><?php echo $bf_k3_col ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
-                                                            <td>MH</td>
-                                                            <td><?php echo $basi_mh ?></td>
+															<td colspan="1" rowspan="2">BASI</td>
+                                                            <td>CL</td>
+                                                            <td><?php echo $basi_cl ?></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1034,6 +1109,21 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
+															
+                                                            <td>MH</td>
+                                                            <td><?php echo $basi_mh ?></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td class="bg-light" style="background-color: gray"></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>K3 JK</td>
+                                                            <td><?php echo $bf_k3_jk ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+															
                                                             <td colspan="2">TOTAL MHR</td>
                                                             <td>
                                                             <?php $total_mhr2 = $sum = floatval($basi_mh) + floatval($basi_cl);
@@ -1050,27 +1140,27 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td></td>
+                                                           
                                                         </tr>
-                                                        <tr>
-                                                            <td>K3 JK</td>
-                                                            <td><?php echo $bf_k3_jk ?></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td colspan="2"></td>
-                                                            <td colspan="7" class="text-center">
-                                                                <strong>
-                                                                    Sortir
-                                                                </strong>
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
+                                                       <tr>
                                                             <td>K3 JL</td>
                                                             <td><?php echo $bf_k3_jl ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
-                                                            <td>PHR</td>
+															<td colspan="7" class="text-center">
+                                                                <strong>
+                                                                    Sortir
+                                                                </strong>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>JL</td>
+                                                            <td><?php echo $bf_jl ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td></td>
                                                             <td></td>
                                                             <td class="bg-light" style="background-color: gray"></td>
                                                             <td></td>
@@ -1110,6 +1200,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td><?php echo $bf_lp_slb ?></td>
                                                             <td></td>
                                                             <td></td>
+															<td></td>
                                                             <td colspan="2"></td>
                                                             <td>JK</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
@@ -1119,15 +1210,15 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                             <td></td>
                                                             <td></td>
                                                         </tr>
-                                                        <tr>
+                                                       <tr>
                                                             <td>SP</td>
                                                             <td><?php echo $bf_sp ?></td>
+                                                            <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td colspan="2"></td>
                                                             <td>XLP</td>
                                                             <td class="bg-light" style="background-color: gray"></td>
-
                                                             <td><?php echo $basi_xlp2 ?></td>
                                                             <td></td>
                                                             <td></td>
@@ -1437,7 +1528,6 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                             </div>
                                             <p>Note: <?php echo $ss['note'] ?></p>
                                         </div>
-										</div>
 										<div class="modal-footer">
 											<!-- <?php if($data2['status'] == 3) { ?>
 											<a
