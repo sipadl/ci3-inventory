@@ -192,7 +192,7 @@
 			}
 			?>
 		</div>
-        <table class="table" id="myTable4">
+        <table class="responsive table" id="myTable4">
             <thead>
 				<th>No.</th>
 				<th>Supplier</th>

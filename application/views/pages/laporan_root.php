@@ -55,7 +55,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <table class="table table-responsive table-bordered" id="myTablePrintAble">
+                            <table class="responsive table table-responsive table-bordered" id="myTablePrintAble">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
@@ -401,7 +401,7 @@
 		echo '<div class="alert alert-success my-2">' . $this->session->flashdata('success') . '</div>';
 		}
 		?>
-        <table class="table" id="myTable3">
+        <table class="responsive table" id="myTable3">
             <thead>
                 <tr>
                     <th>No.</th>
@@ -499,7 +499,7 @@
 												$dataDaging = $this->db->query("SELECT * FROM tbl_sub_daging 
 												WHERE id_bahan_baku = ".$das['id_bahan_baku'].' order by spek desc')->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
 												?>
-                                            <table class="table-bordered w-100">
+                                            <table class="responsive table-bordered w-100">
                                                 <thead class="text-center">
                                                     <tr class="text-center">
                                                         <tr>
@@ -694,7 +694,7 @@
 												}
 											</style>
 											<div class="col-md-12">
-												<table class="table table-bordered mt-4 tbl-spesial">
+												<table class="responsive table table-bordered mt-4 tbl-spesial">
 													<thead class="text-center tbl-spesial">
 														<tr>
 															<th colspan="2" rowspan="2">Spec</th>
@@ -1438,7 +1438,7 @@
 														</tr>
 													</tbody>
 												</table>
-												<table class="table table-bordered mt-3">
+												<table class="responsive table table-bordered mt-3">
 												<tr>
 													<td colspan="3" height="90px" class="text-center">Dibuat</td>
 													<td colspan="4" height="90px" class="text-center">Diperiksa</td>
@@ -1572,7 +1572,7 @@
 												}
 											</style>
 											<div class="col-md-12">
-												<table class="table table-bordered mt-4 tbl-spesial">
+												<table class="responsive table table-bordered mt-4 tbl-spesial">
 													<thead class="text-center tbl-spesial">
 														<tr>
 															<th colspan="2" rowspan="2">Spec</th>
@@ -2316,7 +2316,7 @@
 														</tr>
 													</tbody>
 												</table>
-												<table class="table table-bordered mt-3">
+												<table class="responsive table table-bordered mt-3">
 												<tr>
 													<td colspan="3" height="90px" class="text-center">Dibuat</td>
 													<td colspan="4" height="90px" class="text-center">Diperiksa</td>

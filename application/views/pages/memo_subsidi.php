@@ -7,7 +7,7 @@
 		echo '<div class="alert alert-success my-2">' . $this->session->flashdata('success') . '</div>';
 		}
 		?>
-		<table class="table table-bordered" id="myTable">
+		<table class="responsive table table-bordered" id="myTable">
 			<thead>
 				<tr>
 					<th>No.</th>
@@ -76,7 +76,7 @@
 											<h4 class="modal-title mb-2">Memo Subsidi</h4>
 											<p>Dengan Memberitahukan</p>
 										</div>
-											<table class="table table-borderless w-100">
+											<table class="responsive table table-borderless w-100">
 												<tbody>
 													<tr>
 														<td>Kode Supplier</td>
@@ -95,7 +95,7 @@
 											<div class="d-flex justify-content-center">
 												<strong>Diberikan : Penambahan / Pengurangan</strong>
 											</div>
-											<table class="table table-borderless w-100">
+											<table class="responsive table table-borderless w-100">
 												<tbody>
 													<tr>
 														<td>Subsidi</td>

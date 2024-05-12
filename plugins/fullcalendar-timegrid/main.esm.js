@@ -581,7 +581,7 @@ var TimeGrid = /** @class */ (function (_super) {
     TimeGrid.prototype._renderSlats = function (dateProfile) {
         var theme = this.context.theme;
         this.slatContainerEl.innerHTML =
-            '<table class="' + theme.getClass('tableGrid') + '">' +
+            '<table class="  ' + theme.getClass('tableGrid') + '">' +
                 this.renderSlatRowHtml(dateProfile) +
                 '</table>';
         this.slatEls = findElements(this.slatContainerEl, 'tr');
@@ -628,7 +628,7 @@ var TimeGrid = /** @class */ (function (_super) {
         var _a = this.context, calendar = _a.calendar, view = _a.view, isRtl = _a.isRtl, theme = _a.theme, dateEnv = _a.dateEnv;
         var bgRow = new DayBgRow(this.context);
         this.rootBgContainerEl.innerHTML =
-            '<table class="' + theme.getClass('tableGrid') + '">' +
+            '<table class="  ' + theme.getClass('tableGrid') + '">' +
                 bgRow.renderHtml({
                     cells: cells,
                     dateProfile: dateProfile,
@@ -1086,7 +1086,7 @@ var AbstractTimeGridView = /** @class */ (function (_super) {
     AbstractTimeGridView.prototype.renderSkeletonHtml = function () {
         var _a = this.context, theme = _a.theme, options = _a.options;
         return '' +
-            '<table class="' + theme.getClass('tableGrid') + '">' +
+            '<table class="  ' + theme.getClass('tableGrid') + '">' +
             (options.columnHeader ?
                 '<thead class="fc-head">' +
                     '<tr>' +

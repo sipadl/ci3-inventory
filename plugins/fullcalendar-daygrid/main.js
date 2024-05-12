@@ -826,7 +826,7 @@ Docs & License: https://fullcalendar.io/
             return '' +
                 '<div class="' + classes.join(' ') + '">' +
                 '<div class="fc-bg">' +
-                '<table class="' + theme.getClass('tableGrid') + '">' +
+                '<table class="  ' + theme.getClass('tableGrid') + '">' +
                 bgRow.renderHtml({
                     cells: this.props.cells[row],
                     dateProfile: this.props.dateProfile,
@@ -1399,7 +1399,7 @@ Docs & License: https://fullcalendar.io/
         AbstractDayGridView.prototype.renderSkeletonHtml = function () {
             var _a = this.context, theme = _a.theme, options = _a.options;
             return '' +
-                '<table class="' + theme.getClass('tableGrid') + '">' +
+                '<table class="  ' + theme.getClass('tableGrid') + '">' +
                 (options.columnHeader ?
                     '<thead class="fc-head">' +
                         '<tr>' +

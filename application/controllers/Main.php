@@ -618,7 +618,7 @@ class Main extends CI_Controller {
 	public function approval_coasting(){
 		$data['title'] = 'Approval Coasting';
 		$sortir = $this->Datadaging_model->getDataNoOrderWithWhere('tbl_sortir','status','3');
-		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('0,1,2,3,4,5');
+		$bahanbaku = $this->Main_model->getBahanBakuWithStatus('3,4,5');
 		$supplier = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
 
 		$this->load->view('templates/header', $data);
@@ -887,4 +887,90 @@ class Main extends CI_Controller {
 		// redirect(base_url(), 'refresh');
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 	}
+
+	public function aproval_tl_bb () {
+		$data['title'] = 'Approval TL Bahan Baku';
+        $daging = $this->Datadaging_model->getData('tbl_daging');
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/aproval_tl_bb',['daging' => $daging ]);
+        $this->load->view('templates/footer');
+	}
+
+	public function upload_coasting() {
+		$data['title'] = 'Upload Coasting';
+		$file = $this->Main_model->kontrol1();
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/k1',['file' => $file ]);
+        $this->load->view('templates/footer');
+	}
+
+	public function file_gm() {
+		$data['title'] = 'File GM';
+		$file = $this->Main_model->kontrol1();
+
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/k2',['file' => $file ]);
+        $this->load->view('templates/footer');
+	}
+
+	public function upload_coastings() {
+        // Lakukan proses unggah file dan catatan di sini
+        // Misalnya, simpan file di server dan catatan ke dalam database
+
+        // Contoh proses unggah file
+		$config['upload_path'] = FCPATH . 'upload/images';
+        $config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png|xls|xlxs'; // Jenis file yang diizinkan
+        $config['max_size'] = 2048; // Maksimum ukuran file dalam KB
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('file')) {
+            // Gagal unggah file, tampilkan pesan error
+			$error = $this->upload->display_errors();
+            echo $error;
+			return;
+        } else {
+            // File berhasil diunggah, proses catatan dan penyimpanan ke database jika diperlukan
+            $data = array(
+                'file' => $this->upload->data('file_name'),
+                'note' => $this->input->post('note'), // Ambil catatan dari form
+				'created_at' => date('Y-m-d H:i:s'),
+            );
+			$this->Main_model->insertAll('tbl_file', $data);
+			$this->session->set_flashdata('success', 'Data berhasil ditambahkan.');
+
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
+        }
+    }
+
+	public function approval_upload($id){
+		$this->Main_model->updateAll('tbl_file', ['status' => 1], $id);
+		$this->session->set_flashdata('success', 'Data berhasil diapprove.');
+		
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+	public function reject_upload($id){
+		$this->Main_model->updateAll('tbl_file', ['status' => -1], $id);
+		$this->session->set_flashdata('success', 'Data berhasil direject.');
+
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+	}
+	
+
+	public function download($file_id) {
+		// Ambil informasi file dari database berdasarkan ID
+		$data = $this->db->query('SELECT * FROM tbl_file WHERE id = '.$file_id)->row_array();
+	
+		// Tentukan nama file dan path ke file yang sesungguhnya
+		$file_name = $data['file'];
+		$file_path = FCPATH.'/upload/images/'.$file_name; // Sesuaikan dengan path ke direktori penyimpanan file
+	
+		// Set header untuk file yang akan didownload
+		header("Content-type: application/octet-stream");
+		header("Content-Disposition: attachment; filename=\"".$file_name."\"");
+		readfile($file_path);
+	}
+	
 }

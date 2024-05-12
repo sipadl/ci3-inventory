@@ -120,6 +120,7 @@ function printDisini(val) {
     $('#myTable2').DataTable();
     $('#myTable3').DataTable();
     $('#myTable4').DataTable();
+    $('#myTable6').DataTable();
   });
 
   $(document).ready(function() {

@@ -40,22 +40,22 @@ class Main_model extends CI_Model {
 		tbl_sortir a
 	left join tbl_memo b on
 		a.id = b.id_sortir
-	join tbl_daging c on c.id = a.id_bb ')->result_array();
+	join tbl_daging c on c.id = a.id_bb where is_corection = 0')->result_array();
 	}
 
 	public function getBahanBakuWithStatus($val) {
-		return $this->db->query("select td.*, td.keterangan as keterangan_bahan_baku, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.status in(".$val.") and is_corection = 0 order by ts.id desc")->result_array();
+		return $this->db->query("select td.*, td.keterangan as keterangan_bahan_baku, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.status in(".$val.") and is_corection = 0 order by ts.id asc")->result_array();
 	}
 
 	public function getBahanBakuWithDate($start, $end) {
-		return $this->db->query("select td.*, ts.status as status_sortir, td.keterangan as keterangan_bahan_baku, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.tanggal_rec >= ? and ts.tanggal_rec <= ? and ts.status >= 3 and is_corection = 0 order by ts.id desc", [$start, $end])->result_array();
+		return $this->db->query("select td.*, ts.status as status_sortir, td.keterangan as keterangan_bahan_baku, td.id as id_bahan_baku, ts.id as id_sortir, ts.* from tbl_daging td left join tbl_sortir ts on td.id = ts.id_bb where ts.tanggal_rec >= ? and ts.tanggal_rec <= ? and ts.status >= 3 and is_corection = 0 order by ts.id asc", [$start, $end])->result_array();
 	}
 
 	public function getDataSortir($id = null) {
 		if($id) {
-			return $this->db->query("select * from tbl_sortir where id =". $id." order by id desc")->result_array();
+			return $this->db->query("select * from tbl_sortir where id =". $id." order by id asc")->result_array();
 		} else {
-			return $this->db->query("select * from tbl_sortir where status = 0 order by id desc")->result_array();
+			return $this->db->query("select * from tbl_sortir where status = 0 order by id asc")->result_array();
 		}
 	}
 
@@ -259,7 +259,7 @@ class Main_model extends CI_Model {
 						tbl_supplier) d on
 					d.kode_supplier = a.supplier
 				order by
-					b.tanggal_rec desc
+					b.tanggal_rec asc
 		) a
 	) b ) c")->row_array();
 	}
@@ -272,6 +272,11 @@ class Main_model extends CI_Model {
 	public function getDagingWithSubDaging()
 	{
 		return $this->db->query('select * from tbl_daging a left join tbl_sub_daging b on a.id = b.id_bahan_baku')->result_array();
+	}
+
+	public function kontrol1()
+	{
+		return $this->db->query('select * from tbl_file order by created_at asc')->result_array();
 	}
 
 }

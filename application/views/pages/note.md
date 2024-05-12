@@ -14,7 +14,7 @@
 							</button>
 					</div>
 					<div class="modal-body">
-					<table class="table table-bordered table-responsive" id="myTablePrintAble">
+					<table class="responsive table table-bordered table-responsive" id="myTablePrintAble">
 					<thead class="text-center">
 					<tr>
 					<th style="width: 40px;" rowspan="2">NO.</th>
@@ -519,7 +519,7 @@
 													}
 												</style>
 												<div class="col-md-12">
-													<table class="table table-bordered mt-4 tbl-spesial">
+													<table class="responsive table table-bordered mt-4 tbl-spesial">
 														<thead class="text-center tbl-spesial">
 															<tr>
 																<th colspan="2" rowspan="2">Spec</th>
@@ -1145,7 +1145,7 @@
 															
 														</tbody>
 													</table>
-													<table class="table table-bordered mt-3">
+													<table class="responsive table table-bordered mt-3">
 													<tr>
 														<td colspan="3" height="90px" class="text-center">Dibuat</td>
 														<td colspan="4" height="90px" class="text-center">Diperiksa</td>

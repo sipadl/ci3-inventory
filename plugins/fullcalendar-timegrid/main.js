@@ -584,7 +584,7 @@ Docs & License: https://fullcalendar.io/
         TimeGrid.prototype._renderSlats = function (dateProfile) {
             var theme = this.context.theme;
             this.slatContainerEl.innerHTML =
-                '<table class="' + theme.getClass('tableGrid') + '">' +
+                '<table class="  ' + theme.getClass('tableGrid') + '">' +
                     this.renderSlatRowHtml(dateProfile) +
                     '</table>';
             this.slatEls = core.findElements(this.slatContainerEl, 'tr');
@@ -631,7 +631,7 @@ Docs & License: https://fullcalendar.io/
             var _a = this.context, calendar = _a.calendar, view = _a.view, isRtl = _a.isRtl, theme = _a.theme, dateEnv = _a.dateEnv;
             var bgRow = new daygrid.DayBgRow(this.context);
             this.rootBgContainerEl.innerHTML =
-                '<table class="' + theme.getClass('tableGrid') + '">' +
+                '<table class="  ' + theme.getClass('tableGrid') + '">' +
                     bgRow.renderHtml({
                         cells: cells,
                         dateProfile: dateProfile,
@@ -1089,7 +1089,7 @@ Docs & License: https://fullcalendar.io/
         AbstractTimeGridView.prototype.renderSkeletonHtml = function () {
             var _a = this.context, theme = _a.theme, options = _a.options;
             return '' +
-                '<table class="' + theme.getClass('tableGrid') + '">' +
+                '<table class="  ' + theme.getClass('tableGrid') + '">' +
                 (options.columnHeader ?
                     '<thead class="fc-head">' +
                         '<tr>' +

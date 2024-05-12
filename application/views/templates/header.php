@@ -218,6 +218,12 @@
 							</a>
 						</li>
 					<li class="nav-item">
+                <a href="<?php echo base_url('main/aproval_tl_bb') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approval TL BB</p>
+                </a>
+              </li>
+					<li class="nav-item">
                 <a href="<?php echo base_url('main/aproval_sortir') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval Sortir</p>
@@ -235,10 +241,22 @@
                   <p>Approval Coasting </p>
                 </a>
               </li>
+					<li class="nav-item">
+                <a href="<?php echo base_url('main/upload_coasting') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Upload Coasting </p>
+                </a>
+              </li>
 							<li class="nav-item">
                 <a href="<?php echo base_url('main/approval_gm') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Approval GM </p>
+                </a>
+              </li>
+							<li class="nav-item">
+                <a href="<?php echo base_url('main/file_gm') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>File GM </p>
                 </a>
               </li>
 					<li class="nav-item">
@@ -259,12 +277,12 @@
                   <p>Approval Pengajuan Audit </p>
                 </a>
               </li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
                 <a href="<?php echo base_url('main/memo_subsidi') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Memo Subsidi </p>
                 </a>
-              </li>
+              </li> -->
 					<li class="nav-item">
                 <a href="<?php echo base_url('main/penerimaan_bahan') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

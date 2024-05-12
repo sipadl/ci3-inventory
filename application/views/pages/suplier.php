@@ -138,7 +138,7 @@
 	?>
     <hr>
     <div class="mb-2">
-        <table class="table" id="myTable">
+        <table class="responsive table" id="myTable">
             <thead>
                 <tr>
                     <th>No.</th>

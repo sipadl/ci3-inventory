@@ -8,7 +8,7 @@ if ($this->session->flashdata('success')) {
 echo '<div class="alert alert-success my-2">' . $this->session->flashdata('success') . '</div>';
 }
 ?>
-            <table class="table" id="myTable">
+            <table class="responsive table" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
@@ -16,8 +16,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                         <th scope="col">Kode Supplier</th>
                         <th scope="col">Tanggal Input</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Id Bahan Baku</th>
-                        <!-- <th scope="col">Spesifikasi</th> -->
+                         <!-- <th scope="col">Spesifikasi</th> -->
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -53,8 +52,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 							echo "Unknown"; 
 						} ?>
                         </td>
-                        <td><?php echo $ss['id_bahan_baku'] ?></td>
-                        <!-- <td><?php echo $ss['spesifikasi'] ?></td> -->
+                         <!-- <td><?php echo $ss['spesifikasi'] ?></td> -->
                         <td>
                             <div class="d-flex justify-content-">
                                 <button
@@ -82,7 +80,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                             </div>
                                             <div class="modal-body" id="<?php echo 'modal-print-'.$ss['id_bahan_baku'] ?>">
                                                 <div class="container-fluid">
-												<table class="table-bordered">
+												<table class="responsive table-bordered">
 												<?php 
 												// var_dump($ss);
 												$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
@@ -972,7 +970,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                                                 }
                                             </style>
                                             <div class="col-md-12">
-                                                <table class="table table-bordered mt-4 tbl-spesial">
+                                                <table class="responsive table table-bordered mt-4 tbl-spesial">
                                                     <thead class="text-center tbl-spesial">
                                                         <tr>
                                                             <th colspan="2" rowspan="2">Spec</th>

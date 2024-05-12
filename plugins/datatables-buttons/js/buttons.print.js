@@ -118,7 +118,7 @@ DataTable.ext.buttons.print = {
 		};
 
 		// Construct a table for printing
-		var html = '<table class="'+dt.table().node().className+'">';
+		var html = '<table class="  '+dt.table().node().className+'">';
 
 		if ( config.header ) {
 			html += '<thead>'+ addRow( data.header, 'th' ) +'</thead>';

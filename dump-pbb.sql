@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2024 at 06:31 PM
+-- Generation Time: May 12, 2024 at 06:18 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.27
 
@@ -68,7 +68,28 @@ INSERT INTO `tbl_daging` (`id`, `tanggal`, `supplier`, `user_id`, `wilayah`, `st
 (79, '2024-05-04', 'K1', 0, '0', 0, NULL),
 (80, '2024-05-06', 'K1', 0, '0', 1, 'AAAA'),
 (81, '2024-05-07', 'K1', 0, '0', 0, NULL),
-(82, '2024-05-06', 'K1', 0, '0', 0, NULL);
+(82, '2024-05-06', 'K1', 0, '0', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_file`
+--
+
+CREATE TABLE `tbl_file` (
+  `id` int(11) NOT NULL,
+  `file` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `note` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_file`
+--
+
+INSERT INTO `tbl_file` (`id`, `file`, `status`, `created_at`, `note`) VALUES
+(1, 'Screenshot_(8)4.png', 1, '0000-00-00 00:00:00', '1');
 
 -- --------------------------------------------------------
 
@@ -400,10 +421,10 @@ CREATE TABLE `tbl_sortir` (
 --
 
 INSERT INTO `tbl_sortir` (`id`, `kode_supplier`, `tanggal_sj`, `tanggal_rec`, `tanggal_rec2`, `tanggal_rec3`, `number`, `col`, `bf`, `jb`, `jb_bf`, `jbb_jk`, `jbb_bf`, `xlp`, `bf_k3_col`, `bf_k3_jb`, `bf_k3_jk`, `bf_k3_jl`, `bf_jl`, `bf_kj`, `bf_bf`, `bf_lp_slb`, `bf_sp`, `bf_spk_xlp`, `bf_spk_sp`, `spk_sp_jb`, `spk_sp_xlp`, `spk_sp_bfp`, `spk_sp_sph`, `sp_cl`, `sp_clf`, `mh`, `mh_slb`, `phr`, `basi_col`, `basi_jb`, `basi_jk`, `basi_xlp`, `basi_bf`, `basi_sp`, `mhr`, `basi_cl`, `basi_mh`, `air`, `shell`, `loss`, `timbangan_kotor`, `timbangan_bb`, `status`, `jbb_jf`, `spk_sp`, `sp_sph`, `id_bb`, `approved_by`, `cap`, `potong`, `note`, `shell_phr_keras`, `shell_mhr_keras`, `shell_phr_halus`, `shell_mhr_halus`, `keterangan`, `basi_col2`, `basi_jb2`, `basi_jk2`, `basi_xlp2`, `basi_bf2`, `basi_sp2`, `mhr2`, `basi_cl2`, `basi_mh2`, `is_corection`) VALUES
-(14, 'K2', '2024-05-03', '2024-05-03', NULL, NULL, 78, '33.2', '33.2', '33.2', '33.2', '2.58', '43.23', '33.2', '45.32', '45.32', '45.32', '45.32', '33.2', '1.46', '33.2', '45.32', '33.2', '33.2', '0.16', '2.26', '33.19', '45.32', NULL, '33.2', '33.2', '18.24', '33.2', NULL, '33.2', '1.44', '45.32', '33.2', '33.2', '45.32', NULL, '33.2', '0.79', '33', '44', '33', NULL, NULL, 2, NULL, '33.2', '0.94', 78, 4, 'ya', NULL, 'okeoekeo', '2', '2', '2', '2', NULL, '21', '22', '33', '44', '11', '11', NULL, '22', '33', 0),
-(15, 'K1', '2024-05-05', '2024-05-05', '0000-00-00', '0000-00-00', 16, '8', '87', '7', '7', '7', '6', '7', '7', '7', '7', '77', '7', '7', '7', '7', '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '7', NULL, '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '1', '7', NULL, NULL, 3, '', '7', '7', 79, 4, 'ya', '', '', '6', '6', '67', '7', '', '6', '6', '6', '6', '6', '6', NULL, '6', '6', 0),
+(14, 'K2', '2024-05-03', '2024-05-03', NULL, NULL, 78, '33.2', '33.2', '33.2', '33.2', '2.58', '43.23', '33.2', '45.32', '45.32', '45.32', '45.32', '33.2', '1.46', '33.2', '45.32', '33.2', '33.2', '0.16', '2.26', '33.19', '45.32', NULL, '33.2', '33.2', '18.24', '33.2', NULL, '33.2', '1.44', '45.32', '33.2', '33.2', '45.32', NULL, '33.2', '0.79', '33', '44', '33', NULL, NULL, 3, NULL, '33.2', '0.94', 78, 4, 'ya', NULL, 'okeoekeo', '2', '2', '2', '2', '', '21', '22', '33', '44', '11', '11', NULL, '22', '33', 0),
+(15, 'K1', '2024-05-05', '2024-05-05', '0000-00-00', '0000-00-00', 16, '8', '87', '7', '7', '7', '6', '7', '7', '7', '7', '77', '7', '7', '7', '7', '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '7', NULL, '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '1', '7', NULL, NULL, 4, '', '7', '7', 79, 4, 'ya', '', '', '6', '6', '67', '7', '', '6', '6', '6', '6', '6', '6', NULL, '6', '6', 0),
 (16, 'K1', '2024-05-05', '2024-05-05', NULL, NULL, 16, '8', '87', '7', '7', '7', '7', '7', '7', '7', '7', '77', '7', '7', '7', '7', '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '7', NULL, '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '1', '7', NULL, NULL, 2, '', '7', '7', 80, 4, 'ya', '', '', '7', '7', '7', '7', 'P', '7', '7', '7', '7', '7', '7', NULL, '7', '7', 0),
-(17, 'K1', '2024-05-06', '2024-05-06', NULL, NULL, 81, '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '11', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', NULL, '1', '1', '1', '1', NULL, '1', '1', '1', '1', '1', '1', NULL, '1', '1', '1', '1', '1', NULL, NULL, 3, NULL, '1', '1', 81, 4, 'ya', NULL, '', '1', '1', '1', '1', '', '1', '1', '1', '5', '1', '1', NULL, '1', '1', 0),
+(17, 'K1', '2024-05-06', '2024-05-06', NULL, NULL, 81, '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '11', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', NULL, '1', '1', '1', '1', NULL, '1', '1', '1', '1', '1', '1', NULL, '1', '1', '1', '1', '1', NULL, NULL, 4, NULL, '1', '1', 81, 4, 'ya', NULL, '', '1', '1', '1', '1', '', '1', '1', '1', '5', '1', '1', NULL, '1', '1', 0),
 (26, 'K1', '2024-05-05', '2024-05-06', NULL, NULL, 16, '8', '87', '7', '7', '7', '7', '7', '7', '7', '7', '77', '7', '7', '7', '7', '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '7', NULL, '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '44', '7', NULL, NULL, 3, NULL, '7', '7', 80, NULL, 'ya', NULL, '', '7', '7', '7', '7', NULL, '7', '7', '7', '7', '7', '7', NULL, '7', '7', 1);
 
 -- --------------------------------------------------------
@@ -518,6 +539,12 @@ ALTER TABLE `tbl_daging`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_file`
+--
+ALTER TABLE `tbl_file`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_kota`
 --
 ALTER TABLE `tbl_kota`
@@ -607,6 +634,12 @@ ALTER TABLE `tbl_area`
 --
 ALTER TABLE `tbl_daging`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+
+--
+-- AUTO_INCREMENT for table `tbl_file`
+--
+ALTER TABLE `tbl_file`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_kota`

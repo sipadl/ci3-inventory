@@ -8278,7 +8278,7 @@ var DayHeader = /** @class */ (function (_super) {
         var parentEl = this.parentEl;
         parentEl.innerHTML = ''; // because might be nbsp
         parentEl.appendChild(this.el = htmlToElement('<div class="fc-row ' + theme.getClass('headerRow') + '">' +
-            '<table class="' + theme.getClass('tableGrid') + '">' +
+            '<table class="  ' + theme.getClass('tableGrid') + '">' +
             '<thead></thead>' +
             '</table>' +
             '</div>'));

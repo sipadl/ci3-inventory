@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12 mt-4">
 		<!-- <h4>Penerimaan</h4> -->
-	<table class="table table-bordered" id="myTable3">
+	<table class="responsive table table-bordered" id="myTable3">
 			<thead>
 				<tr>
 					<th>No.</th>
@@ -64,7 +64,7 @@
 												<div class="">No Nota : <?php echo mt_rand(10,9999) ?></div>
 												<div class="">Tanggal : <?php echo $ss['tanggal_rec'] ?></div>
 											</div>
-											<table class="table table-bordered">
+											<table class="responsive table table-bordered">
 												<thead>
 													<tr>
 														<td>No.</td>
@@ -232,7 +232,7 @@
 												<div class="">No Nota : <?php echo mt_rand(10,9999) ?></div>
 												<div class="">Tanggal : <?php echo $ss['tanggal_rec'] ?></div>
 											</div>
-											<table class="table table-bordered">
+											<table class="responsive table table-bordered">
 												<thead>
 													<tr>
 														<td>No.</td>
@@ -286,7 +286,7 @@
 												<div class="">No Nota : <?php echo mt_rand(10,9999) ?></div>
 												<div class="">Tanggal : <?php echo $ss['tanggal_rec'] ?></div>
 											</div>
-											<table class="table table-bordered">
+											<table class="responsive table table-bordered">
 												<thead>
 													<tr>
 														<th>No.</th>
@@ -340,14 +340,7 @@
 												</tbody>
 											</table>
 											<div class="modal-footer">
-												<!-- <form action="<?php echo base_url('main/approve_penerimaan_bahan_baku'); ?>" method="post">
-													<input type="tel" name="potongan_harga" class="form-control my-2" id="" placeholder="Keterangan">
-												<input type="hidden" name="id_sortir" value="<?php echo $ss['id'] ?>">
-												<input type="hidden" name="kode_supplier" value="<?php echo $ss['kode_supplier'] ?>">
-												<input type="hidden" name="total" value="<?php echo $total_phrx + $total_mhrx ?>"> -->
 												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-												<!-- <button type="submit" class="btn btn-primary">Simpan & Approve</button> -->
-											<!-- </form> -->
 										</div>
 									</div>
 								</div>

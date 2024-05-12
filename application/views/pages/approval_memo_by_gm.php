@@ -7,7 +7,7 @@
 		echo '<div class="alert alert-success my-2">' . $this->session->flashdata('success') . '</div>';
 		}
 		?>
-		<table class="table table-bordered" id="myTable">
+		<table class="responsive table table-bordered" id="myTable">
 			<thead>
 				<tr>
 					<th>No.</th>

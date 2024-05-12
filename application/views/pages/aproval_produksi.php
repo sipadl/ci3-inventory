@@ -8,13 +8,12 @@ if ($this->session->flashdata('success')) {
 echo '<div class="alert alert-success my-2">' . $this->session->flashdata('success') . '</div>';
 }
 ?>
-            <table class="table" id="myTable">
+            <table class="responsive table" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Kode Supplier</th>
                         <th scope="col">Tanggal Input</th>
-                        <th scope="col">Id Bahan Baku</th>
                         <th scope="col">Approved By</th>
                         <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
@@ -30,7 +29,6 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
                         <th scope="row"><?php echo $no++ ?></th>
                         <td><?php echo $ss['supplier'] ?></td>
                         <td><?php echo $ss['tanggal'] ?></td>
-                        <td><?php echo $ss['id_bahan_baku'] ?></td>
                         <td>
                         <?php if($ss['approved_by'] != null ) {
 							 $approved = $this->db->query("select username from tbl_user where id = ".$ss['approved_by']."")->row_array();
@@ -102,7 +100,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												$dataDaging = $this->db->query("SELECT * FROM tbl_sub_daging 
 												WHERE id_bahan_baku = ".$ss['id_bahan_baku'].' order by spek desc')->result_array(); // Jika ingin dalam bentuk array asosiatif, tambahkan parameter kedua 'true'
 												?>
-												<table class="table-bordered w-100">
+												<table class="responsive table-bordered w-100">
 													<thead class="text-center">
 														<tr class="text-center">
 															<tr>
@@ -175,16 +173,16 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												</p>
 												</div>
 												</div>
-												<form action="" method="post" enctype="multipart/form" id="edit_kocak">
+												<!-- <form action="" method="post" enctype="multipart/form" id="edit_kocak"> -->
 													<div class="modal-footer">
-													<?php
+													<!-- <?php
 														if(!$ss['keterangan_bahan_baku'] ) { ?> 
 														<input type="text" name="keterangan" class="form-control mx-2" placeholder="keterangan" id="">
 														<button onclick="EditKocak('<?php echo base_url('main/mainApprove/').$ss['id_bahan_baku']; ?>', 'edit_kocak')" class="btn
 														btn-primary">Aprove</button>
 														<button onclick="EditKocak('<?php echo base_url('main/mainReject/').$ss['id_bahan_baku']; ?>', 'edit_kocak')" class="btn
 														btn-danger">Reject</button>
-														<?php } ?>
+														<?php } ?> -->
 														<button
                                                         type="button"
                                                         onclick="printDisini(<?php echo $ss['id'] ?>)"
@@ -308,7 +306,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 												}
 											</style>
 											<div class="col-md-12">
-												<table class="table table-bordered mt-4 tbl-spesial">
+												<table class="responsive table table-bordered mt-4 tbl-spesial">
 													<thead class="text-center tbl-spesial">
 														<tr>
 															<th colspan="2" rowspan="2">Spec</th>
@@ -1052,7 +1050,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														</tr>
 													</tbody>
 												</table>
-												<table class="table table-bordered mt-3">
+												<table class="responsive table table-bordered mt-3">
 												<tr>
 													<td colspan="3" height="90px" class="text-center">Dibuat</td>
 													<td colspan="4" height="90px" class="text-center">Diperiksa</td>

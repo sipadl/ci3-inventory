@@ -1233,7 +1233,7 @@ Responsive.renderer = {
 					'</tr>';
 			} ).join('');
 
-			return $('<table class="'+options.tableClass+' dtr-details" width="100%"/>').append( data );
+			return $('<table class="  '+options.tableClass+' dtr-details" width="100%"/>').append( data );
 		}
 	}
 };
