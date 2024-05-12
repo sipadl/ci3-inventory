@@ -88,6 +88,7 @@
 														$bf = (floatval($ss['bf_k3_col']) + floatval($ss['bf_k3_jb']) + floatval($ss['bf_k3_jk']) + floatval($ss['bf_lp_slb'])
 														+ floatval($ss['bf_k3_jl']) + floatval($ss['bf_jl']) + floatval($ss['bf_bf']) + floatval($ss['bf_kj']) + floatval($ss['bf_sp']));
 														$spk = floatval($ss['bf_spk_sp']) + floatval($ss['bf_spk_xlp']);
+														$sph = floatval($ss['sp_sph']);
 														$sp = floatval($ss['spk_sp_jb']) + floatval($ss['spk_sp_xlp']) + floatval($ss['spk_sp_bfp']) + floatval($ss['spk_sp']);
 														// floatval($sp_jb) + floatval($sp_xlp) + floatval($sp_bf) + floatval($spk_sp)
 														$cl = floatval($ss['sp_cl']) + floatval($ss['sp_clf']);
@@ -102,10 +103,11 @@
 														$total_spk = $spk * floatval($price[9]['harga']);
 														$total_sp = $sp * floatval($price[10]['harga']);
 														$total_cl = $cl * floatval($price[12]['harga']);
+														$total_sph = $sph * floatval($price[11]['harga']);
 
 														$grand_total = $total_mh + $total_col + $total_jb
 														+ $total_jk + $total_xlp + $total_bf + $total_spk
-														+ $total_sp + $total_cl;
+														+ $total_sp + $total_cl + $total_sph;
 
 														echo $col; 
 														?></td>
@@ -165,6 +167,17 @@
 													</tr>
 													<tr>
 														<td>7</td>
+														<td>SPH</td>
+														<td></td>
+														<td><?php
+															echo $sph;
+														
+														?></td>
+														<td><?php echo number_format(floatval($price[11]['harga'])) ?></td>
+														<td> <?php echo number_format($sph * floatval($price[11]['harga'])); ?></td>
+													</tr>
+													<tr>
+														<td>8</td>
 														<td>SP</td>
 														<td></td>
 														<td><?php echo $sp;
@@ -173,7 +186,7 @@
 														<td> <?php echo number_format($sp * floatval($price[8]['harga'])); ?></td>
 													</tr>
 													<tr>
-														<td>8</td>
+														<td>9</td>
 														<td>CL</td>
 														<td></td>
 														<td><?php echo $cl
@@ -182,7 +195,7 @@
 														<td> <?php echo number_format($total_cl); ?></td>
 													</tr>
 													<tr>
-														<td>9</td>
+														<td>10</td>
 														<td>MH</td>
 														<td></td>
 														<td><?php echo

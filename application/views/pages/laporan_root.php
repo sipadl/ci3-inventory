@@ -67,6 +67,7 @@
                                         <th>XLP</th>
                                         <th>BF</th>
                                         <th>SPK</th>
+                                        <th>SPH</th>
                                         <th>SP</th>
                                         <th>CL</th>
                                         <th>MH</th>
@@ -87,7 +88,7 @@
                                 <tbody>
 								<?php 
 									$number = 1;
-									$total_col = $total_jb = $total_jk = $total_xlp = $total_cl1 = $total_bf = $total_spk = $total_sp = $total_mh1 = $total_mh2 = $total_phr1 = $total_mhr1 = $total_phr2 = $total_mhr2 = $total_air = $total_shell = $total_loss = $total_tmb_kotor = $total_qty = $total_grand_total = 0;
+									$total_col = $total_jb = $total_jk = $total_sph = $total_xlp = $total_cl1 = $total_bf = $total_spk = $total_sp = $total_mh1 = $total_mh2 = $total_phr1 = $total_mhr1 = $total_phr2 = $total_mhr2 = $total_air = $total_shell = $total_loss = $total_tmb_kotor = $total_qty = $total_grand_total = 0;
 
 									foreach($bahanbaku as $das) {
 										$data2 = $this->db->query('select * from tbl_sortir where id_bb =' . $das['id_bb'] . ' and is_corection = 1')->row_array();
@@ -160,6 +161,7 @@
 										$total_mhrx = floatval($das['basi_mh2']) + floatval($das['basi_cl2']) + floatval($das['basi_mh']) + floatval($das['basi_cl']); 
 										$total_phrx =  floatval($das['basi_col2']) + floatval($das['basi_jb2']) + floatval($das['basi_jk2']) + floatval($das['basi_xlp2']) + floatval($das['basi_bf2']) + floatval($das['basi_sp2'])
 										+ floatval($das['basi_col']) + floatval($das['basi_jb']) + floatval($das['basi_jk']) + floatval($das['basi_xlp']) + floatval($das['basi_bf']) + floatval($das['basi_sp']);
+										$sphX = floatval($sp_sp);
 
 										$col3 = $colX * floatval($price[0]['harga']);
 										$jb3 = $jbX * floatval($price[1]['harga']);
@@ -170,6 +172,7 @@
 										$sp3 = $spX * floatval($price[10]['harga']);
 										$mh3 = $mhX * floatval($price[14]['harga']);
 										$cl3 = $clX * floatval($price[12]['harga']);
+										$sph3 = $sphX * floatval($price[11]['harga']);
 
 										
 										$basi_1 = $total_phrx * floatval($price[14]['harga']);
@@ -177,7 +180,7 @@
 
 										$shell_total = floatval($shell) * floatval($price[24]['harga']);
 										$total_price = 
-										$basi_1 + $basi_2 + $shell_total +
+										$basi_1 + $basi_2 + $shell_total + $sph3 +
 										$col3+ $jb3+ $jk3+ $xlp3+ $bf3+ $spk3+ $sp3+ $mh3 + $cl3;
 										$data2 = $this->db->query('select * from tbl_sortir where id_bb ='.$das['id_bb'].' and is_corection = 1')->row_array();
 										$grand_totalX = 0;
@@ -198,7 +201,7 @@
 											$total_mhrxx = floatval($data2['basi_mh2']) + floatval($data2['basi_cl2']) + floatval($data2['basi_mh']) + floatval($data2['basi_cl']); 
 											$total_phrxx =  floatval($data2['basi_col2']) + floatval($data2['basi_jb2']) + floatval($data2['basi_jk2']) + floatval($data2['basi_xlp2']) + floatval($data2['basi_bf2']) + floatval($data2['basi_sp2'])
 											+ floatval($data2['basi_col']) + floatval($data2['basi_jb']) + floatval($data2['basi_jk']) + floatval($data2['basi_xlp']) + floatval($data2['basi_bf']) + floatval($data2['basi_sp']);
-	
+											$sphxx = $data['sp_sph'];
 
 											$col1 = $colXX * floatval($price[0]['harga']);
 											$jb1 = $jbXX * floatval($price[1]['harga']);
@@ -206,6 +209,7 @@
 											$bf1 = $bfXX * floatval($price[6]['harga']);
 											$spk1 = $spkXX * floatval($price[7]['harga']);
 											$sp1 = $spXX * floatval($price[8]['harga']);
+											$sph1 = $sphxx * floatval($price[11]['harga']);
 											$mh1 = $mhXX * floatval($price[12]['harga']);
 											$shell_total = floatval($data2['shell']) * floatval($price[20]['harga']);
 											$cl = floatval($data2['sp_cl']) * floatval($price[10]['harga']);
@@ -216,7 +220,7 @@
 
 											
 											$shell_total1 = floatval($data2['shell']) * floatval($price[24]['harga']);
-											$total_price2 = $col1+ $jb1+ $jk1+ $bf1+ $spk1+ $sp1+ $mh1;
+											$total_price2 = $col1+ $jb1+ $jk1+ $bf1+ $spk1+ $sp1+ $mh1 + $sph1;
 
 											$grand_totalX = $total_price2;
 											$total_grand_x_2 += $total_price2;
@@ -241,6 +245,7 @@
 										$total_cl1 += floatval($clX);
 										$total_mh2 += floatval($mh2);
 										$total_phr1 += floatval($phr);
+										$total_sph += floatval($sphX);
 										$total_mhr1 += floatval($basi_cl) + floatval($basi_mh);
 										$total_phr2 +=
 											floatval($basi_col2) +
@@ -268,6 +273,7 @@
                                         <td><?php echo $xlp ?></td>
                                         <td><?php echo $bfX ?></td>
                                         <td><?php echo $spkX ?></td>
+										<td><?php echo $sp_sp ?></td>
                                         <td><?php echo $spX ?></td>
                                         <td><?php echo $mhX ?></td>
                                         <td><?php echo $clX ?></td>
@@ -330,6 +336,9 @@
 								?></td>
                                         <td><?php echo 
 								$total_spk ?? 0
+								?></td>
+                                        <td><?php echo 
+								$total_sph ?? 0
 								?></td>
                                         <td><?php echo 
 								$total_sp ?? 0
