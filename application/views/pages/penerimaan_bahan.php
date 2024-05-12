@@ -387,9 +387,6 @@
 													<?php if($ss['subsidi'] == null) { ?> 
 														<button type="submit" class="btn btn-primary">Simpan</button>
 													<?php }  ?>
-													<?php if($ss['id_memo'] != null) { ?> 
-														<a href="<?php echo base_url('main/approve_memo_subsidi/'.$ss['id_memo']); ?>"class="btn btn-primary">Approve</a>
-													<?php }  ?>
 										</div>
 									</div>
 									</form>
