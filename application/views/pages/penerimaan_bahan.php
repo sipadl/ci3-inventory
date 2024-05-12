@@ -25,7 +25,7 @@
 				?>
 					<tr>
 						<td><?php echo $no++ ?></td>
-						<td><?php echo $ss['id'] ?></td>
+						<td><?php echo $ss['kode_supplier'] ?></td>
 						<td><?php echo $ss['tanggal_rec'] ?></td>
 						<td>
 						<?php 
