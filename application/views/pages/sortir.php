@@ -369,6 +369,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														floatval($spk_xlp) + floatval($spk_sp) + floatval($sp_jb) + floatval($sp_xlp) + floatval($sp_bf) +
 														floatval($sp_sph) + floatval($cl) + floatval($clf) + floatval($mh) + floatval($mh2) + floatval($phr) +
 														floatval($basi_col) + floatval($basi_jk) + floatval($basi_xlp) + floatval($basi_bf) + floatval($basi_sp) +
+														floatval($basi_col2) + floatval($basi_jk2) + floatval($basi_xlp2) + floatval($basi_bf2) + floatval($basi_sp2) +
 														floatval($mhr) + floatval($basi_cl) + floatval($basi_mh) + floatval($air) + floatval($shell) +
 														floatval($loss) + floatval($jbb_jf) + floatval($col_18);
 
@@ -393,35 +394,6 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 														floatval($spk_xlp) + floatval($spk_sp) + floatval($sp_jb) + floatval($sp_xlp) + floatval($sp_bf) +
 														floatval($sp_sph) + floatval($sp_sp) + floatval($cl) + floatval($clf) + floatval($mh) + floatval($mh2);
 
-														$fields = array(
-															'col',
-															'bf',
-															'jb',
-															'jb_bf',
-															'xlp',
-															'bf_k3_col',
-															'bf_k3_jb',
-															'bf_k3_jk',
-															'bf_k3_jl',
-															'bf_jl',
-															'bf_kj',
-															'bf_bf',
-															'bf_lp_slb',
-															'bf_sp',
-															'bf_spk_xlp',
-															'spk_sp_jb',
-															'spk_sp_xlp',
-															'spk_sp_bfp',
-															'sp_cl',
-															'sp_clf',
-															'mh',
-														);
-													
-														$total = 0;
-													
-														foreach ($fields as $field) {
-															$total += floatval($this->db->select_sum($field)->where('id', $ss['id'])->get('tbl_sortir')->row()->$field);
-														}
 
 														$qty = 0;
 														$dataDaging = $this->db->query('select * from tbl_sub_daging where id_bahan_baku ='.$ss['id_bahan_baku'])->result_array(); 
@@ -834,7 +806,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td>CL</td>
 															<td class="bg-light" style="background-color: gray"></td>
 
-															<td><?php echo $basi_cl ?></td>
+															<td><?php echo $basi_cl2 ?></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -848,7 +820,7 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td>MH</td>
 															<td class="bg-light" style="background-color: gray"></td>
 
-															<td><?php echo $basi_mh ?></td>
+															<td><?php echo $basi_mh2 ?></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -977,9 +949,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 															<td colspan="2">Timb. Kotor</td>
 															<td>
 															<?php
-															$timb =  $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($mh) + floatval($mh2)  + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + $total_phr + $total_phr2 + $total_mhr + $total_mhr2 + floatval($air) + floatval($shell) + floatval($loss);
+															$timb =  $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($mh) + floatval($mh2) + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + $total_phr + floatval($basi_cl) + floatval($basi_mh) + floatval($basi_cl2) + floatval($basi_mh2) + $total_phr2 + $air + $shell + $loss;
 
-																	$sum =$total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + floatval($air) + floatval($shell) + floatval($loss) + floatval($mh) + floatval($mh2);
 																	if($timb > 0) {
 																		echo $timb;
 																	} else {

@@ -201,7 +201,7 @@
 											$total_mhrxx = floatval($data2['basi_mh2']) + floatval($data2['basi_cl2']) + floatval($data2['basi_mh']) + floatval($data2['basi_cl']); 
 											$total_phrxx =  floatval($data2['basi_col2']) + floatval($data2['basi_jb2']) + floatval($data2['basi_jk2']) + floatval($data2['basi_xlp2']) + floatval($data2['basi_bf2']) + floatval($data2['basi_sp2'])
 											+ floatval($data2['basi_col']) + floatval($data2['basi_jb']) + floatval($data2['basi_jk']) + floatval($data2['basi_xlp']) + floatval($data2['basi_bf']) + floatval($data2['basi_sp']);
-											$sphxx = $data['sp_sph'];
+											$sphxx = $data2['sp_sph'];
 
 											$col1 = $colXX * floatval($price[0]['harga']);
 											$jb1 = $jbXX * floatval($price[1]['harga']);
@@ -1385,7 +1385,7 @@
 															<td colspan="2">Timb. Kotor</td>
 															<td>
 															<?php
-															$timb =  $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($mh) + floatval($mh2)  + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + $total_phr + $total_phr2 + $total_mhr + $total_mhr2 + floatval($air) + floatval($shell) + floatval($loss);
+															$timb =  $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($mh) + floatval($mh2) + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + $total_phr + floatval($basi_cl) + floatval($basi_mh) + floatval($basi_cl2) + floatval($basi_mh2) + $total_phr2 + $air + $shell + $loss;
 
 																	$sum =$total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + floatval($air) + floatval($shell) + floatval($loss) + floatval($mh) + floatval($mh2);
 																	if($timb > 0) {
@@ -2263,7 +2263,7 @@
 															<td colspan="2">Timb. Kotor</td>
 															<td>
 															<?php
-															$timb =  $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($mh) + floatval($mh2)  + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + $total_phr + $total_phr2 + $total_mhr + $total_mhr2 + floatval($air) + floatval($shell) + floatval($loss);
+															$timb =  $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($mh) + floatval($mh2) + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + $total_phr + floatval($basi_cl) + floatval($basi_mh) + floatval($basi_cl2) + floatval($basi_mh2) + $total_phr2 + $air + $shell + $loss;
 
 																	$sum =$total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + floatval($air) + floatval($shell) + floatval($loss) + floatval($mh) + floatval($mh2);
 																	if($timb > 0) {
