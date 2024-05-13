@@ -46,7 +46,68 @@
 							<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelIdX-<?php echo $ss['id'] ?>">
 							  	Tambah Subsidi
 							</button>
+							<button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#modelIdMemo<?php echo $ss['id'] ?>">
+							  Detail Memo
+							</button>
 							
+							<!-- Modal -->
+							<div class="modal fade" id="modelIdMemo<?php echo $ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Memo Subsidi</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+										</div>
+										<div class="modal-body">
+										<div class="text-center">
+											<h4 class="modal-title mb-2">Memo Subsidi</h4>
+											<p>Dengan Memberitahukan</p>
+										</div>
+											<table class="responsive table table-borderless w-100">
+												<tbody>
+													<tr>
+														<td>Kode Supplier</td>
+														<td><?php echo $ss['kode_supplier'] ?></td>
+													</tr>
+													<tr>
+														<td>Tanggal Bahan Masuk</td>
+														<td><?php echo $ss['tanggal'] ?></td>
+													</tr>
+													<tr>
+														<td>Qty Sortir</td>
+														<td><?php echo $total ?> Kg</td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="d-flex justify-content-center">
+												<strong>Diberikan : Penambahan / Pengurangan</strong>
+											</div>
+											<table class="responsive table table-borderless w-100">
+												<tbody>
+													<tr>
+														<td>Subsidi</td>
+														<td><?php echo $ss['subsidi'] ? $ss['subsidi'] : '-' ?></td>
+													</tr>
+														<tr >
+															<td></td>
+															<td class="text-right" height="90">Disetujui Oleh
+																<br>
+																General Manager
+															</td>
+														</tr>
+												</tbody>
+
+											</table>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<!-- <button type="button" class="btn btn-primary">Save</button> -->
+										</div>
+									</div>
+								</div>
+							</div>
 							<!-- Modal -->
 							<div class="modal fade" id="modelId-frsh-<?php echo $ss['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
 								<div class="modal-dialog modal-xl modal-fullscreen" role="document">

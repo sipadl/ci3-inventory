@@ -1438,7 +1438,7 @@
                 <?php if($data2 && $data2['is_corection'] == 1 ) { ?>
                 <button
                     type="button"
-                    class="btn btn-light mx-1"
+                    class="btn btn-light btn-sm mx-1"
                     data-toggle="modal"
                     data-target="<?php echo '#modelId'.$data2['id_bb'].'is-corectoion' ?>">
                     <i class="fa fa-eye" aria-hidden="true"></i>
