@@ -1403,7 +1403,9 @@
 															<td></td>
 															<td colspan="2"></td>
 															<td colspan="2">Grand Total</td>
-															<td><?php echo $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + $total_mh + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + $total_phr + $total_phr2 + $total_mhr + $total_mhr2  ?></td>
+															<td><?php echo 
+															$total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($mh) + floatval($mh2) + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + $total_phr + floatval($basi_cl) + floatval($basi_mh) + floatval($basi_cl2) + floatval($basi_mh2) + $total_phr2;
+															?></td>
 															<td></td>
 															<td></td>
 															<td></td>
@@ -2281,7 +2283,9 @@
 															<td></td>
 															<td colspan="2"></td>
 															<td colspan="2">Grand Total</td>
-															<td><?php echo $total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + $total_mh + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + $total_phr + $total_phr2 + $total_mhr + $total_mhr2  ?></td>
+															<td><?php echo 
+															$total_col + $total_jb + $total_jk + $total_bf + $total_spk + $total_sp + floatval($mh) + floatval($mh2) + floatval($xlp) + floatval($clf) + floatval($cl) + floatval($sp_sp) + $total_phr + floatval($basi_cl) + floatval($basi_mh) + floatval($basi_cl2) + floatval($basi_mh2) + $total_phr2;
+															?></td>
 															<td></td>
 															<td></td>
 															<td></td>

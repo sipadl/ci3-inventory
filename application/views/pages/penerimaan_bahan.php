@@ -266,15 +266,15 @@
 														$total_phrx =  floatval($ss['basi_col2']) + floatval($ss['basi_jb2']) + floatval($ss['basi_jk2']) + floatval($ss['basi_xlp2']) + floatval($ss['basi_bf2']) + floatval($ss['basi_sp2'])
 														+ floatval($ss['basi_col']) + floatval($ss['basi_jb']) + floatval($ss['basi_jk']) + floatval($ss['basi_xlp']) + floatval($ss['basi_bf']) + floatval($ss['basi_sp']);
 														echo $total_phrx ?></td>
-														<td><?php echo number_format(floatval($price[13]['harga'])) ?></td>
-														<td><?php echo number_format($total_phrx * floatval($price[13]['harga'])) ?></td>
+														<td><?php echo number_format(floatval($price[14]['harga'])) ?></td>
+														<td><?php echo number_format($total_phrx * floatval($price[14]['harga'])) ?></td>
 													</tr>
 													<tr>
 														<td>2</td>
 														<td>MHR</td>
 														<td></td>
 														<td><?php echo $total_mhrx; ?></td>
-														<td><?php echo number_format(floatval($price[12]['harga'])) ?></td>
+														<td><?php echo number_format(floatval($price[13]['harga'])) ?></td>
 														<td><?php echo number_format( $total_mhrx * $price[13]['harga'] )?></td>
 													</tr>
 													<tr>
@@ -319,6 +319,7 @@
 														$tot = $col 
 														+ $mh
 														+ $cl
+														+ $clf
 														+ $sp
 														+ $spk
 														+ $bf
