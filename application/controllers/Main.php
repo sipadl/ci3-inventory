@@ -921,7 +921,7 @@ class Main extends CI_Controller {
 
         // Contoh proses unggah file
 		$config['upload_path'] = FCPATH . 'upload/images';
-        $config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png|xls|xlxs'; // Jenis file yang diizinkan
+		$config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png|xls|xlsx|zip'; // Jenis file yang diizinkan
         $config['max_size'] = 2048; // Maksimum ukuran file dalam KB
 
         $this->load->library('upload', $config);
