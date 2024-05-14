@@ -945,6 +945,36 @@ class Main extends CI_Controller {
         }
     }
 
+	public function upload_coastings_2($id) {
+        // Lakukan proses unggah file dan catatan di sini
+        // Misalnya, simpan file di server dan catatan ke dalam database
+
+        // Contoh proses unggah file
+		$config['upload_path'] = FCPATH . 'upload/images';
+		$config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png|xls|xlsx|zip'; // Jenis file yang diizinkan
+        $config['max_size'] = 2048; // Maksimum ukuran file dalam KB
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('file')) {
+            // Gagal unggah file, tampilkan pesan error
+			$error = $this->upload->display_errors();
+            echo $error;
+			return;
+        } else {
+            // File berhasil diunggah, proses catatan dan penyimpanan ke database jika diperlukan
+            $data = array(
+                'file' => $this->upload->data('file_name'),
+                'note' => $this->input->post('note'), // Ambil catatan dari form
+				'created_at' => date('Y-m-d H:i:s'),
+            );
+			$this->Main_model->updateAll('tbl_file', $data, $id);
+			$this->session->set_flashdata('success', 'Data berhasil diubah.');
+
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
+        }
+    }
+
 	public function approval_upload($id){
 		$this->Main_model->updateAll('tbl_file', ['status' => 1], $id);
 		$this->session->set_flashdata('success', 'Data berhasil diapprove.');

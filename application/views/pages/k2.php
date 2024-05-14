@@ -25,8 +25,8 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 				<td><?php echo $files['status'] == 1 ? 'Accept' : ($files['status'] == -1 ? 'Reject' : 'Pending') ?></td>
 				<td><?php echo $files['created_at']; ?></td>
 				<td><a class="btn btn-light btn-sm" href="<?php echo base_url('main/download/'.$files['id']); ?>">Download</a>
-				<a class="btn btn-light btn-sm" href="<?php echo base_url('main/approval_upload/'.$files['id']); ?>">Approve</a>
-				<a class="btn btn-light btn-sm" href="<?php echo base_url('main/reject_upload/'.$files['id']); ?>">Reject</a>
+				<a class="btn btn-primary btn-sm" href="<?php echo base_url('main/approval_upload/'.$files['id']); ?>">Approve</a>
+				<a class="btn btn-danger btn-sm" href="<?php echo base_url('main/reject_upload/'.$files['id']); ?>">Reject</a>
 			</td>
 		</tr>
 		<?php endforeach; ?>
