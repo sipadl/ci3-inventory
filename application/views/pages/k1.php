@@ -57,24 +57,24 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 				<td><?php echo $files['status'] == 1 ? 'Accept' : ($files['status'] == -1 ? 'Reject' : 'Pending') ?></td>
 				<td><?php echo $files['created_at']; ?></td>
 				<td><a class="btn btn-light btn-sm" href="<?php echo base_url('main/download/'.$files['id']); ?>">Download</a>
-				<?php if($file['status'] == -1) { ?>
+				<?php if($files['status'] == -1) { ?>
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelIdUbah-<?php echo $file['id'] ?>">
+					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelIdUbah-<?php echo $files['id'] ?>">
 						Unggah Ulang
 					</button>
 					
 					<!-- Modal -->
-					<div class="modal fade" id="modelIdUbah-<?php echo $file['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleIdUbah" aria-hidden="true">
+					<div class="modal fade" id="modelIdUbah-<?php echo $files['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleIdUbah" aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title">Unggah Ulange</h5>
+									<h5 class="modal-title">Unggah Ulang</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 								</div>
 								<div class="modal-body">
-								<form action="<?php echo base_url('main/upload_coastings_2/'.$file['id']); ?>" method="post" enctype="multipart/form-data">
+								<form action="<?php echo base_url('main/upload_coastings_2/'.$files['id']); ?>" method="post" enctype="multipart/form-data">
 									<div class="form-group">
 										<label for="file">Pilih File</label>
 										<input type="file" class="form-control" id="file" name="file" required>

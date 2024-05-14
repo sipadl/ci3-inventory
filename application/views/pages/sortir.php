@@ -181,6 +181,732 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 								Tambah Sortir
 							</button>
 							<?php } ?>
+							<?php if($ss['id_bb'] != null && $ss['tanggal_rec3'] == null && $ss['status'] == 0 ) { ?>
+                                    <button
+                                        type="button"
+                                        class="btn btn-warning mx-1"
+                                        data-toggle="modal"
+                                        data-target="#myModalUbah-<?php echo $ss['id_bb'] ?>">
+                                        Ubah Data
+                                    </button>
+
+                                    <!-- Modal Ubah -->
+                                    <div
+                                        class="modal fade"
+                                        id="myModalUbah-<?php echo $ss['id_bb'] ?>"
+                                        tabindex="-1"
+                                        role="dialog"
+                                        aria-labelledby="modelTitleId"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-xl modal-fullscreen" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Modal Ubah Form Sortir</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="sortiresUpdate-<?php echo $ss['id_bb'] ?>" method="post">
+                                                        <div class="modal-body">
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="kode_supplier">Kode Supplier</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                name="kode_supplier"
+                                                                                class="form-control"
+                                                                                readonly="readonly"
+                                                                                value="<?php
+
+																			echo $ss['supplier'] ?>">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="tanggal_kirim">Tanggal SJ</label>
+                                                                            <input
+                                                                                type="date"
+                                                                                class="form-control"
+                                                                                id="tanggal_sj"
+                                                                                name="tanggal_sj"
+                                                                                value="<?php echo $ss['tanggal_sj'] ?>"
+                                                                                placeholder="01-01-2024">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="tanggal_rec">Tanggal Rec</label>
+                                                                            <input
+                                                                                type="date"
+                                                                                class="form-control"
+                                                                                id="tanggal_rec"
+                                                                                name="tanggal_rec"
+                                                                                value="<?php echo $ss['tanggal_rec'] ?>"
+                                                                                placeholder="01-01-2024">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="number">Number</label>
+                                                                            <input
+                                                                                type="number"
+                                                                                class="form-control"
+                                                                                id="number"
+                                                                                readonly="readonly"
+                                                                                name="number"
+                                                                                min="0"
+                                                                                value="<?php echo $ss['id'] ?>"
+                                                                                placeholder="0">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row" id="hehe">
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="col">COL</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                value="<?php echo $ss['col'] ?>"
+                                                                                class="form-control"
+                                                                                id="col"
+                                                                                name="col">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="bf">BF</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                value="<?php echo $ss['bf'] ?>"
+                                                                                id="bf"
+                                                                                name="bf">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb">JB</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="jb"
+                                                                                value="<?php echo $ss['jb'] ?>"
+                                                                                name="jb">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">JB BF</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="jb_bf"
+                                                                                value="<?php echo $ss['jb_bf'] ?>"
+                                                                                name="jb_bf">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">JBB JK</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="jbb_jk"
+                                                                                value="<?php echo $ss['jbb_jk'] ?>"
+                                                                                name="jbb_jk">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">JBB JF</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="jbb_jf"
+                                                                                value="<?php echo $ss['jbb_bf'] ?>"
+                                                                                name="jbb_bf">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">XLP</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="xlp"
+                                                                                value="<?php echo $ss['xlp'] ?>"
+                                                                                name="xlp">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">BF K3 COL</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="bf_k3_col"
+                                                                                value="<?php echo $ss['bf_k3_col'] ?>"
+                                                                                name="bf_k3_col">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">BF K3 JB</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="bf_k3_jb"
+                                                                                value="<?php echo $ss['bf_k3_jb'] ?>"
+                                                                                name="bf_k3_jb">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">BF K3 JK</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="bf_k3_jk"
+                                                                                value="<?php echo $ss['bf_k3_jk'] ?>"
+                                                                                name="bf_k3_jk">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">BF K3 JL</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="bf_k3_jl"
+                                                                                value="<?php echo $ss['bf_k3_jl'] ?>"
+                                                                                name="bf_k3_jl">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">BF JL</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="bf_jl"
+                                                                                value="<?php echo $ss['bf_jl'] ?>"
+                                                                                name="bf_jl">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">BF KJ</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="bf_kj"
+                                                                                value="<?php echo $ss['bf_kj'] ?>"
+                                                                                name="bf_kj">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">BF BF</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="bf_bf"
+                                                                                value="<?php echo $ss['bf_bf'] ?>"
+                                                                                name="bf_bf">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">BF LP SLB</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="bf_lp_slb"
+                                                                                value="<?php echo $ss['bf_lp_slb'] ?>"
+                                                                                name="bf_lp_slb">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="jb_bf">BF SP</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="bf_sp"
+                                                                                value="<?php echo $ss['bf_sp'] ?>"
+                                                                                name="bf_sp">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">BF SPK XLP</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="BF SPK XLP"
+                                                                                value="<?php echo $ss['bf_spk_xlp'] ?>"
+                                                                                name="bf_spk xlp">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">BF SPK SP</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="BF SPK SP"
+                                                                                value="<?php echo $ss['bf_spk_sp'] ?>"
+                                                                                name="bf_spk sp">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">SPK SP JB</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="SPK SP JB"
+                                                                                value="<?php echo $ss['spk_sp'] ?>"
+                                                                                name="spk_sp jb">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">SPK SP XLP</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="SPK SP XLP"
+                                                                                value="<?php echo $ss['spk_sp'] ?>"
+                                                                                name="spk_sp xlp">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">SPK SP BFP</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="SPK SP BFP"
+                                                                                value="<?php echo $ss['spk_sp'] ?>"
+                                                                                name="spk_sp bfp">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">SPK SP</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="SPK SP"
+                                                                                value="<?php echo $ss['spk_sp'] ?>"
+                                                                                name="spk_sp">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">SP SPH</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="SP SPH"
+                                                                                value="<?php echo $ss['sp_sph'] ?>"
+                                                                                name="sp_sph">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">SP CL</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="SP CL"
+                                                                                value="<?php echo $ss['sp_cl'] ?>"
+                                                                                name="sp_cl">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">SP CLF</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="SP CLF"
+                                                                                value="<?php echo $ss['sp_clf'] ?>"
+                                                                                name="sp_clf">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">MH</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="MH"
+                                                                                value="<?php echo $ss['mh'] ?>"
+                                                                                name="mh">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">MH SLB</label>
+                                                                            <input
+                                                                                type="text"
+                                                                                min="0"
+                                                                                class="form-control"
+                                                                                id="MH SLB"
+                                                                                value="<?php echo $ss['mh_slb'] ?>"
+                                                                                name="mh_slb">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h5>Receiving</h5>
+                                                                            <hr>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI COL</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI COL"
+                                                                                    value="<?php echo $ss['basi_col'] ?>"
+                                                                                    name="basi_col">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI JB</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI JB"
+                                                                                    value="<?php echo $ss['basi_jb'] ?>"
+                                                                                    name="basi_jb">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI JK</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI JK"
+                                                                                    value="<?php echo $ss['basi_jk'] ?>"
+                                                                                    name="basi_jk">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI XLP</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI XLP"
+                                                                                    value="<?php echo $ss['basi_xlp'] ?>"
+                                                                                    name="basi_xlp">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI BF</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI BF"
+                                                                                    value="<?php echo $ss['basi_bf'] ?>"
+                                                                                    name="basi_bf">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI SP</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI SP"
+                                                                                    value="<?php echo $ss['basi_sp'] ?>"
+                                                                                    name="basi_sp">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI CL</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI CL"
+                                                                                    value="<?php echo $ss['basi_cl'] ?>"
+                                                                                    name="basi_cl">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI MH</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI MH"
+                                                                                    value="<?php echo $ss['basi_mh'] ?>"
+                                                                                    name="basi_mh">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h5>Sortir</h5>
+                                                                            <hr>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI COL</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI COL"
+                                                                                    value="<?php echo $ss['basi_col2'] ?>"
+                                                                                    name="basi_col2">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI JB</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI JB"
+                                                                                    value="<?php echo $ss['basi_jb2'] ?>"
+                                                                                    name="basi_jb2">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI JK</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI JK"
+                                                                                    value="<?php echo $ss['basi_jk2'] ?>"
+                                                                                    name="basi_jk2">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI XLP</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI XLP"
+                                                                                    value="<?php echo $ss['basi_xlp2'] ?>"
+                                                                                    name="basi_xlp2">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI BF</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI BF"
+                                                                                    value="<?php echo $ss['basi_bf2'] ?>"
+                                                                                    name="basi_bf2">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI SP</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI SP"
+                                                                                    value="<?php echo $ss['basi_sp2'] ?>"
+                                                                                    name="basi_sp2">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI CL</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI CL"
+                                                                                    value="<?php echo $ss['basi_cl2'] ?>"
+                                                                                    name="basi_cl2">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">BASI MH</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="BASI MH"
+                                                                                    value="<?php echo $ss['basi_mh2'] ?>"
+                                                                                    name="basi_mh2">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">AIR</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="AIR"
+                                                                                    value="<?php echo $ss['air'] ?>"
+                                                                                    name="air">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">SHELL</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="SHELL"
+                                                                                    value="<?php echo $ss['shell'] ?>"
+                                                                                    name="shell">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="">LOSS</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="LOSS"
+                                                                                    value="<?php echo $ss['loss'] ?>"
+                                                                                    name="loss">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+																<div class="mt-2"></div>
+																<div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="">SHELL PHR KERAS</label>
+                                                                    <input type="text" min="0" class="form-control"
+																	value="<?php echo $ss['shell_phr_keras'] ?>"
+																	id="LOSS" name="shell_phr_keras">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="">SHELL MHR KERAS</label>
+                                                                    <input type="text" min="0" class="form-control" id="LOSS"
+																	value="<?php echo $ss['shell_mhr_keras'] ?>"
+																	name="shell_mhr_keras">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                    <label for="">SHELL PHR HALUS</label>
+                                                                    <input type="text" min="0" class="form-control"
+																	value="<?php echo $ss['shell_phr_halus'] ?>"
+																	id="LOSS" name="shell_phr_halus">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="">SHELL MHR HALUS</label>
+                                                                    <input type="text" min="0" class="form-control"
+																	value="<?php echo $ss['shell_mhr_halus'] ?>"
+																	id="LOSS" name="shell_mhr_halus">
+                                                                </div>
+                                                            </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+																			<label for="">Cap</label>
+																			<select type="text" min="0" class="form-control" id="SHELL" name="cap">
+																				<option value="ya">Ya</option>
+																				<option value="Tidak">Tidak</option>
+																			</select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Note</label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    id="LOSS"
+                                                                                    value="<?php echo $ss['note'] ?>"
+                                                                                    name="note">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button
+                                                            type="button"
+                                                            onclick="EditKocak('<?php echo base_url('main/fullsortirPostCorrection/'.$ss['id_bb'] ) ?>', 'sortiresUpdate-<?php echo $ss['id_bb'] ?>')"
+                                                            class="btn btn-primary">Simpan</button>
+                                                        <!-- <button
+                                                            type="button"
+                                                            onclick="SimpanSortirUpdate(event, false, <?php echo $ss['id_sortir'] ?>, 2)"
+                                                            class="btn btn-primary">Simpan Sementara</button>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php } ?>
                             </div>
                             <!-- Modal Detail -->
                             <div

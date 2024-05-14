@@ -26,7 +26,34 @@ echo '<div class="alert alert-success my-2">' . $this->session->flashdata('succe
 				<td><?php echo $files['created_at']; ?></td>
 				<td><a class="btn btn-light btn-sm" href="<?php echo base_url('main/download/'.$files['id']); ?>">Download</a>
 				<a class="btn btn-primary btn-sm" href="<?php echo base_url('main/approval_upload/'.$files['id']); ?>">Approve</a>
-				<a class="btn btn-danger btn-sm" href="<?php echo base_url('main/reject_upload/'.$files['id']); ?>">Reject</a>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modelId">
+				  Reject
+				</button>
+				
+				<!-- Modal -->
+				<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Modal Reject</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+							</div>
+							<div class="modal-body">
+							<form action="<?php echo base_url('main/rejectwithmodal/'.$files['id']); ?>" method="post" enctype="multipart/form-data">
+									<div class="form-group">
+										<label for="note">Catatan</label>
+										<textarea class="form-control" id="note" name="note" rows="3"></textarea>
+									</div>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-primary">Reject</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</td>
 		</tr>
 		<?php endforeach; ?>

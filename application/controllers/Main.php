@@ -23,7 +23,6 @@ class Main extends CI_Controller {
 
 		// Lakukan proses login
 		if ($this->Main_model->login($username, $password)) {
-			echo 'disini';
 			// Redirect ke halaman dashboard atau halaman lainnya jika login berhasil
 			redirect('main/adminUser');
 		} else {
@@ -97,69 +96,16 @@ class Main extends CI_Controller {
 									$this->Main_model->updateAll('tbl_sub_daging', array('qty' => $qtys), $ada['id']);
 									
 							}
-					// 		if($datax['tipe'] == 1 ){
-					// 			if($ada['spek2']) {
-					// 				$datax['spesifikasi_bahan'] = '';
-					// 				$datax['id_bahan_baku'] = $insert_id;
-					// 				$datax['qty'] = 0;
-					// 				$this->Main_model->insertAll('tbl_sub_daging', $datax);
-					// 				$qtys = floatval($ada['qty']) + floatval($datax['tbersih']);
-					// 				$this->Main_model->updateAll('tbl_sub_daging', array('qty' => $qtys), $ada['id']);
-					// 			} else {
-					// 				$this->Main_model->updateAll('tbl_sub_daging', array(
-					// 					'spesifikasi_bahan' => $datax['spek'],
-					// 					'spek2' => $datax['spek'],
-					// 					'bungkus2' => $datax['bungkus'],
-					// 					'tkotor2' => $datax['tkotor'],
-					// 					'tbersih2' => $datax['tbersih'],
-					// 					'qty' => floatval($datax['tbersih']) + floatval($ada['qty']), 
-					// 					)
-					// 					,$ada['id']);
-					// 				}
-					// 			}
-					// 			else {
-					// 				if($datax['tipe'] == 0) {
-					// 				$datax['spesifikasi_bahan'] = '';
-					// 				$datax['id_bahan_baku'] = $insert_id;
-					// 				$datax['spesifikasi_bahan'] = '';
-					// 				$datax['qty'] = 0;
-					// 				$this->Main_model->insertAll('tbl_sub_daging', $datax);
-					// 				$qtys = floatval($ada['qty']) + floatval($datax['tbersih']);
-					// 				$this->Main_model->updateAll('tbl_sub_daging', array('qty' => $qtys), $ada['id']);
-					// 		// }
-					// 	} else {
-					// 		$datax['spesifikasi_bahan'] = '';
-					// 		$datax['id_bahan_baku'] = $insert_id;
-					// 		$datax['qty'] = floatval($datax['tbersih']);
-					// 		$this->Main_model->insertAll('tbl_sub_daging', $datax);
-					// 	}
-					// }
 					}
-					// else if($merah != null) {
-					// 	$datax['spesifikasi_bahan'] = '';
-					// 	$datax['id_bahan_baku'] = $insert_id;
-					// 	$datax['spesifikasi_bahan'] = '';
-					// 	$datax['qty'] = 0;
-					// 	$this->Main_model->insertAll('tbl_sub_daging', $datax);
-					// 	$qtys = floatval($merah['qty']) + floatval($datax['tbersih']);
-					// 	$this->Main_model->updateAll('tbl_sub_daging', array('qty' => $qtys), $merah['id']);
 					} else {
 							$datax['spesifikasi_bahan'] = $datax['spek'];
 							$datax['id_bahan_baku'] = $insert_id;
 							$datax['qty'] = floatval($datax['tbersih']);
-							// if($datax['tipe'] == 1) {
-							// 	$datax['tipe'] = 0;
-							// 	$datax['tbersih2'] = $datax['tbersih'];
-							// 	$datax['tkotor2'] = $datax['tkotor'];
-							// 	$datax['bungkus2'] = $datax['bungkus'];
-							// 	$datax['spek2'] = $datax['spek'];
-							// }
 							$this->Main_model->insertAll('tbl_sub_daging', $datax);
 				}
 			}
 		}
 
-		
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
 		echo(json_encode($data));
        
@@ -168,12 +114,10 @@ class Main extends CI_Controller {
 	public function formUser() {
 		$data['title'] = 'User';
         
-        // Memanggil method getData dari model dan menyimpan hasilnya dalam variabel
         $role = $this->Datadaging_model->getDataNoOrder('tbl_role');
 		$user = $this->Datadaging_model->getDataNoOrder('tbl_user');
 		$wilayah = $this->Datadaging_model->getDataNoOrder('tbl_area');
         
-        // Mengirimkan data ke view
         $this->load->view('templates/header', $data);
         $this->load->view('pages/user', array('role' => $role, 'user' => $user, 'wilayah' => $wilayah));
         $this->load->view('templates/footer');
@@ -182,11 +126,9 @@ class Main extends CI_Controller {
 	public function formSuplier() {
 		$data['title'] = 'Supplier';
     
-        // Memanggil method getData dari model dan menyimpan hasilnya dalam variabel
 		$suppliers = $this->Datadaging_model->getDataNoOrder('tbl_supplier');
         $kodeWilayah = $this->Datadaging_model->getDataNoOrder('tbl_area');
 		$kota = $this->Datadaging_model->getDataNoOrder('tbl_kota');
-        // Mengirimkan data ke view
         $this->load->view('templates/header', $data);
         $this->load->view('pages/suplier', array('suppliers' => $suppliers, 'wilayah' => $kodeWilayah, 'kota' => $kota));
         $this->load->view('templates/footer');
@@ -199,16 +141,11 @@ class Main extends CI_Controller {
 			$config_ttd['allowed_types'] = 'gif|jpg|png';
 			$this->load->library('upload', $config_ttd);
 			
-			// Perform the upload for NPWP
 			if (!$this->upload->do_upload('sign')) {
-				// If upload fails, handle the error
 				$error = $this->upload->display_errors();
-				// Handle the error (e.g., display error message, redirect back to form)
 				echo "Upload error TTD / Sign: $error";
-				return; // Stop further execution
 			}
 			
-			// Retrieve upload data for NPWP
 			$ttd_data = $this->upload->data();
 			$data['sign'] = $ttd_data['file_name'];
 		}
@@ -230,34 +167,25 @@ class Main extends CI_Controller {
 	}
 
 	public function tambahUser() {
-        // Validasi input
-
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('role', 'Role', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            // Jika validasi gagal, tampilkan kembali form tambah user
-            redirect('main/formUser');
+            redirect('main/tambahUser');
 
         } else {
 			$config_ttd['upload_path'] = FCPATH . 'upload/images';
 			$config_ttd['allowed_types'] = 'gif|jpg|png';
 			$this->load->library('upload', $config_ttd);
 			
-			// Perform the upload for NPWP
 			if (!$this->upload->do_upload('sign')) {
-				// If upload fails, handle the error
 				$error = $this->upload->display_errors();
-				// Handle the error (e.g., display error message, redirect back to form)
 				echo "Upload error TTD / Sign: $error";
-				return; // Stop further execution
 			}
 			
-			// Retrieve upload data for NPWP
 			$ttd_data = $this->upload->data();
-            // Jika validasi sukses, simpan data pengguna ke dalam database
             $data = array(
                 'username' => $this->input->post('username'),
                 'email' => $this->input->post('email'),
@@ -269,11 +197,7 @@ class Main extends CI_Controller {
             );
 			
 
-			
-            // Panggil model untuk menyimpan data pengguna
             $this->Datadaging_model->tambahUser($data);
-
-            // Redirect ke halaman sukses atau halaman lain
 			$this->session->set_flashdata('success', 'Your data has been saved successfully!');
             redirect('main/formUser');
         }
@@ -283,40 +207,29 @@ class Main extends CI_Controller {
 		$data = $this->input->post();
 		$this->Main_model->updateAll('tbl_sortir', $data, $id);
 		$this->session->set_flashdata('success', 'Your data has been saved successfully!');
-		// redirect('main/sortir');
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 
 	}
 
 	public function tambahSuplier() {
-		// File upload configuration for NPWP
 		$config_npwp['upload_path'] = FCPATH . 'upload/images';
 		$config_npwp['allowed_types'] = 'gif|jpg|png';
 		$this->load->library('upload', $config_npwp);
 		
-		// Perform the upload for NPWP
 		if (!$this->upload->do_upload('npwp')) {
-			// If upload fails, handle the error
 			$error = $this->upload->display_errors();
-			// Handle the error (e.g., display error message, redirect back to form)
 			echo "Upload error (NPWP): $error";
 			return; // Stop further execution
 		}
 		
-		// Retrieve upload data for NPWP
 		$npwp_data = $this->upload->data();
 	
-		// File upload configuration for KTP
 		$config_ktp['upload_path'] = FCPATH . 'upload/images';
 		$config_ktp['allowed_types'] = 'gif|jpg|png';
-		// Reset the upload library with new configuration for KTP
 		$this->upload->initialize($config_ktp);
 		
-		// Perform the upload for KTP
 		if (!$this->upload->do_upload('no_ktp')) {
-			// If upload fails, handle the error
 			$error = $this->upload->display_errors();
-			// Handle the error (e.g., display error message, redirect back to form)
 			echo "Upload error (KTP): $error";
 			return; // Stop further execution
 		}
@@ -338,11 +251,9 @@ class Main extends CI_Controller {
 			'alamat' => $this->input->post('alamat')
 		);
 	
-		// Insert data into the suppliers table through the model
 		$this->Datadaging_model->insert_supplier($data);
 		$this->session->set_flashdata('success', 'Supplier berhasil ditambahkan.');
 	
-		// Redirect back to the supplier form
 		redirect('main/formSuplier');
 	}
 
@@ -352,42 +263,29 @@ class Main extends CI_Controller {
 	}
 
 	public function updateSuplier($id) {
-		// File upload configuration for NPWP
 		$config_npwp['upload_path'] = FCPATH . 'upload/images';
 		$config_npwp['allowed_types'] = 'gif|jpg|png';
 		$this->load->library('upload', $config_npwp);
 		
-		// Perform the upload for NPWP
 		if (!$this->upload->do_upload('npwp')) {
-			// If upload fails, handle the error
 			$error = $this->upload->display_errors();
-			// Handle the error (e.g., display error message, redirect back to form)
 			echo "Upload error (NPWP): $error";
 			return; // Stop further execution
 		}
 		
-		// Retrieve upload data for NPWP
 		$npwp_data = $this->upload->data();
 	
-		// File upload configuration for KTP
 		$config_ktp['upload_path'] = FCPATH . 'upload/images';
 		$config_ktp['allowed_types'] = 'gif|jpg|png';
-		// Reset the upload library with new configuration for KTP
 		$this->upload->initialize($config_ktp);
 		
-		// Perform the upload for KTP
 		if (!$this->upload->do_upload('no_ktp')) {
-			// If upload fails, handle the error
 			$error = $this->upload->display_errors();
-			// Handle the error (e.g., display error message, redirect back to form)
 			echo "Upload error (KTP): $error";
 			return; // Stop further execution
 		}
-	
-		// Retrieve upload data for KTP
 		$ktp_data = $this->upload->data();
 	
-		// Retrieve other form data
 		$data = array(
 			'kode_supplier' => $this->input->post('kode_supplier'),
 			'nama_supplier' => $this->input->post('nama_supplier'),
@@ -401,19 +299,14 @@ class Main extends CI_Controller {
 			'alamat' => $this->input->post('alamat')
 		);
 	
-		// Insert data into the suppliers table through the model
 		$this->Main_model->updateAll('tbl_supplier', $data, $id);
 
 		$this->session->set_flashdata('success', 'Supplier berhasil diubah.');
-	
-		// Redirect back to the supplier form
 		redirect('main/formSuplier');
 	}
 	
-	public function mainApprove($id) {
-		
+	public function mainApprove($id) {		
 		$this->Main_model->updateAll('tbl_daging', array('keterangan' => $this->input->post('keterangan'), 'status' => 1), $id);
-		// $this->Main_model->updateAll('tbl_sortir', array('status' => 3), $id);
 		$this->session->set_flashdata('success', 'Bahan Baku berhasil diapprove.');
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
 
@@ -421,10 +314,8 @@ class Main extends CI_Controller {
 	
 	public function mainReject($id){
 		$this->Main_model->updateAll('tbl_daging', array('keterangan' => $this->input->post('keterangan'), 'status' => -1), $id);
-		// $this->Main_model->updateAll('tbl_sortir', array('status' => -1), $id);
 		$this->session->set_flashdata('success', 'Bahan Baku berhasil direject.');
 		redirect($_SERVER['HTTP_REFERER'], 'refresh');
-		// redirect("main/adminUser");
 	}
 
 	public function getWilayahById($id){
@@ -1001,6 +892,13 @@ class Main extends CI_Controller {
 		header("Content-type: application/octet-stream");
 		header("Content-Disposition: attachment; filename=\"".$file_name."\"");
 		readfile($file_path);
+	}
+
+	public function rejectwithmodal($id) {
+		$this->Main_model->updateAll('tbl_file', ['note' => $this->input->post('note'), 'status' => -1], $id);
+		$this->session->set_flashdata('success', 'Data berhasil direject.');
+		redirect($_SERVER['HTTP_REFERER'], 'refresh');
+
 	}
 	
 }
