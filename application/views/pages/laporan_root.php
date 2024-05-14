@@ -72,10 +72,8 @@
                                         <th>CL</th>
                                         <th>CLF</th>
                                         <th>MH</th>
-                                        <th>PHR 1</th>
-                                        <th>MHR 1</th>
-                                        <th>PHR 2</th>
-                                        <th>MHR 2</th>
+                                        <th>PHR </th>
+                                        <th>MHR </th>
                                         <th>Air</th>
                                         <th>Shell</th>
                                         <th>Loss</th>
