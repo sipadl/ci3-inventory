@@ -72,10 +72,10 @@
                                         <th>CL</th>
                                         <th>CLF</th>
                                         <th>MH</th>
-                                        <th>PHR Receiving</th>
-                                        <th>MHR Receiving</th>
-                                        <th>PHR Sortir</th>
-                                        <th>MHR Sortir</th>
+                                        <th>PHR 1</th>
+                                        <th>MHR 1</th>
+                                        <th>PHR 2</th>
+                                        <th>MHR 2</th>
                                         <th>Air</th>
                                         <th>Shell</th>
                                         <th>Loss</th>
@@ -248,9 +248,14 @@
 										$total_cl1 += floatval($clX);
 										$total_clf += floatval($clfX);
 										$total_mh2 += floatval($mh2);
-										$total_phr1 += floatval($phr);
+										$total_phr1 += floatval($phr) + floatval($basi_col2) +
+										floatval($basi_jk2) +
+										floatval($basi_jb2) +
+										floatval($basi_xlp2) +
+										floatval($basi_bf2) +
+										floatval($basi_sp2);
 										$total_sph += floatval($sphX);
-										$total_mhr1 += floatval($basi_cl) + floatval($basi_mh);
+										$total_mhr1 += floatval($basi_cl) + floatval($basi_mh) + floatval($basi_cl2) + floatval($basi_mh2);
 										$total_phr2 +=
 											floatval($basi_col2) +
 											floatval($basi_jk2) +
@@ -282,18 +287,23 @@
                                         <td><?php echo $clX ?></td>
                                         <td><?php echo $clfX ?></td>
                                         <td><?php echo $mhX ?></td>
-                                        <td><?php echo $phr ?></td>
-                                        <td><?php echo floatval($basi_cl) + floatval($basi_mh) ?></td>
-                                        <td>
+                                        <td><?php echo $phr + floatval($basi_col2) +
+											floatval($basi_jk2) +
+											floatval($basi_jb2) +
+											floatval($basi_xlp2) +
+											floatval($basi_bf2) +
+											floatval($basi_sp2) ?></td>
+                                        <td><?php echo floatval($basi_cl) + floatval($basi_mh) + floatval($basi_cl2) + floatval($basi_mh2) ?></td>
+                                        <!-- <td>
                                             <?php echo floatval($basi_col2) +
 											floatval($basi_jk2) +
 											floatval($basi_jb2) +
 											floatval($basi_xlp2) +
 											floatval($basi_bf2) +
-											floatval($basi_sp2) 
+											floatval($basi_sp2);
 										?>
-                                        </td>
-                                        <td><?php echo floatval($basi_cl2) + floatval($basi_mh2) ?></td>
+                                        </td> -->
+                                        <!-- <td><?php echo "p"  ?></td> -->
                                         <td>
                                             <?php echo $air ?>
                                         </td>
@@ -362,12 +372,12 @@
                                         <td><?php echo 
 								$total_mhr1 ?? 0
 								?></td>
-                                        <td><?php echo 
+                                        <!-- <td><?php echo 
 								$total_phr2 ?? 0
-								?></td>
-                                        <td><?php echo 
+								?></td> -->
+                                        <!-- <td><?php echo 
 								$total_mhr2 ?? 0
-								?></td>
+								?></td> -->
                                         <td><?php echo 
 								$total_air ?? 0
 								?></td>
