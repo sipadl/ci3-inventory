@@ -139,7 +139,7 @@
 												<tbody>
 													<tr>
 														<td>1</td>
-														<td>JB COL</td>
+														<td>COL</td>
 														<td></td>
 														<td><?php
 														$col = (floatval($ss['col']) + floatval($ss['bf']));
@@ -179,7 +179,7 @@
 													</tr>
 													<tr>
 														<td>2</td>
-														<td>JB A</td>
+														<td>JB</td>
 														<td></td>
 														<td><?php 
 														echo $jb;
@@ -189,7 +189,7 @@
 													</tr>
 													<tr>
 														<td>3</td>
-														<td>JB B</td>
+														<td>JK</td>
 														<td></td>
 														<td><?php
 														echo $jk;
