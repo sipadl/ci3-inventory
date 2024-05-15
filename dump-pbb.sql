@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2024 at 06:18 PM
+-- Generation Time: May 14, 2024 at 06:39 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.27
 
@@ -24,447 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_area`
---
-
-CREATE TABLE `tbl_area` (
-  `id_area` int(11) NOT NULL,
-  `nama_area` text NOT NULL,
-  `kode_area` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_area`
---
-
-INSERT INTO `tbl_area` (`id_area`, `nama_area`, `kode_area`) VALUES
-(2, 'Jakarta', '440'),
-(4, 'Purwakarta', '443'),
-(6, 'Banjarmasin', '454'),
-(10, 'Pontianak', '559');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_daging`
---
-
-CREATE TABLE `tbl_daging` (
-  `id` int(11) NOT NULL,
-  `tanggal` date NOT NULL,
-  `supplier` varchar(255) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `wilayah` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
-  `keterangan` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_daging`
---
-
-INSERT INTO `tbl_daging` (`id`, `tanggal`, `supplier`, `user_id`, `wilayah`, `status`, `keterangan`) VALUES
-(78, '2024-05-03', 'K2', 0, '0', 0, NULL),
-(79, '2024-05-04', 'K1', 0, '0', 0, NULL),
-(80, '2024-05-06', 'K1', 0, '0', 1, 'AAAA'),
-(81, '2024-05-07', 'K1', 0, '0', 0, NULL),
-(82, '2024-05-06', 'K1', 0, '0', 1, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_file`
---
-
-CREATE TABLE `tbl_file` (
-  `id` int(11) NOT NULL,
-  `file` varchar(255) DEFAULT NULL,
-  `status` int(11) DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `note` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_file`
---
-
-INSERT INTO `tbl_file` (`id`, `file`, `status`, `created_at`, `note`) VALUES
-(1, 'Screenshot_(8)4.png', 1, '0000-00-00 00:00:00', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_kota`
---
-
-CREATE TABLE `tbl_kota` (
-  `id_kota` int(11) NOT NULL,
-  `kode_area` int(11) NOT NULL,
-  `nama_kota` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_kota`
---
-
-INSERT INTO `tbl_kota` (`id_kota`, `kode_area`, `nama_kota`, `status`) VALUES
-(1, 440, 'Jakarta Utara', 1),
-(2, 440, 'Jakarta Timur', 1),
-(3, 440, 'Jakarta Barat', 1),
-(4, 440, 'Jakarta Selatan', 1),
-(5, 440, 'Jakarta Pusat', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_laporan`
---
-
-CREATE TABLE `tbl_laporan` (
-  `id` int(11) NOT NULL,
-  `subsidi_normal` varchar(100) DEFAULT NULL,
-  `subsidi_dibayar_1` varchar(100) DEFAULT NULL,
-  `subsidi_dibayar_2` varchar(100) DEFAULT NULL,
-  `cap_shell` varchar(100) DEFAULT NULL,
-  `subsidi_transport` varchar(100) DEFAULT NULL,
-  `created_at` date DEFAULT NULL,
-  `id_sortir` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT 0,
-  `approved_by` int(11) DEFAULT NULL,
-  `subsidi_dibayar_3` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_laporan`
---
-
-INSERT INTO `tbl_laporan` (`id`, `subsidi_normal`, `subsidi_dibayar_1`, `subsidi_dibayar_2`, `cap_shell`, `subsidi_transport`, `created_at`, `id_sortir`, `status`, `approved_by`, `subsidi_dibayar_3`) VALUES
-(1, '1000000', '1000000', '1000000', '1000000', '1000000', '2024-04-21', 57, 0, NULL, NULL),
-(2, '500000', '300000', '100000', '10000', '10000', '2024-04-22', 1, 1, NULL, NULL),
-(3, '40000', '40000', '20000', '10', '30000', '2024-04-24', 19, 0, NULL, '10000'),
-(4, '100000', '100000', '100000', '100000', '100000', '2024-05-03', 78, 0, NULL, '100000'),
-(5, '1000000', '1000000', '1000000', '1000000', '1000000', '2024-05-04', 79, 0, NULL, '1000000'),
-(6, '1000000', '1000000', '1000000', '10000001', '10000002', '2024-05-04', 14, 0, NULL, '1000000'),
-(8, '1500', '1500', '1500', '1500', '1500', '2024-05-05', 7, 0, NULL, '1500'),
-(9, '1500', '1500', '1500', '1500', '1500', '2024-05-05', 7, 0, NULL, '1500'),
-(11, '10', '10', '10', '10', '10', '2024-05-05', 15, 0, NULL, '10'),
-(13, '10', '10', '10', '10', '10', '2024-05-05', NULL, 0, NULL, '10');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_memo`
---
-
-CREATE TABLE `tbl_memo` (
-  `id` int(11) NOT NULL,
-  `kode_supplier` varchar(100) DEFAULT NULL,
-  `tanggal` date DEFAULT NULL,
-  `qty` varchar(100) DEFAULT NULL,
-  `status` varchar(100) DEFAULT '0',
-  `subsidi` varchar(100) DEFAULT NULL,
-  `approved_by` varchar(100) DEFAULT NULL,
-  `id_sortir` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_memo`
---
-
-INSERT INTO `tbl_memo` (`id`, `kode_supplier`, `tanggal`, `qty`, `status`, `subsidi`, `approved_by`, `id_sortir`) VALUES
-(6, 'K2', '1979-03-12', '1363', '4', '1', '4', 5),
-(7, 'K2', '2024-04-22', '594', '0', '50000', NULL, 1),
-(8, 'K2', '2024-04-22', '594', '0', '30000', NULL, 1),
-(9, 'K2', '2024-04-22', '594', '4', '100000', '4', 6);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_pembayaran_dp`
---
-
-CREATE TABLE `tbl_pembayaran_dp` (
-  `id_pembayaran_dp` int(11) NOT NULL,
-  `nama_supplier` text NOT NULL,
-  `id_area` int(11) NOT NULL,
-  `bahan_masuk` text NOT NULL,
-  `dp_seratus` text NOT NULL,
-  `dp_enampuluh` text NOT NULL,
-  `diminta_supplier` text NOT NULL,
-  `bank` text NOT NULL,
-  `no_rek` text NOT NULL,
-  `nama_rekening` text NOT NULL,
-  `tgl` date NOT NULL,
-  `ket` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_penerimaan`
---
-
-CREATE TABLE `tbl_penerimaan` (
-  `id` int(11) NOT NULL,
-  `status` varchar(100) DEFAULT '0',
-  `approved_by` varchar(100) DEFAULT NULL,
-  `kode_supplier` varchar(100) DEFAULT NULL,
-  `id_sortir` varchar(100) DEFAULT NULL,
-  `tanggal` date DEFAULT NULL,
-  `potongan_harga` varchar(100) DEFAULT NULL,
-  `total` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_penerimaan`
---
-
-INSERT INTO `tbl_penerimaan` (`id`, `status`, `approved_by`, `kode_supplier`, `id_sortir`, `tanggal`, `potongan_harga`, `total`) VALUES
-(1, '1', '4', 'K2', '2', '2024-04-21', '11', '12317'),
-(2, '1', '4', 'K2', '6', '2024-04-22', '', '2079009'),
-(3, '1', '4', 'K2', '6', '2024-04-22', '', '2079009');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_pengajuan`
---
-
-CREATE TABLE `tbl_pengajuan` (
-  `id` int(11) NOT NULL,
-  `area` varchar(100) DEFAULT NULL,
-  `bahan_masuk` varchar(100) DEFAULT NULL,
-  `upload_images` varchar(255) DEFAULT NULL,
-  `dp_60` varchar(100) DEFAULT NULL,
-  `request_dp` varchar(100) DEFAULT NULL,
-  `total_bayar` varchar(100) DEFAULT NULL,
-  `bank` varchar(100) DEFAULT NULL,
-  `no_rek` varchar(100) DEFAULT NULL,
-  `tanggal_transaksi` date DEFAULT NULL,
-  `keterangan` varchar(100) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
-  `created_at` datetime DEFAULT NULL,
-  `supplier` varchar(100) DEFAULT NULL,
-  `approved_by` varchar(100) DEFAULT NULL,
-  `keterangan_approval` varchar(100) DEFAULT NULL,
-  `qty_kg` varchar(100) DEFAULT NULL,
-  `dp_100` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_pengajuan`
---
-
-INSERT INTO `tbl_pengajuan` (`id`, `area`, `bahan_masuk`, `upload_images`, `dp_60`, `request_dp`, `total_bayar`, `bank`, `no_rek`, `tanggal_transaksi`, `keterangan`, `status`, `created_at`, `supplier`, `approved_by`, `keterangan_approval`, `qty_kg`, `dp_100`) VALUES
-(1, 'Purwakarta', '1', NULL, '1', '1', '2', 'Placeat unde ab et ', '', '2024-04-20', 'a', 1, '2024-04-20 11:07:41', 'K1', NULL, '  1111', NULL, NULL),
-(2, 'Purwakarta', 'Doloremque dolore ex', NULL, 'Elit quaerat est q', 'Exercitation odit no', 'Delectus neque sit ', 'bca', '', '2008-04-28', 'Deserunt illum enim', 1, '2024-04-20 11:24:13', 'j6', NULL, NULL, NULL, NULL),
-(3, 'Purwakarta', '1', NULL, '15', '10', '25', 'Placeat unde ab et ', '1234', '2024-04-23', 'menunggu audit', 0, '2024-04-22 09:52:29', 'K1', NULL, NULL, NULL, NULL),
-(4, 'Purwakarta', '3', 'user8-128x128.jpg', '1', '2', '3', 'Placeat unde ab et ', '1234', '2024-04-22', 'p', 0, '2024-04-22 09:56:23', 'K1', NULL, NULL, NULL, NULL),
-(5, 'Purwakarta', '1', 'AdminLTELogo2.png', '4', '5', '6', 'Placeat unde ab et ', '1234', '2024-04-24', '1', 0, '2024-04-24 14:27:40', 'K1', NULL, NULL, '2', '3');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_price`
---
-
-CREATE TABLE `tbl_price` (
-  `id_price` int(11) NOT NULL,
-  `nama_produk` varchar(250) NOT NULL,
-  `harga` varchar(250) NOT NULL,
-  `id_area` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_price`
---
-
-INSERT INTO `tbl_price` (`id_price`, `nama_produk`, `harga`, `id_area`) VALUES
-(1, 'COL', '560000', 2),
-(2, 'JB', '560000', 2),
-(3, 'JBJK', ' 285000', 2),
-(4, 'JL', '285000', 2),
-(5, 'XLP', '275000', 2),
-(6, 'KJ', ' 285000', 2),
-(7, 'BF / LP', ' 285000', 2),
-(8, 'SPK', '275000', 2),
-(9, 'SP', ' 5,000', 2),
-(10, 'SPH', ' 5,000', 0),
-(11, 'CL', ' 10000', 2),
-(12, 'CLF', ' 30000', 2),
-(13, 'MH', ' 3000', 2),
-(14, 'MHR', ' 30000', 2),
-(15, 'PHR', '45000', 2),
-(16, 'B COL', '45000', 2),
-(17, 'B JB', '45000', 2),
-(18, 'B JBJK	', '45000', 2),
-(19, 'B XLP', '45000', 2),
-(20, 'B BF / LP', '45000', 2),
-(21, 'B SPK', '45000', 2),
-(22, 'B SP', '45000', 2),
-(23, 'B CL', ' 30000', 2),
-(24, 'B MH', ' 30000', 2),
-(25, 'SHELL', '1', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_role`
---
-
-CREATE TABLE `tbl_role` (
-  `id_role` int(11) NOT NULL,
-  `nama_role` text NOT NULL,
-  `descriptiom` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_role`
---
-
-INSERT INTO `tbl_role` (`id_role`, `nama_role`, `descriptiom`) VALUES
-(1, 'master_admin', 'Master Admin'),
-(2, 'general_manager', 'General Manager'),
-(3, 'manager_produksi', 'Manager Produksi'),
-(4, 'admin_receiving', 'Admin Receiving'),
-(5, 'departement_coasting', 'Departement Coasting'),
-(6, 'tl_sortir', 'Team Leader Sortir'),
-(7, 'sortir', 'sortir'),
-(8, 'supplier', 'supplier'),
-(9, 'admin_bahan_baku', 'Admin Bahan Baku '),
-(10, 'manager_pbb', 'Manager PBB');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_sortir`
---
-
-CREATE TABLE `tbl_sortir` (
-  `id` int(11) NOT NULL,
-  `kode_supplier` varchar(255) DEFAULT NULL,
-  `tanggal_sj` date DEFAULT NULL,
-  `tanggal_rec` date DEFAULT NULL,
-  `tanggal_rec2` date DEFAULT NULL,
-  `tanggal_rec3` date DEFAULT NULL,
-  `number` int(11) DEFAULT NULL,
-  `col` varchar(255) DEFAULT NULL,
-  `bf` varchar(255) DEFAULT NULL,
-  `jb` varchar(255) DEFAULT NULL,
-  `jb_bf` varchar(255) DEFAULT NULL,
-  `jbb_jk` varchar(255) DEFAULT NULL,
-  `jbb_bf` varchar(255) DEFAULT NULL,
-  `xlp` varchar(255) DEFAULT NULL,
-  `bf_k3_col` varchar(255) DEFAULT NULL,
-  `bf_k3_jb` varchar(255) DEFAULT NULL,
-  `bf_k3_jk` varchar(255) DEFAULT NULL,
-  `bf_k3_jl` varchar(255) DEFAULT NULL,
-  `bf_jl` varchar(255) DEFAULT NULL,
-  `bf_kj` varchar(255) DEFAULT NULL,
-  `bf_bf` varchar(255) DEFAULT NULL,
-  `bf_lp_slb` varchar(255) DEFAULT NULL,
-  `bf_sp` varchar(255) DEFAULT NULL,
-  `bf_spk_xlp` varchar(255) DEFAULT NULL,
-  `bf_spk_sp` varchar(255) DEFAULT NULL,
-  `spk_sp_jb` varchar(255) DEFAULT NULL,
-  `spk_sp_xlp` varchar(255) DEFAULT NULL,
-  `spk_sp_bfp` varchar(255) DEFAULT NULL,
-  `spk_sp_sph` varchar(255) DEFAULT NULL,
-  `sp_cl` varchar(255) DEFAULT NULL,
-  `sp_clf` varchar(255) DEFAULT NULL,
-  `mh` varchar(255) DEFAULT NULL,
-  `mh_slb` varchar(255) DEFAULT NULL,
-  `phr` varchar(255) DEFAULT NULL,
-  `basi_col` varchar(255) DEFAULT NULL,
-  `basi_jb` varchar(255) DEFAULT NULL,
-  `basi_jk` varchar(255) DEFAULT NULL,
-  `basi_xlp` varchar(255) DEFAULT NULL,
-  `basi_bf` varchar(255) DEFAULT NULL,
-  `basi_sp` varchar(255) DEFAULT NULL,
-  `mhr` varchar(255) DEFAULT NULL,
-  `basi_cl` varchar(255) DEFAULT NULL,
-  `basi_mh` varchar(255) DEFAULT NULL,
-  `air` varchar(255) DEFAULT NULL,
-  `shell` varchar(255) DEFAULT NULL,
-  `loss` varchar(255) DEFAULT NULL,
-  `timbangan_kotor` varchar(255) DEFAULT NULL,
-  `timbangan_bb` varchar(255) DEFAULT NULL,
-  `status` int(11) DEFAULT 0,
-  `jbb_jf` varchar(255) DEFAULT NULL,
-  `spk_sp` varchar(255) DEFAULT NULL,
-  `sp_sph` varchar(255) DEFAULT NULL,
-  `id_bb` int(11) DEFAULT NULL,
-  `approved_by` int(11) DEFAULT NULL,
-  `cap` varchar(100) DEFAULT NULL,
-  `potong` varchar(100) DEFAULT NULL,
-  `note` varchar(100) DEFAULT NULL,
-  `shell_phr_keras` varchar(100) DEFAULT NULL,
-  `shell_mhr_keras` varchar(100) DEFAULT NULL,
-  `shell_phr_halus` varchar(100) DEFAULT NULL,
-  `shell_mhr_halus` varchar(100) DEFAULT NULL,
-  `keterangan` varchar(100) DEFAULT NULL,
-  `basi_col2` varchar(255) DEFAULT NULL,
-  `basi_jb2` varchar(255) DEFAULT NULL,
-  `basi_jk2` varchar(255) DEFAULT NULL,
-  `basi_xlp2` varchar(255) DEFAULT NULL,
-  `basi_bf2` varchar(255) DEFAULT NULL,
-  `basi_sp2` varchar(255) DEFAULT NULL,
-  `mhr2` varchar(255) DEFAULT NULL,
-  `basi_cl2` varchar(255) DEFAULT NULL,
-  `basi_mh2` varchar(255) DEFAULT NULL,
-  `is_corection` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_sortir`
---
-
-INSERT INTO `tbl_sortir` (`id`, `kode_supplier`, `tanggal_sj`, `tanggal_rec`, `tanggal_rec2`, `tanggal_rec3`, `number`, `col`, `bf`, `jb`, `jb_bf`, `jbb_jk`, `jbb_bf`, `xlp`, `bf_k3_col`, `bf_k3_jb`, `bf_k3_jk`, `bf_k3_jl`, `bf_jl`, `bf_kj`, `bf_bf`, `bf_lp_slb`, `bf_sp`, `bf_spk_xlp`, `bf_spk_sp`, `spk_sp_jb`, `spk_sp_xlp`, `spk_sp_bfp`, `spk_sp_sph`, `sp_cl`, `sp_clf`, `mh`, `mh_slb`, `phr`, `basi_col`, `basi_jb`, `basi_jk`, `basi_xlp`, `basi_bf`, `basi_sp`, `mhr`, `basi_cl`, `basi_mh`, `air`, `shell`, `loss`, `timbangan_kotor`, `timbangan_bb`, `status`, `jbb_jf`, `spk_sp`, `sp_sph`, `id_bb`, `approved_by`, `cap`, `potong`, `note`, `shell_phr_keras`, `shell_mhr_keras`, `shell_phr_halus`, `shell_mhr_halus`, `keterangan`, `basi_col2`, `basi_jb2`, `basi_jk2`, `basi_xlp2`, `basi_bf2`, `basi_sp2`, `mhr2`, `basi_cl2`, `basi_mh2`, `is_corection`) VALUES
-(14, 'K2', '2024-05-03', '2024-05-03', NULL, NULL, 78, '33.2', '33.2', '33.2', '33.2', '2.58', '43.23', '33.2', '45.32', '45.32', '45.32', '45.32', '33.2', '1.46', '33.2', '45.32', '33.2', '33.2', '0.16', '2.26', '33.19', '45.32', NULL, '33.2', '33.2', '18.24', '33.2', NULL, '33.2', '1.44', '45.32', '33.2', '33.2', '45.32', NULL, '33.2', '0.79', '33', '44', '33', NULL, NULL, 3, NULL, '33.2', '0.94', 78, 4, 'ya', NULL, 'okeoekeo', '2', '2', '2', '2', '', '21', '22', '33', '44', '11', '11', NULL, '22', '33', 0),
-(15, 'K1', '2024-05-05', '2024-05-05', '0000-00-00', '0000-00-00', 16, '8', '87', '7', '7', '7', '6', '7', '7', '7', '7', '77', '7', '7', '7', '7', '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '7', NULL, '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '1', '7', NULL, NULL, 4, '', '7', '7', 79, 4, 'ya', '', '', '6', '6', '67', '7', '', '6', '6', '6', '6', '6', '6', NULL, '6', '6', 0),
-(16, 'K1', '2024-05-05', '2024-05-05', NULL, NULL, 16, '8', '87', '7', '7', '7', '7', '7', '7', '7', '7', '77', '7', '7', '7', '7', '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '7', NULL, '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '1', '7', NULL, NULL, 2, '', '7', '7', 80, 4, 'ya', '', '', '7', '7', '7', '7', 'P', '7', '7', '7', '7', '7', '7', NULL, '7', '7', 0),
-(17, 'K1', '2024-05-06', '2024-05-06', NULL, NULL, 81, '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '11', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', NULL, '1', '1', '1', '1', NULL, '1', '1', '1', '1', '1', '1', NULL, '1', '1', '1', '1', '1', NULL, NULL, 4, NULL, '1', '1', 81, 4, 'ya', NULL, '', '1', '1', '1', '1', '', '1', '1', '1', '5', '1', '1', NULL, '1', '1', 0),
-(26, 'K1', '2024-05-05', '2024-05-06', NULL, NULL, 16, '8', '87', '7', '7', '7', '7', '7', '7', '7', '7', '77', '7', '7', '7', '7', '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '7', NULL, '7', '7', '7', '7', '7', '7', NULL, '7', '7', '7', '44', '7', NULL, NULL, 3, NULL, '7', '7', 80, NULL, 'ya', NULL, '', '7', '7', '7', '7', NULL, '7', '7', '7', '7', '7', '7', NULL, '7', '7', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_sub_daging`
---
-
-CREATE TABLE `tbl_sub_daging` (
-  `id` int(11) NOT NULL,
-  `id_bahan_baku` int(11) DEFAULT NULL,
-  `spesifikasi_bahan` varchar(100) DEFAULT NULL,
-  `spek` varchar(100) DEFAULT NULL,
-  `bungkus` varchar(100) DEFAULT NULL,
-  `tkotor` varchar(100) DEFAULT NULL,
-  `tbersih` varchar(100) DEFAULT NULL,
-  `spek2` varchar(100) DEFAULT NULL,
-  `bungkus2` varchar(100) DEFAULT NULL,
-  `tkotor2` varchar(100) DEFAULT NULL,
-  `tbersih2` varchar(100) DEFAULT NULL,
-  `qty` varchar(100) DEFAULT NULL,
-  `tipe` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_sub_daging`
---
-
-INSERT INTO `tbl_sub_daging` (`id`, `id_bahan_baku`, `spesifikasi_bahan`, `spek`, `bungkus`, `tkotor`, `tbersih`, `spek2`, `bungkus2`, `tkotor2`, `tbersih2`, `qty`, `tipe`) VALUES
-(114, 78, 'jk', 'jk', '11', '23', '22', NULL, NULL, NULL, NULL, '22', 0),
-(115, 79, 'A', 'A', '1', '2', '3', NULL, NULL, NULL, NULL, '3', 0),
-(116, 79, 'B', 'B', '3', '4', '5', NULL, NULL, NULL, NULL, '5', 0),
-(117, 79, 'C', 'C', '6', '6', '6', NULL, NULL, NULL, NULL, '6', 0),
-(118, 80, 'A', 'A', '1', '1', '1', NULL, NULL, NULL, NULL, '1', 0),
-(119, 81, 'K', 'K', '2', '2', '2', NULL, NULL, NULL, NULL, '2', 0),
-(120, 82, 'A', 'A', '1', '2', '3', NULL, NULL, NULL, NULL, '3', 0);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_supplier`
 --
 
@@ -472,140 +31,1071 @@ CREATE TABLE `tbl_supplier` (
   `id_supplier` int(11) NOT NULL,
   `kode_supplier` varchar(255) NOT NULL,
   `nama_supplier` text NOT NULL,
-  `bank` text NOT NULL,
-  `nomor` text NOT NULL,
-  `an` text NOT NULL,
-  `npwp` text NOT NULL,
+  `bank` text DEFAULT NULL,
+  `nomor` text DEFAULT NULL,
+  `an` text DEFAULT NULL,
+  `npwp` text DEFAULT NULL,
   `id_area` int(11) NOT NULL,
-  `no_ktp` int(11) NOT NULL,
-  `alamat` text NOT NULL,
-  `wilayah` varchar(255) NOT NULL,
-  `no_rekening` varchar(100) DEFAULT NULL
+  `no_ktp` varchar(10) DEFAULT '0',
+  `alamat` text DEFAULT NULL,
+  `wilayah` varchar(255) DEFAULT NULL,
+  `no_rekening` varchar(100) DEFAULT NULL,
+  `Column1` varchar(1) DEFAULT NULL,
+  `A1` varchar(4) DEFAULT NULL,
+  `ALI NURDIN` varchar(24) DEFAULT NULL,
+  `Column4` varchar(1) DEFAULT NULL,
+  `Column5` varchar(1) DEFAULT NULL,
+  `Column6` varchar(1) DEFAULT NULL,
+  `Column7` varchar(1) DEFAULT NULL,
+  `404` int(11) DEFAULT NULL,
+  `Column9` varchar(1) DEFAULT NULL,
+  `Column10` varchar(1) DEFAULT NULL,
+  `Column11` varchar(1) DEFAULT NULL,
+  `Column12` varchar(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_supplier`
 --
 
-INSERT INTO `tbl_supplier` (`id_supplier`, `kode_supplier`, `nama_supplier`, `bank`, `nomor`, `an`, `npwp`, `id_area`, `no_ktp`, `alamat`, `wilayah`, `no_rekening`) VALUES
-(1, 'K1', 'Et qui occaecat et i', 'Placeat unde ab et ', 'Recusandae Assumend', 'Odit eos nostrum eni', 'Adipisicing sint qu', 443, 0, 'Asperiores duis dolo', '', '1234'),
-(2, 'K2', 'Obcaecati eligendi s', 'Est veniam rerum s', 'Adipisci aut commodo', 'Ut dolores rem eiusm', 'Commodi in ex molest', 443, 0, 'Deserunt officiis co', '', '1244'),
-(3, 'j6', 'adi', 'bca', 'gddg', 'taufik', '6565656', 443, 323232, 'sasasas', '', '12345'),
-(4, 'rudi', 'Rudianto', 'BCA', '081', 'rudi', '2.png', 440, 21, 'Hehe', '', '11223344');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_user`
---
-
-CREATE TABLE `tbl_user` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` int(11) NOT NULL,
-  `tanggal` date DEFAULT NULL,
-  `wilayah` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `sign` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_user`
---
-
-INSERT INTO `tbl_user` (`id`, `username`, `password`, `role`, `tanggal`, `wilayah`, `email`, `sign`) VALUES
-(4, 'admin', '4297f44b13955235245b2497399d7a93', 9, '2024-04-07', '[\"1\",\"3\"]', 'bonevyxalu@mailinator.com', NULL),
-(5, 'fihat', '4297f44b13955235245b2497399d7a93', 9, '2024-04-07', '[\"1\",\"3\"]', 'rymax@mailinator.com', NULL),
-(6, 'hyfivux', '$2y$10$pYRxGz9Qbmp4EtmDWBkf2.6WVJFkl2cmx3c8jWNIWStv/AThJeQDW', 5, '2024-04-07', '[\"1\",\"3\"]', 'cedehaligy@mailinator.com', NULL),
-(7, 'pozabe', '$2y$10$yF1AkcrZX2eBc60pcR1F5OAx0ei85VoKijTJvd2oounMrUQ5kb6L6', 9, '2024-04-08', '[\"1\",\"3\"]', 'fidyrarux@mailinator.com', NULL),
-(8, '1', '$2y$10$ZoTFfrBE7VT.ZC8mtFdE5uoHTcy9Tq/YE3Gzin80Dnd.5ornagYLq', 2, '2024-04-08', '[\"1\",\"3\"]', '2222@gmail.com', NULL),
-(9, 'wycajinose', '$2y$10$fH/49RDgnxfraw4hvAJosOgZdvICTFk3IWCrnZwtBz1Sw2Y2l.ffK', 2, '2024-04-08', '[\"1\",\"3\"]', 'bupefy@mailinator.com', NULL);
+INSERT INTO `tbl_supplier` (`id_supplier`, `kode_supplier`, `nama_supplier`, `bank`, `nomor`, `an`, `npwp`, `id_area`, `no_ktp`, `alamat`, `wilayah`, `no_rekening`, `Column1`, `A1`, `ALI NURDIN`, `Column4`, `Column5`, `Column6`, `Column7`, `404`, `Column9`, `Column10`, `Column11`, `Column12`) VALUES
+(1, 'K1', 'Et qui occaecat et i', 'Placeat unde ab et ', 'Recusandae Assumend', 'Odit eos nostrum eni', 'Adipisicing sint qu', 443, '0', 'Asperiores duis dolo', '', '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'K2', 'Obcaecati eligendi s', 'Est veniam rerum s', 'Adipisci aut commodo', 'Ut dolores rem eiusm', 'Commodi in ex molest', 443, '0', 'Deserunt officiis co', '', '1244', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'j6', 'adi', 'bca', 'gddg', 'taufik', '6565656', 443, '323232', 'sasasas', '', '12345', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'rudi', 'Rudianto', 'BCA', '081', 'rudi', '2.png', 440, '21', 'Hehe', '', '11223344', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'A1', 'ALI NURDIN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'A2', 'HASANUDIN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 'A3', 'MASDI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 'A4', 'MISAR', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 'A5', 'BENI TOMALA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'A6', 'JUNAEDI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 'A7', 'ISMAIL', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 'A8', 'NAEM', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 'A9', 'HAKIM', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 'A10', 'MARKANI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 'A11', 'YULI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 'A12', 'MP MUARA BENDERA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 'A13', 'AWANG', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 'A14', 'SINI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(19, 'A15', 'ALEN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(20, 'A16', 'ROSID', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, 'A17', 'ISMAIL', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(22, 'A18', 'ARYA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, 'A19', 'ADANG', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(24, 'A20', 'KASAN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(25, 'A21', 'SUHARI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 'A22', 'SLAMET', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 'A23', 'MIRPAKO', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 'A24', 'RONI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 'A25', 'SUKAR', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(30, 'A26', 'SAONAH', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(31, 'A27', 'GATOT', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(32, 'A29', 'KARSIM', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(33, 'A30', 'MAHFUD', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(34, 'A31', 'SOBARI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(35, 'A32', 'JAKARIA/ARYA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(36, 'A33', 'SUTRISNO JKT', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(37, 'A34', 'SUWANDA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(38, 'A35', 'MAHMUD FADHOLI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(39, 'A36', 'EEN OCTAVIA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(40, 'A38', 'KUNTARA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(41, 'A39', 'KOSIM', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(42, 'A40', 'SUTARNO', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(43, 'A42', 'JAELANI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(44, 'A43', 'H.SYAEFUDIN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(45, 'A44', 'ZIDAN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(46, 'A45', 'MAHMUDI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(47, 'A46', 'IROH', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(48, 'A47', 'HERMANTO JKT', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(49, 'A48', 'MAULANA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(50, 'A49', 'DEWI FATIMAH', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(51, 'A50', 'BUANG', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(52, 'A51', 'NURDIN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(53, 'A52', 'SUHARI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(54, 'A53', 'WAWAN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(55, 'A54', 'NESIN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(56, 'A55', 'DARJA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(57, 'A59', 'SOBRI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(58, 'A60', 'SUBHAN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(59, 'A61', 'MIMI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(60, 'A62', 'DEDI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(61, 'A63', 'SATIBI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(62, 'A66', 'SUMINTA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(63, 'A67', 'NURUL YAKIN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(64, 'A68', 'NAMIROH', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(65, 'A69', 'NISA JAYA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(66, 'A70', 'AMDAN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(67, 'A71', 'ALIYAH', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(68, 'A72', 'SYAEPUL BAHRI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(69, 'A73', 'IRWAN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(70, 'A76', 'SUNASIR', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(71, 'A82', 'SUGIRI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(72, 'A86', 'NURLELA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(73, 'A87', 'KRISNA MUKTI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(74, 'A89', 'RIAN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(75, 'A90', 'BILAL', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(76, 'A91', 'KARTIKA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(77, 'A92', 'ILHAM', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(78, 'A93', 'ERIK', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(79, 'A94', 'MUGIONO', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(80, 'A95', 'ROHIM', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(81, 'A96', 'KANZEN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(82, 'A97', 'PUTRA JAYA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(83, 'A98', 'MILYANAH', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(84, 'A99', 'HILMAN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(85, 'A100', 'SUTISNA', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(86, 'A101', 'SINI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(87, 'A74', 'DEDIH', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(88, 'A75', 'SITI ELANI', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(89, 'A77', 'DULAH', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(90, 'A102', 'MUSLIH', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 'A103', 'BABAY', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(92, 'A104', 'SYAMSUDIN', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(93, 'A105', 'YAYAT', '', '', '', '', 404, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(94, 'B1', 'SADAT', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(95, 'B2', 'WIRSO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(96, 'B3', 'SUYATA', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(97, 'B4', 'ULFAH', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(98, 'B5', 'ROBI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(99, 'B6', 'DINI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100, 'B7', 'PRENTI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(101, 'B8', 'FIAN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(102, 'B9', 'CAHAYA', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(103, 'B10', 'rohman', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(104, 'B11', 'TABRONI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(105, 'B12', 'PERSIS', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(106, 'B13', 'DUDI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(107, 'B14', 'HANIF', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(108, 'B15', 'SADINAH', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(109, 'B16', 'WITA', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(110, 'B17', 'adi', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(111, 'B18', 'rukini', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(112, 'B19', 'KENZAROK', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(113, 'B20', 'OVIC', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(114, 'B21', 'zalih', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(115, 'B22', 'WARSONO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(116, 'B23', 'WULAN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(117, 'B24', 'SURIP', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(118, 'B25', 'CASMADI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(119, 'B26', 'ERI AFIKAH', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(120, 'B27', 'ANDI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(121, 'B28', 'RISKULY', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(122, 'B29', 'sawila', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(123, 'B30', 'TALIM', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(124, 'B31', 'H. UUN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(125, 'B32', 'H.NIWAN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(126, 'B33', 'WARNOTO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(127, 'B34', 'sadira', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(128, 'B35', 'RASJU', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(129, 'B36', 'hermanto', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(130, 'B37', 'MAN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(131, 'B38', 'ROCHMAT HIDAYAT', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(132, 'B39', 'WAHYU', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(133, 'B40', 'IYAN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(134, 'B41', 'AQILAH', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(135, 'B42', 'TARJUNA', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(136, 'B43', 'DESY', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(137, 'B44', 'RONI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(138, 'B45', 'FAHMI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(139, 'B46', 'bayu', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(140, 'B47', 'ROKAYAH', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(141, 'B48', 'YUSUP', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(142, 'B49', 'HARTONO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(143, 'B50', 'H.TUTI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(144, 'B66', 'WARINI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(145, 'B67', 'LISTIYANTO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(146, 'B68', 'kardono', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(147, 'B69', 'ahmad', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(148, 'B70', 'riswadi', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(149, 'B71', 'kanisa', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(150, 'B51', 'PARLIN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(151, 'B52', 'YANTO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(152, 'B53', 'BUDI HERNANTO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(153, 'B54', 'KURSAN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(154, 'B55', 'H. ALIF', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(155, 'B56', 'YADI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(156, 'B57', 'MUNAWIR', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(157, 'B58', 'SATORI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(158, 'B59', 'ADE ROHADI/surya ade', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(159, 'B60', 'ARI/SARI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(160, 'B61', 'MASTUR', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(161, 'B62', 'KATIJA', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(162, 'B63', 'HERU', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(163, 'B64', 'ARI WIRYADI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(164, 'B65', 'DWI CRBN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(165, 'B72', 'tajudin', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(166, 'B73', 'mariah', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(167, 'B74', 'IPIN SARIPIN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(168, 'B75', 'tawaf', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(169, 'B76', 'DEDE', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(170, 'B77', 'fadli', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(171, 'B78', 'KAISAH', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(172, 'B79', 'SINAR LAUT', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(173, 'B80', 'GILANG', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(174, 'B81', 'nafisah', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(175, 'B82', 'luki', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(176, 'B83', 'MUALIM', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(177, 'B84', 'JOJO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(178, 'B85', 'WASTERI/UWAS', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(179, 'B86', 'halimah', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(180, 'B87', 'HELMI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(181, 'B88', 'SUJANA', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(182, 'B89', 'H. SOLEH', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(183, 'B90', 'DICKY', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(184, 'B91', 'nur mesyi', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(185, 'B92', 'UBAY', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(186, 'B93', 'IKWAN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(187, 'B94', 'ANGGUN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(188, 'B95', 'LUKMAN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(189, 'B96', 'HEGAR / RUKINI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(190, 'B97', 'ROYANDI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(191, 'B98', 'ANWAR ANAS', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(192, 'B99', 'ROSID', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(193, 'B100', 'DAFFA', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(194, 'B101', 'NUR KHASANAH', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(195, 'B102', 'NURYATI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(196, 'B103', 'ROJI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(197, 'B104', 'MUFID', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(198, 'B105', 'INAYAH', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(199, 'B106', 'HAYATI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(200, 'B107', 'WAITO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(201, 'B108', 'SANTOSO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(202, 'B109', 'SUHARTO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(203, 'B110', 'SURINI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(204, 'B111', 'YUSUF', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(205, 'B112', 'DANURI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(206, 'B113', 'DARMO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(207, 'B114', 'SATURI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(208, 'B115', 'RASBIN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(209, 'B120', 'SUDINA', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(210, 'B121', 'SURYATI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(211, 'B122', 'DEDE PRIYANTO', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(212, 'B124', 'ANGGI', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(213, 'B125', 'RIDWAN', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(214, 'B126', 'TOIPAH', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(215, 'B127', 'JANA', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(216, 'B128', 'SITI MARYAM', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(217, 'B129', 'AMANDA', '', '', '', '', 441, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(218, 'C4', 'SAM', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(219, 'C6', 'TRI SUKADI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(220, 'C7', 'AGAL', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(221, 'C8', 'SAENAH', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(222, 'C9', 'DENI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(223, 'C10', 'SUDIRMAN', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(224, 'C11', 'SUHENDRI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(225, 'C12', 'BUDI PRASETYO', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(226, 'C13', 'IWAN SETIAWAN', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(227, 'C14', 'AHMAD ROHADI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(228, 'C15', 'HEMI MARLIANI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(229, 'C16', 'FIRMAN', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(230, 'C17', 'IYON KASIONO', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(231, 'C21', 'ELI SUSANTI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(232, 'C22', 'FIRDAUS', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(233, 'C23', 'FATHUR', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(234, 'C27', 'JULI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(235, 'C28', 'ABDULLOH', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(236, 'C29', 'PLONCO', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(237, 'C31', 'BASUNIH', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(238, 'C32', 'WARINTO', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(239, 'C33', 'CASMIRA', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(240, 'C34', 'SUPARMAN', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(241, 'C35', 'REZI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(242, 'C36', 'AGUS', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(243, 'C37', 'KASID', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(244, 'C38', 'HAVLIN', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(245, 'C39', 'SAGEK', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(246, 'C41', 'HARIYANTO', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(247, 'C42', 'SUJARWO', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(248, 'C43', 'HAMIMAH', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(249, 'C44', 'WANIDA', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(250, 'C45', 'WANDI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(251, 'C47', 'SAU', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(252, 'C49', 'ALBERT', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(253, 'C50', 'ANDRE', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(254, 'C51', 'NOVI/ANDI ASNAWI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(255, 'C52', 'ROFI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(256, 'C53', 'ISKANDAR', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(257, 'C54', 'SUWAJI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(258, 'C55', 'SITI FATIMAH', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(259, 'C56', 'HERMAN', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(260, 'C57', 'LESTARI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(261, 'C58', 'JUWANDI LAMPUNG', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(262, 'C60', 'TIMAN', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(263, 'C61', 'ABDUL ROHMAN', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(264, 'C62', 'YANTI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(265, 'C63', 'DANI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(266, 'C66', 'KOLID', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(267, 'C59', 'FIBRI', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(268, 'C65', 'ARIL', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(269, 'C66', 'KOLID', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(270, 'C67', 'ARIF', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(271, 'C68', 'AMALIA', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(272, 'C69', 'MAARIF', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(273, 'C70', 'SAIFUDIN', '', '', '', '', 442, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(274, 'D1', 'MASITA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(275, 'D2', 'ADI KAKAP', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(276, 'D3', 'JUMILAH', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(277, 'D4', 'SULAIMAN DTKR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(278, 'D5', 'NENENG', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(279, 'D6', 'RUDI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(280, 'D7', 'DEDI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(281, 'D8', 'HANAFI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(282, 'D9', 'ALI AKBAR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(283, 'D10', 'ASMU', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(284, 'D11', 'USMAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(285, 'D12', 'MUSLIHAT', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(286, 'D13', 'ABDUL MIAT', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(287, 'D14', 'HARYANTO', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(288, 'D15', 'LILIK/PENDI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(289, 'D16', 'HIKAL', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(290, 'D17', 'YULI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(291, 'D18', 'RENA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(292, 'D19', 'SININ', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(293, 'D20', 'VELLY', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(294, 'D21', 'BELLA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(295, 'D22', 'IBRAHIM PTNK', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(296, 'D23', 'SURIANA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(297, 'D24', 'NASIR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(298, 'D25', 'AMIR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(299, 'D26', 'NADIN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(300, 'D27', 'BIDIN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(301, 'D28', 'M. ISRAK', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(302, 'D29', 'NUR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(303, 'D30', 'ERIK ISKANDAR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(304, 'D31', 'MURNI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(305, 'D32', 'AMIR KAKAP', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(306, 'D33', 'MUSA/AGUNG', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(307, 'D34', 'DIDIK', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(308, 'D35', 'MANCA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(309, 'D36', 'RYAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(310, 'D37', 'RISWANDINATA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(311, 'D38', 'SULAIMAN KTP', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(312, 'D39', 'JEFRI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(313, 'D40', 'KARNADI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(314, 'D41', 'ZAHWA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(315, 'D42', 'RUSLI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(316, 'D43', 'AIRIL', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(317, 'D44', 'JUHAN/FIRMAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(318, 'D45', 'BUDI KETAPANG', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(319, 'D46', 'RARA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(320, 'D47', 'IBRAHIM MPWH', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(321, 'D48', 'YUDHA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(322, 'D49', 'MAWAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(323, 'D50', 'AMOX', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(324, 'D51', 'DODO', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(325, 'D52', 'RUSLI KAKAP', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(326, 'D53', 'LINDA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(327, 'D54', 'MAWI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(328, 'D55', 'MUSMULYADI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(329, 'D56', 'ALMI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(330, 'D57', 'ADIRA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(331, 'D58', 'REZA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(332, 'D59', 'RADIT', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(333, 'D60', 'INDRAWATI/AFRAH', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(334, 'D61', 'IBRAHIM BUDI (BAY)', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(335, 'D62', 'KARMILA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(336, 'D63', 'SAMSUL/MEGA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(337, 'D64', 'SUDIRO', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(338, 'D65', 'FIAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(339, 'D66', 'SUDIR MW', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(340, 'D67', 'SOBUR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(341, 'D68', 'MANTO SATAI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(342, 'D69', 'ABIYU', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(343, 'D70', 'M. YUSUF', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(344, 'D71', 'IID', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(345, 'D72', 'AKHUN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(346, 'D73', 'ISMAIL', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(347, 'D74', 'ANNABA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(348, 'D75', 'YATNO', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(349, 'D76', 'PARDI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(350, 'D77', 'HUSNUL', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(351, 'D78', 'JANUARDI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(352, 'D79', 'GUSTI ANDRE', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(353, 'D80', 'JAFRI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(354, 'D81', 'FIDARIS', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(355, 'D82', 'RISKY', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(356, 'D83', 'SUDIANTO', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(357, 'D84', 'FIRMAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(358, 'D85', 'FAREL', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(359, 'D86', 'DESI/MAKMUR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(360, 'D87', 'KRISMANTO', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(361, 'D88', 'AHMAD WIWID', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(362, 'D89', 'YUSMAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(363, 'D90', 'JUSWANA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(364, 'D91', 'RIYASIH', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(365, 'D92', 'CITO', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(366, 'D93', 'MP PONTIANAK', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(367, 'D94', 'HALIMAH', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(368, 'D95', 'AMOK BASIR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(369, 'D96', 'PUTRIANA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(370, 'D97', 'ZYA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(371, 'D98', 'JULIADI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(372, 'D99', 'LISA/ARIF', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(373, 'D100', 'ARJUNA NIAH', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(374, 'D101', 'SYAHRUDIN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(375, 'D102', 'SUHARDI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_supplier` (`id_supplier`, `kode_supplier`, `nama_supplier`, `bank`, `nomor`, `an`, `npwp`, `id_area`, `no_ktp`, `alamat`, `wilayah`, `no_rekening`, `Column1`, `A1`, `ALI NURDIN`, `Column4`, `Column5`, `Column6`, `Column7`, `404`, `Column9`, `Column10`, `Column11`, `Column12`) VALUES
+(376, 'D103', 'RIDWAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(377, 'D104', 'DEDI GUNAWAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(378, 'D105', 'ANA RITA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(379, 'D106', 'ADITYA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(380, 'D107', 'DEDEN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(381, 'D108', 'JAMALUDIN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(382, 'D109', 'YOGI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(383, 'D110', 'DESY ASWANI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(384, 'D111', 'SAPARUDIN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(385, 'D112', 'BUSTAM', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(386, 'D113', 'TONI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(387, 'D114', 'RINDIA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(388, 'D115', 'PAUJI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(389, 'D116', 'WINDA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(390, 'D117', 'HENDRIZAL/NAZAR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(391, 'D118', 'SUYATNO', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(392, 'D119', 'BUDIANSYAH', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(393, 'D120', 'SURITA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(394, 'D121', 'RIRIN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(395, 'D122', 'RANDI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(396, 'D123', 'ANDI ERWANDI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(397, 'D124', 'MASKUR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(398, 'D125', 'HAMSAH', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(399, 'D126', 'IAN/RIZKIAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(400, 'D127', 'ADITYA SETIAWAN/YUNI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(401, 'D128', 'ABIZAR/SAPARI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(402, 'D129', 'VITA SARI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(403, 'D130', 'ARIYANTO', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(404, 'D131', 'RUDI SANTOSO', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(405, 'D132', 'UDAINI/PITRIYANI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(406, 'D133', 'MADANI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(407, 'D134', 'SAHRANI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(408, 'D135', 'EVI/FAUZAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(409, 'D136', 'RIDUAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(410, 'D137', 'ASNAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(411, 'D138', 'IMRAN KETAPANG', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(412, 'D139', 'SUKRI/SAMSUL', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(413, 'D140', 'SITI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(414, 'D141', 'JUMRATUL', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(415, 'D142', 'SURIANI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(416, 'D143', 'MUSAIDIN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(417, 'D144', 'SUHADA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(418, 'D145', 'SURIYANI KALBAR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(419, 'D146', 'LISA YANA', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(420, 'D147', 'BUDIMAN', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(421, 'D148', 'TIWI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(422, 'D149', 'SAHRANI KALBAR', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(423, 'D150', 'TAJUINSYAH', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(424, 'D151', 'FAISAL', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(425, 'D152', 'MEGANSYAH', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(426, 'D153', 'NUR HAYAMI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(427, 'D154', 'RAMAYATI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(428, 'D155', 'RAJALI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(429, 'D156', 'MP KETAPANG', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(430, 'D157', 'SABARANI', '', '', '', '', 559, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(431, 'E1', 'KATI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(432, 'E2', 'AGUS', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(433, 'E3', 'ARBA', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(434, 'E4', 'SUMARSONO', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(435, 'E5', 'ARYANTO', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(436, 'E8', 'HABRUN', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(437, 'E9', 'ROSMIATI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(438, 'E10', 'INDRA JAYA', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(439, 'E11', 'DARMAWI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(440, 'E12', 'AIDI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(441, 'E13', 'AGHIL', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(442, 'E14', 'RAHUDI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(443, 'E16', 'RONI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(444, 'E17', 'YULIANTI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(445, 'E18', 'KASRI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(446, 'E19', 'HENDRA', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(447, 'E21', 'NASRI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(448, 'E28', 'PARDIN', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(449, 'E30', 'SARWEDI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(450, 'E31', 'ANGGA', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(451, 'E32', 'YUNNI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(452, 'E33', 'NURHIDAYATI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(453, 'E35', 'TOPAN', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(454, 'E36', 'SRI REJEKI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(455, 'E37', 'SISKA', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(456, 'E38', 'SUHERMAN', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(457, 'E39', 'ABDUL MANAF', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(458, 'E40', 'SAMRAN', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(459, 'E50', 'ADUL', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(460, 'E54', 'ISTIMEWA', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(461, 'E56', 'AGRA', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(462, 'E58', 'AKIONG', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(463, 'E60', 'MP BELITUNG', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(464, 'E61', 'JULIANTO', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(465, 'E64', 'BABE', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(466, 'E67', 'ATAT', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(467, 'E72', 'PANI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(468, 'E73', 'HAIRUL', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(469, 'E74', 'ADE SURYANI', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(470, 'E75', 'TARA', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(471, 'E77', 'IRMA', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(472, 'E78', 'MASTONO', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(473, 'E79', 'AGUS MULYONO', '', '', '', '', 123, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(474, 'F1', 'AGUS ISMAIL', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(475, 'F2', 'RAHMAT SADAI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(476, 'F3', 'DENDI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(477, 'F4', 'RAHMAN', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(478, 'F5', 'FIRJAE', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(479, 'F6', 'FIRDAUS', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(480, 'F7', 'YUSRI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(481, 'F8', 'RUSTON', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(482, 'F9', 'SELI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(483, 'F10', 'AJON', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(484, 'F11', 'BINTARIA', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(485, 'F12', 'ERNI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(486, 'F13', 'ZULKIFLI / SUPYANIDI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(487, 'F14', 'ION', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(488, 'F15', 'CAKMAN', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(489, 'F16', 'SUTIONO', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(490, 'F17', 'CAWI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(491, 'F18', 'RUSTAM', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(492, 'F19', 'SUDIRMAN', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(493, 'F20', 'EFENDI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(494, 'F21', 'IAN', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(495, 'F22', 'NOKY', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(496, 'F23', 'IRAWAN', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(497, 'F24', 'ASSE/YUDI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(498, 'F25', 'RIKI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(499, 'F26', 'MP BANGKA', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(500, 'F27', 'ANGGA DARMAWAN', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(501, 'F28', 'PARDI/TAHER', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(502, 'F29', 'ISMAIL', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(503, 'F30', 'YUDHI', '', '', '', '', 124, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(504, 'G1', 'RONI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(505, 'G2', 'NARDI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(506, 'G3', 'SUWARNO', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(507, 'G4', 'RASMIN', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(508, 'G5', 'ROMLI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(509, 'G6', 'SITI ROHMAH', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(510, 'G7', 'PRIYO', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(511, 'G11', 'MUHTADI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(512, 'G12', 'SIMON/ENDAMG', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(513, 'G15', 'MUDASIN', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(514, 'G17', 'ABDUL FATAH', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(515, 'G20', 'KARMIDI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(516, 'G21', 'SISWANTO', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(517, 'G24', 'HADI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(518, 'G25', 'JUHARI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(519, 'G27', 'MP PUTRA', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(520, 'G30', 'ROFIK', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(521, 'G35', 'FAHRUL', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(522, 'G36', 'MP PANTURA', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(523, 'G37', 'UCOK', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(524, 'G38', 'YOYO', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(525, 'G39', 'MUJIB', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(526, 'G44', 'AGUS', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(527, 'G46', 'ARIF', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(528, 'G47', 'SUJAT', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(529, 'G48', 'EKO', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(530, 'G49', 'TOPIK', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(531, 'G51', 'ANDIK', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(532, 'G52', 'SUGENG', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(533, 'G53', 'ZAINUL IKHWAN', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(534, 'G54', 'MUKHLISON', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(535, 'G55', 'CV. MAJU WARAKE', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(536, 'G56', 'SODIKIN NUR KOLIK', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(537, 'G57', 'YULI SUSANTI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(538, 'G58', 'TOHA', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(539, 'G59', 'HENDY WIBAWA', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(540, 'G60', 'AISA', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(541, 'G61', 'ROHANDA', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(542, 'G62', 'ACHDY', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(543, 'G63', 'NUR SISKA', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(544, 'G64', 'DIDIK', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(545, 'G65', 'ZAINAL ARIFIN', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(546, 'G66', 'YATEMIN', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(547, 'G67', 'TAMSIR', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(548, 'G68', 'ADI SURYADI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(549, 'G69', 'SULISTYO', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(550, 'G70', 'ROSIDI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(551, 'G71', 'PRIYANTI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(552, 'G72', 'PRAMITA', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(553, 'G73', 'SODIKIN', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(554, 'G74', 'SUGIYATI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(555, 'G75', 'AHMAD SYIFA', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(556, 'G76', 'CHRISTIAN', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(557, 'G77', 'TITIK', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(558, 'G78', 'SETIAWAN', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(559, 'G79', 'ERLIN INDAH', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(560, 'G80', 'SUPRIYANTI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(561, 'G81', 'YOSI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(562, 'G83', 'HERI', '', '', '', '', 140, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(563, 'H1', 'DEDI SUHERLAN', '', '', '', '', 134, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(564, 'H16', 'MIN JIU', '', '', '', '', 134, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(565, 'J1', 'ITA', '', '', '', '', 133, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(566, 'J2', 'LAODE', '', '', '', '', 133, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(567, 'J3', 'SUTRISNO', '', '', '', '', 133, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(568, 'L1', 'AYUB', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(569, 'L2', 'SALMAN', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(570, 'L3', 'SIDIK', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(571, 'L4', 'MP LOMBOK', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(572, 'L5', 'TITI', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(573, 'L6', 'AZWAR', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(574, 'L7', 'TALUN', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(575, 'L8', 'JAMALUDIN', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(576, 'L9', 'AGUS SALIM', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(577, 'L10', 'MUHAMMAD', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(578, 'L11', 'ALUNG', '', '', '', '', 132, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(579, 'M1', 'MIDAN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(580, 'M2', 'H.MANSYUR/L3', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(581, 'M3', 'DORES/SURIANSYAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(582, 'M4', 'BAHRUDIN/BARUDING', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(583, 'M5', 'AMIRUDIN TAMIYANG', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(584, 'M6', 'SUHARDI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(585, 'M7', 'MANSYAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(586, 'M8', 'HASNAINI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(587, 'M9', 'DIDIK/DAFFA', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(588, 'M10', 'SITI HAJAR', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(589, 'M11', 'MUARA HATI/EDO/H.HATI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(590, 'M12', 'H. ACO/ANWAR', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(591, 'M13', 'TAMADING', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(592, 'M14', 'JALI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(593, 'M15', 'MUSLIYADI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(594, 'M16', 'ANDI SAHARUDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(595, 'M17', 'TAMSAR', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(596, 'M18', 'ZAINAL', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(597, 'M19', 'MULYATI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(598, 'M20', 'BUNGALIA / KOMARUDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(599, 'M21', 'SUAEB', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(600, 'M22', 'SIRATANG', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(601, 'M23', 'BAYAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(602, 'M24', 'AWALUDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(603, 'M25', 'HAJRAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(604, 'M26', 'DEVI/HAFIFUDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(605, 'M27', 'HASAN KOTABARU', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(606, 'M28', 'M. NASRUN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(607, 'M29', 'SAKKA', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(608, 'M30', 'M. RASYIDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(609, 'M31', 'MUIS', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(610, 'M32', 'H. IPAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(611, 'M33', 'JUMADAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(612, 'M34', 'JAINUDIN/HERMAN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(613, 'M35', 'DAHRI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(614, 'M36', 'GANDI/JORONG', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(615, 'M37', 'SUPARDI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(616, 'M38', 'WARTO', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(617, 'M39', 'SIRE', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(618, 'M40', 'SARUDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(619, 'M41', 'RINI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(620, 'M42', 'AFIKA', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(621, 'M43', 'PUDING/HUSNA', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(622, 'M44', 'TINTANG', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(623, 'M45', 'SUDIANUR', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(624, 'M46', 'JAMAL JORONG', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(625, 'M47', 'H. AMIR PAGATAN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(626, 'M48', 'SYAMSUDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(627, 'M49', 'HAMDIAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(628, 'M50', 'SABANUR', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(629, 'M51', 'JOJO/JOHANSYAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(630, 'M52', 'HAMSYAH/MARHANSYAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(631, 'M53', 'RUSDANI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(632, 'M54', 'H. IDERUS', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(633, 'M55', 'ADRIAN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(634, 'M56', 'NASIR/LAYLA', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(635, 'M57', 'HAMID PAGATAN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(636, 'M58', 'MUKHTAR', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(637, 'M59', 'H.SAIFUDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(638, 'M60', 'SAIDE', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(639, 'M61', 'RUPIAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(640, 'M62', 'RUHAEDA', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(641, 'M63', 'BAHARANI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(642, 'M64', 'SULAIMAN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(643, 'M65', 'SADAKE', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(644, 'M66', 'YANA', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(645, 'M67', 'H.TAKE', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(646, 'M68', 'MUKAROMAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(647, 'M69', 'SULAIMAN SIMLATAKAN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(648, 'M70', 'MISNAHAR', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(649, 'M71', 'H.NUSU/YUNUS', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(650, 'M72', 'AKU (YAKUP)', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(651, 'M73', 'JOJO/JOHANSYAH KK', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(652, 'M74', 'MANA BAHARUDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(653, 'M75', 'HASRIFIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(654, 'M76', 'LABE', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(655, 'M77', 'YANTO KK', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(656, 'M78', 'ALIMUDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(657, 'M79', 'AMIR TAKISUNG/IRHAM', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(658, 'M80', 'FITRI/HELDA', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(659, 'M81', 'HATIANSYAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(660, 'M82', 'HERI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(661, 'M83', 'YANTO ', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(662, 'M84', 'HALIMAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(663, 'M85', 'HALIA', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(664, 'M86', 'SURIANSYAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(665, 'M87', 'SUGANI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(666, 'M88', 'MP FOTS BANJARMASIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(667, 'M89', 'MUHAMMAD FITRI', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(668, 'M90', 'NORMA INDAH / RIDUANSYAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(669, 'M91', 'H. ALIANSYAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(670, 'M92', 'ALAM/FATIMAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(671, 'M93', 'MUJAHIDIN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(672, 'M94', 'NANTANG', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(673, 'M95', 'SULAIMAN KK', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(674, 'M96', 'ROMLAH', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(675, 'M97', 'AGUS SUBKAN', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(676, 'M98', 'M. TAUFIQ', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(677, 'M99', 'SAID', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(678, 'M100', 'DEVI TAKISUNG', '', '', '', '', 131, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(679, 'N4', 'SULHAN', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(680, 'N5', 'HUSNI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(681, 'N6', 'MOYO', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(682, 'N8', 'FATIMAH', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(683, 'N9', 'MOYO', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(684, 'N10', 'ZAINUL', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(685, 'N14', 'NUR', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(686, 'N15', 'HENI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(687, 'N16', 'ALI MANSUR', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(688, 'N18', 'MUSA', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(689, 'N20', 'ANI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(690, 'N24', 'KUSNAIDI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(691, 'N29', 'MASKUR', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(692, 'N30', 'JAIZ', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(693, 'N31', 'SUPARTO', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(694, 'N33', 'MUDHAR', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(695, 'N36', 'KHOTIB', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(696, 'N37', 'BUDI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(697, 'N40', 'RAHMAT', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(698, 'N43', 'SUTRISNO', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(699, 'N44', 'IPUNG', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(700, 'N45', 'SUKANDAR TONGAS', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(701, 'N46', 'ARIFIN', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(702, 'N47', 'JUNAIDI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(703, 'N48', 'TOPIK', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(704, 'N49', 'IMRON', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(705, 'N50', 'SOLIHUN', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(706, 'N51', 'SAMSI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(707, 'N52', 'LIANA', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(708, 'N53', 'ZULFA', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(709, 'N54', 'IAN', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(710, 'N55', 'IFAH', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(711, 'N56', 'ANNA', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(712, 'N57', 'RUHANA', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(713, 'N58', 'DAVID', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(714, 'N59', 'MATRAJI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(715, 'N60', 'YULI DEDI IRAWAN', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(716, 'N61', 'ABDUL GOFUR', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(717, 'N62', 'SRI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(718, 'N63', 'MASNIYANTO', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(719, 'N64', 'ANAM MUHTAR', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(720, 'N65', 'IRAWATI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(721, 'N67', 'HORYADI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(722, 'N68', 'DINI HARIANI', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(723, 'N69', 'MUKHLISON JATIM', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(724, 'N70', 'IBAD', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(725, 'N71', 'ELSERIA', '', '', '', '', 130, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(726, 'P2', 'NURBAYA', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(727, 'P3', 'SANYOTO', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(728, 'P4', 'ADIANTO', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(729, 'P5', 'IMRON', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(730, 'P6', 'JUMIATI BERAU', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(731, 'P7', 'RUDI', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(732, 'P8', 'SUTRISNO', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(733, 'P9', 'NUR HAMIDA', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(734, 'P10', 'TOMMY', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(735, 'P11', 'FOTS DOBO', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(736, 'P12', 'FRENGKI', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(737, 'P13', 'ANGGI', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(738, 'P14', 'MARKUS', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(739, 'P15', 'JUWANDI', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(740, 'P16', 'MP SORONG', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(741, 'P17', 'SONY', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(742, 'P18', 'MUSAIDIN', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(743, 'P19', 'FIRDAUS', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(744, 'P20', 'SEPTIANDA', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(745, 'P21', 'FOTS TARAKAN', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(746, 'P22', 'HERMAN', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(747, 'P23', 'RASMAL', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(748, 'P24', 'SAPUTERA', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(749, 'P26', 'HUTUR', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_supplier` (`id_supplier`, `kode_supplier`, `nama_supplier`, `bank`, `nomor`, `an`, `npwp`, `id_area`, `no_ktp`, `alamat`, `wilayah`, `no_rekening`, `Column1`, `A1`, `ALI NURDIN`, `Column4`, `Column5`, `Column6`, `Column7`, `404`, `Column9`, `Column10`, `Column11`, `Column12`) VALUES
+(750, 'P27', 'ANWAR', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(751, 'P13', 'ANGGI', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(752, 'P28', 'ACOK', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(753, 'P29', 'ZULKARNAIN', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(754, 'P30', 'HASRIYANTI', '', '', '', '', 129, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(755, 'Q1', 'HENDRA KURNIAWANTA', '', '', '', '', 127, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(756, 'S1', 'IBRAHIM', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(757, 'S2', 'H. RUSDI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(758, 'S3', 'EDI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(759, 'S4', 'ADENAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(760, 'S5', 'MASLIKHAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(761, 'S6', 'SITI RUBIANTI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(762, 'S7', 'ARBAIN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(763, 'S8', 'SUWARNI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(764, 'S9', 'MASRAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(765, 'S10', 'MASLIAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(766, 'S11', 'AKILIN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(767, 'S12', 'MARDI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(768, 'S13', 'HAMLI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(769, 'S14', 'SITI AKRAMAH', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(770, 'S15', 'ABDUL GONI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(771, 'S16', 'ACEK HASAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(772, 'S17', 'YUSUF', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(773, 'S18', 'JAHRA', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(774, 'S19', 'MASRAN PKB', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(775, 'S20', 'ACHMADI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(776, 'S21', 'HAMBLI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(777, 'S22', 'JAIDI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(778, 'S23', 'FATMAWATI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(779, 'S24', 'MASRANSYAH', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(780, 'S25', 'ABDUL MUIN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(781, 'S26', 'JAKA', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(782, 'S27', 'SYAHRIAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(783, 'S28', 'PURI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(784, 'S29', 'KHUSNI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(785, 'S30', 'DULHADI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(786, 'S31', 'UDI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(787, 'S32', 'MAMAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(788, 'S33', 'NURYADIN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(789, 'S34', 'DODO', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(790, 'S35', 'HASAN PKLB', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(791, 'S36', 'UJANG', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(792, 'S37', 'JAMAL', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(793, 'S38', 'KARMAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(794, 'S39', 'NORBAAT', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(795, 'S40', 'NUR HATTA', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(796, 'S41', 'SOLEHATI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(797, 'S42', 'RIADI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(798, 'S43', 'RUSTAM', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(799, 'S44', 'MINAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(800, 'S45', 'AIRL', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(801, 'S46', 'YADI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(802, 'S47', 'MADI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(803, 'S48', 'ENDEK', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(804, 'S49', 'ASMUDI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(805, 'S50', 'JAKARIA', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(806, 'S51', 'AMAT', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(807, 'S52', 'ISUK', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(808, 'S53', 'AGAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(809, 'S54', 'JUNAI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(810, 'S55', 'JONI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(811, 'S56', 'LIHIN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(812, 'S57', 'TONI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(813, 'S58', 'MEGI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(814, 'S59', 'SUPRIYANTO', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(815, 'S60', 'UMMI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(816, 'S61', 'KHAERUDIN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(817, 'S62', 'MUJI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(818, 'S63', 'HALIDAH', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(819, 'S64', 'KAFIDHOH', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(820, 'S65', 'ARIFIN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(821, 'S66', 'KURNIA SAPUTRA', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(822, 'S67', 'RAMLAN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(823, 'S68', 'LAMSI/MULYADIN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(824, 'S69', 'SAHMUDIN', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(825, 'S70', 'RICKY CHRISNA', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(826, 'S71', 'ADE SAEFUL HAYAT', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(827, 'S72', 'AHMAD FAUZI', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(828, 'S73', 'SUPRIYANTO PKLB/USUP', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(829, 'S74', 'RIMA', '', '', '', '', 126, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(830, 'T1', 'JAMALUDIN', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(831, 'T2', 'TETA KK', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(832, 'T3', 'TETA', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(833, 'T4', 'HANISA KK/IWAN SETIAWAN', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(834, 'T5', 'ISMAIL', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(835, 'T6', 'HANISA/IWAN SETIAWAN', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(836, 'T7', 'ISMAIL KK', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(837, 'T8', 'IKHWAN KK', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(838, 'T9', 'IKHWAN', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(839, 'T10', 'MUHAMMAD', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(840, 'T11', 'AHER', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(841, 'T12', 'AHER KK', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(842, 'T13', 'AKMAL', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(843, 'T14', 'ADI', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(844, 'T15', 'ARUNA', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(845, 'T16', 'DAMING', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(846, 'T17', 'ERNA (ARSYAD)', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(847, 'T18', 'SARIFUDIN', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(848, 'T19', 'M. HIDAYAT', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(849, 'T20', 'M. HIDAYAT KK', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(850, 'T21', 'JUMIATI', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(851, 'T22', 'BURHANUDDIN', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(852, 'T23', 'BURHANUDDIN kk', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(853, 'T24', 'JAMALUDIN KK', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(854, 'T25', 'KUIDNG', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(855, 'T26', 'NATIYAH', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(856, 'T27', 'KUDING KK', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(857, 'T28', 'ROSIDAH', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(858, 'T29', 'NAJIRAH', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(859, 'T30', 'JAINUDDIN GROGOR', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(860, 'T31', 'ROSIDAH kk', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(861, 'T32', 'ADIANTO', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(862, 'T33', 'HASAN BONTANG', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(863, 'T34', 'JUMIATI KK', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(864, 'T35', 'MUHAMMAD SAID', '', '', '', '', 125, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(865, 'U1', 'DUDI SUHAEDI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(866, 'U2', 'WILIS WIBISONO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(867, 'U3', 'ROCHMAT HIDAYAT', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(868, 'U4', 'HERLIN LUSIANA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(869, 'U5', 'KASMIRA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(870, 'U6', 'YUSNITA RAHMAH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(871, 'U7', 'YUSNITA RAHMAH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(872, 'U8', 'DICKY WAHYUDIN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(873, 'U9', 'ANDI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(874, 'U10', 'DORI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(875, 'U11', 'ISKAK', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(876, 'U12', 'ILLASTUTI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(877, 'U13', 'NIWAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(878, 'U15', 'NAFISAH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(879, 'U16', 'SADAT', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(880, 'U17', 'DEDE PRIYANTO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(881, 'U18', 'ARI WIRYADI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(882, 'U19', 'KURSAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(883, 'U20', 'WARSONO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(884, 'U21', 'MARIAH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(885, 'U22', 'IPIN SARIPIN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(886, 'U23', 'WARTONO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(887, 'U24', 'AKHMAD YANI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(888, 'U25', 'M AAN HARTONO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(889, 'U26', 'ADE ROHADI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(890, 'U28', 'PARLIN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(891, 'U29', 'TARJUNA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(892, 'U30', 'KAISAH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(893, 'U31', 'WASTERI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(894, 'U32', 'SADIRA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(895, 'U33', 'WASTERI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(896, 'U34', 'MARYATI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(897, 'U35', 'RASBIN B WARYO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(898, 'U36', 'WAHYU', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(899, 'U37', 'JOJO SUMASJO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(900, 'U38', 'ADI SAPTOMO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(901, 'U39', 'WAMAT', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(902, 'U40', 'WIRTO HERMATO B TASMIN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(903, 'U41', 'KURSAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(904, 'U42', 'KANISA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(905, 'U43', 'SUJANA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(906, 'U44', 'WARSONO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(907, 'U45', 'NURKOLIS', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(908, 'U46', 'BUDI HERNANTO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(909, 'U47', 'SUKMAWATI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(910, 'U48', 'PERSIS', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(911, 'U49', 'KARSIWAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(912, 'U50', 'MASTUR', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(913, 'U51', 'HERU SANTOSO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(914, 'U52', 'YADI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(915, 'U53', 'SUSILAWATI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(916, 'U54', 'TASINI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(917, 'U55', 'TUTI MARYATI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(918, 'U56', 'ANTON CAHYANTO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(919, 'U57', 'HERU DWI ADZANI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(920, 'U58', 'MURODIF', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(921, 'U59', 'DIANA PUTRI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(922, 'U60', 'ABDUL AHMAD ROJAB', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(923, 'U61', 'CASMO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(924, 'U62', 'SUMARNI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(925, 'U63', 'ULIMAHSARI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(926, 'U64', 'NUR MESYI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(927, 'U65', 'FERA SILVIA WULANDARI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(928, 'U66', 'SOBANA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(929, 'U67', 'OVIC KUSUMA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(930, 'U68', 'SURINI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(931, 'U69', 'MUALIM', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(932, 'U70', 'HERMANTO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(933, 'U71', 'ERNAWATI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(934, 'U72', 'WIRSO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(935, 'U73', 'SUNENGSIH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(936, 'U74', 'MOH NURUR ROHMAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(937, 'U75', 'SUHARTO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(938, 'U76', 'GHOFAR ISMAIL', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(939, 'U77', 'IBU WAHYUNINGSIH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(940, 'U78', 'H M TABRONI B TALAM', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(941, 'U79', 'RUDI HARYANTO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(942, 'U80', 'CASINAH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(943, 'U81', 'BUDI LAKSANA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(944, 'V1', 'LINA MUSTIKAWATI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(945, 'V2', 'ALI NURDIN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(946, 'V3', 'H SYAEFUDIN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(947, 'V4', 'ANDI HASNATANG', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(948, 'V5', 'HAPID', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(949, 'V6', 'FITRIAH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(950, 'V7', 'JUJU', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(951, 'V8', 'LILI SUHELI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(952, 'V9', 'ABDUL KOSIM', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(953, 'V10', 'RIAN SANDI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(954, 'V11', 'ROHMAH BT ROHMAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(955, 'V12', 'DEWI FATIMAH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(956, 'V13', 'DARMAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(957, 'V14', 'JAELANI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(958, 'V15', 'IPROHATUL FUADAH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(959, 'V16', 'SUTARNO BIN TARYA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(960, 'V17', 'SARJI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(961, 'V18', 'NESIN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(962, 'V19', 'WAWAN SUARDI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(963, 'V20', 'JAKARIA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(964, 'V21', 'JAKARIA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(965, 'V22', 'SELAMET', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(966, 'V23', 'TARSAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(967, 'V24', 'KHUSAERI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(968, 'V25', 'LENI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(969, 'V26', 'MUNJIA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(970, 'V27', 'JUNAEDI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(971, 'V28', 'BUANG BIN ONYON', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(972, 'V29', 'SUTRISNO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(973, 'W1', 'HARIYANTO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(974, 'W2', 'SYAMSUDDIN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(975, 'W3', 'SAGEK', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(976, 'W4', 'ABDUL MUIS', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(977, 'W5', 'IYON KASIONO SE', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(978, 'W6', 'SAENAH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(979, 'W7', 'HAFLIN MOHAMMAD', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(980, 'W8', 'NGATINI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(981, 'W9', 'NUR HAYANTI HJ', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(982, 'W10', 'WANIDA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(983, 'W11', 'BASUNI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(984, 'W12', 'WINDI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(985, 'W13', 'NUR MALIKI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(986, 'W14', 'SULMAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(987, 'W15', 'MUHAMMAD ROFI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(988, 'W16', 'SUWAJI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(989, 'W17', 'IWAN SETIAWAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(990, 'W18', 'SUPARMAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(991, 'W19', ' I KETUT ANOM', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(992, 'W20', 'ACOK', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(993, 'W21', 'WARINTO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(994, 'W22', 'AHMAD JUNAIDI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(995, 'Y1', 'ARBAA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(996, 'Y2', 'SAIFUL BASRI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(997, 'Y3', 'AIDI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(998, 'Y4', 'NAILAH OKTARINI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(999, 'Y5', 'AMIRUDIN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1000, 'Y6', 'NASRI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1001, 'Y7', 'SUHERMAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1002, 'Y8', 'YUNNI APRIANSIH', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1003, 'Y9', 'YURANDA IRAWAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1004, 'Y10', 'INDRA WIJAYA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1005, 'Y11', 'SULASTRI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1006, 'Y12', 'SUPRIADI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1007, 'Y13', 'ARYANTO', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1008, 'Y14', 'ELLY', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1009, 'Y15', 'MOCHAMAD TAUFIK YUDHA ASWARDHANI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1010, 'Z1', 'MUFRON', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1011, 'Z2', 'RUDI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1012, 'Z3', 'HARYATI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1013, 'Z4', 'SUPARMAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1014, 'Z5', 'YUDHI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1015, 'Z6', 'ASE', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1016, 'Z7', 'HARNASYADI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1017, 'Z8', 'SRI HARTINI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1018, 'Z9', 'RAHMAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1019, 'Z10', 'DINA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1020, 'Z11', 'MULYADI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1021, 'Z12', 'ISMAIL', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1022, 'Z13', 'YASIR', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1023, 'Z14', 'ADITYA', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1024, 'Z15', 'HERI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1025, 'Z16', 'IAN/SUPYANIDI/ZULKIFLI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1026, 'Z17', 'SUDIRMAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1027, 'Z18', 'EFENDI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1028, 'Z19', 'CAWI', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1029, 'Z20', 'NOKY', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1030, 'Z21', 'IRAWAN', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1031, 'Z22', 'TAHIR', '', '', '', '', 443, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `tbl_area`
---
-ALTER TABLE `tbl_area`
-  ADD PRIMARY KEY (`id_area`);
-
---
--- Indexes for table `tbl_daging`
---
-ALTER TABLE `tbl_daging`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_file`
---
-ALTER TABLE `tbl_file`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_kota`
---
-ALTER TABLE `tbl_kota`
-  ADD PRIMARY KEY (`id_kota`);
-
---
--- Indexes for table `tbl_laporan`
---
-ALTER TABLE `tbl_laporan`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `tbl_laporan_id_IDX` (`id`) USING BTREE;
-
---
--- Indexes for table `tbl_memo`
---
-ALTER TABLE `tbl_memo`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_pembayaran_dp`
---
-ALTER TABLE `tbl_pembayaran_dp`
-  ADD PRIMARY KEY (`id_pembayaran_dp`);
-
---
--- Indexes for table `tbl_penerimaan`
---
-ALTER TABLE `tbl_penerimaan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_pengajuan`
---
-ALTER TABLE `tbl_pengajuan`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `tbl_pengajuan_id_IDX` (`id`) USING BTREE;
-
---
--- Indexes for table `tbl_price`
---
-ALTER TABLE `tbl_price`
-  ADD PRIMARY KEY (`id_price`);
-
---
--- Indexes for table `tbl_role`
---
-ALTER TABLE `tbl_role`
-  ADD PRIMARY KEY (`id_role`);
-
---
--- Indexes for table `tbl_sortir`
---
-ALTER TABLE `tbl_sortir`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_sub_daging`
---
-ALTER TABLE `tbl_sub_daging`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `tbl_sub_daging_id_IDX` (`id`) USING BTREE;
 
 --
 -- Indexes for table `tbl_supplier`
@@ -614,98 +1104,14 @@ ALTER TABLE `tbl_supplier`
   ADD PRIMARY KEY (`id_supplier`);
 
 --
--- Indexes for table `tbl_user`
---
-ALTER TABLE `tbl_user`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `tbl_area`
---
-ALTER TABLE `tbl_area`
-  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `tbl_daging`
---
-ALTER TABLE `tbl_daging`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
-
---
--- AUTO_INCREMENT for table `tbl_file`
---
-ALTER TABLE `tbl_file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `tbl_kota`
---
-ALTER TABLE `tbl_kota`
-  MODIFY `id_kota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `tbl_laporan`
---
-ALTER TABLE `tbl_laporan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `tbl_memo`
---
-ALTER TABLE `tbl_memo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `tbl_pembayaran_dp`
---
-ALTER TABLE `tbl_pembayaran_dp`
-  MODIFY `id_pembayaran_dp` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_penerimaan`
---
-ALTER TABLE `tbl_penerimaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `tbl_pengajuan`
---
-ALTER TABLE `tbl_pengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `tbl_price`
---
-ALTER TABLE `tbl_price`
-  MODIFY `id_price` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT for table `tbl_role`
---
-ALTER TABLE `tbl_role`
-  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `tbl_sortir`
---
-ALTER TABLE `tbl_sortir`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `tbl_sub_daging`
---
-ALTER TABLE `tbl_sub_daging`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `tbl_supplier`
 --
 ALTER TABLE `tbl_supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1032;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

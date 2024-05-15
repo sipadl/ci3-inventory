@@ -40,7 +40,9 @@
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/rainabba/jquery-table2excel@1.1.0/dist/jquery.table2excel.min.js"></script>
+
 
 
 <script>
@@ -98,14 +100,33 @@ function isiId(val){
 	$('#getId').html('');
 	$('#getId').val(val);
 }
+
+function printDisini2(val) {
+    var element = document.getElementById(`modal-print-${val}`);
+	var name = Math.floor(Math.random(2) * 1000);
+	html2pdf(element, {
+        filename: `${name}.pdf`,
+        margin: 2,
+        // image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 1 }, // Atur skala html2canvas jika perlu
+        // jsPDF: { 
+        //     unit: 'in', 
+        //     format: 'letter', 
+        //     orientation: 'portrait',
+        //     format: [8, 6] // Atur ukuran format PDF yang lebih kecil dari ukuran standar letter
+        // },
+        scale: 0.1 // Atur skala umum PDF menjadi 0.8 (80% dari ukuran normal)
+    });
+}
+
 function printDisini(val) {
     var prtContent = document.getElementById(`modal-print-${val}`);
     console.log(prtContent);
     var WinPrint = window.open('', '', 'left=0,top=10,width=800,height=800,toolbar=0,scrollbars=0,status=0');
-    WinPrint.document.write('<html><head><title>Print</title>');
+    WinPrint.document.write('<html><head><title>pdf</title>');
     // Tambahkan referensi ke file CSS Bootstrap di sini
     WinPrint.document.write('<link rel="stylesheet" href="<?php echo base_url('dist/css/adminlte.min.css') ?>">');
-    WinPrint.document.write('</head><body><div class="container mt-4">')
+    WinPrint.document.write('</head><body><div class="container mt-4"><style> .bg-light { background-color: #353535 !important }</style>')
     WinPrint.document.write(prtContent.innerHTML);
     WinPrint.document.write('</div></body></html>');
     WinPrint.document.close();
@@ -421,6 +442,7 @@ $(document).on('click', '.remove-daging', function() {
 
 function EditKocak ( url, selector ){
 	var form = $(`#${selector}`); // Assuming #sortires is the ID of your form
+	console.log(form);
 	form.attr('action', url);
     form.submit(); // Submit the form
 }
